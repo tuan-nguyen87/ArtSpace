@@ -1,13 +1,175 @@
+/* src/App.css */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e3735e; /* Set the background color of the body */
+  position: relative;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* src/App.css */
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+ul.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+li {
+  display: inline;
+}
+
+nav a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  font-family: "Kristi", sans-serif;
+  font-size: 35px;
+  margin-right: 35px;
+}
+
+a:hover {
+  background-color: #d9d9d9;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-right: auto;
+}
+
+.profile {
+  height: 50px;
+}
+
+.dropdown-menu {
+  display: none; /* Hide dropdown menu by default */
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for styling */
+}
+
+.nav-links li:hover .dropdown-menu {
+  display: block; /* Display dropdown menu on hover */
+}
+
+.dropdown-menu li {
+  display: block;
+}
+
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  text-decoration: underline;
+}
+
+/* Homepage CSS */
+.homepage-container {
+  display: flex;
+  margin-top: 100px;
+}
+
+.left-section {
+  flex: 1;
+  font-family: "Mogra", sans-serif;
+  padding: 0 20px;
+  font-size: 2rem;
+  color: white;
+  margin-right: 20px;
+}
+.search-bar {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Vertically center items */
+  position: relative; /* Establish positioning context */
+}
+
+.search-bar input[type="text"] {
+  flex: 1; /* Take up remaining space */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button[type="submit"] {
+  padding: 10px;
+  border: none;
+  background: url("/public/Homepage art/search-icon.png") no-repeat center
+    center #14ff00;
+  background-size: contain;
+  width: 60px;
+  height: 46px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  margin-left: -40px;
+}
+
+.search-bar button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.right-section {
+  flex: 0%;
+  padding: 0 20px;
+  margin-left: 20px;
+}
+
+.rotating-image {
+  width: 100%; /* Adjust the width as needed */
+  height: auto;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.rotating-image.hidden {
+  opacity: 1;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  margin-right: 10px; /* Adjust spacing between buttons */
+  background-color: #007bff; /* Button background color */
+  color: white;
+  border: solid black 1px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button:last-child {
+  margin-right: 0; /* Remove margin from last button */
+}
+
+.button-container button:hover {
+  background-color: #0056b3; /* Change color on hover */
 }
