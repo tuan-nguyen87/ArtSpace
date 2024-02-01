@@ -1,0 +1,131 @@
+body {
+    background-color: #80B3BA;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    background-color: white;
+    width: 100%;
+    height: 110px;
+    margin-top: 0px;
+    /*temporary change for margin-top, will add navbar later from Yasmin*/
+}
+
+.commissions-header {
+    width: 100%;
+    height: 90px;
+    display: flex;
+}
+
+.section {
+    width: 25%;
+    display: flex;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0px 2px 3px black;
+    padding: 6px;
+}
+
+span + span {
+    margin-left: 5px;
+}
+
+.explore-sect {
+    height: 1em;
+    cursor: pointer;
+}
+
+.commissions-sect {
+    height: 1em;
+    cursor: pointer;
+}
+
+.searchbar {
+    width: 50%;
+}
+
+.sortby-btn {
+    width: 100px;
+    background-color: red;
+}
+
+.create {
+    width: 25%;
+    /*background-color: lightgoldenrodyellow; */
+}
+
+.commissions-cluster {
+    display: flex;
+}
+
+.commissions-list {
+    width: 55%;
+    background-color: none;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    width: 95%;
+    height: 60px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 8px solid #4C5B72;
+    background-color: white;
+
+}
+
+ul li:hover {
+    border: 8px solid black !important; /* TEMPORARY COLOR */
+    background-color: gray !important; /*TEMPORARY COLOR */
+    cursor: pointer;
+}
+
+.commissions-listing {
+    display: flex;
+    padding-left: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.commission-title {
+    font-size: 24px;
+    margin: 0px;
+}
+
+.date-created {
+    font-size: 12px;
+    margin: 0px;
+}
+
+.pfp {
+    width: 50px;
+    height: 50px;
+    background-color: lightblue;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 1.5%;
+}
+
+.commissions-selected {
+    background-color: #FFF7EB !important;
+    border-color: #6c7a91 !important;
+}
+
+.commissions-info-block {
+    width: 45%;
+    background-color: none;
+}
+
+.commissions-info {
+    width: 90%;
+    height: 90%;
+    margin-top: 16px;
+    margin-left: 20px;
+    background: #FFF7EB;
+    border: 8px solid #4C5B72;
+    border-radius: 25px;
+}
