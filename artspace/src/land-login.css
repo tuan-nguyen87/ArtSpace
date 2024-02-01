@@ -21,7 +21,7 @@ body {
 
 header {
     display: flex;
-    position: sticky; 
+    position: absolute; 
     /* position: sticky; for scrolling and keeping the header */
     justify-content: space-between; 
     align-items: center;
