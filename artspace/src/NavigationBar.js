@@ -1,5 +1,5 @@
 // src/components/NavigationBar.js
-import React from "react";
+import React, { useState } from "react";
 
 const NavigationBar = () => {
   return (
@@ -8,7 +8,7 @@ const NavigationBar = () => {
       <ul className="nav-links">
         <li>
           <a href="#">Explore</a>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
               <a href="#">Tutorial</a>
             </li>
@@ -22,7 +22,7 @@ const NavigationBar = () => {
         </li>
         <li>
           <a href="#">Interact</a>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
               <a href="#">Daily Challenges</a>
             </li>
@@ -34,12 +34,31 @@ const NavigationBar = () => {
         <li>
           <a href="#">Market</a>
         </li>
+        <li>
+          <img
+            src="/Homepage art/login_profile_img.png"
+            alt="Profile"
+            className="profile"
+          />
+          <ul className="profile-menu">
+            <li>
+              <a href="#">Profile</a>
+            </li>
+            <li>
+              <a href="#">Portfolio</a>
+            </li>
+            <li>
+              <a href="#">Commissions</a>
+            </li>
+            <li>
+              <a href="#">Messages</a>
+            </li>
+            <li>
+              <a href="#">Collaborations</a>
+            </li>
+          </ul>
+        </li>
       </ul>
-      <img
-        src="/Homepage art/login_profile_img.png"
-        alt="Profile"
-        className="profile"
-      />
     </nav>
   );
 };

@@ -74,6 +74,22 @@ nav a {
   position: absolute;
   background-color: rgb(255, 255, 255);
   text-align: left;
+  border-radius: 25px;
+  padding: 10px;
+  width: auto;
+}
+
+.profile-menu {
+  display: none; /* Hide dropdown menu by default */
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  text-align: right;
+  border-radius: 25px;
+  right: 0;
+}
+
+.nav-links li:hover .profile-menu {
+  display: block; /* Display dropdown menu on hover */
 }
 
 .nav-links li:hover .dropdown-menu {
@@ -83,14 +99,14 @@ nav a {
 .dropdown-menu li {
   display: block;
 }
-
-.dropdown-menu a {
-  padding: 10px;
-  text-decoration: none;
-  color: black;
+.profile-menu li {
+  display: block;
 }
 
 .dropdown-menu a:hover {
+  text-decoration: underline;
+}
+.profile-menu a:hover {
   text-decoration: underline;
 }
 
