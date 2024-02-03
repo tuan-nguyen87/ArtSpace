@@ -52,7 +52,7 @@ const NavigationBar = () => {
               <a href="#">Commissions</a>
             </li>
             <li>
-              <a href="#">Messages</a>
+              <a href="/MessagingPage">Messages</a>
             </li>
             <li>
               <a href="#">Collaborations</a>

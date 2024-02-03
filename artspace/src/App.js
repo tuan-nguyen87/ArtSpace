@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import NavigationBar from "./NavigationBar";
 import LandingPage from "./LandingPage";
 import Commissions from "./Commissions";
+import MessagingPage from "./MessagingPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/Commissions" element={<Commissions />} />
+          <Route path="/MessagingPage" element={<MessagingPage />} />
         </Routes>
       </Router>
     </div>
