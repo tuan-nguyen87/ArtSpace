@@ -56,22 +56,16 @@ span + span {
   background-color: none;
 }
 
-ul {
-  list-style: none;
-}
-
 ul li {
-  width: 95%;
+  width: auto;
   height: 60px;
   margin-bottom: 15px;
   border-radius: 25px;
-  border: 8px solid #4c5b72;
   background-color: white;
 }
 
 ul li:hover {
-  border: 8px solid black !important; /* TEMPORARY COLOR */
-  background-color: gray !important; /*TEMPORARY COLOR */
+  background-color: rgb(232, 232, 232) !important; /*TEMPORARY COLOR */
   cursor: pointer;
 }
 
