@@ -1,5 +1,6 @@
 // src/components/NavigationBar.js
-import React, { useState } from "react";
+import React from "react";
+import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
   return (

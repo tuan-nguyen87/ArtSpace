@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+ul.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+li {
+  display: inline;
+}
+
+nav a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  font-family: "Kristi", sans-serif;
+  font-size: 35px;
+  margin-right: 35px;
+}
+
+/* a:hover {
+    background-color: #d9d9d9;
+  } */
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-right: auto;
+}
+
+.profile {
+  height: 50px;
+}
+
+.dropdown-menu {
+  display: none; /* Hide dropdown menu by default */
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  border-radius: 25px;
+  padding: 10px;
+  width: auto;
+}
+
+.profile-menu {
+  display: none; /* Hide dropdown menu by default */
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  text-align: right;
+  border-radius: 25px;
+  right: 0;
+}
+
+.nav-links li:hover .profile-menu {
+  display: block; /* Display dropdown menu on hover */
+}
+
+.nav-links li:hover .dropdown-menu {
+  display: block; /* Display dropdown menu on hover */
+}
+
+.dropdown-menu li {
+  display: block;
+}
+.profile-menu li {
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  text-decoration: underline;
+}
+.profile-menu a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,79 @@
+/* Homepage CSS */
+.homepage-container {
+  display: flex;
+  margin-top: 100px;
+}
+
+.left-section {
+  flex: 1;
+  font-family: "Mogra", sans-serif;
+  padding: 0 20px;
+  font-size: 2rem;
+  color: white;
+  margin-right: 20px;
+}
+.search-bar {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Vertically center items */
+  position: relative; /* Establish positioning context */
+}
+
+.search-bar input[type="text"] {
+  flex: 1; /* Take up remaining space */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button[type="submit"] {
+  padding: 10px;
+  border: none;
+  background: url("/public/Homepage art/search-icon.png") no-repeat center
+    center #14ff00;
+  background-size: contain;
+  width: 60px;
+  height: 46px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  margin-left: -40px;
+}
+
+.search-bar button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.right-section {
+  flex: 0%;
+  padding: 0 20px;
+  margin-left: 20px;
+}
+
+.rotating-image {
+  width: 100%; /* Adjust the width as needed */
+  height: auto;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.rotating-image.hidden {
+  opacity: 1;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  margin-right: 10px; /* Adjust spacing between buttons */
+  background-color: #007bff; /* Button background color */
+  color: white;
+  border: solid black 1px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button:last-child {
+  margin-right: 0; /* Remove margin from last button */
+}
+
+.button-container button:hover {
+  background-color: #0056b3; /* Change color on hover */
+}

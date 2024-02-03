@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./styles/HomePage.css";
 
 const HomePage = () => {
   const [imageIndex, setImageIndex] = useState(0);
