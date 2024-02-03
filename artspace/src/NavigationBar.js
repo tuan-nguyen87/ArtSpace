@@ -13,7 +13,7 @@ const NavigationBar = () => {
               <a href="#">Tutorial</a>
             </li>
             <li>
-              <a href="#">Commission Listings</a>
+              <a href="/Commissions">Commission Listings</a>
             </li>
             <li>
               <a href="#">Show Room</a>

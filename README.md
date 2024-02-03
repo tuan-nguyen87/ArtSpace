@@ -1,3 +1,0 @@
-# ArtSpace
-
-ArtSpace.
