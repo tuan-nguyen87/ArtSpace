@@ -5,22 +5,13 @@
   font-family: Arial, sans-serif;
 }
 
-landing-container {
-<<<<<<< HEAD
+.landing-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: url("/public/images/artGirl.png") center no-repeat;
   background-size: cover;
-=======
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url("/public/images/artGirl.png") center no-repeat; 
-    background-size: cover;
->>>>>>> c205f362cf11060f359bf2d6d549c7979762656f
 
   /*
     terracotta color vvv
