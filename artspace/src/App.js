@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route path="/MessagingPage" element={<MessagingPage />} />
+          <Route path="/LandingPage" element={<LandingPage />} />
         </Routes>
       </Router>
     </div>
