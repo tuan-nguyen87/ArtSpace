@@ -10,7 +10,7 @@ landing-container {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("images/artGirl.png") center no-repeat; 
+    background: url("/public/images/artGirl.png") center no-repeat; 
     background-size: cover;
 
     /*
