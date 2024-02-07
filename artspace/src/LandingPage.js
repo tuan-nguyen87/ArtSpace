@@ -93,6 +93,7 @@ const LandingPage = () => {
             <div class="remember-forgot">
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
+                <br>
                 <input type="user-type" />
                 Are you an artist?
               </label>
