@@ -94,8 +94,7 @@ const LandingPage = () => {
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
                 <br>
-                <input type="user-type" />
-                Are you an artist?
+                <input type="user-type" />Are you an artist?
               </label>
             </div>
             <button type="submit" class="btn">
