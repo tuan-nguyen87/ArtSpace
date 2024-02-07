@@ -4,18 +4,19 @@ import "./styles/LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-container">
-      <div className="header">
-        {/* change following line to have changing background?  */}
-        <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
-        <nav class="navigation">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Explore</a>
-          <a href="#">Contact</a>
-          <button class="btnLogin-popup">Login</button>
-        </nav>
-      </div>
-      <div class="main">
+      // This is basically the navbar
+      // <div className="header">
+      //   {/* change following line to have changing background?  */}
+      //   <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
+      //   <nav class="navigation">
+      //     <a href="#">Home</a>
+      //     <a href="#">About</a>
+      //     <a href="#">Explore</a>
+      //     <a href="#">Contact</a>
+      //     <button class="btnLogin-popup">Login</button>
+      //   </nav>
+      // </div>
+      <div class="main"> //give more specific name to avoid name collisions
         <section class="welcome">
           <h1>Connecting Artists to Clients Everywhere</h1>
           <input type="text" class="search" placeholder="Search ArtSpace" />
@@ -35,7 +36,7 @@ const LandingPage = () => {
         </section>
       </div>
 
-      <div class="wrapper">
+      <div class="wrapper"> //does this have to move too?
         <span class="icon-close">
           <i class="bx bx-x"></i>
         </span>
