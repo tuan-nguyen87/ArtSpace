@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./HomePage";
+//import HomePage from "./HomePage";
 import NavigationBar from "./NavigationBar";
 import LandingPage from "./LandingPage";
 import Commissions from "./Commissions";
@@ -12,10 +12,9 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route path="/MessagingPage" element={<MessagingPage />} />
-          <Route path="/LandingPage" element={<LandingPage />} />
         </Routes>
       </Router>
     </div>
