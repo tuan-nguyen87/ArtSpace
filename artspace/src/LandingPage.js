@@ -111,7 +111,8 @@ const LandingPage = () => {
           </form>
         </div>
       </div>
-      {/* const wrapper = document.querySelector('.wrapper');
+      {/* Pop up for login page 
+      const wrapper = document.querySelector('.wrapper');
       const loginLink = document.querySelector('.login-link');
       const registerLink = document.querySelector('.register-link');
       const loginPopup = document.querySelector('.btnLogin-popup');
