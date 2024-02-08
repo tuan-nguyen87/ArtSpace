@@ -41,7 +41,7 @@ const MessagingPage = () => {
 
   
     return (
-    <><div className="container">
+    <><div className="msg_container">
           <div className="leftSide">
               <div className="header">
                   <div className="userimg">
