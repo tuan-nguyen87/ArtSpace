@@ -4,16 +4,16 @@ import "./styles/LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-container">
-       <div className="header">
-         <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
-         <nav class="navigation">
-           <a href="#">Home</a>
-           <a href="#">About</a>
-           <a href="#">Explore</a>
-           <a href="#">Contact</a>
-           <button class="btnLogin-popup">Login</button>
-         </nav>
-      </div>
+      //  <div className="header">
+      //    <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
+      //    <nav class="navigation">
+      //      <a href="#">Home</a>
+      //      <a href="#">About</a>
+      //      <a href="#">Explore</a>
+      //      <a href="#">Contact</a>
+      //      <button class="btnLogin-popup">Login</button>
+      //    </nav>
+      // </div>
       <div class="main"> 
         <section class="welcome">
           <h1>Connecting Artists to Clients Everywhere</h1>
