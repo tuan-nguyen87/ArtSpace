@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
-body {
+.msg_container {
   display: flex;
   justify-content: center;
   align-items: center;
