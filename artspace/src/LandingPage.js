@@ -4,19 +4,17 @@ import "./styles/LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-container">
-      // This is basically the navbar
-      // <div className="header">
-      //   {/* change following line to have changing background?  */}
-      //   <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
-      //   <nav class="navigation">
-      //     <a href="#">Home</a>
-      //     <a href="#">About</a>
-      //     <a href="#">Explore</a>
-      //     <a href="#">Contact</a>
-      //     <button class="btnLogin-popup">Login</button>
-      //   </nav>
-      // </div>
-      <div class="main"> //give more specific name to avoid name collisions
+       <div className="header">
+         <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
+         <nav class="navigation">
+           <a href="#">Home</a>
+           <a href="#">About</a>
+           <a href="#">Explore</a>
+           <a href="#">Contact</a>
+           <button class="btnLogin-popup">Login</button>
+         </nav>
+      </div>
+      <div class="main"> 
         <section class="welcome">
           <h1>Connecting Artists to Clients Everywhere</h1>
           <input type="text" class="search" placeholder="Search ArtSpace" />
@@ -36,7 +34,7 @@ const LandingPage = () => {
         </section>
       </div>
 
-      <div class="wrapper"> //does this have to move too?
+      <div class="wrapper"> 
         <span class="icon-close">
           <i class="bx bx-x"></i>
         </span>
@@ -93,7 +91,7 @@ const LandingPage = () => {
             <div class="remember-forgot">
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
-                <br>
+                <br></br>
                 <input type="user-type" />Are you an artist?
               </label>
             </div>
@@ -113,8 +111,66 @@ const LandingPage = () => {
           </form>
         </div>
       </div>
+      {/* const wrapper = document.querySelector('.wrapper');
+      const loginLink = document.querySelector('.login-link');
+      const registerLink = document.querySelector('.register-link');
+      const loginPopup = document.querySelector('.btnLogin-popup');
+      const loginClose = document.querySelector('.icon-close');
+  
+      registerLink.addEventListener('click', ()=> {
+          wrapper.classList.add('active');
+      });
+
+      loginLink.addEventListener('click', ()=> {
+          wrapper.classList.remove('active');
+      });
+
+      loginPopup.addEventListener('click', ()=> {
+          wrapper.classList.add('active-popup');
+      });
+
+      loginClose.addEventListener('click', ()=> {
+          wrapper.classList.remove('active-popup');
+      });
+
+      const loginForm = document.querySelector('.login form');
+      const registerForm = document.querySelector('.register form');
+
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = loginForm.username.value;
+        const password = loginForm.password.value;
+
+        // Login logic goes here
+        // You can use AJAX or fetch to send the data to the server
+
+        if (username === 'admin' && password === 'password') {
+            alert('Login successful!');
+            wrapper.classList.remove('active-popup');
+        } else {
+            alert('Invalid username or password.');
+        }
+      });
+
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = registerForm.username.value;
+        const email = registerForm.email.value;
+        const password = registerForm.password.value;
+
+        // Registration logic goes here
+        // You can use AJAX or fetch to send the data to the server
+
+        if (username && email && password) {
+            alert('Registration successful!');
+            wrapper.classList.remove('active');
+        } else {
+            alert('Please fill in all fields.');
+        }
+      }); */}
     </div>
   );
+  
 };
 
 export default LandingPage;
