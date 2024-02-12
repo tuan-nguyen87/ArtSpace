@@ -1,0 +1,84 @@
+  .progressA-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .progressA-container {
+    width: 500px;
+    height: 30px;
+    border: 1px solid #787878;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .progressA-bar {
+    height: 100%;
+    background: linear-gradient(45deg, #4be751 25%, transparent 25%, transparent 50%, #4be751 50%, #4be751 75%, transparent 75%, transparent);
+    background-size: 30px 30px;
+    background-color: #45d84a;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+    border-radius: 50px;
+    animation: progressA-stripes 2s linear infinite;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    outline: 1px solid #787878;
+  }
+  
+  @keyframes progressA-stripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 30px 0;
+    }
+  }
+  
+  .stepsA {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .stepA {
+    text-align: center;
+    width: 110px;
+    color: #555;
+  }
+  
+  .stepA.active {
+    color: #4CAF50;
+    font-size: 18px;
+  }
+  
+  .stepA.completed {
+    color: #ddd;
+    font-size: 14px;
+  }
+  
+  .next-buttonA {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .next-buttonA:disabled {
+    background-color: #ddd;
+    cursor:not-allowed;
+  }
+  
