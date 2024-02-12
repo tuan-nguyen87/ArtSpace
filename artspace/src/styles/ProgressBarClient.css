@@ -1,0 +1,96 @@
+.progressC-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .progressC-container {
+    width: 500px;
+    height: 30px;
+    border: 1px solid #787878;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .progressC-bar {
+    height: 100%;
+    background: linear-gradient(45deg, #4be751 25%, transparent 25%, transparent 50%, #4be751 50%, #4be751 75%, transparent 75%, transparent);
+    background-size: 30px 30px;
+    background-color: #45d84a;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+    border-radius: 50px;
+    animation: progressC-stripes 2s linear infinite;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    outline: 1px solid #787878;
+  }
+  
+  @keyframes progressC-stripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 30px 0;
+    }
+  }
+  
+  .step-dialogC {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .stepsC {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .stepC {
+    text-align: center;
+    width: 110px;
+    color: #555;
+    cursor: pointer;
+  }
+  
+  .stepC.active {
+    color: #4CAF50;
+    font-size: 18px;
+  }
+  
+  .stepC.completed {
+    color: #ddd;
+    font-size: 14px;
+  }
+  
+  .next-buttonC {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .next-buttonC:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
