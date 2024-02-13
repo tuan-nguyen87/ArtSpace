@@ -5,6 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* The background and css for the whole page */
 .landing-container {
   display: flex;
   justify-content: center;
@@ -19,6 +20,7 @@
     */
 }
 
+/* Could be a conflict */
 .header {
   display: flex;
   position: absolute;
@@ -32,6 +34,7 @@
   z-index: 100;
 }
 
+/* Pertains the welcome/search box */
 .main {
   position: relative;
   top: 0px;
@@ -87,7 +90,9 @@
   font-weight: 500;
   margin-left: 20px;
 }
+/* End of welcome/search box */
 
+/* My bottom page copywrite thingy */
 footer p {
   position: absolute;
   bottom: 8px;
@@ -96,6 +101,7 @@ footer p {
   color: white;
 }
 
+/* Logo from navigation bar--possible conflict */
 .ArtLogo {
   width: 120px;
   height: auto;
