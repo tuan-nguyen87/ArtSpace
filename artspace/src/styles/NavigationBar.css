@@ -37,10 +37,6 @@ nav a {
   margin-right: 35px;
 }
 
-/* a:hover {
-    background-color: #d9d9d9;
-  } */
-
 .logo {
   width: 120px;
   height: auto;
@@ -90,4 +86,78 @@ nav a {
 }
 .profile-menu a:hover {
   text-decoration: underline;
+}
+
+.login-popup {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(75, 93, 77, 0.7);
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.login-popup input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 8px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+}
+
+.login-popup input:hover {
+  background-color: rgb(192, 192, 192);
+}
+
+.btn-login {
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgb(10, 255, 10);
+  color: white;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.btn-login:hover {
+  background-color: rgb(0, 148, 0);
+}
+
+.login-text {
+  color: white;
+  margin-bottom: 35px;
+}
+
+.create-account,
+.dont-have-account {
+  color: white;
+}
+
+.create-account {
+  text-decoration: underline;
+}
+
+.create-account:hover {
+  color: blue;
+}
+
+.forgot-password {
+  margin-left: auto;
+  text-decoration: underline;
+  color: white;
+}
+
+.forgot-password:hover {
+  color: blue;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: white;
 }

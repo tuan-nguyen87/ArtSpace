@@ -4,17 +4,17 @@ import "./styles/LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-container">
-      //  <div className="header">
-      //    <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
-      //    <nav class="navigation">
-      //      <a href="#">Home</a>
-      //      <a href="#">About</a>
-      //      <a href="#">Explore</a>
-      //      <a href="#">Contact</a>
-      //      <button class="btnLogin-popup">Login</button>
-      //    </nav>
-      // </div>
-      <div class="main"> 
+      {/* <div className="header">
+        <img src="images/logo-modified.png" alt="ArtLogo" class="ArtLogo" />
+        <nav class="navigation">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Explore</a>
+          <a href="#">Contact</a>
+          <button class="btnLogin-popup">Login</button>
+        </nav>
+      </div> */}
+      <div class="main">
         <section class="welcome">
           <h1>Connecting Artists to Clients Everywhere</h1>
           <input type="text" class="search" placeholder="Search ArtSpace" />
@@ -34,12 +34,12 @@ const LandingPage = () => {
         </section>
       </div>
 
-      <div class="wrapper"> 
+      <div class="wrapper">
         <span class="icon-close">
           <i class="bx bx-x"></i>
         </span>
 
-        <div class="form-box login">
+        {/* <div class="form-box login">
           <h2>Login</h2>
           <form action="#">
             <div class="input-box">
@@ -71,7 +71,7 @@ const LandingPage = () => {
               </p>
             </div>
           </form>
-        </div>
+        </div> */}
 
         <div class="form-box register">
           <h2>Registration</h2>
@@ -92,7 +92,8 @@ const LandingPage = () => {
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
                 <br></br>
-                <input type="user-type" />Are you an artist?
+                <input type="user-type" />
+                Are you an artist?
               </label>
             </div>
             <button type="submit" class="btn">
@@ -171,7 +172,6 @@ const LandingPage = () => {
       }); */}
     </div>
   );
-  
 };
 
 export default LandingPage;

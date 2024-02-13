@@ -1,11 +1,16 @@
-// src/components/NavigationBar.js
-import React from "react";
+import React, { useState } from "react";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
+  const [isLoginPopupActive, setIsLoginPopupActive] = useState(false);
+
+  const toggleLoginPopup = () => {
+    setIsLoginPopupActive(!isLoginPopupActive);
+  };
+
   return (
     <nav>
-      <img src="/Homepage art/logo.png" alt="Logo" className="logo" />
+      <img src="/Homepage art/logo-modified.png" alt="Logo" className="logo" />
       <ul className="nav-links">
         <li>
           <a href="#">Explore</a>
@@ -36,6 +41,11 @@ const NavigationBar = () => {
           <a href="#">Market</a>
         </li>
         <li>
+          <button className="btnLogin-popup" onClick={toggleLoginPopup}>
+            Login
+          </button>
+        </li>
+        <li>
           <img
             src="/Homepage art/login_profile_img.png"
             alt="Profile"
@@ -60,6 +70,32 @@ const NavigationBar = () => {
           </ul>
         </li>
       </ul>
+
+      {isLoginPopupActive && (
+        <div className="login-popup">
+          <form>
+            <h2 className="login-text">Login</h2>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <label className="remember-me">
+              <input type="checkbox" /> Remember Me
+              <a href="#" className="forgot-password">
+                Forgot Password?
+              </a>
+            </label>
+
+            <button className="btn-login" type="submit">
+              Login
+            </button>
+            <p className="dont-have-account">
+              Don't have an account?
+              <a className="create-account" href="#">
+                Create Account
+              </a>
+            </p>
+          </form>
+        </div>
+      )}
     </nav>
   );
 };
