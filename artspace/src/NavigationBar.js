@@ -40,6 +40,16 @@ const NavigationBar = () => {
         <li>
           <a href="#">Market</a>
         </li>
+        <li className="notification-icon">
+          {/* you could replace this icon '🔔' with another one of ur choice */}
+          <a href="#">🔔</a>
+          
+          {/* <ul className="dropdown-menu">
+            <li><a href="#">Notification 1</a></li>
+            <li><a href="#">Notification 2</a></li>
+            {/* ... */}
+          {/* </ul> */}
+        </li>
         <li>
           <button className="btnLogin-popup" onClick={toggleLoginPopup}>
             Login
