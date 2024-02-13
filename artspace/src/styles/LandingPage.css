@@ -107,6 +107,7 @@ footer p {
   height: auto;
 }
 
+/* Navigation bar links */
 .navigation a {
   position: relative;
   font-size: 1.1em;
@@ -116,6 +117,7 @@ footer p {
   margin-left: 40px;
 }
 
+/* Navigation Bar underline effects */
 .navigation a::after {
   content: "";
   position: absolute;
@@ -135,6 +137,7 @@ footer p {
   transform: scaleX(1);
 }
 
+/* IMPORTANT!! This is for the popup! */
 .navigation .btnLogin-popup {
   width: 130px;
   height: 50px;
@@ -149,11 +152,13 @@ footer p {
   transition: 0.5s;
 }
 
+/* Color change for login button */
 .navigation .btnLogin-popup:hover {
   background: #4b5d4d;
   color: white;
 }
 
+/* I can't remember what this was for? There is no i in navigation? */
 .navigation i {
   position: absolute;
   top: 50%;
@@ -162,14 +167,15 @@ footer p {
   cursor: pointer;
 }
 
+/* Holds login and registration */
 .wrapper {
   position: relative;
   width: 420px;
-  background: transparent;
+  background: transparent; /* Remove color background */
   border: 2px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Add blur effect */
   padding: 30px 40px;
   display: flex;
   justify-content: center;
@@ -180,6 +186,7 @@ footer p {
   transition: transform 0.5s ease;
 }
 
+/* Animation of the popup */
 .wrapper.active-popup {
   transform: scale(1);
 }
@@ -192,12 +199,14 @@ footer p {
   padding: 40px;
 }
 
+/* Only the header should be in cursive, because only the header is specified here */
 .wrapper h2 {
   font-size: 36px;
   font-family: cursive;
   text-align: center;
 }
 
+/* All input fields should be uniform */
 .wrapper .input-box {
   position: relative;
   width: 100%;
@@ -206,6 +215,7 @@ footer p {
   margin: 30px 0;
 }
 
+/* How the user text should appear */
 .input-box input {
   width: 100%;
   height: 100%;
@@ -218,6 +228,7 @@ footer p {
   padding: 20px 45px 20px 20px;
 }
 
+/* More animation--switching from login to registration and back */
 .wrapper .form-box.login {
   transition: transform 0.18s ease;
   transform: translateX(0);
@@ -239,6 +250,7 @@ footer p {
   transform: translateX(0);
 }
 
+/* Close the popup */
 .wrapper .icon-close {
   position: absolute;
   top: 0;
@@ -256,10 +268,12 @@ footer p {
   z-index: 1;
 }
 
+/* Default placeholder is white (tells the user what field it is) */
 .input-box input::placeholder {
   color: #fff;
 }
 
+/* Nifty little icons for decoration */
 .input-box i {
   position: absolute;
   right: 20px;
@@ -268,6 +282,7 @@ footer p {
   font-size: 20px;
 }
 
+/* Our checkboxes in the login */
 .remember-forgot {
   display: flex;
   justify-content: space-between;
@@ -291,6 +306,7 @@ footer p {
   text-decoration: underline;
 }
 
+/* Big Green Login Button (in popup) */
 .wrapper .btn {
   width: 100%;
   height: 45px;
@@ -313,6 +329,8 @@ Flat green: #4b5d4d --> Current favorite
 Dark terracotta: #743019 --> Doesn't pop
 
 */
+
+/* Appearance for link between login and registration */
 .login-register {
   font-size: 0.9em;
   color: #fff;
