@@ -5,6 +5,7 @@ import NavigationBar from "./NavigationBar";
 import LandingPage from "./LandingPage";
 import Commissions from "./Commissions";
 import MessagingPage from "./MessagingPage";
+import DailyChallenge from "./DailyChallenge";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route path="/MessagingPage" element={<MessagingPage />} />
+          <Route path="/DailyChallenge" element={<DailyChallenge/>} />
         </Routes>
       </Router>
     </div>
