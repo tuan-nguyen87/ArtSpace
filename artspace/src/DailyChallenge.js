@@ -77,7 +77,6 @@ const DailyChallenge = () => {
                 <br />
                 <button type="button" onClick={generateNewPrompt}>New Challenge</button>
             </div>
-            <script src="challenge.js"></script>
         </div>
     ); 
 };
