@@ -49,7 +49,7 @@ const DailyChallenge = () => {
     }
 
     return(
-        <div className="challenge-container">
+        <div className="challenge-bg challenge-container">
             <div class="prompt-topics">
                 <button type="button" className="pBtns" onClick={() => setCurrentTheme('environment')}>
                     Environment

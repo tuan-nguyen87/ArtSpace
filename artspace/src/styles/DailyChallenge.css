@@ -1,14 +1,7 @@
-
-.body {
-  /* background: url("images/sketchbook3.jpg") center no-repeat;  */
+.challenge-bg {
   background-color: #A5607D;
-  background-size: cover;
-  font-family: "Lucida Console", Courier, monospace;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
 .challenge-container {
     position: relative;
     margin-top: 150px;
@@ -47,8 +40,8 @@
     background-color: #f9f5f0;
     font-weight: 600;
     z-index: 1;
-    border-radius: 10px;
-    margin-left: 10px; */
+    border-radius: 10px; */
+    margin-left: 10px; 
     position: relative;
     border: 2px solid #540C2A;
     background-color: white;
@@ -92,7 +85,7 @@
 }
 
 /* This is the new challenge button */
-#new-prompt {
+.prompt-box button {
     position: relative;
     border: 2px solid #540C2A;
     background-color: white;
@@ -118,11 +111,11 @@
     padding: 16px;
 }
 
-#new-prompt:hover {
+.prompt-box button:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
 
-#new-prompt:focus {
+.prompt-box button:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
