@@ -1,7 +1,9 @@
-.App {
+/* .App {
   text-align: center;
   padding: 20px;
 }
+The above code causes the background to not cover the whole page
+It also squishes the navigation components into the center without extra css */
 
 nav {
   position: absolute;
