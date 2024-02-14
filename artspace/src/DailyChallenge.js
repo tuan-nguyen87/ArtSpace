@@ -49,26 +49,28 @@ const DailyChallenge = () => {
     }
 
     return(
-        <div className="challenge-bg challenge-container">
-            <div class="prompt-topics">
-                <button type="button" className="pBtns" onClick={() => setCurrentTheme('environment')}>
-                    Environment
-                </button>
-                <button type="button" className="pBtns" onClick={() => setCurrentTheme('character')}>
-                    Character
-                </button>
-                <button type="button" className="pBtns" onClick={() => setCurrentTheme('creature')}>
-                    Creature
-                </button>
-                <button type="button" className="pBtns" onClick={() => setCurrentTheme('object')}>
-                    Object
-                </button>
-            </div>
-            <div className="prompt-box">
-                <h1>Challenge of the Day</h1>
-                <p id="prompt">{prompt}</p>
-                <br />
-                <button type="button" onClick={generateNewPrompt}>New Challenge</button>
+        <div className="challenge-bg">
+            <div class='challenge-container'>
+                <div class="prompt-topics">
+                    <button type="button" className="pBtns" onClick={() => setCurrentTheme('environment')}>
+                        Environment
+                    </button>
+                    <button type="button" className="pBtns" onClick={() => setCurrentTheme('character')}>
+                        Character
+                    </button>
+                    <button type="button" className="pBtns" onClick={() => setCurrentTheme('creature')}>
+                        Creature
+                    </button>
+                    <button type="button" className="pBtns" onClick={() => setCurrentTheme('object')}>
+                        Object
+                    </button>
+                </div>
+                <div class="prompt-box">
+                    <h1>Challenge of the Day</h1>
+                    <p id="prompt">{prompt}</p>
+                    <br />
+                    <button type="button" onClick={generateNewPrompt}>New Challenge</button>
+                </div>
             </div>
         </div>
     ); 
