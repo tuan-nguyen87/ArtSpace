@@ -1,6 +1,14 @@
+/* The background is just not cooperating :\ */
 .challenge-bg {
   background-color: #A5607D;
+    background-size: cover;
+    font-family: "Lucida Console", Courier, monospace;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+/* The above code is most suspect */
 
 .challenge-container {
     position: relative;
