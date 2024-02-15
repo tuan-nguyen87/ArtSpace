@@ -7,6 +7,7 @@ import Commissions from "./Commissions";
 import MessagingPage from "./MessagingPage";
 import Notification from "./Notification";
 import DailyChallenge from "./DailyChallenge";
+import RatingsReviews from './RatingReview';
 import TutorialPage from "./TutorialPage";
 import { io } from "socket.io-client";
 
