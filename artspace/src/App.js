@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./HomePage";
 import NavigationBar from "./NavigationBar";
 import LandingPage from "./LandingPage";
 import Commissions from "./Commissions";
 import MessagingPage from "./MessagingPage";
 import Notification from "./Notification";
 import DailyChallenge from "./DailyChallenge";
+import TutorialPage from "./TutorialPage";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
@@ -38,10 +38,11 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route path="/MessagingPage" element={<MessagingPage socket={socket} triggerNotification={triggerNotification} />} />
-          <Route path="/LandingPage" element={<LandingPage />} />
+          <Route path="/DailyChallenge" element={<DailyChallenge />} />
+          <Route path="/TutorialPage" element={<TutorialPage />} />
         </Routes>
       </Router>
     </div>
