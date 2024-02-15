@@ -30,7 +30,7 @@ const NavigationBar = () => {
           <a href="#">Interact</a>
           <ul className="dropdown-menu">
             <li>
-              <a href="#">Daily Challenges</a>
+              <a href="/DailyChallenge">Daily Challenges</a>
             </li>
             <li>
               <a href="#">Arena</a>
