@@ -1,0 +1,54 @@
+body {
+    font-family: 'Arial', sans-serif; 
+    background-color: #f4f4f4; 
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex; /* Two-column layout */
+  }
+  
+  .title {
+    text-align: center;
+    width: 100%; /* Title spans full width */
+    margin-bottom: 20px;
+  }
+  
+  /* Form Section */
+  .form-section {
+    flex: 1; /* Equal width columns */
+    padding: 20px;
+    margin-right: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .submit-button {
+    /* ... styles for your button*/
+  }
+  
+  /* Reviews Section */
+  .reviews-section {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .reviews-list {
+    /* ... */
+  }
+  
+  .review-item { 
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  /* ... add styles for star display within reviews */
+  
