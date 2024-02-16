@@ -3,7 +3,8 @@
   padding: 20px;
 }
 The above code causes the background to not cover the whole page
-It also squishes the navigation components into the center without extra css */
+It also squishes the navigation components into the center without extra css
+ */
 
 nav {
   position: absolute;
@@ -11,12 +12,13 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 80px;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
+  
 }
 
 ul.nav-links {
