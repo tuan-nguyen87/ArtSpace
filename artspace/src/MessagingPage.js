@@ -1,28 +1,42 @@
+// Import necessary dependencies and styles
 import React, { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import "./styles/msg.css";
 
 
+
+// Define the MessagingPage component
 const MessagingPage = () => {
+  // State for storing messages and new messages
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
-  useEffect(() => {
-    const socket = socketIOClient("http://localhost:3000");
 
-    socket.on("chat message", (message) => {
+
+  // Effect hook for initializing and cleaning up the socket connection
+  useEffect(() => {
+     // Establish socket connection to the server
+	const socket = socketIOClient("http://localhost:3000");
+
+    
+	// Event listener for incoming chat messages
+	socket.on("chat message", (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
-    socket.on("load messages", (loadedMessages) => {
+     // Event listener for loading existing messages
+	socket.on("load messages", (loadedMessages) => {
       setMessages(loadedMessages);
     });
 
-    return () => {
+    // Cleanup function to disconnect socket on component unmount
+	return () => {
       socket.disconnect();
     };
-  }, []);
+  }, []); // Empty dependency array ensures the effect runs only once during component mount
 
+  
+  // Function to send a new message 
   const sendMessage = (content) => {
     if (content.trim() !== "") {
       const socket = socketIOClient("http://localhost:3000");
@@ -34,6 +48,7 @@ const MessagingPage = () => {
     }
   };
 
+  // JSX structure for the messaging page 
   return (
     <div className="msg_container">
       <div className="leftSide">
@@ -281,12 +296,6 @@ const MessagingPage = () => {
           <button onClick={() => sendMessage(newMessage)}>Send</button>
         </div>
       </div>
-      {/*<div className="rightSide">
-        {/* Right sidebar content, e.g., user details or options }
-        <div className="userDetails">
-          {/* User details }
-        </div>
-      </div>*/}
     </div>
   );
 };
