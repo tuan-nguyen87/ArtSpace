@@ -6,13 +6,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 /* The above code is most suspect */
 
 .challenge-container {
   position: relative;
-  margin-top: 150px;
+  margin-top: 50px;
   color: white;
 
 }
