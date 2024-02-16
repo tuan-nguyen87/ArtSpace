@@ -42,7 +42,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route path="/MessagingPage" element={<MessagingPage socket={socket} triggerNotification={triggerNotification} />} />
-          <Route path="/LandingPage" element={<LandingPage />} />
+          <Route path="/DailyChallenge" element={<DailyChallenge />} />
           <Route path="/RatingReview" element={<RatingReview />} /> 
           <Route path="/TutorialPage" element={<TutorialPage />} />
         </Routes>
