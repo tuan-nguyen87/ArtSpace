@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./styles/DailyChallenge.css";
 
 const DailyChallenge = () => {
-// Code to make the buttons work
+// Themes and their respective prompts
     const themes = {
         environment: ['A moss covered forest at dusk', 'The shimmering desert at night', 
                     'A rainy morning in the city', 'Space station green house in full bloom', 
@@ -34,14 +34,17 @@ const DailyChallenge = () => {
                 'A collection of antique keys', 'A weathered telescope facing the sole window of a cluttered attic'
                 ],
     };
-
+    
+    // State variables
     const [currentTheme, setCurrentTheme] = useState('environment');
     const [prompt, setPrompt] = useState('');
 
+    // Effect hook to generate a new prompt when the theme changes
     useEffect(() => {
         generateNewPrompt();
-    }, [currentTheme]); // Trigger generation when theme changes
+    }, [currentTheme]); 
 
+    // Function to generate a new prompt based on the current theme
     function generateNewPrompt() {
         const theme = themes[currentTheme];
         const randomItem = theme[Math.floor(Math.random() * theme.length)];
