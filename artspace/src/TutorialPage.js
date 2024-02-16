@@ -7,7 +7,7 @@ function Tutorial() {
     <div className="tutorial-container">
       <header>
         <div>
-          <img src="/Tutorial art/ArtSpace-Logo-Explore.png" alt="Logo" />
+          <img src="/images/ArtSpace-Logo-Explore.png" alt="Logo" />
         </div>
       </header>
 
