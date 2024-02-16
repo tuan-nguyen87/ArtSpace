@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactStars from 'react-star-ratings';
 import axios from 'axios'; 
-import './styles/RatingReview.css';
+import "./styles/RatingReview.css";
 import StarRatings from 'react-star-ratings';
 
 
-const RatingsReviews = () => {
+const RatingReview = () => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [reviews, setReviews] = useState([]);
@@ -89,4 +89,4 @@ const RatingsReviews = () => {
   );
 };
 
-export default RatingsReviews;
+export default RatingReview;
