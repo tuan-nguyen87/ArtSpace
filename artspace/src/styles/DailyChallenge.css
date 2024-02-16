@@ -1,29 +1,32 @@
-/* The background is just not cooperating :\ */
+/* DailyChallenge.css */
+
+/* Styling for the background of the DailyChallenge component */
 .challenge-bg {
-  background-color: #A5607D;
-  background-size: cover;  
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background-color: #A5607D; /* Background color */
+  background-size: cover;  /* Ensure background covers entire container */
+  text-align: center; /* Align text content to center */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Set minimum height to full viewport height */
 }
-/* The above code is most suspect */
 
+/* Styling for the container holding the challenge */
 .challenge-container {
-  position: relative;
-  margin-top: 50px;
-  color: white;
+  position: relative;  /* Set position relative for child positioning */
+  margin-top: 50px;  /* Top margin to avoid overlap with navbar */
 
 }
+
+/* Styling for the box containing the prompt */
 .prompt-box{
-  position: relative;
-  width: 450px;
+  position: relative; /* Set position relative for child positioning */
+  width: 450px; /* Set width */
   background-color: white;
   /* backdrop-filter: blur(10px); */
   /* border: none; */
   border-color: #540C2A;
-  color: black;
+  color: black; /* Text color */
   font-weight: 800;
   border-radius: 20px;
   border-style: solid;
@@ -33,13 +36,13 @@
   
 }
 
+/* Styling for the heading inside the challenge container */
 .challenge-container h1 {
     font-size: 30px;
     border-bottom: 2px solid;
-    font-family: "Lucida Console", Courier, monospace;
 }
 
-/* Buttons for changing prompt theme! */
+/* Styling for the buttons to change prompt theme */
 .prompt-topics .pBtns {
     /* looks fine with picture background  */
     /* position: relative; 
@@ -56,12 +59,12 @@
     background-color: white;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
+    box-sizing: border-box; /* Ensure box sizing includes border and padding */
+    cursor: pointer; 
+    display: inline-block; /* Display as inline-block */
     outline: none;
     text-decoration: none;
-    transition: all 235ms ease-in-out;
+    transition: all 235ms ease-in-out; /* Transition effect */
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 255px 15px;
@@ -77,23 +80,26 @@
     padding: 16px;
 }
 
+/* Hover effect for buttons */
 .pBtns:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px; /* Box shadow on hover */
   transform: translate3d(0, 2px, 0);
 }
 
+/* Focus effect for buttons */
 .pBtns:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px; /* Box shadow on focus */
 }
 
-/* This is the prompt itself */
+/* Styling for the prompt text */
 #prompt {
     margin: 20px 0;
     /* border-bottom: 2px solid; */
     border-color:  #540C2A;
+    font-family: "Lucida Console", Courier, monospace;
 }
 
-/* This is the new challenge button */
+/* Styling for the new challenge button */
 .prompt-box button {
     position: relative;
     border: 2px solid #540C2A;
@@ -120,11 +126,13 @@
     padding: 16px;
 }
 
+/* Hover effect for new challenge button */
 .prompt-box button:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
+  transform: translate3d(0, 2px, 0); /* Translate on hover */
 }
 
+/* Focus effect for new challenge button */
 .prompt-box button:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
