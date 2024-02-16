@@ -44,6 +44,7 @@ function App() {
           <Route path="/MessagingPage" element={<MessagingPage socket={socket} triggerNotification={triggerNotification} />} />
           <Route path="/LandingPage" element={<LandingPage />} />
           <Route path="/RatingReview" element={<RatingReview />} /> 
+          <Route path="/TutorialPage" element={<TutorialPage />} />
         </Routes>
       </Router>
     </div>
