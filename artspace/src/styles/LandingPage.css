@@ -1,18 +1,21 @@
+/* LandingPage CSS*/
+
+/* Global CSS Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
   font-family: Arial, sans-serif;
 }
 
-/* The background and css for the whole page */
+/* Styling for the landing page container */
 .landing-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: url("/public/images/artGirl.png") center no-repeat;
-  background-size: cover;
+  display: flex;  /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Set minimum height to full viewport height */
+  background: url("/public/images/artGirl.png") center no-repeat; /* Background image */
+  background-size: cover; /* Cover entire container with background image */
 
   /*
     terracotta color vvv
@@ -20,7 +23,7 @@
     */
 }
 
-/* Could be a conflict */
+/* No longer needed
 .header {
   display: flex;
   position: absolute;
@@ -32,26 +35,30 @@
   left: 0;
   width: 100%;
   z-index: 100;
-}
+} */
 
+/* Main content styling */
 /* Pertains the welcome/search box */
 .main {
-  position: relative;
+  position: relative; /* Position element relative to its normal position */
   top: 0px;
   right: 20px;
   width: 580px;
   height: 300px;
   border: none;
   border-radius: 20px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px); /* Apply blur effect */
 }
 
+/* Styling for welcome message */
 .welcome h1 {
   font-family: cursive;
   font-size: 50px;
   color: white;
   text-align: center;
 }
+
+/* Styling for search box icon */
 .welcome i {
   position: absolute;
   right: 40px;
@@ -60,6 +67,7 @@
   transform: translateY(-58%);
 }
 
+/* Styling for search box */
 .search {
   position: relative;
   left: 50px;
@@ -70,6 +78,7 @@
   padding: 10px;
 }
 
+/* Styling for services section */
 .services h2 {
   position: relative;
   padding: 10px;
@@ -79,6 +88,7 @@
   font-size: 25px;
 }
 
+/* Styling for service buttons */
 .services .btns {
   position: relative;
   background-color: #4b5d4d;
@@ -94,7 +104,7 @@
 }
 /* End of welcome/search box */
 
-/* My bottom page copywrite thingy */
+/* Footer styling */
 footer p {
   position: absolute;
   bottom: 8px;
@@ -103,13 +113,14 @@ footer p {
   color: white;
 }
 
-/* Logo from navigation bar--possible conflict */
+/* Styling for logo */
 .ArtLogo {
   width: 120px;
   height: auto;
 }
 
-/* Navigation bar links */
+/* No longer utilized
+Navigation links styling
 .navigation a {
   position: relative;
   font-size: 1.1em;
@@ -117,10 +128,10 @@ footer p {
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
-}
+} */
 
-/* Navigation Bar underline effects */
-.navigation a::after {
+/* Navigation link underline effect */
+/* .navigation a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -132,14 +143,14 @@ footer p {
   transform-origin: right;
   transform: scaleX(0);
   transition: transform 0.5s;
-}
+} */
 
-.navigation a:hover::after {
+/* .navigation a:hover::after {
   transform-origin: left;
   transform: scaleX(1);
-}
+} */
 
-/* IMPORTANT!! This is for the popup! */
+/* Styling for login button in navigation bar */
 .navigation .btnLogin-popup {
   width: 130px;
   height: 50px;
@@ -158,15 +169,6 @@ footer p {
 .navigation .btnLogin-popup:hover {
   background: #4b5d4d;
   color: white;
-}
-
-/* I can't remember what this was for? There is no i in navigation? */
-.navigation i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: black;
-  cursor: pointer;
 }
 
 /* Holds login and registration */
@@ -188,7 +190,7 @@ footer p {
   transition: transform 0.5s ease;
 }
 
-/* Animation of the popup */
+/* Popup animation styling */
 .wrapper.active-popup {
   transform: scale(1);
 }

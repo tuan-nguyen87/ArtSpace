@@ -9,6 +9,7 @@ import Notification from "./Notification";
 import DailyChallenge from "./DailyChallenge";
 import RatingReview from "./RatingReview";
 import TutorialPage from "./TutorialPage";
+import ArtistArena from "./ArtistArena";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
@@ -45,6 +46,7 @@ function App() {
           <Route path="/DailyChallenge" element={<DailyChallenge />} />
           <Route path="/RatingReview" element={<RatingReview />} /> 
           <Route path="/TutorialPage" element={<TutorialPage />} />
+          <Route path="/ArtistArena" element={<ArtistArena />} />
         </Routes>
       </Router>
     </div>
