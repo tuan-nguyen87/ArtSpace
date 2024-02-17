@@ -2,8 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./styles/ArtistArena.css";
 
 const ArtistArena = () => {
-// All the javascript here
-    
+
     return(
         <div className="arena-bg">
             <div class="arena-container">
