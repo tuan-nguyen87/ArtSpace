@@ -35,8 +35,8 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
     padding: 50px;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 10px auto;
   }
   
   .quadrant {
@@ -57,7 +57,7 @@
   
   .quadrant h3 {
     padding: 10px;
-    margin: 0;
+    margin: 5px;
     cursor: pointer;
     font-size: 18px;
     text-decoration: none;
