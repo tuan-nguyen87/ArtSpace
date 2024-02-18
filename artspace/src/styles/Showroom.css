@@ -1,27 +1,9 @@
 /* the main body(container) */
 .showroom-body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding:80px 0px;
+    padding: 80px 0px;
     background-color: #98c6cc;
   }
-  
-  /*.showroom-header {
-    background-color: #ffffff;
-    color: #000000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 3px solid #4e7b81; 
-  }
-  
-  
-  .showroom-header img {
-    width: 100%;
-    height: auto;
-    max-height: 100px; 
-    object-fit: contain; 
-  }*/
   
   /* section header which tells the user they are in Explore: section Showroom. Top left */
   .showroom-section-header {
@@ -54,7 +36,7 @@
   
   /* section titles are centered: featured, newest, most views, oldest */
   .showroom-section-titles {
-    margin-top: 30px;
+    padding: 20px;
     font-size: 15px;
     text-align: center;
     color: #fff;
@@ -79,7 +61,7 @@
     height: 2px;
     background-color: #fff;
     display: inline-block;
-    margin-bottom: 40px;
+    margin-top: -5px;
   }
   
   .showroom-title-line-bottom {
@@ -147,6 +129,7 @@
   
   /* shows the text within the overlay */
   .artwork-item .overlay p {
+    font-family: Arial, sans-serif;
     color: #fff;
     margin: 5px 0;
   }

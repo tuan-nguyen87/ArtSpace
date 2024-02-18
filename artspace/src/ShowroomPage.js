@@ -5,12 +5,6 @@ import './styles/Showroom.css';
 function ShowroomPage() {
     return (
         <div className="showroom-body">
-            {/*<header className="showroom-header">
-                <div>
-                    <img src="/public/images/ArtSpace-Logo-Explore.png" alt="Logo" />
-                </div>
-    </header>*/}
-
             <div className="showroom-section-header">
                 Explore | Showroom
             </div>
