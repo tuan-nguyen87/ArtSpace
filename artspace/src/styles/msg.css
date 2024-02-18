@@ -6,7 +6,7 @@
 	font-family: 'Open Sans', sans-serif;
 }
 
-
+/* Main container for the messaging section */
 .msg_container {
   display: flex;
   height: 100vh;
@@ -18,7 +18,7 @@
     #fff 100%)
 }
 
-
+/* Left side panel containing the chat list */
 .msg_container .leftSide {
   width: 20%;
   height: 583px;
@@ -28,6 +28,7 @@
   overflow-y: scroll;
 }
 
+/* Search bar styling */
 .search_chat
 {
 	position: relative;
@@ -60,7 +61,7 @@
 	color: #888;
 }
 
-
+/* Styling for the chat list */
 .chatList {
   display: flex;
   flex-direction: column;
@@ -80,6 +81,8 @@
 	border-bottom: 1px solid rgba(0,0,0,.06);
 	cursor: pointer;
 }
+
+/* Active and hover styles for chat list items */
 .chatList .block.active 
 {
 	background: #ebebeb;
@@ -89,6 +92,8 @@
 	background: #f5f5f5
 }
 
+
+/* Styles for details within each chat list item */
 .chatList .block .details
 {
 	position: relative;
@@ -101,6 +106,7 @@
 	margin-bottom: 5px;
 }
 
+/* Styling for the timestamp within the chat list item */
 .chatList .block .details .listHead .time
 {
 	font-size: 0.75em;
@@ -150,6 +156,8 @@
   background-color: #b9d8bb;
 }
 
+
+/* Styling for individual messages within the chat */
 .message
 {
 	position: relative;
@@ -169,6 +177,8 @@
 	font-size: 0.9em;
 	background: #dcf8c6;
 }
+
+/* Styles for the triangular shape before the message */
 .message p:first-child:before
 {
 	content: '';

@@ -1,3 +1,4 @@
+//starting the notification logic
 import React from "react";
 import "./styles/Notification.css";
 
