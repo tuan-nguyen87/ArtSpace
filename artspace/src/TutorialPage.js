@@ -9,7 +9,7 @@ function Tutorial() {
       <div className="tutorial-container">
         {/*<hr className="hr"></hr>*/}
         <div className="section-header">
-          Explore | Tutorials
+          Explore | Tutorial
         </div>
         <main>
           <div className="quadrant">

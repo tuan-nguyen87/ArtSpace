@@ -1,9 +1,14 @@
 /* the main body(container) */
-.showroom-body {
+  .showroom-body {
     margin: 0;
-    padding: 80px 0px;
+    padding: 79px 0px;
     background-color: #98c6cc;
   }
+
+  .showroom-hr{
+    border-bottom: 3px solid #4e7b81;
+    padding-top: -80px;
+   }
   
   /* section header which tells the user they are in Explore: section Showroom. Top left */
   .showroom-section-header {
@@ -148,5 +153,12 @@
   @media (max-width: 800px) {
     .artwork-container {
       column-count: 2;
+    }
+  }
+
+  /* sets the number of columns to 1 in the art-container when the viewport is less than or equal to 800 pixels. */
+  @media (max-width: 500px) {
+    .artwork-container {
+      column-count: 1;
     }
   }

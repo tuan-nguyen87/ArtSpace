@@ -5,8 +5,9 @@ import './styles/Showroom.css';
 function ShowroomPage() {
     return (
         <div className="showroom-body">
+            <hr className="showroom-hr"></hr>
             <div className="showroom-section-header">
-                Explore | Showroom
+                Explore | Show Room
             </div>
 
             <div className="showroom-section-upload">
