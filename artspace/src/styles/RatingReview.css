@@ -12,12 +12,28 @@ body {
     background-color: #a6cfa7;
     border-radius: 8px;
     display: flex; /* Two-column layout */
-    padding: 150px;
+    padding: 30px;
   }
+  
+
+  .left-section {
+    flex: 1;
+    padding: 50px;
+  }
+  
+  .right-section {
+    flex: 1;
+    padding: 50px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    height: 700px;
+  }
+  
   
   .title {
     text-align: center;
     width: 100%; /* Title spans full width */
+    font-size: x-large;
     
   }
   

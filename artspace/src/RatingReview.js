@@ -49,24 +49,26 @@ const RatingReview = () => {
 
   return (
     <div className="r_container">
-      <h1 className="title">Leave a Review about your Experience</h1>
+      <div className="left-section">
+        <h1 className="title">Leave a Review about your Experience</h1>
 
-      <div className="form-section">
         <form id="review-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label for="rating">Rating:</label>
+            <label htmlFor="rating">Rating:</label>
             <ReactStars
               count={5}
+              value={rating} //Set value to the current rating state
               onChange={handleRatingChange}
               size={30} 
               emptyIcon={<i className="far fa-star"></i>}
               fullIcon={<i className="fa fa-star"></i>}
               activeColor="#ffd700" 
+              isHoverable={true}
             />
           </div>
 
           <div className="form-group">
-            <label for="review-text">Your Review:</label>
+            <label htmlFor="review-text">Your Review:</label>
             <textarea id="review-text" className="review-text" value={reviewText} onChange={(e) => setReviewText(e.target.value)} />
           </div>
 
@@ -74,7 +76,7 @@ const RatingReview = () => {
         </form>
       </div>
 
-      <div className="reviews-section">
+      <div className="right-section">
         <h2>All Reviews</h2>
         <div className="reviews-list">
           {reviews.map((review) => (
