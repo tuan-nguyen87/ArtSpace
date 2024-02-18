@@ -102,6 +102,7 @@
     height: auto;
     object-fit: cover; /* scales the image, while also maintaining its ratio */
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     transition: opacity 0.3s; /* transition effect to the opacity of image */
   }
   
