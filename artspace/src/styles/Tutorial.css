@@ -3,8 +3,14 @@
     padding: 0;
     background-color: #98c6cc;
    }
+
+   .hr{
+    border-bottom: 3px solid #4e7b81;
+    padding-top: 79px;
+   }
+
    .tutorial-container {
-    margin: 0;
+    margin-top: -80px;
     padding: 80px;
   }
   

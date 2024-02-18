@@ -5,7 +5,9 @@ import './styles/Tutorial.css';
 function Tutorial() {
   return (
     <div className="tutorial-body">
+      <hr className="hr"></hr>
       <div className="tutorial-container">
+        {/*<hr className="hr"></hr>*/}
         <div className="section-header">
           Explore | Tutorials
         </div>
