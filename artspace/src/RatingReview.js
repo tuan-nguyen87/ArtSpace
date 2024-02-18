@@ -48,8 +48,8 @@ const RatingReview = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="title">Leave a Review</h1>
+    <div className="r_container">
+      <h1 className="title">Leave a Review about your Experience</h1>
 
       <div className="form-section">
         <form id="review-form" onSubmit={handleSubmit}>

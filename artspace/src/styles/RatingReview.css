@@ -2,21 +2,23 @@ body {
     font-family: 'Arial', sans-serif; 
     background-color: #f4f4f4; 
     margin: 0;
+    
   }
   
-  .container {
-    max-width: 960px;
+  .r_container {
+    max-width: 1500px;
+    height: 700px;
     margin: 30px auto;
-    padding: 20px;
-    background-color: #fff;
+    background-color: #a6cfa7;
     border-radius: 8px;
     display: flex; /* Two-column layout */
+    padding: 150px;
   }
   
   .title {
     text-align: center;
     width: 100%; /* Title spans full width */
-    margin-bottom: 20px;
+    
   }
   
   /* Form Section */
@@ -36,7 +38,7 @@ body {
   
   /* Reviews Section */
   .reviews-section {
-    flex: 1;
+    flex: 2;
     padding: 20px;
   }
   
