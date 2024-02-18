@@ -77,6 +77,9 @@ const NavigationBar = () => {
             <li>
               <a href="#">Collaborations</a>
             </li>
+            <li>
+              <a href="/RatingReview">Leave a Review</a>
+            </li>
           </ul>
         </li>
       </ul>
