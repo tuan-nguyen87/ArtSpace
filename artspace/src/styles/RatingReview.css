@@ -49,9 +49,19 @@ body {
   }
   
   .submit-button {
-    /* ... styles for your button*/
+    /* ... styles for button*/
+    padding: 8px;
+    border: 1px solid #eef1ee;
+    background-color: #536754;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
+.submit-button:hover
+{
+  background-color: #26de32;
+}
+
   /* Reviews Section */
   .reviews-section {
     flex: 2;
@@ -69,4 +79,9 @@ body {
     margin-bottom: 10px;
   }
   /* ... add styles for star display within reviews */
+  
+
+  .star-rating i.active {
+    color: #ffd700;  /* color for active stars */
+  }
   
