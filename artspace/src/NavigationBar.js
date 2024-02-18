@@ -16,13 +16,13 @@ const NavigationBar = () => {
           <a href="#">Explore</a>
           <ul className="dropdown-menu">
             <li>
-              <a href="#">Tutorial</a>
+              <a href="/TutorialPage">Tutorial</a>
             </li>
             <li>
               <a href="/Commissions">Commission Listings</a>
             </li>
             <li>
-              <a href="#">Show Room</a>
+              <a href="/ShowroomPage">Show Room</a>
             </li>
           </ul>
         </li>

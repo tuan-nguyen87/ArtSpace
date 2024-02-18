@@ -1,0 +1,169 @@
+/* the main body(container) */
+.showroom-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #98c6cc;
+  }
+  
+  /* this is the header of the body just need to implement the navigation bar that is already done. */
+  .showroom-header {
+    background-color: #ffffff;
+    color: #000000;
+    /* padding: 10px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #4e7b81; 
+  }
+  
+  /* header image which is the art space logo */
+  .showroom-header img {
+    width: 100%;
+    height: auto;
+    max-height: 100px; /* Limit logo height */
+    object-fit: contain; /* Ensure logo fits within its container */
+  }
+  
+  /* section header which tells the user they are in Explore: section Showroom. Top left */
+  .showroom-section-header {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: #fff;
+  }
+  
+  /* upload button, located top right */
+  .showroom-section-upload {
+    font-size: 15px;
+    text-align: right;
+    color: #fff;
+    margin-right: 10px;
+    margin-top: -15px;
+  }
+  
+  /* upload has a hover effect. when not hovering, no underline is shown */
+  .showroom-section-upload a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  /* when hovering, underline is shown */
+  .showroom-section-upload a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* section titles are centered: featured, newest, most views, oldest */
+  .showroom-section-titles {
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* hover effect on the section titles */
+  .showroom-section-titles a {
+    margin: 20px; /* Adjust spacing between the links */
+    text-decoration: none; 
+    color: #fff;
+  }
+  
+  /* underline appears when hovering */
+  .showroom-section-titles a:hover {
+    text-decoration: underline;
+  }
+  
+  /* lines above and below the section titles. */
+  .showroom-title-line-top {
+    width: 450px;
+    height: 2px;
+    background-color: #fff;
+    display: inline-block;
+    margin-top: -5px;
+  }
+  
+  .showroom-title-line-bottom {
+    width: 450px;
+    height: 2px;
+    background-color: #fff;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  /* art container, contains the number of columns to display the images */
+  .artwork-container {
+    column-count: 4; /* intial number of columns */
+    column-gap: 10px;
+    padding: 10px;
+  }
+  
+  /* artwork-item:item container, set the properties to control the layout and appearence of the item */
+  .artwork-item {
+    width: auto;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    break-inside: avoid-column; /* prevents column break, items stay together */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+  }
+  
+  /* artwork-item img target the images within the item container */
+  .artwork-item img {
+    max-width: 100%; /* Ensure image does not exceed its container */
+    height: auto;
+    object-fit: cover; /* scales the image, while also maintaining its ratio */
+    border-radius: 8px;
+    transition: opacity 0.3s; /* transition effect to the opacity of image */
+  }
+  
+  /* artwork item hover img selects image within the container being hovered */
+  .artwork-item:hover img {
+    opacity: 0.7; /* Reduce opacity on hover */
+  }
+  
+  /* artwork item overlay displays the overlay effect within the selected image, showing the artist and title */
+  .artwork-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s; /* Smooth transition for opacity */
+    border-radius: 8px;
+  }
+  
+  /* shows the opacity of the overlay */
+  .artwork-item:hover .overlay {
+    opacity: 1; /* Show overlay on hover */
+  }
+  
+  /* shows the text within the overlay */
+  .artwork-item .overlay p {
+    color: #fff;
+    margin: 5px 0;
+  }
+  
+  /* media rule apply specific styles based on the width of the viewport. As the page is being resized, the art work items adjust responsively. */
+  
+  /* sets the number of columns to 3 in the art-container when the viewport is less than or equal to 1200 pixels. */
+  @media (max-width: 1200px) {
+    .artwork-container {
+      column-count: 3;
+    }
+  }
+  
+  /* sets the number of columns to 2 in the art-container when the viewport is less than or equal to 800 pixels. */
+  @media (max-width: 800px) {
+    .artwork-container {
+      column-count: 2;
+    }
+  }
