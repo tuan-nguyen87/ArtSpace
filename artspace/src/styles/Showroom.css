@@ -36,7 +36,7 @@
   
   /* section titles are centered: featured, newest, most views, oldest */
   .showroom-section-titles {
-    padding: 20px;
+    padding: 5px;
     font-size: 15px;
     text-align: center;
     color: #fff;
@@ -61,7 +61,7 @@
     height: 2px;
     background-color: #fff;
     display: inline-block;
-    margin-top: -5px;
+    margin-bottom: 10px;
   }
   
   .showroom-title-line-bottom {
@@ -69,6 +69,7 @@
     height: 2px;
     background-color: #fff;
     display: inline-block;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   

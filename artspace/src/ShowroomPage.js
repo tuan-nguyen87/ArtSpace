@@ -14,14 +14,14 @@ function ShowroomPage() {
             </div>
 
             <div className="showroom-section-titles">
-                <span className="showroom-title-line-top"></span>
-                <p></p>
+                <div className="showroom-title-line-top"></div>
+                <br></br>
                 <a>Featured</a>
                 <a>Newest</a>
                 <a>Most Views</a>
                 <a>Oldest</a>
-                <p></p>
-                <span className="showroom-title-line-bottom"></span>
+                <br></br>
+                <div className="showroom-title-line-bottom"></div>
             </div>
       
             <div className="artwork-container">
