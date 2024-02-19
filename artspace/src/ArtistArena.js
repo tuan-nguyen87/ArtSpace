@@ -12,6 +12,7 @@ const ArtistArena = () => {
                         <img class="card-image" src="/Arena art/4-Panel-Life.png" alt=""/>
                         <h3>4 Panel Comic</h3>
                         <div class="card-content">
+                            <p>Tell a story in 4 pictures!</p>
                             <p>Date</p>
                             <p>Time</p>
                             <button type="submit">Compete!</button>
@@ -23,6 +24,7 @@ const ArtistArena = () => {
                             <h3>Character Design</h3>
                         </div>
                         <div class="card-content">
+                            <p>What OC's can you make?</p>
                             <p>Date</p>
                             <p>Time</p>
                             <button type="submit">Compete!</button>
@@ -39,6 +41,7 @@ const ArtistArena = () => {
                         <div class="card-content">
                             <p>Showcase the magic of your creativity!</p>
                             <p>Date</p>
+                            <p>Time</p>
                             <button type="submit">Compete!</button>
                         </div>
                     </div>
@@ -48,7 +51,7 @@ const ArtistArena = () => {
                             <h3>Figuary Month</h3>
                         </div>
                         <div class="card-content">
-                            <p>Winners and best art from Figuary month.</p>
+                            <p>It's all about dynamics! Figures in motion</p>
                             <p>Date</p>
                             <p>Time</p>
                             <button type="submit">Compete!</button>
@@ -63,7 +66,7 @@ const ArtistArena = () => {
                             <h3>Best Comics</h3>
                         </div>
                         <div class="card-content">
-                            <p>Description</p>
+                            <p>This cycles voted best comic artists!</p>
                             <button type="submit">View!</button>
                         </div>
                     </div>
@@ -73,7 +76,7 @@ const ArtistArena = () => {
                             <h3>Best Design</h3>
                         </div>
                         <div class="card-content">
-                            <p>Description</p>
+                            <p>This cycles voted best design artists!</p>
                             <button type="submit">View!</button>
                         </div>
                     </div>
