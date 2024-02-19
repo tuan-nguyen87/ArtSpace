@@ -37,7 +37,7 @@ const ArtistArena = () => {
                             <h3>Wizard April</h3>
                         </div>
                         <div class="card-content">
-                            <p>Join the Wizard April event and showcase your creativity!</p>
+                            <p>Showcase the magic of your creativity!</p>
                             <p>Date</p>
                             <button type="submit">Compete!</button>
                         </div>
