@@ -7,7 +7,9 @@ const ArtistArena = () => {
         <div className="arena-bg">
             <div class="arena-container">
                 <div class="section-label">
+                    <div className="timeframe-line-top"></div>
                     <h3>This Week</h3>
+                    <div className="timeframe-line-bottom"></div>
                     <div class="card"> 
                         <img class="card-image" src="/Arena art/4-Panel-Life.png" alt=""/>
                         <h3>4 Panel Comic</h3>
@@ -32,7 +34,9 @@ const ArtistArena = () => {
                     </div>
                 </div>
                 <div class="section-label">
+                    <div className="timeframe-line-top"></div>
                     <h3>Upcoming</h3>
+                    <div className="timeframe-line-bottom"></div>
                     <div class="card">
                         <img class="card-image" src="/Arena art/WIZARD.png" alt=""/>
                         <div class="card-header">
@@ -59,7 +63,9 @@ const ArtistArena = () => {
                     </div>
                 </div>
                 <div class="section-label">
+                    <div className="timeframe-line-top"></div>
                     <h3>Winners</h3>
+                    <div className="timeframe-line-bottom"></div>
                     <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
                         <div class="card-header">
