@@ -2,20 +2,30 @@
 {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 20px auto;
   padding: 30px;
+  background-color: #e1ad64;
+ 
 }
 
 .left-section
 {
     flex: 1;
+    background-color: #efd2aa;
 }
 
 .right_section
 {
     flex: 2;
     margin-left: 20px;
+}
+
+h2 
+{
+    color: #4a2605;
+    font-style: italic;
+    font-family:  'Times New Roman', serif;
 }
 
 .question-form textarea 
