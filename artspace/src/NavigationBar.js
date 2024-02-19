@@ -35,6 +35,9 @@ const NavigationBar = () => {
             <li>
               <a href="#">Arena</a>
             </li>
+            <li>
+              <a href="/SocialHub">Social Hub</a>
+            </li>
           </ul>
         </li>
         <li>

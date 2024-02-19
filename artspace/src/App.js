@@ -11,6 +11,7 @@ import RatingReview from "./RatingReview";
 import TutorialPage from "./TutorialPage";
 import ArtistArena from "./ArtistArena";
 import ShowroomPage from './ShowroomPage';
+import SocialHub from './SocialHub';
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
@@ -49,6 +50,7 @@ function App() {
           <Route path="/TutorialPage" element={<TutorialPage />} />
           <Route path="/ArtistArena" element={<ArtistArena />} />
           <Route path="/ShowroomPage" element={<ShowroomPage />} />
+          <Route path="/SocialHub" element={<SocialHub />} />
         </Routes>
       </Router>
     </div>
