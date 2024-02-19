@@ -9,7 +9,7 @@ body {
     max-width: 1500px;
     height: 700px;
     margin: 30px auto;
-    background-color: #a6cfa7;
+    background-color: #eda240;
     border-radius: 8px;
     display: flex; /* Two-column layout */
     padding: 30px;
@@ -19,6 +19,7 @@ body {
   .left-section {
     flex: 1;
     padding: 50px;
+    
   }
   
   .right-section {

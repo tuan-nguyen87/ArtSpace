@@ -5,7 +5,7 @@
   max-width: 1500px;
   margin: 20px auto;
   padding: 30px;
-  background-color: #e1ad64;
+  background-color: #dc9b40;
  
 }
 
@@ -25,7 +25,7 @@ h2
 {
     color: #4a2605;
     font-style: italic;
-    font-family:  'Times New Roman', serif;
+    font-family:'Times New Roman', serif;
 }
 
 .question-form textarea 
