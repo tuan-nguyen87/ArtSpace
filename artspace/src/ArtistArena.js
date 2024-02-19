@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+// import React, {useState, useEffect} from "react";
 import "./styles/ArtistArena.css";
 
 const ArtistArena = () => {
@@ -9,7 +9,7 @@ const ArtistArena = () => {
                 <div class="section-label">
                     <h3>This Week</h3>
                     <div class="card"> 
-                        <img class="card-image" src="/public/images/4-Panel-Life.png"/>
+                        <img class="card-image" src="/Arena art/4-Panel-Life.png" alt=""/>
                         <h3>4 Panel Comic</h3>
                         <div class="card-content">
                             <p>Date</p>
@@ -18,7 +18,7 @@ const ArtistArena = () => {
                         </div>
                     </div>
                     <div class="card">
-                        <img class="card-image" src="/public/images/Char-Design.png"/>
+                        <img class="card-image" src="/Arena art/Char-Design.png" alt=""/>
                         <div class="card-header">
                             <h3>Character Design</h3>
                         </div>
@@ -32,7 +32,7 @@ const ArtistArena = () => {
                 <div class="section-label">
                     <h3>Upcoming</h3>
                     <div class="card">
-                        <img class="card-image" src="/public/images/WIZARD.png"/>
+                        <img class="card-image" src="/Arena art/WIZARD.png" alt=""/>
                         <div class="card-header">
                             <h3>Wizard April</h3>
                         </div>
@@ -43,7 +43,7 @@ const ArtistArena = () => {
                         </div>
                     </div>
                     <div class="card">
-                        <img class="card-image" src="/public/images/dynamic-figures.png"/>
+                        <img class="card-image" src="/Arena art/dynamic-figures.png" alt=""/>
                         <div class="card-header">
                             <h3>Figuary Month</h3>
                         </div>
@@ -57,7 +57,7 @@ const ArtistArena = () => {
                 <div class="section-label">
                     <h3>Winners</h3>
                     <div class="card">
-                        <img class="card-image" src="/public/images/best-comic.png"/>
+                        <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
                         <div class="card-header">
                             <h3>Best Comics</h3>
                         </div>
@@ -67,7 +67,7 @@ const ArtistArena = () => {
                         </div>
                     </div>
                     <div class="card">
-                        <img class="card-image" src="/public/images/design.jpg"/>
+                        <img class="card-image" src="/Arena art/design.jpg" alt=""/>
                         <div class="card-header">
                             <h3>Best Design</h3>
                         </div>
