@@ -50,6 +50,7 @@ const ArtistArena = () => {
                         <div class="card-content">
                             <p>Winners and best art from Figuary month.</p>
                             <p>Date</p>
+                            <p>Time</p>
                             <button type="submit">Compete!</button>
                         </div>
                     </div>
