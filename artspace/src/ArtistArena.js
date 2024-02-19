@@ -6,6 +6,10 @@ const ArtistArena = () => {
     return(
         <div className="arena-bg">
             <div class="arena-container">
+                <div className="arena-section-header">
+                    Interact | Artist Arena
+                </div>
+
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>This Week</h3>
