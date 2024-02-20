@@ -14,8 +14,7 @@
 /* Styling for the container holding the challenge */
 .challenge-container {
   position: relative;  /* Set position relative for child positioning */
-  margin-top: 50px;  /* Top margin to avoid overlap with navbar */
-
+  margin-bottom: 100px;
 }
 
 /* Styling for the box containing the prompt */
