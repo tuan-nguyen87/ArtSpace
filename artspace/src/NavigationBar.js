@@ -33,7 +33,7 @@ const NavigationBar = () => {
               <a href="/DailyChallenge">Daily Challenges</a>
             </li>
             <li>
-              <a href="#">Arena</a>
+              <a href="/ArtistArena">Arena</a>
             </li>
             <li>
               <a href="/SocialHub">Social Hub</a>
