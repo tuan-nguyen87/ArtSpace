@@ -4,26 +4,28 @@
   justify-content: space-between;
   max-width: 1500px;
   margin: 20px auto;
-  padding: 30px;
-  background-color: #dc9b40;
+  padding: 40px;
+  background: url(artImg.png);
  
 }
 
-.left-section
+.s_left-section
 {
     flex: 1;
-    background-color: #efd2aa;
+    background-color: #A5607D;
+    padding: 40px;
 }
 
 .right_section
 {
     flex: 2;
     margin-left: 20px;
+    
 }
 
 h2 
 {
-    color: #4a2605;
+    color: #231305;
     font-style: italic;
     font-family:'Times New Roman', serif;
 }
@@ -44,7 +46,7 @@ h2
 
 .question-list li
 {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border: 5px;
   padding: 10px;
   margin-bottom: 10px;

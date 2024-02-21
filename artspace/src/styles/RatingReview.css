@@ -9,16 +9,17 @@ body {
     max-width: 1500px;
     height: 700px;
     margin: 30px auto;
-    background-color: #eda240;
     border-radius: 8px;
     display: flex; /* Two-column layout */
     padding: 30px;
+    background: url(img2.jpg);
   }
   
 
   .left-section {
     flex: 1;
     padding: 50px;
+    background-color: #eab472;
     
   }
   
@@ -27,7 +28,7 @@ body {
     padding: 50px;
     background-color: #f8f8f8;
     border-radius: 8px;
-    height: 700px;
+    height: 640px;
   }
   
   

@@ -16,7 +16,7 @@ const SocialHub = () => {
     
 return (
     <div className="s_container">
-      <div className="left-section">
+      <div className="s_left-section">
         <h2>Ask a Question</h2>
         <div className="question-form">
             <textarea 

@@ -75,7 +75,7 @@ const RatingReview = () => {
       
           {/* Input field for the name of the artist/client */}
           <div className="form-group">
-            <label htmlFor="person-name">Name of Artist/Client you worked with:</label>
+            <label htmlFor="person-name">Name of Artist you worked with:</label>
             <input
               type="text"
               id="person-name"

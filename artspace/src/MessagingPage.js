@@ -296,6 +296,7 @@ const MessagingPage = () => {
           <button onClick={() => sendMessage(newMessage)}>Send</button>
         </div>
       </div>
+
     </div>
   );
 };
