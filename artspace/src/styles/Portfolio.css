@@ -1,0 +1,127 @@
+/* styles/Portfolio.css */
+body {
+  background-color: #4b7854; /* Set your desired background color */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
+.portfolio {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-right: 20px;
+  padding-top: 100px;
+}
+
+.right-side {
+  flex: 2;
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* Make the picture round */
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+.bio {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.skills {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+ul.skills {
+  list-style-type: none;
+  padding: 0;
+  columns: 2; /* Set the number of columns */
+  column-gap: 20px; /* Add space between columns */
+}
+
+.skills li {
+  margin-bottom: 10px;
+}
+
+.skills li::before {
+  margin-right: 5px;
+}
+
+.edit-button {
+  display: flex;
+  margin-top: 20px;
+  margin-left: auto;
+  border-radius: 10px;
+  padding: 5px 15px;
+  border: solid rgb(28, 120, 0);
+  border-radius: 10px;
+  background-color: #00ff40;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.edit-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(48, 78, 54, 0.6);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  margin-left: auto;
+}
+
+.edit-form {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-form textarea,
+.edit-form input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 5px solid #0d4300;
+  margin-bottom: 10px;
+}
+
+.edit-popup button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.edit-popup button:hover {
+  background-color: #0056b3;
+}
+
+.edit-popup .save-button {
+  margin-right: 10px;
+}
+
+.edit-popup .close-button {
+  margin-left: 10px;
+}
