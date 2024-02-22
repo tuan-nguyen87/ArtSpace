@@ -12,6 +12,7 @@
 	align-items: center;
 	min-height: 100vh;
 	background: linear-gradient(#95bd93 0%,#95bd93 130px,#95bd93 130px,#d9dbd5 100%);
+	padding: 50px;
 }
 .m_container
 {
