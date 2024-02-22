@@ -4,12 +4,14 @@ import "./styles/Portfolio.css"; // Include your CSS file for styling
 const Portfolio = () => {
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
+  const initialImages = [];
 
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
   const [skills, setSkills] = useState(initialSkills);
   const [editedBiography, setEditedBiography] = useState(initialBiography);
   const [editedSkills, setEditedSkills] = useState(initialSkills);
+  const [images, setImages] = useState(initialImages);
 
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
@@ -50,6 +52,18 @@ const Portfolio = () => {
     setEditedSkills(updatedSkills);
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const image = e.target.result;
+      setImages([...images, image]); // Add the uploaded image to the list of images
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="portfolio">
       <div className="left-side">
@@ -59,10 +73,6 @@ const Portfolio = () => {
             src="/Portfolio/joker.png"
             alt="Profile Picture"
           />
-          <button
-            className="profile-button"
-            onClick={handleEditButtonClick}
-          ></button>
         </button>
 
         <div className="bio">
@@ -119,9 +129,16 @@ const Portfolio = () => {
           </div>
         </div>
       )}
-      <div>
-        <button className="edit-button">Edit</button>
-      </div>
+      <label htmlFor="file-upload" className="edit-button">
+        Edit
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        style={{ display: "none" }}
+      />
       <div className="right-side">
         <div className="work-item">
           <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />
@@ -129,12 +146,12 @@ const Portfolio = () => {
           <img src="/Homepage art/sample pic 3.png" alt="Work 1 Thumbnail" />
           <img src="/Homepage art/sample pic 4.png" alt="Work 1 Thumbnail" />
           <img src="/Homepage art/sample pic 5.png" alt="Work 1 Thumbnail" />
+          {images.map((image, index) => (
+            <img key={index} src={image} alt={`Work Thumbnail ${index + 1}`} />
+          ))}
         </div>
       </div>
       <div className="my-portfolio">My Portfolio</div>
-      <div>
-        <button className="edit-button">Edit</button>
-      </div>
     </div>
   );
 };
