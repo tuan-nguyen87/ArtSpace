@@ -5,6 +5,7 @@ const Portfolio = () => {
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
   const initialImages = [];
+  const initialUserName = "Joker";
 
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
@@ -12,24 +13,28 @@ const Portfolio = () => {
   const [editedBiography, setEditedBiography] = useState(initialBiography);
   const [editedSkills, setEditedSkills] = useState(initialSkills);
   const [images, setImages] = useState(initialImages);
+  const [userName, setUserName] = useState(initialUserName);
+  const [editedUserName, setEditedUserName] = useState(initialUserName);
 
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
     setEditedBiography(biography);
     setEditedSkills(skills);
+    setEditedUserName(userName);
   };
 
   const handleSaveButtonClick = () => {
-    // Save the edited biography and skills to your database or perform other actions
     setBiography(editedBiography);
     setSkills(editedSkills);
-    setIsEditPopupOpen(false); // Close the edit pop-up window after saving
+    setUserName(editedUserName);
+    setIsEditPopupOpen(false);
   };
 
   const handleClosePopup = () => {
     setIsEditPopupOpen(false);
     setEditedBiography(biography);
     setEditedSkills(skills);
+    setEditedUserName(userName);
   };
 
   const handleBiographyChange = (event) => {
@@ -64,6 +69,10 @@ const Portfolio = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleUserNameChange = (event) => {
+    setEditedUserName(event.target.value);
+  };
+
   return (
     <div className="portfolio">
       <div className="left-side">
@@ -74,6 +83,7 @@ const Portfolio = () => {
             alt="Profile Picture"
           />
         </button>
+        <h3 className="user-name">{userName}</h3>
 
         <div className="bio">
           <h2>Biography</h2>
@@ -90,9 +100,14 @@ const Portfolio = () => {
       </div>
       {isEditPopupOpen && (
         <div className="edit-popup">
-          {/* Pop-up content for editing */}
           <h2 className="edit-profile">Edit Profile</h2>
           <div className="edit-form">
+            <label>User Name</label>
+            <textarea
+              type="text"
+              value={editedUserName}
+              onChange={handleUserNameChange}
+            />
             <label>Biography:</label>
             <textarea
               value={editedBiography}
