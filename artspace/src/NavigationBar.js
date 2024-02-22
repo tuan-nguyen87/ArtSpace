@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
+
   const [isLoginPopupActive, setIsLoginPopupActive] = useState(false);
 
   const toggleLoginPopup = () => {
@@ -118,6 +119,7 @@ const NavigationBar = () => {
             </ul>
           </li>
         </ul>
+        
       </nav>
       <div className={`wrapper ${isLoginPopupActive ? "active-popup" : ""}`}>
         {isLoginPopupActive ? (

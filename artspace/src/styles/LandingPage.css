@@ -10,39 +10,24 @@
 
 /* Styling for the landing page container */
 .landing-container {
-  display: flex;  /* Use flexbox for layout */
+  position: absolute; /* Should be done to all pages*/
+  top: 0;
+  left: 0;
+  right: 0;
+  display:flex;  /* Use flexbox for layout */
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   min-height: 100vh; /* Set minimum height to full viewport height */
   background: url("/public/images/artGirl.png") center no-repeat; /* Background image */
   background-size: cover; /* Cover entire container with background image */
-
-  /*
-    terracotta color vvv
-    background: #e3735e;
-    */
 }
-
-/* No longer needed
-.header {
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 100px;
-  background-color: white;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-} */
 
 /* Main content styling */
 /* Pertains the welcome/search box */
 .main {
-  position: relative; /* Position element relative to its normal position */
-  top: 0px;
-  right: 20px;
+  position: absolute; /* Position element relative to its normal position */
+  top: 300px;
+  left: 20px;
   width: 580px;
   height: 300px;
   border: none;
@@ -68,7 +53,7 @@
 }
 
 /* Styling for search box */
-.search {
+#search {
   position: relative;
   left: 50px;
   width: 500px;
@@ -77,7 +62,9 @@
   border-radius: 10px;
   padding: 10px;
 }
-
+#output {
+  color: white;
+}
 /* Styling for services section */
 .services h2 {
   position: relative;
