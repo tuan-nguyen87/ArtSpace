@@ -1,89 +1,119 @@
-body {
-    font-family: 'Arial', sans-serif; 
-    background-color: #f4f4f4; 
-    margin: 0;
-    
-  }
-  
-  .r_container {
-    max-width: 1500px;
-    height: 700px;
-    margin: 30px auto;
-    border-radius: 8px;
-    display: flex; /* Two-column layout */
-    padding: 30px;
-    background: url(img2.jpg);
-  }
-  
-
-  .left-section {
-    flex: 1;
-    padding: 50px;
-    background-color: #eab472;
-    
-  }
-  
-  .right-section {
-    flex: 1;
-    padding: 50px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    height: 640px;
-  }
-  
-  
-  .title {
-    text-align: center;
-    width: 100%; /* Title spans full width */
-    font-size: x-large;
-    
-  }
-  
-  /* Form Section */
-  .form-section {
-    flex: 1; /* Equal width columns */
-    padding: 20px;
-    margin-right: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .submit-button {
-    /* ... styles for button*/
-    padding: 8px;
-    border: 1px solid #eef1ee;
-    background-color: #536754;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-.submit-button:hover
+.review-page 
 {
-  background-color: #26de32;
+  font-family: 'Arial', sans-serif; 
+  margin: 0;
+  background: url(imgp.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
 }
 
-  /* Reviews Section */
-  .reviews-section {
-    flex: 2;
-    padding: 20px;
-  }
-  
-  .reviews-list {
-    /* ... */
-  }
-  
-  .review-item { 
-    background-color: #f8f8f8;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  /* ... add styles for star display within reviews */
-  
+.r_container {
+  max-width: 1000px;
+  height: 700px;
+  margin: 30px auto;
+  border-radius: 8px;
+  display: flex; /* Two-column layout */
+  padding: 30px;
+  background-color: #bea1a181; 
+}
 
-  .star-rating i.active {
-    color: #ffd700;  /* color for active stars */
-  }
+
+.left-section {
+  flex: 1;
+  padding: 50px;
+  background-color: #e7e1db;
   
+}
+
+.right-section {
+  flex: 1;
+  padding: 50px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  height: 640px;
+}
+
+
+.title {
+  text-align: center;
+  width: 100%; /* Title spans full width */
+  font-size: x-large;
+  
+}
+
+/* Form Section */
+.form-section {
+  flex: 1; /* Equal width columns */
+  padding: 20px;
+  margin-right: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.submit-button {
+  /* ... styles for button*/
+  padding: 8px;
+  border: 1px solid #eef1ee;
+  background-color: #aeb4b7;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover
+{
+background-color: #4387ec;
+}
+
+/* Reviews Section */
+.reviews-section {
+  flex: 2;
+  padding: 20px;
+}
+
+.reviews-list {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Add these styles to your existing CSS or modify accordingly */
+
+.review-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-item p {
+  margin: 0;
+}
+
+.review-item p:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-item p:nth-child(2) {
+  font-size: 16px;
+  color: #ff9900; /* Adjust the color as needed */
+}
+
+.review-item p:nth-child(3) {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* ... add styles for star display within reviews */
+
+
+.star-rating i.active {
+  color: #ffd700;  /* color for active stars */
+}

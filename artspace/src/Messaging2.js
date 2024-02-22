@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import "./styles/messaging2.css";
+import CreateChatPopup from "./CreateChatPopup"; //
 
 
 
@@ -11,6 +12,8 @@ const Messaging2 = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCreateChatPopupOpen, setCreateChatPopupOpen] = useState(false);//
+  //const [user, setUser] = useState('');
 
 
 
@@ -56,6 +59,39 @@ const Messaging2 = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setNewMessage(e.target.value);
+  };
+
+  const handleSendMessage = () => {
+    sendMessage(newMessage);
+    setNewMessage(""); // Clear the input after sending the message
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // Prevents a new line in the textarea
+      handleSendMessage();
+    }
+};
+  
+
+const handleOpenCreateChatPopup = () => {
+    setCreateChatPopupOpen(true);
+  };
+
+  const handleCloseCreateChatPopup = () => {
+    setCreateChatPopupOpen(false);
+  };
+
+
+  const handleNewChat = () => {
+    // Add the logic to handle the creation of a new chat
+    console.log("Creating a new chat...");
+    // Close the popup after creating the chat
+    handleCloseCreateChatPopup();//
+  };
+
   // JSX structure for the messaging page 
   return (
     <><div className="message-page">
@@ -71,12 +107,19 @@ const Messaging2 = () => {
                       <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
                   </ul>
                 </div>*/}
-              <div className="search_chat">
-                  <div>
-                      <input type="text" placeholder="Search or start new chat"/>
-                          {/*<ion-icon name="search-outline"></ion-icon>*/}
-                  </div>
-              </div>
+              
+              
+              {/* Render the CreateChatPopup component if isCreateChatPopupOpen is true */}
+              {isCreateChatPopupOpen && (
+                <CreateChatPopup
+                onClose={handleCloseCreateChatPopup}
+                //onCreateChat={handleCreateChat}
+                />
+              )}
+              {/* Button to open the Create Chat popup */}
+              <button className="button-style" onClick={handleOpenCreateChatPopup}>New Chat +</button>
+
+
               <div className="chatlist">
                   <div className="block active">
                       <div className="imgbx">
@@ -384,7 +427,17 @@ const Messaging2 = () => {
               <div className="chatBox_input">
                   {/*<ion-icon name="happy-outline"></ion-icon>
                   <ion-icon name="attach-outline"></ion-icon>*/}
-                  <input type="text" placeholder="Type a message"/>
+                  <input
+                    type="text"
+                    placeholder="Type a message"
+                    value={newMessage}
+                    onChange={handleInputChange}
+                    onKeyPress={handleKeyPress}
+                  />
+                  <button onClick={handleSendMessage} className="send-button">
+                    Send
+                </button>
+
               </div>
           </div>
       </div>

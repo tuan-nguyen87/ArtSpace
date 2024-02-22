@@ -78,12 +78,11 @@ const NavigationBar = () => {
           <li className="notification-icon">
             {/* you could replace this icon '🔔' with another one of ur choice */}
             <a href="#">🔔</a>
-            
-            {/* <ul className="dropdown-menu">
+            <ul className="dropdown-menu">
               <li><a href="#">Notification 1</a></li>
               <li><a href="#">Notification 2</a></li>
               {/* ... */}
-            {/* </ul> */}
+            </ul> 
           </li>
             <button className="btnLogin-popup" onClick={toggleLoginPopup}>
               Login
@@ -105,7 +104,7 @@ const NavigationBar = () => {
                 <a href="#">Commissions</a>
               </li>
               <li>
-                <a href="/MessagingPage">Messages</a>
+                <a href="/Messaging2">Messages</a>
               </li>
               <li>
                 <a href="#">Collaborations</a>
