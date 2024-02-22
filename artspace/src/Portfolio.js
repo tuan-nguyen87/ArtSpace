@@ -119,12 +119,21 @@ const Portfolio = () => {
           </div>
         </div>
       )}
+      <div>
+        <button className="edit-button">Edit</button>
+      </div>
       <div className="right-side">
         <div className="work-item">
           <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />
+          <img src="/Homepage art/sample pic 1.png" alt="Work 1 Thumbnail" />
+          <img src="/Homepage art/sample pic 3.png" alt="Work 1 Thumbnail" />
+          <img src="/Homepage art/sample pic 4.png" alt="Work 1 Thumbnail" />
+          <img src="/Homepage art/sample pic 5.png" alt="Work 1 Thumbnail" />
         </div>
-        {/* Add more work items as needed */}
-        <img src="/Homepage art/sample pic 1.png" alt="Work 1 Thumbnail" />
+      </div>
+      <div className="my-portfolio">My Portfolio</div>
+      <div>
+        <button className="edit-button">Edit</button>
       </div>
     </div>
   );

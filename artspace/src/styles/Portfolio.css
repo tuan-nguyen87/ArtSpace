@@ -1,8 +1,8 @@
 /* styles/Portfolio.css */
 body {
-  background-color: #4b7854; /* Set your desired background color */
-  margin: 0; /* Remove default body margin */
-  padding: 0; /* Remove default body padding */
+  background-color: #ffa962;
+  margin: 0;
+  padding: 0;
 }
 
 .portfolio {
@@ -10,7 +10,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 170px;
 }
 
 .left-side {
@@ -18,28 +18,50 @@ body {
   flex-direction: column;
   flex: 1;
   padding-right: 20px;
+  padding-top: 100px;
+  border: 8px solid gold; /* Add border */
+  border-radius: 15px;
+  background-color: rgba(121, 0, 0, 0.575);
 }
 
 .right-side {
   flex: 2;
-  padding-left: 20px;
+  margin-left: 80px;
   display: flex;
-  justify-content: space-between;
+  border: 8px solid gold;
+  background-color: rgba(147, 0, 0, 0.671);
+  position: relative;
+  border-radius: 15px;
+  padding: 15px;
+  justify-content: center;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.work-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  border: 5px solid gold;
 }
 
 .profile-pic {
   width: 300px;
   height: 300px;
-  border-radius: 50%; /* Make the picture round */
-  margin-bottom: 20px;
+  border-radius: 50%;
+  margin-bottom: 40px;
 }
 
-/* styles/Portfolio.css */
 .profile-button {
   background-color: transparent;
   border: none;
   padding: 0;
   transition: filter 0.3s ease; /* Add transition for smooth effect */
+  cursor: pointer;
 }
 
 .profile-button:hover {
@@ -55,6 +77,7 @@ body {
 .skills {
   margin-top: 20px;
   margin-left: 50px;
+  margin-bottom: 30px;
 }
 
 ul.skills {
@@ -91,6 +114,7 @@ ul.skills {
   padding: 20px;
   border: 5px solid rgb(0, 52, 6);
   backdrop-filter: blur(15px);
+  z-index: 5;
 }
 
 .edit-form {
@@ -163,4 +187,27 @@ button.edit-popup {
   height: 20px;
   margin-top: 15px;
   margin-left: 5px;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  border-radius: 10px;
+  background-color: aqua;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.my-portfolio {
+  font-family: "Baloo 2", cursive;
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  right: 40%;
+  top: 130px;
 }
