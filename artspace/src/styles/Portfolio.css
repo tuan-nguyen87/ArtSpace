@@ -10,6 +10,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
+  margin-top: 100px;
 }
 
 .left-side {
@@ -17,7 +18,6 @@ body {
   flex-direction: column;
   flex: 1;
   padding-right: 20px;
-  padding-top: 100px;
 }
 
 .right-side {
@@ -28,11 +28,22 @@ body {
 }
 
 .profile-pic {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%; /* Make the picture round */
   margin-bottom: 20px;
-  margin-left: 50px;
+}
+
+/* styles/Portfolio.css */
+.profile-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: filter 0.3s ease; /* Add transition for smooth effect */
+}
+
+.profile-button:hover {
+  filter: brightness(0.5); /* Darken the profile picture */
 }
 
 .bio {
@@ -61,17 +72,14 @@ ul.skills {
   margin-right: 5px;
 }
 
-.edit-button {
+.skill-item {
   display: flex;
-  margin-top: 20px;
-  margin-left: auto;
-  border-radius: 10px;
-  padding: 5px 15px;
-  border: solid rgb(28, 120, 0);
-  border-radius: 10px;
-  background-color: #00ff40;
-  color: #ffffff;
-  cursor: pointer;
+}
+
+.edit-profile {
+  color: white;
+  margin-bottom: 25px;
+  margin-left: 220px;
 }
 
 .edit-popup {
@@ -79,12 +87,10 @@ ul.skills {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(48, 78, 54, 0.6);
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  display: flex;
-  margin-left: auto;
+  border: 5px solid rgb(0, 52, 6);
+  backdrop-filter: blur(15px);
 }
 
 .edit-form {
@@ -92,7 +98,7 @@ ul.skills {
 }
 
 .edit-form label {
-  display: block;
+  display: flex;
   margin-bottom: 5px;
 }
 
@@ -100,16 +106,15 @@ ul.skills {
 .edit-form input[type="text"] {
   width: 100%;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 5px solid #0d4300;
   margin-bottom: 10px;
 }
 
-.edit-popup button {
+button.edit-popup {
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
-  background-color: #007bff;
   color: #ffffff;
   cursor: pointer;
 }
@@ -118,10 +123,44 @@ ul.skills {
   background-color: #0056b3;
 }
 
-.edit-popup .save-button {
+.save-button {
   margin-right: 10px;
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  background-color: aqua;
 }
 
-.edit-popup .close-button {
+.close-button {
   margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: aqua;
+}
+
+.add-skill-button {
+  margin-left: 250px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: aqua;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.delete-button {
+  background-color: red;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 5px;
 }

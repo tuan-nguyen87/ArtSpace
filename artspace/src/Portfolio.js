@@ -2,41 +2,69 @@ import React, { useState } from "react";
 import "./styles/Portfolio.css"; // Include your CSS file for styling
 
 const Portfolio = () => {
+  const initialBiography = "User's biography goes here...";
+  const initialSkills = [];
+
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-  const [biography, setBiography] = useState("User's biography goes here...");
-  const [skills, setSkills] = useState(["Skill 1", "Skill 2", "Skill 3"]);
+  const [biography, setBiography] = useState(initialBiography);
+  const [skills, setSkills] = useState(initialSkills);
+  const [editedBiography, setEditedBiography] = useState(initialBiography);
+  const [editedSkills, setEditedSkills] = useState(initialSkills);
 
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
+    setEditedBiography(biography);
+    setEditedSkills(skills);
   };
 
   const handleSaveButtonClick = () => {
     // Save the edited biography and skills to your database or perform other actions
+    setBiography(editedBiography);
+    setSkills(editedSkills);
     setIsEditPopupOpen(false); // Close the edit pop-up window after saving
   };
 
   const handleClosePopup = () => {
     setIsEditPopupOpen(false);
+    setEditedBiography(biography);
+    setEditedSkills(skills);
   };
 
   const handleBiographyChange = (event) => {
-    setBiography(event.target.value);
+    setEditedBiography(event.target.value);
+  };
+
+  const handleAddSkill = () => {
+    setEditedSkills([...editedSkills, ""]);
   };
 
   const handleSkillChange = (index, event) => {
-    const updatedSkills = [...skills];
+    const updatedSkills = [...editedSkills];
     updatedSkills[index] = event.target.value;
-    setSkills(updatedSkills);
+    setEditedSkills(updatedSkills);
+  };
+
+  const handleDeleteSkill = (index) => {
+    const updatedSkills = [...editedSkills];
+    updatedSkills.splice(index, 1);
+    setEditedSkills(updatedSkills);
   };
 
   return (
     <div className="portfolio">
       <div className="left-side">
-        <img
-          className="profile-pic"
-          src="/Portfolio/joker.png"
-          alt="Profile Picture"
-        />
+        <button className="profile-button" onClick={handleEditButtonClick}>
+          <img
+            className="profile-pic"
+            src="/Portfolio/joker.png"
+            alt="Profile Picture"
+          />
+          <button
+            className="profile-button"
+            onClick={handleEditButtonClick}
+          ></button>
+        </button>
+
         <div className="bio">
           <h2>Biography</h2>
           <p>{biography}</p>
@@ -49,40 +77,44 @@ const Portfolio = () => {
             ))}
           </ul>
         </div>
-        <button className="edit-button" onClick={handleEditButtonClick}>
-          Edit
-        </button>{" "}
-        {/* Edit button */}
       </div>
       {isEditPopupOpen && (
         <div className="edit-popup">
           {/* Pop-up content for editing */}
-          <h2>Edit Profile</h2>
+          <h2 className="edit-profile">Edit Profile</h2>
           <div className="edit-form">
             <label>Biography:</label>
             <textarea
-              value={biography}
+              value={editedBiography}
               onChange={handleBiographyChange}
               rows="4"
               cols="50"
             />
             <label>Skills:</label>
             <ul>
-              {skills.map((skill, index) => (
-                <li key={index}>
+              {editedSkills.map((skill, index) => (
+                <li key={index} className="skill-item">
                   <input
                     type="text"
                     value={skill}
                     onChange={(event) => handleSkillChange(index, event)}
                   />
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteSkill(index)}
+                  ></button>
                 </li>
               ))}
             </ul>
+
+            <button className="add-skill-button" onClick={handleAddSkill}>
+              Add Skill
+            </button>
             <button className="save-button" onClick={handleSaveButtonClick}>
               Save
             </button>
             <button className="close-button" onClick={handleClosePopup}>
-              Close
+              Cancel
             </button>
           </div>
         </div>
