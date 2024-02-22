@@ -1,0 +1,218 @@
+/* styles/Portfolio.css */
+body {
+  background-color: #ffa962;
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  margin-top: 170px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-right: 20px;
+  padding-top: 100px;
+  border: 8px solid gold; /* Add border */
+  border-radius: 15px;
+  background-color: rgba(121, 0, 0, 0.575);
+}
+
+.right-side {
+  flex: 2;
+  margin-left: 80px;
+  display: flex;
+  border: 8px solid gold;
+  background-color: rgba(147, 0, 0, 0.671);
+  position: relative;
+  border-radius: 15px;
+  padding: 15px;
+  justify-content: center;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.work-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  border: 5px solid gold;
+}
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.profile-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: filter 0.3s ease; /* Add transition for smooth effect */
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  filter: brightness(0.5); /* Darken the profile picture */
+}
+
+.bio {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.user-name {
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.skills {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+ul.skills {
+  list-style-type: none;
+  padding: 0;
+  columns: 2; /* Set the number of columns */
+  column-gap: 20px; /* Add space between columns */
+}
+
+.skills li {
+  margin-bottom: 10px;
+}
+
+.skills li::before {
+  margin-right: 5px;
+}
+
+.skill-item {
+  display: flex;
+}
+
+.edit-profile {
+  color: white;
+  margin-bottom: 25px;
+  margin-left: 220px;
+}
+
+.edit-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid rgb(0, 52, 6);
+  backdrop-filter: blur(15px);
+  z-index: 5;
+}
+
+.edit-form {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.edit-form textarea,
+.edit-form input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 5px solid #0d4300;
+  margin-bottom: 10px;
+}
+
+button.edit-popup {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.edit-popup button:hover {
+  background-color: #0056b3;
+}
+
+.save-button {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  background-color: aqua;
+}
+
+.close-button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: aqua;
+}
+
+.add-skill-button {
+  margin-left: 250px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: aqua;
+  color: #ffffff; /* Change button text color */
+  cursor: pointer;
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.delete-button {
+  background-color: red;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  border-radius: 10px;
+  background-color: aqua;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.my-portfolio {
+  font-family: "Baloo 2", cursive;
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  right: 40%;
+  top: 130px;
+}

@@ -1,24 +1,15 @@
-/* .App {
-  text-align: center;
-  padding: 20px;
-}
-The above code causes the background to not cover the whole page
-It also squishes the navigation components into the center without extra css
- */
-
 nav {
   position: absolute;
-  /* z-index: 1000; */
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 100px;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  
+  z-index: 9999;
 }
 
 ul.nav-links {
@@ -27,10 +18,6 @@ ul.nav-links {
   margin: 0;
   display: flex;
   align-items: center;
-}
-
-li {
-  display: inline;
 }
 
 nav a {
@@ -168,17 +155,17 @@ nav a {
 } */
 
 .nav-links .btnLogin-popup {
-    width: 130px;
-    height: 50px;
-    background: transparent;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: black;
-    font-weight: 500;
-    margin-right: 40px;
-    transition: .5s;
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: black;
+  font-weight: 500;
+  margin-right: 40px;
+  transition: 0.5s;
 }
 
 .nav-links .btnLogin-popup:hover {
@@ -200,9 +187,9 @@ nav a {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  transition: height .2s ease;
+  transition: height 0.2s ease;
   transform: scale(0);
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
 }
 
 .wrapper.active-popup {
@@ -217,7 +204,7 @@ nav a {
   padding: 40px;
 }
 
-.wrapper h2{
+.wrapper h2 {
   font-size: 36px;
   font-family: cursive;
   text-align: center;
@@ -236,16 +223,15 @@ nav a {
   height: 100%;
   background: transparent;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, .2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 40px;
   font-size: 16px;
   color: #fff;
   padding: 20px 45px 20px 20px;
-
 }
 
 .wrapper .form-box.login {
-  transition: transform .18s ease;
+  transition: transform 0.18s ease;
   transform: translateX(0);
 }
 
@@ -261,7 +247,7 @@ nav a {
 }
 
 .wrapper.active .form-box.register {
-  transition: transform .18s ease;
+  transition: transform 0.18s ease;
   transform: translateX(0);
 }
 
@@ -348,4 +334,3 @@ nav a {
 .login-register p a:hover {
   text-decoration: underline;
 }
-
