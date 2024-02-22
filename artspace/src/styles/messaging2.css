@@ -12,7 +12,7 @@
 	align-items: center;
 	min-height: 100vh;
 	background: linear-gradient(#95bd93 0%,#95bd93 130px,#95bd93 130px,#d9dbd5 100%);
-	padding: 50px;
+	padding: 37px;
 }
 .m_container
 {
@@ -94,6 +94,7 @@
 	border: none;
 	border-radius: 5px;
 	transition: background-color 0.3s ease;
+	width: 100%;
   }
   
   .button-style:hover {
