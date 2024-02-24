@@ -82,7 +82,7 @@ const MarketPage = () => {
             <div className="mp-section-header">Market</div>
             <div className="sidebar-title">Filters</div>
             <div className="my-points-display">
-                <h2><img src="stall.png" className="stall" alt="Stall" /> My Points: <img src="coin.png" className="coin" alt="Coin" /> 500</h2>
+                <h2><img src="/Market art/stall.png" className="stall" alt="Stall" /> My Points: <img src="/Market art/coin.png" className="coin" alt="Coin" /> 500</h2>
             </div>
             <div className="container">
                 <div className="sidebar">
@@ -114,7 +114,7 @@ const MarketPage = () => {
                     {filteredItems.map((item, index) => (
                         <div className="item" key={index}>
                             <img src={item.image} alt="Item" />
-                            <p><img src="coin.png" className="coin" alt="Coin" /> {item.points}</p>
+                            <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
                         </div>
                     ))}
                 </div>
