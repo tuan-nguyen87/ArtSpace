@@ -81,7 +81,7 @@ const NavigationBar = () => {
             <a href="#">Market</a>
             <ul className="dropdown-menu">
               <li>
-              <a href="/MarketPage">Market</a>
+                <a href="/MarketPage">Market</a>
               </li>
             </ul>
           </li>
