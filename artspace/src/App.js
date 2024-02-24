@@ -14,7 +14,6 @@ import ShowroomPage from "./ShowroomPage";
 import SocialHub from "./SocialHub";
 import { io } from "socket.io-client";
 import Portfolio from "./Portfolio";
-import MarketPage from "./MarketPage";
 
 const socket = io("http://localhost:3000");
 
@@ -62,7 +61,6 @@ function App() {
           <Route path="/ShowroomPage" element={<ShowroomPage />} />
           <Route path="/SocialHub" element={<SocialHub />} />
           <Route path="/Portfolio" element={<Portfolio />} />
-          <Route path="/MarketPage" element={<MarketPage />} />
         </Routes>
       </Router>
     </div>
