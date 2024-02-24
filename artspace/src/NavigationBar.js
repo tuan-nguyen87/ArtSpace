@@ -79,6 +79,11 @@ const NavigationBar = () => {
           </li>
           <li>
             <a href="#">Market</a>
+            <ul className="dropdown-menu">
+              <li>
+              <a href="/MarketPage">Market</a>
+              </li>
+            </ul>
           </li>
           <li className="notification-icon">
             {/* you could replace this icon '🔔' with another one of ur choice */}
