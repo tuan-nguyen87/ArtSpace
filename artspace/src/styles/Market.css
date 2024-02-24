@@ -1,0 +1,120 @@
+.mp-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffcc99;
+}
+
+.mp-hr{
+    border-bottom: 3px solid #cc6600;
+    padding-top: -80px;
+}
+
+.mp-section-header {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.sidebar-title{
+    font-size: 40px;
+    margin-left: 150px;
+    margin-bottom: -90px;
+    margin-top: 120px;
+    color: #fff;
+}
+
+.my-points-display {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    margin-top: -150px;
+    margin-bottom: -20px;
+}
+
+.my-points-display img.coin{
+    width: 30px; 
+    height: auto;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+
+.my-points-display img.stall{
+    width: 40px;
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    max-height: 100vh;
+    /*margin-top: 170px;*/
+}
+
+.sidebar {
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    margin-left: 20px;
+    margin-right: 0px;
+    width: 50px;
+    padding: 10px;
+    background-color: #ffe6cc;
+    border-radius: 30px;
+}
+
+/*.content {
+    flex: 1;
+    padding: 20px;
+}*/
+
+select {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.item {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; 
+}
+
+.items-container {
+    flex: 2;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));set grid
+    /*gap: 10px*/
+    overflow-x: auto;
+    /*padding: 5px;*/ 
+    border: 10px solid #ff8080;
+    border-radius: 10px;
+    max-height: 65vh; /* Limit the height and make it scrollable */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #fff;
+}
+
+.items-container img {
+    width: 60%; /*changed from 100%*/
+    max-width: 100%;
+    height: auto;
+    /*max-height: 100px;*/
+}
+
+.item img.coin {
+    width: 30px; /* Adjust the size as needed*/ 
+    height: auto;
+    margin-left: 5px; /* Add some margin for spacing */
+}
+
+.filter-option h3 {
+    margin-bottom: 5px;
+}
+
