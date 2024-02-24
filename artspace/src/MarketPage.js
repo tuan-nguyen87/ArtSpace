@@ -1,35 +1,37 @@
 //react
-import React, { useState } from 'react';
-import './Market.css'; // Import CSS file
+import React, { useState, useEffect } from 'react';
+import './styles/Market.css'; // Import CSS file
 
 const MarketPage = () => {
     // State variables
-    const [points, setPoints] = useState(500);
+    //const [points] = useState(500);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [pointsRange, setPointsRange] = useState('all');
-    const [filteredItems, setFilteredItems] = useState([]);
+    
 
     // Dummy data for items
-    const originalItems = [
-        { image: 'mp1.png', points: 100, category: 'icons' },
-        { image: 'mp5.png', points: 250, category: 'badges' },
-        { image: 'mp10.png', points: 350, category: 'emotes' },
-        { image: 'mp8.png', points: 450, category: 'borders' },
-        { image: 'mp2.png', points: 550, category: 'new-items' },
-        { image: 'mp12.png', points: 650, category: 'icons' },
-        { image: 'mp3.png', points: 750, category: 'badges' },
-        { image: 'mp9.png', points: 850, category: 'emotes' },
-        { image: 'mp4.png', points: 90, category: 'borders' },
-        { image: 'mp11.png', points: 290, category: 'new-items' },
-        { image: 'mp6.png', points: 400, category: 'icons' },
-        { image: 'mp7.png', points: 10, category: 'badges' },
+    const originalItems = useState ([
+        { image: '/Market art/mp1.png', points: 100, category: 'icons' },
+        { image: '/Market art/mp5.png', points: 250, category: 'badges' },
+        { image: '/Market art/mp10.png', points: 350, category: 'emotes' },
+        { image: '/Martet art/mp8.png', points: 450, category: 'borders' },
+        { image: '/Market art/mp2.png', points: 550, category: 'new-items' },
+        { image: '/Market art/mp12.png', points: 650, category: 'icons' },
+        { image: '/Market art/mp3.png', points: 750, category: 'badges' },
+        { image: '/Market art/mp9.png', points: 850, category: 'emotes' },
+        { image: '/Market art/mp4.png', points: 90, category: 'borders' },
+        { image: '/Market art/mp11.png', points: 290, category: 'new-items' },
+        { image: '/Market art/mp6.png', points: 400, category: 'icons' },
+        { image: '/Market art/mp7.png', points: 10, category: 'badges' },
         // Add more items here
-    ];
+    ]);
 
     // Function to update points
-    const updatePoints = (newPoints) => {
+    /*const updatePoints = (newPoints) => {
         setPoints(newPoints);
-    };
+    }*/
+
+    const [filteredItems, setFilteredItems] = useState([]);
 
     // Function to filter items
     const filterItems = () => {
@@ -57,21 +59,22 @@ const MarketPage = () => {
         }
     };
 
+    // Effect to filter items when selectedCategory or pointsRange changes
+    useEffect(() => {
+        filterItems();
+    }, [selectedCategory, pointsRange]);
+
     // Function to handle category selection
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
         setPointsRange('all'); // Reset points range
-        filterItems();
     };
 
     // Function to handle points range selection
     const handlePointsRangeChange = (range) => {
         setPointsRange(range);
-        filterItems();
     };
-
-    // Populate items initially
-    filterItems();
+    
 
     return (
         <div className="mp-body">
@@ -79,7 +82,7 @@ const MarketPage = () => {
             <div className="mp-section-header">Market</div>
             <div className="sidebar-title">Filters</div>
             <div className="my-points-display">
-                <h2><img src="stall.png" className="stall" alt="Stall" /> My Points: <img src="coin.png" className="coin" alt="Coin" /><span id="points"> {points}</span></h2>
+                <h2><img src="stall.png" className="stall" alt="Stall" /> My Points: <img src="coin.png" className="coin" alt="Coin" /> 500</h2>
             </div>
             <div className="container">
                 <div className="sidebar">
