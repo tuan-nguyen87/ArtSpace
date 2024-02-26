@@ -4,17 +4,16 @@ import './styles/Market.css'; // Import CSS file
 
 const MarketPage = () => {
     // State variables
-    //const [points] = useState(500);
+    const [points] = useState(500);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [pointsRange, setPointsRange] = useState('all');
     
-
     // Dummy data for items
-    const originalItems = useState ([
+    const [originalItems] = useState ([
         { image: '/Market art/mp1.png', points: 100, category: 'icons' },
         { image: '/Market art/mp5.png', points: 250, category: 'badges' },
         { image: '/Market art/mp10.png', points: 350, category: 'emotes' },
-        { image: '/Martet art/mp8.png', points: 450, category: 'borders' },
+        { image: '/Market art/mp8.png', points: 450, category: 'borders' },
         { image: '/Market art/mp2.png', points: 550, category: 'new-items' },
         { image: '/Market art/mp12.png', points: 650, category: 'icons' },
         { image: '/Market art/mp3.png', points: 750, category: 'badges' },
@@ -34,35 +33,37 @@ const MarketPage = () => {
     const [filteredItems, setFilteredItems] = useState([]);
 
     // Function to filter items
-    const filterItems = () => {
-        let itemsToShow = originalItems.slice(); // Clone original items
-
-        if (pointsRange !== 'all') {
-            if (pointsRange === '200') {
-                itemsToShow = itemsToShow.filter(item => item.points <= 200);
-            } else if (pointsRange === '601') {
-                itemsToShow = itemsToShow.filter(item => item.points >= 600);
-            } else {
-                const [minPoints, maxPoints] = pointsRange.split('-').map(Number);
-                itemsToShow = itemsToShow.filter(item => item.points >= minPoints && item.points <= maxPoints);
-            }
-        }
-
-        if (selectedCategory !== 'all') {
-            itemsToShow = itemsToShow.filter(item => item.category === selectedCategory);
-        }
-
-        if (itemsToShow.length === 0) {
-            setFilteredItems(['Sorry, no items in this points range.']);
-        } else {
-            setFilteredItems(itemsToShow);
-        }
-    };
-
     // Effect to filter items when selectedCategory or pointsRange changes
     useEffect(() => {
+        const filterItems = () => {
+            let itemsToShow = originalItems.slice(); // Clone original items
+
+            if (pointsRange !== 'all') {
+                if (pointsRange === '200') {
+                    itemsToShow = itemsToShow.filter(item => item.points <= 200);
+                } else if (pointsRange === '601') {
+                    itemsToShow = itemsToShow.filter(item => item.points >= 600);
+                } else {
+                    const [minPoints, maxPoints] = pointsRange.split('-').map(Number);
+                    itemsToShow = itemsToShow.filter(item => item.points >= minPoints && item.points <= maxPoints);
+                }
+            }
+
+            if (selectedCategory !== 'all') {
+                itemsToShow = itemsToShow.filter(item => item.category === selectedCategory);
+            }
+
+            /*if (itemsToShow.length === 0) {
+                setFilteredItems(['Sorry, no items in this points range.']);
+            } else {
+                setFilteredItems(itemsToShow);
+            }*/
+
+            setFilteredItems(itemsToShow);
+        };
+        
         filterItems();
-    }, [selectedCategory, pointsRange]);
+    }, [selectedCategory, pointsRange, originalItems]);
 
     // Function to handle category selection
     const handleCategoryChange = (category) => {
@@ -82,7 +83,7 @@ const MarketPage = () => {
             <div className="mp-section-header">Market</div>
             <div className="sidebar-title">Filters</div>
             <div className="my-points-display">
-                <h2><img src="/Market art/stall.png" className="stall" alt="Stall" /> My Points: <img src="/Market art/coin.png" className="coin" alt="Coin" /> 500</h2>
+                <h2><img src="/Market art/stall.png" className="stall" alt="Stall" /> My Points: <img src="/Market art/coin.png" className="coin" alt="Coin"/><span id="points"> {points}</span></h2>
             </div>
             <div className="container">
                 <div className="sidebar">
@@ -93,7 +94,7 @@ const MarketPage = () => {
                             <li><input type="checkbox" id="icons" checked={selectedCategory === 'icons'} onChange={() => setSelectedCategory('icons')} /> <label htmlFor="icons">Icons</label></li>
                             <li><input type="checkbox" id="badges" checked={selectedCategory === 'badges'} onChange={() => setSelectedCategory('badges')} /> <label htmlFor="badges">Badges</label></li>
                             <li><input type="checkbox" id="emotes" checked={selectedCategory === 'emotes'} onChange={() => setSelectedCategory('emotes')} /> <label htmlFor="emotes">Emotes</label></li>
-                            <li><input type="checkbox" id="borders" checked={selectedCategory === 'borders'} onChange={() => setSelectedCategory('borders')} /> <label htmlFor="borders">Badges</label></li>
+                            <li><input type="checkbox" id="borders" checked={selectedCategory === 'borders'} onChange={() => setSelectedCategory('borders')} /> <label htmlFor="borders">Borders</label></li>
                             <li><input type="checkbox" id="new-items" checked={selectedCategory === 'new-items'} onChange={() => setSelectedCategory('new-items')} /> <label htmlFor="new-items">New Items</label></li>
                         </ul>
                     </div>
@@ -111,12 +112,18 @@ const MarketPage = () => {
                     </div>
                 </div>
                 <div className="items-container">
-                    {filteredItems.map((item, index) => (
-                        <div className="item" key={index}>
-                            <img src={item.image} alt="Item" />
-                            <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
+                    {filteredItems.length === 0 ? (
+                        <div className='empty-message'>
+                            <p>Sorry, no items in this points range.</p>
                         </div>
-                    ))}
+                    ) : (
+                        filteredItems.map((item, index) => (
+                            <div className="item" key={index}>
+                                <img src={item.image} alt="Item" />
+                                <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     background-color: #ffcc99;
-    max-height: 100%;
+    /*max-height: 100%;*/
 }
 
 .mp-hr{
@@ -30,7 +30,7 @@
     font-size: 20px;
     color: #fff;
     text-align: center;
-    margin-top: -330px;
+    margin-top: -350px;
     margin-bottom: 0px;
 }
 
@@ -79,7 +79,7 @@ select {
 }
 
 .item {
-    padding: 50px; /*was 20px*/
+    padding: 40px; /*was 20px*/
     box-sizing: border-box;
     text-align: center; 
 }
@@ -94,25 +94,34 @@ select {
     /*grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));set grid
     /*gap: 10px*/
     overflow-x: auto;
-    /*padding: 5px;*/ 
+    /*padding: 5px;*/ /*change this to fix the padding around the side bar??*/
     border: 10px solid #ff8080;
     border-radius: 10px;
-    max-height: 70vh; /* Limit the height and make it scrollable */
+    max-height: 65vh; /* was 70vh Limit the height and make it scrollable */
     overflow-y: auto; /* Enable vertical scrolling */
     background-color: #fff;
+    position: relative;
 }
 
 .items-container img {
-    width: 60%; /*changed from 100%*/
+    width: 80%; /*changed from 100%*/
     max-width: 100%;
     height: auto;
     /*max-height: 100px;*/
 }
 
 .item img.coin {
-    width: 30px; /* Adjust the size as needed*/ 
+    width: 20px; /* Adjust the size as needed*/ 
     height: auto;
     margin-left: 5px; /* Add some margin for spacing */
+}
+
+.empty-message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .filter-option h3 {
