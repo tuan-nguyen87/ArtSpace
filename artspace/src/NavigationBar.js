@@ -6,11 +6,11 @@ const NavigationBar = () => {
   return (
     <div class="NavComponents">
       <nav>
-        <img
+        <a href="/"><img
           src="/Homepage art/logo-modified.png"
           alt="Logo"
           className="logo"
-        />
+        /></a>
         <ul className="nav-links">
           <li>
             <a href="#">Explore</a>
