@@ -22,6 +22,7 @@ const MarketPage = () => {
         { image: '/Market art/mp11.png', points: 290, category: 'new-items' },
         { image: '/Market art/mp6.png', points: 400, category: 'icons' },
         { image: '/Market art/mp7.png', points: 10, category: 'badges' },
+        { image: '/Market art/mp13.png', points: 185, category: 'emotes' }
         // Add more items here
     ]);
 
