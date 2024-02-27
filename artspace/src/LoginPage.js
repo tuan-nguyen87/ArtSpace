@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles/LoginPage.css";
 
 const LoginPage = () => {
-    const [isLoginFormActive, setLoginFormActive] = useState(true);
+    const [isLoginFormActive, setLoginFormActive] = useState(null);
 
   const switchToLogin = () => {
     setLoginFormActive(true);

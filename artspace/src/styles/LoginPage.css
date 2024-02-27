@@ -117,7 +117,7 @@
 }
 
 .main-box.active .form-box.register {
-  transform: translateX(400px); /* Move register form to the right */
+  transform: translateX(0); /* Move register form to the right */
 }
 
 .input-box input::placeholder {
