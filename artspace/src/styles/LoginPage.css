@@ -1,0 +1,22 @@
+
+/* Global CSS Reset */
+* {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styling for the landing page container */
+  .logreg-container {
+    position: absolute; /* Should be done to all pages*/
+    top: 0;
+    left: 0;
+    right: 0;
+    display:flex;  /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 100vh; /* Set minimum height to full viewport height */
+    background: url("/public/images/whale-at-home-illustration.png") center no-repeat; /* Background image */
+    background-size: cover; /* Cover entire container with background image */
+  }

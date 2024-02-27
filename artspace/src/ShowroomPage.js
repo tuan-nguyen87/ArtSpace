@@ -9,10 +9,7 @@ function ShowroomPage() {
             <div className="showroom-section-header">
                 Explore | Show Room
             </div>
-
-            <div className="showroom-section-upload">
-                <a>Upload</a>
-            </div>
+            
 
             <div className="showroom-section-titles">
                 <div className="showroom-title-line-top"></div>
