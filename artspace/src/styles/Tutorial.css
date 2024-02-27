@@ -6,11 +6,11 @@
 
    .hr{
     border-bottom: 3px solid #4e7b81;
-    padding-top: 35px;
+    padding-top: 99px; /*was 35px?*/
    }
 
    .tutorial-container {
-    margin-top: -80px;
+    margin-top: -80px; /*was -80px*/
     padding: 80px;
   }
   
