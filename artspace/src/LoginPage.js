@@ -14,11 +14,9 @@ const LoginPage = () => {
 
   return (
     <div className="logreg-container">
-        <div className={`logreg-container ${isLoginFormActive ? "active" : ""}`}>
-            <div className="main-box">
-                {/* <div class="form-box login"> */}
-                <div className={isLoginFormActive ? "form-box login active" : "form-box login"}>
-                    <h2>Login</h2>
+        <div className={`main-box ${isLoginFormActive ? "active" : ""}`}>
+            <div className={`form-box login ${isLoginFormActive ? "active" : ""}`}>
+                <h2>Login</h2>
                     <form action="#">
                         <div class="input-box">
                             <input type="text" placeholder="Username" required/>
@@ -46,8 +44,7 @@ const LoginPage = () => {
                     </form>
                 </div>
                 
-                {/* <div class="form-box register"> */}
-                <div className={isLoginFormActive ? "form-box register" : "form-box register active"}>
+                <div className={`form-box register ${isLoginFormActive ? "" : "active"}`}>
                     <h2>Registration</h2>
                     <form action="#">
                         <div class="input-box">
@@ -85,7 +82,6 @@ const LoginPage = () => {
                 </div>
             </div>
         </div>
-    </div>
   );
 };
 

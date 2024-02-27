@@ -47,10 +47,13 @@
 } */
 
 .main-box .form-box {
+  position: relative;
   width: 100%;
+  max-width: 400px;
+  height: 500px;
   padding: 40px;
-  transition: transform .18s ease; /* Add transition for smooth animation */
-  transform: translateX(0); /* Start with no translation */
+  box-sizing: border-box;
+  transition: transform .5s ease; /* Add transition for smooth animation */
 }
 
 .main-box h2{
@@ -101,7 +104,6 @@
 }
 
 .main-box .form-box.login {
-  transition: transform .18s ease;
   transform: translateX(0);
 }
 
@@ -111,7 +113,6 @@
 
 .main-box .form-box.register {
   position: absolute;
-  transition: none;
   transform: translateX(400px);
 }
 
