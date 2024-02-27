@@ -88,28 +88,30 @@ const MarketPage = () => {
             </div>
             <div className="container">
                 <div className="sidebar">
-                    <div className="filter-option">
-                        <h3>Categories</h3>
-                        <ul>
-                            <li><input type="checkbox" id="all" onChange={() => handleCategoryChange('all')} checked={selectedCategory === 'all'} /> <label htmlFor="all">All</label></li>
-                            <li><input type="checkbox" id="icons" checked={selectedCategory === 'icons'} onChange={() => setSelectedCategory('icons')} /> <label htmlFor="icons">Icons</label></li>
-                            <li><input type="checkbox" id="badges" checked={selectedCategory === 'badges'} onChange={() => setSelectedCategory('badges')} /> <label htmlFor="badges">Badges</label></li>
-                            <li><input type="checkbox" id="emotes" checked={selectedCategory === 'emotes'} onChange={() => setSelectedCategory('emotes')} /> <label htmlFor="emotes">Emotes</label></li>
-                            <li><input type="checkbox" id="borders" checked={selectedCategory === 'borders'} onChange={() => setSelectedCategory('borders')} /> <label htmlFor="borders">Borders</label></li>
-                            <li><input type="checkbox" id="new-items" checked={selectedCategory === 'new-items'} onChange={() => setSelectedCategory('new-items')} /> <label htmlFor="new-items">New Items</label></li>
-                        </ul>
-                    </div>
-                    <div className="filter-option">
-                        <h3>Points Range</h3>
-                        <select id="points-range" value={pointsRange} onChange={(e) => handlePointsRangeChange(e.target.value)}>
-                            <option value="all">All</option>
-                            <option value="200">200 or less</option>
-                            <option value="201-300">201 - 300</option>
-                            <option value="301-400">301 - 400</option>
-                            <option value="401-500">401 - 500</option>
-                            <option value="501-600">501 - 600</option>
-                            <option value="601">600 or more</option>
-                        </select>
+                        <div className="filter-options">
+                        <div className="filter-option">
+                            <h3>Categories</h3>
+                            <ul>
+                                <li><input type="checkbox" id="all" onChange={() => handleCategoryChange('all')} checked={selectedCategory === 'all'} /> <label htmlFor="all">All</label></li>
+                                <li><input type="checkbox" id="icons" checked={selectedCategory === 'icons'} onChange={() => setSelectedCategory('icons')} /> <label htmlFor="icons">Icons</label></li>
+                                <li><input type="checkbox" id="badges" checked={selectedCategory === 'badges'} onChange={() => setSelectedCategory('badges')} /> <label htmlFor="badges">Badges</label></li>
+                                <li><input type="checkbox" id="emotes" checked={selectedCategory === 'emotes'} onChange={() => setSelectedCategory('emotes')} /> <label htmlFor="emotes">Emotes</label></li>
+                                <li><input type="checkbox" id="borders" checked={selectedCategory === 'borders'} onChange={() => setSelectedCategory('borders')} /> <label htmlFor="borders">Borders</label></li>
+                                <li><input type="checkbox" id="new-items" checked={selectedCategory === 'new-items'} onChange={() => setSelectedCategory('new-items')} /> <label htmlFor="new-items">New Items</label></li>
+                            </ul>
+                        </div>
+                        <div className="filter-option">
+                            <h3>Points Range</h3>
+                            <select id="points-range" value={pointsRange} onChange={(e) => handlePointsRangeChange(e.target.value)}>
+                                <option value="all">All</option>
+                                <option value="200">200 or less</option>
+                                <option value="201-300">201 - 300</option>
+                                <option value="301-400">301 - 400</option>
+                                <option value="401-500">401 - 500</option>
+                                <option value="501-600">501 - 600</option>
+                                <option value="601">600 or more</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div className="items-container">
