@@ -131,7 +131,8 @@ select {
 
 .filter-option {
     flex: 1;
-    margin-right: 10px; /* Add some spacing between filter options */
+    margin-right: -10px; /* Add some spacing between filter options */
+    margin-left: 10px
 }
 
 .filter-option h3 {
