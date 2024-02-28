@@ -57,9 +57,6 @@ const LoginPage = () => {
                             <input type="password" placeholder="Password" required/>
                             <i class='bx bxs-lock-alt'></i>
                         </div>
-                        <div class="divider">
-                            <p><div class="line"></div>or<div class="line"></div></p>
-                        </div>
                         <div class="remember-forgot">
                             <label>
                                 <input type="checkbox"/>I agree to the terms & conditions
@@ -68,7 +65,9 @@ const LoginPage = () => {
                             </label>
                         </div>
                         <button type="submit" class="btn">Register</button>
-
+                        <div class="divider">
+                            <p><div class="line"></div>or<div class="line"></div></p>
+                        </div>
                         <div class="login-register">
                             <p> Already have an account? 
                                 <a href="#" class="login-link" onClick={switchToLogin}>Login</a>
