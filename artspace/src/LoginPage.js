@@ -5,11 +5,11 @@ const LoginPage = () => {
     const [isLoginFormActive, setLoginFormActive] = useState(null);
 
   const switchToLogin = () => {
-    setLoginFormActive(true);
+    setLoginFormActive(false);
   };
 
   const switchToRegister = () => {
-    setLoginFormActive(false);
+    setLoginFormActive(true);
   };
 
   return (
@@ -36,9 +36,7 @@ const LoginPage = () => {
                         </div>
                         <div class="login-register">
                             <p> Don't have an account? 
-                                <button type="button" className="register-link" onClick={switchToRegister}>
-                                    Create Account
-                                </button>
+                                <a href="#" class="register-link" onClick={switchToRegister}>Register</a>
                             </p>
                         </div>  
                     </form>
@@ -73,9 +71,7 @@ const LoginPage = () => {
 
                         <div class="login-register">
                             <p> Already have an account? 
-                                <button type="button" className="login-link" onClick={switchToLogin}>
-                                    Login
-                                </button>
+                                <a href="#" class="login-link" onClick={switchToLogin}>Login</a>
                             </p>
                         </div>  
                     </form>
