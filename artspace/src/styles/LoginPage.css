@@ -41,7 +41,7 @@
   position: relative;
   width: 100%;
   max-width: 350px;
-  height: 530px;
+  height: 500px;
   padding: 40px;
   box-sizing: border-box;
   transition: transform .5s ease; /* Add transition for smooth animation */

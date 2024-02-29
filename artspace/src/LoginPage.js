@@ -50,16 +50,17 @@ const LoginPage = () => {
         <div className={`form-box login ${isLoginFormActive ? "active" : ""}`}>
           <h2>Login</h2>
           <form onSubmit={signIn} action="#">
-            <div class="input-box">
+          <div class="input-box">
               <input
-                type="text"
-                placeholder="Username"
-                required /* Tuan's code */
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                placeholder="Email"
+                required
+                /* Tuan's code */
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 /* ends */
               />
-              <i class="bx bxs-user"></i>
+              <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
               <input
@@ -104,18 +105,6 @@ const LoginPage = () => {
         >
           <h2>Registration</h2>
           <form onSubmit={signUp} action="#">
-            <div class="input-box">
-              <input
-                type="text"
-                placeholder="Username"
-                required
-                /* Tuan's code */
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                /* ends */
-              />
-              <i class="bx bxs-user"></i>
-            </div>
             <div class="input-box">
               <input
                 type="email"
