@@ -21,7 +21,7 @@ const ProfilePage = () => {
             src="/Homepage art/portfolio.png "
             alt="Profile 2"
           />
-          <a href="#" className="message-text">
+          <a href="/Portfolio" className="message-text">
             Portfolio
           </a>
         </div>

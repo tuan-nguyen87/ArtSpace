@@ -53,12 +53,11 @@
 .message-text {
   position: absolute;
   bottom: 18%;
-  width: 100%;
+  width: 50%;
   background-color: white;
   padding: 10px;
   text-align: center;
   border-radius: 15px;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
   z-index: 3;
   text-decoration: none;
   font-size: 1.2rem;

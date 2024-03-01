@@ -3,7 +3,7 @@ import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
   return (
-    <div class="NavComponents">
+    <div className="NavComponents">
       <nav>
         <a href="/">
           <img
@@ -53,10 +53,13 @@ const NavigationBar = () => {
             {/* you could replace this icon '🔔' with another one of ur choice */}
             <a href="#">🔔</a>
             <ul className="dropdown-menu">
-              <li><a href="#">Notif 1</a></li>
-              <li><a href="#">Notif 2</a></li>
-            </ul> 
-        
+              <li>
+                <a href="#">Notif 1</a>
+              </li>
+              <li>
+                <a href="#">Notif 2</a>
+              </li>
+            </ul>
           </li>
           <li>
             <img
