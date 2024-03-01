@@ -1,16 +1,13 @@
 /* styles/Portfolio.css */
-body {
-  background-color: #ffa962;
-  margin: 0;
-  padding: 0;
-}
 
 .portfolio {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
-  Padding-top: 220px;
+  padding-top: 220px;
+  background-color: #ffa962;
+  min-height: 100vh;
 }
 
 .left-side {

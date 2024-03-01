@@ -11,14 +11,13 @@ import { getMessaging } from "firebase/messaging";
 const firebaseConfig = {
   apiKey: "AIzaSyAFn9e9O9Gtjc-_qcg1Bs9_cWU1WpfivN4",
   authDomain: "artspace-491.firebaseapp.com",
-  databaseURL: "https://artspace-491-default-rtdb.firebaseio.com",
+
   projectId: "artspace-491",
   storageBucket: "artspace-491.appspot.com",
   messagingSenderId: "54385371382",
   appId: "1:54385371382:web:09b9e4090451b47f4664d7",
   measurementId: "G-YHZJQE1L7C",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
