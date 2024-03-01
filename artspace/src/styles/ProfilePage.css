@@ -60,4 +60,26 @@
   border-radius: 15px;
   box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
   z-index: 3;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 1000;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.message-text:hover::before {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.message-text::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  background-color: #06ff27;
+  z-index: -1;
+  transition: width 0.3s;
 }

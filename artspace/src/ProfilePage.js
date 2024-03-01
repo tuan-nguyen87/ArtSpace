@@ -11,7 +11,9 @@ const ProfilePage = () => {
             src="/Homepage art/messages.png"
             alt="Profile 1"
           />
-          <h2 className="message-text">Message</h2>
+          <a href="#" className="message-text">
+            Messages
+          </a>
         </div>
         <div className="profile-section">
           <img
@@ -19,7 +21,9 @@ const ProfilePage = () => {
             src="/Homepage art/portfolio.png "
             alt="Profile 2"
           />
-          <h2 className="message-text">Portfolio</h2>
+          <a href="#" className="message-text">
+            Portfolio
+          </a>
         </div>
         <div className="profile-section2">
           <img
@@ -27,7 +31,9 @@ const ProfilePage = () => {
             src="/Homepage art/commissions.png"
             alt="Profile 3"
           />
-          <h2 className="message-text">Commissions</h2>
+          <a href="#" className="message-text">
+            Commissions
+          </a>
         </div>
         <div className="profile-section2">
           <img
@@ -35,7 +41,9 @@ const ProfilePage = () => {
             src="/Homepage art/collaborations.png"
             alt="Profile 4"
           />
-          <h2 className="message-text">Collaborations</h2>
+          <a href="#" className="message-text">
+            Collaborations
+          </a>
         </div>
       </div>
     </div>
