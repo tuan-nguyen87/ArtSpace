@@ -1,6 +1,13 @@
 
 .social-page
 {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 80px;
+  /*It's Yaz! Tell me if the above helps with the page format!*/
+
   background: url(artImg.png);
   background-size: cover;
   background-repeat: no-repeat;

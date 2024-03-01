@@ -27,7 +27,7 @@
 }
 
 .my-points-display {
-    font-size: 20px;
+    font-size: 35px;
     color: #fff;
     text-align: center;
     margin-top: -350px;
@@ -38,7 +38,7 @@
     width: 30px; 
     height: auto;
     margin-left: 10px; 
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .my-points-display img.stall{
@@ -64,6 +64,7 @@
     padding: 20px;
     background-color: #ffe6cc;
     border-radius: 30px;
+    border: 2px solid #cc6600;
 }
 
 /*.content {

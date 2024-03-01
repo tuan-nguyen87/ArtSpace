@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
-
   return (
     <div class="NavComponents">
       <nav>
-        <a href="/"><img
-          src="/Homepage art/logo-modified.png"
-          alt="Logo"
-          className="logo"
-        /></a>
+        <a href="/">
+          <img
+            src="/Homepage art/logo-modified.png"
+            alt="Logo"
+            className="logo"
+          />
+        </a>
         <ul className="nav-links">
           <li>
             <a href="#">Explore</a>
@@ -55,6 +56,7 @@ const NavigationBar = () => {
               <li><a href="#">Notif 1</a></li>
               <li><a href="#">Notif 2</a></li>
             </ul> 
+        
           </li>
           <li>
             <img
@@ -64,7 +66,7 @@ const NavigationBar = () => {
             />
             <ul className="profile-menu">
               <li>
-                <a href="#">Profile</a>
+                <a href="/ProfilePage">Profile</a>
               </li>
               <li>
                 <a href="/Portfolio">Portfolio</a>
@@ -87,7 +89,6 @@ const NavigationBar = () => {
             </ul>
           </li>
         </ul>
-        
       </nav>
     </div>
   );

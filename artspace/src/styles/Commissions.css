@@ -1,6 +1,14 @@
 .commissions-container {
-  height: 100%;
-  margin-top: 70px;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 80px;
+  /*Hey, it's Yaz. Tell me if this fixes the page format problem?*/
+  /*I noticed you had the little page label(?), but I didn't know what to move for it*/
+
+  /* height: 100%;
+  margin-top: 70px; */
   background-color: #80B3BA;
 }
 
