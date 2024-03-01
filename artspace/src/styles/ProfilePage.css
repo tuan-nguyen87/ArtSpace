@@ -30,6 +30,7 @@
   height: 50%;
   position: relative;
   border-radius: 18px;
+  border: solid 5px rgb(255, 213, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -47,6 +48,7 @@
   height: 50%;
   position: relative;
   border-radius: 18px;
+  border: solid 5px rgb(255, 213, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

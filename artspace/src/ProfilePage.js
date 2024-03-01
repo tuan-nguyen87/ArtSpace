@@ -11,7 +11,7 @@ const ProfilePage = () => {
             src="/Homepage art/messages.png"
             alt="Profile 1"
           />
-          <a href="#" className="message-text">
+          <a href="/Messaging2" className="message-text">
             Messages
           </a>
         </div>
@@ -31,7 +31,7 @@ const ProfilePage = () => {
             src="/Homepage art/commissions.png"
             alt="Profile 3"
           />
-          <a href="#" className="message-text">
+          <a href="/Commissions" className="message-text">
             Commissions
           </a>
         </div>
