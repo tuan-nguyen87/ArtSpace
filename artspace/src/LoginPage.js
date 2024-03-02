@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "./styles/LoginPage.css";
-/* Tuan's code */
-import { getAuth } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+/* Tuan's code */ /* Yasmine made some edits */
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
+import { app, auth } from "./Firebase"; // Import the app object from Firebase.js
+
 /* ends */
 const LoginPage = () => {
   /* Tuan's code starts here */
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
 
   const signIn = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(getAuth, email, password)
+    signInWithEmailAndPassword(auth, email, password) //Y: getAuth replaced by auth from import
       .then((userCredential) => {
         console.log(userCredential);
       })
@@ -24,7 +23,7 @@ const LoginPage = () => {
   const signUp = (e) => {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(getAuth, email, password)
+    createUserWithEmailAndPassword(auth, email, password) //Y: getAuth replaced by auth from import
       .then((userCredential) => {
         console.log(userCredential);
       })
@@ -33,6 +32,8 @@ const LoginPage = () => {
       });
   };
   /* Tuan's code ends here*/
+  /* Yasmine: I can't say it works, just that I'm no longer receiving errors*/
+  /* Y: Even so, registering doesn't do anything after I press the button*/
 
   const [isLoginFormActive, setLoginFormActive] = useState(null);
 
@@ -90,7 +91,7 @@ const LoginPage = () => {
             </div>
             <div class="login-register">
               <p>
-                {" "}
+                {/* {" "} */}
                 Don't have an account?
                 <a href="#" class="register-link" onClick={switchToRegister}>
                   Register
@@ -147,7 +148,7 @@ const LoginPage = () => {
             </div>
             <div class="login-register">
               <p>
-                {" "}
+                {/* {" "} */}
                 Already have an account?
                 <a href="#" class="login-link" onClick={switchToLogin}>
                   Login
