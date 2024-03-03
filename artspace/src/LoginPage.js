@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import "./styles/LoginPage.css";
 
-/* Tuan's code work starts here */
+/* Tuan's code work starts here ************************************** */
 import { auth } from "./Firebase/Firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-/* ends here */
+/* ends here *****************************************************/
 
 const LoginPage = () => {
-  /* Tuan's code work starts here */
+  /* Tuan's code work starts here *********************************** */
   const [userCredentials, setUserCredentials] = useState({});
+  const [error, setError] = useState("");
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
@@ -27,8 +28,7 @@ const LoginPage = () => {
         const user = userCredential.user;
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        setError(error.message);
       });
   }
 
@@ -44,12 +44,11 @@ const LoginPage = () => {
         console.log(user);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        setError(error.message);
       });
   }
 
-  /* ends here*/
+  /* ends here *******************************************************/
 
   const [isLoginFormActive, setLoginFormActive] = useState(null);
 
@@ -107,6 +106,19 @@ const LoginPage = () => {
             >
               Login
             </button>
+            {/* Tuan's code starts here ******************************** */}
+            {error && (
+              <div
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  fontSize: "smaller",
+                }}
+              >
+                {error}
+              </div>
+            )}
+            {/* ends here ***************************************************** */}
             <div class="divider">
               <p>
                 <div class="line"></div>or<div class="line"></div>
@@ -171,6 +183,19 @@ const LoginPage = () => {
             >
               Register
             </button>
+            {/* Tuan's code starts here ******************************** */}
+            {error && (
+              <div
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  fontSize: "smaller",
+                }}
+              >
+                {error}
+              </div>
+            )}
+            {/* ends here ***************************************************** */}
             <div class="divider">
               <p>
                 <div class="line"></div>or<div class="line"></div>
