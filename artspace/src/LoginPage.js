@@ -1,39 +1,55 @@
 import React, { useState } from "react";
 import "./styles/LoginPage.css";
-/* Tuan's code */ /* Yasmine made some edits */
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
-import { app, auth } from "./Firebase"; // Import the app object from Firebase.js
 
-/* ends */
+/* Tuan's code work starts here */
+import { auth } from "./Firebase/Firebase.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+/* ends here */
+
 const LoginPage = () => {
-  /* Tuan's code starts here */
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  /* Tuan's code work starts here */
+  const [userCredentials, setUserCredentials] = useState({});
+  function handleCredentials(e) {
+    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+  }
 
-  const signIn = (e) => {
+  function handleSignup(e) {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password) //Y: getAuth replaced by auth from import
+    createUserWithEmailAndPassword(
+      auth,
+      userCredentials.email,
+      userCredentials.password
+    )
       .then((userCredential) => {
-        console.log(userCredential);
+        const user = userCredential.user;
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
       });
-  };
-  const signUp = (e) => {
-    e.preventDefault();
+  }
 
-    createUserWithEmailAndPassword(auth, email, password) //Y: getAuth replaced by auth from import
+  function handleLogin(e) {
+    e.preventDefault();
+    signInWithEmailAndPassword(
+      auth,
+      userCredentials.email,
+      userCredentials.password
+    )
       .then((userCredential) => {
-        console.log(userCredential);
+        const user = userCredential.user;
+        console.log(user);
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
       });
-  };
-  /* Tuan's code ends here*/
-  /* Yasmine: I can't say it works, just that I'm no longer receiving errors*/
-  /* Y: Even so, registering doesn't do anything after I press the button*/
+  }
+
+  /* ends here*/
 
   const [isLoginFormActive, setLoginFormActive] = useState(null);
 
@@ -50,27 +66,28 @@ const LoginPage = () => {
       <div className={`main-box ${isLoginFormActive ? "active" : ""}`}>
         <div className={`form-box login ${isLoginFormActive ? "active" : ""}`}>
           <h2>Login</h2>
-          <form onSubmit={signIn} action="#">
-          <div class="input-box">
+          <form action="#">
+            <div class="input-box">
               <input
-                type="email"
+                /* Tuan's code */ onChange={(e) => {
+                  handleCredentials(e);
+                }}
+                name="email"
+                /* ends here*/ type="email"
                 placeholder="Email"
                 required
-                /* Tuan's code */
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                /* ends */
               />
               <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
               <input
-                type="password"
+                /* Tuan's code */ onChange={(e) => {
+                  handleCredentials(e);
+                }}
+                name="password"
+                /* ends here*/ type="password"
                 placeholder="Password"
-                required /* Tuan's code */
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                /* ends */
+                required
               />
               <i class="bx bxs-lock-alt"></i>
             </div>
@@ -81,7 +98,13 @@ const LoginPage = () => {
               </label>
               <a href="#">Forgot Password?</a>
             </div>
-            <button type="submit" class="btn">
+            <button /* Tuan's code */
+              onClick={(e) => {
+                handleLogin(e);
+              }}
+              /* ends here*/ type="submit"
+              class="btn"
+            >
               Login
             </button>
             <div class="divider">
@@ -91,7 +114,6 @@ const LoginPage = () => {
             </div>
             <div class="login-register">
               <p>
-                {/* {" "} */}
                 Don't have an account?
                 <a href="#" class="register-link" onClick={switchToRegister}>
                   Register
@@ -105,28 +127,28 @@ const LoginPage = () => {
           className={`form-box register ${isLoginFormActive ? "" : "active"}`}
         >
           <h2>Registration</h2>
-          <form onSubmit={signUp} action="#">
+          <form action="#">
             <div class="input-box">
               <input
-                type="email"
+                /* Tuan's code */ onChange={(e) => {
+                  handleCredentials(e);
+                }}
+                name="email"
+                /* ends here*/ type="email"
                 placeholder="Email"
                 required
-                /* Tuan's code */
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                /* ends */
               />
               <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
               <input
-                type="password"
+                /* Tuan's code */ onChange={(e) => {
+                  handleCredentials(e);
+                }}
+                name="password"
+                /* ends here*/ type="password"
                 placeholder="Password"
                 required
-                /* Tuan's code */
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                /* ends */
               />
               <i class="bx bxs-lock-alt"></i>
             </div>
@@ -138,7 +160,15 @@ const LoginPage = () => {
                 Are you an artist?
               </label>
             </div>
-            <button type="submit" class="btn">
+            <button
+              /* Tuan's code */
+              onClick={(e) => {
+                handleSignup(e);
+              }}
+              /* ends here*/
+              type="submit"
+              class="btn"
+            >
               Register
             </button>
             <div class="divider">
@@ -148,7 +178,6 @@ const LoginPage = () => {
             </div>
             <div class="login-register">
               <p>
-                {/* {" "} */}
                 Already have an account?
                 <a href="#" class="login-link" onClick={switchToLogin}>
                   Login

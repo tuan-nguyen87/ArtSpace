@@ -17,6 +17,7 @@ import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
+
 const socket = io("http://localhost:3000");
 
 function App() {
