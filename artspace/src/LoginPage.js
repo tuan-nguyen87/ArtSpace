@@ -5,8 +5,10 @@ import "./styles/LoginPage.css";
 import { auth } from "./Firebase/Firebase.js";
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+
 /* ends here *****************************************************/
 
 const LoginPage = () => {
@@ -46,6 +48,12 @@ const LoginPage = () => {
       .catch((error) => {
         setError(error.message);
       });
+  }
+
+  function handlePasswordReset() {
+    const email = prompt("Please enter your email address");
+    sendPasswordResetEmail(auth, email);
+    alert("Email sent! Check inbox for instruction");
   }
 
   /* ends here *******************************************************/
@@ -95,7 +103,9 @@ const LoginPage = () => {
                 <input type="checkbox" />
                 Remember Me
               </label>
-              <a href="#">Forgot Password?</a>
+              {/* Tuan's code here ************************ */}
+              <p onClick={handlePasswordReset}>Forgot Password?</p>
+              {/* ends here ******************************************** */}
             </div>
             <button /* Tuan's code */
               onClick={(e) => {
