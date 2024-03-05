@@ -47,24 +47,27 @@
     overflow: hidden;
     text-align: center;
     position: relative;
+    padding: 15px
   }
   
   .quadrant img {
     width: 100%;
     height: 100px;
     object-fit: scale-down;
+    margin-bottom: 10px;
   }
   
-  .quadrant h3 {
+  .quadrant a {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
     font-size: 18px;
     text-decoration: none;
     transition: text-decoration 0.3s ease;
+    font-weight: bold;
   }
   
-  .quadrant h3:hover {
+  .quadrant a:hover {
     text-decoration: underline;
   }
   
