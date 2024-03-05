@@ -123,8 +123,7 @@
 }
 
 .remember-forgot {
-  display: flex;
-  justify-content: space-between;
+  display:flex;
   color: #fff;
   font-size: 0.9em;
   font-weight: 500;
@@ -133,12 +132,15 @@
 
 .remember-forgot label input {
   accent-color: #fff;
-  margin-right: 5px;
+  margin: 10px;
 }
 
-.remember-forgot a {
+.remember-forgot p {
+  position: relative;
+  right: -70px;
   color: #fff;
   text-decoration: none;
+  cursor:pointer;
 }
 
 .remember-forgot a:hover {
@@ -176,4 +178,5 @@
 
 .login-register p a:hover {
   text-decoration: underline;
+  cursor:pointer;
 }
