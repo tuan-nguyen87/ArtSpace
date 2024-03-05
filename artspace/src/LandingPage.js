@@ -42,6 +42,11 @@ const LandingPage = () => {
           </button>
         </section>
       </div>
+      <div className="user-highlight-container">
+        {/* Yasmine
+          Thinking of making the landing page scrollable. 
+          Would include a preview of highly rated artists, and About, and Contact*/}
+      </div>
     </div>
   );
 };
