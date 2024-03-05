@@ -78,6 +78,7 @@
   color: white;
   position: relative;
   margin-bottom: 5px;
+  margin-left: -5px;
 }
 
 .input-box input {
@@ -123,24 +124,27 @@
 }
 
 .remember-forgot {
-  display:flex;
+  display:inline-flex;
   color: #fff;
   font-size: 0.9em;
-  font-weight: 500;
-  margin: -15px 0 15px;
+}
+
+.remember-forgot label {
+  display:flow-root;
+  width: 250px;
+  margin-top: 10px;
 }
 
 .remember-forgot label input {
   accent-color: #fff;
-  margin: 10px;
+  margin-top: 5px;
 }
 
 .remember-forgot p {
-  position: relative;
-  right: -70px;
   color: #fff;
   text-decoration: none;
   cursor:pointer;
+  margin-left: -40px
 }
 
 .remember-forgot a:hover {
