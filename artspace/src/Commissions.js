@@ -109,13 +109,13 @@ const Commissions = () =>
                         <textarea class="comm-input-description" type="text" value={description} onChange={handleCommCreateDescription} placeholder={pholderDescription}/>
                         <label>Art Type</label>
                         <textarea class="comm-input-arttype" type="text" value={artType} onChange={handleCommCreateArtType} placeholder={pholderArtType}/>
-                        <label>Complete Date</label>
+                        <label>Complete by Date</label>
                         <input class="comm-input-completedate" type="date" value={completeDate} onChange={handleCommCreateCompleteDate} min={dateToday}/>
-                        <button class="commissions-create-btn" onClick={handleCommCreateButtonCreate}>
-                            Create
-                        </button>
                         <button class="commissions-create-btn" onClick={handleCommCreateButtonCancel}>
                             Cancel
+                        </button>
+                        <button class="commissions-create-btn" onClick={handleCommCreateButtonCreate}>
+                            Create
                         </button>
                     </div>
 

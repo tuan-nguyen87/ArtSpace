@@ -143,6 +143,7 @@ Worked on by Kevin
 
 .create-commission-form {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .create-commission-form label {
@@ -164,7 +165,7 @@ Worked on by Kevin
 }
 
 .comm-input-description {
-  height: 15vh;
+  height: 25vh;
 }
 
 .comm-input-arttype {
@@ -174,6 +175,11 @@ Worked on by Kevin
 .comm-input-completedate{
   height: 5vh;
   width: 10vw !important;
+}
+
+.create-commission-form button {
+  float: right;
+  margin-left: 20px;
 }
 
 /*main container for commission listings and info*/
