@@ -1,14 +1,23 @@
+/*
+Commissions.css
+Worked on by Kevin
+*/
+
+/*Default commissions container with background and height settings*/
 .commissions-container {
   height: 100%;
-  margin-top: 70px;
+  padding-top: 100px;
   background-color: #80B3BA;
+  min-height: calc(100vh - 70px);
 }
 
+/*top header with nav and search and button*/
 .commissions-header {
-  height: 90px;
+  height: 100px;
   display: flex;
 }
 
+/*for users to know where they are, etc*/
 .commissions-top-navigator {
   width: 35%;
   display: flex;
@@ -18,38 +27,168 @@
   padding: 6px;
 }
 
+/*explore button*/
 .explore-sect {
   height: 1em;
   cursor: pointer;
 }
 
+/*commissions button*/
 .commissions-sect {
   height: 1em;
   cursor: pointer;
 }
 
-.commissions-search {
+/*search box container*/
+.search-container {
   width: 30%;
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 
+/*filter button for searching*/
+.commissions-filter-btn {
+  width: 55px;
+  height: 40px;
+  border-radius: 10px 0px 0px 10px;
+  border: 3px solid white;
+  border-right: 1px solid grey;
+  background-color: white;
+}
+
+/*filter button hover option*/
+.commissions-filter-btn:hover {
+  background-color: #BBBBBB;
+  border: 3px solid #BBBBBB;
+  border-right: 1px solid #BBBBBB;
+  cursor: pointer;
+}
+
+/*the main search bar*/
+.commissions-search-bar {
+  width: 320px;
+  height: 40px;
+  border: 3px solid white;
+}
+
+/*button for search*/
+.commissions-search-btn {
+  width: 55px;
+  height: 40px;
+  border-radius: 0px 10px 10px 0px;
+  border: 3px solid #00FF57;
+  background-color: #00FF57;
+}
+
+/*hover option for button*/
+.commissions-search-btn:hover {
+  background-color: #00bf41;
+  border: 3px solid #00bf41;
+  cursor: pointer;
+}
+
+/*sortby button, will implement later*/
 .sortby-btn {
   width: 100px;
 }
 
-.create {
+/*create button container*/
+.create-container {
   width: 35%;
-}
-
-.commissions-cluster {
   display: flex;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  position: relative;
+  align-items: center;
+  justify-content: right;
+  padding-right: 40px;
 }
 
+/*create button styling*/
+.commissions-create-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  background-color: #FF7777;
+  margin-left: auto;
+  color: white;
+  font-size: 15px;
+  text-shadow: 0px 2px 3px black;
+  box-shadow: 0px 2px 3px black;
+}
+
+/*hover option*/
+.commissions-create-btn:hover {
+  background-color: #ff1a1a;
+  cursor: pointer;
+}
+
+.comm-create-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 75vh;
+  width: 65vw;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid rgb(0, 52, 6);
+  backdrop-filter: blur(10px);
+  z-index: 5;
+}
+
+.comm-create-popup button {
+  padding: 10px;
+}
+
+.create-commission-form {
+  margin-bottom: 20px;
+}
+
+.create-commission-form label {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.create-commission-form textarea,
+.create-commission-form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 5px solid black;
+  margin-bottom: 10px;
+}
+
+.comm-input-title {
+  height: 5vh;
+}
+
+.comm-input-description {
+  height: 15vh;
+}
+
+.comm-input-arttype {
+  height: 15vh;
+}
+
+.comm-input-completedate{
+  height: 5vh;
+  width: 10vw !important;
+}
+
+/*main container for commission listings and info*/
+.commissions-cluster {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+}
+
+/*defaul size for listings*/
 .commissions-listing-container {
   width: 55%;
 }
 
+/*styling for listing*/
 .commissions-listing {
   display: flex;  
   margin-bottom: 30px;
@@ -58,27 +197,38 @@
   background-color: white;
   border: 8px solid #4c5b72;
   padding-left: 8px;
+  text-align: left;
 }
 
+/*hover for commissions-listing*/
 .commissions-listing:hover {
-  background-color: rgb(200, 200, 200) !important; /*TEMPORARY COLOR */
+  background-color: #C8C8C8 !important; /*TEMPORARY COLOR */
   cursor: pointer;
 }
 
+/*the title for the commission listing section*/
 .commission-title {
   font-size: 28px;
+  width: 500px;
+  text-decoration: underline;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
+/*general date*/
 .date-created {
   font-size: 14px;
+  position: absolute;
 }
 
+/*default pfp, will need to change later*/
 .commissions-listing-pfp {
   margin-top: 10px;
   margin-left: auto;
   margin-right: 1.5%;
 }
 
+/*default pfp size for commissions and collab*/
 .pfp {
   width: 50px;
   height: 50px;
@@ -86,19 +236,23 @@
   border-radius: 50%;
 }
 
+/*hover option*/
 .pfp:hover {
   cursor: pointer;
 }
 
+/*to make sure users see which ones they can select*/
 .commissions-selected {
   background-color: #fff7eb !important;
   border-color: #6c7a91 !important;
 }
 
+/*container size*/
 .commissions-info-container {
   width: 45%;
 }
 
+/*the commissions info container box*/
 .commissions-info {
   height: 95%;
   margin-left: 20px;
@@ -110,47 +264,57 @@
   text-align: left;
 }
 
+/*generic border to split info sections*/
 .bottom-border {
   border-bottom: 2px solid #444444;
 }
 
+/*title container*/
 .commissions-info-title {
   height: 10%;
 }
 
+/*description container*/
 .commissions-info-description {
   height: 35%;
 }
 
+/*art type container*/
 .commissions-info-arttype {
   height: 35%;
 }
 
+/*information about clinet container*/
 .commissions-info-client-container {
   height: 10%;
   display: flex;
   padding-top: 5px;
 }
 
+/*client and rating container*/
 .commissions-info-client-rating {
   display: grid;
   padding-left: 10px;
 }
 
+/*hover option for their name*/
 .commissions-info-client-name:hover {
   cursor: pointer;
 }
 
+/*fix issues with date*/
 .commissions-info-date {
   margin-left: auto;
 }
 
+/*button container*/
 .commissions-button-container {
   display: flex;
   margin-left: auto;
   height: 10%;
 }
 
+/*styling for buttons for apply*/
 .commissions-button-container button {
   width: 100px;
   height: 40px;
@@ -162,4 +326,50 @@
   font-size: 15px;
   text-shadow: 0px 2px 3px black;
   box-shadow: 0px 2px 3px black;
+}
+
+/*hover option*/
+.commissions-button-container button:hover {
+  background-color: #ff1a1a;
+}
+
+/*footer option for commissions*/
+.commissions-footer {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+
+/*quick border for footer*/
+.commissions-footer-border {
+  border-top: 2px solid #ffffff;
+  margin: 0px 20px 0px 20px;
+}
+
+/*for page searching*/
+.commissions-pagination {
+  display: inline-block;
+}
+
+/*extension for page searching, styling*/
+.commissions-pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/*styling for current active page*/
+.commissions-pagination a.commissions-page-active {
+  background-color: #C8C8C8;
+  border-radius: 15px;
+  color: white;
+}
+
+/*for others that aren't active*/
+.commissions-pagination a:hover:not(.commissions-page-active) {
+  background-color: #ddd;
+  border-radius: 15px;
 }
