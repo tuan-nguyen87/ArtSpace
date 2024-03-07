@@ -1,0 +1,309 @@
+/*
+Collaborations.css
+Worked on by Kevin
+*/
+
+/*default collab container w/ background and height*/
+.collab-container {
+    background-color: #53895F;
+    padding-top: 100px;
+    height: 100%;
+    min-height: calc(100vh - 70px);
+}
+
+/* top header for nav and search and button */
+.collab-header-container {
+    height: 100px;
+    display: flex;
+}
+
+/* for users to navigate where they are */
+.collab-top-nav {
+    width: 35%;
+    display: flex;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0px 2px 3px black;
+    padding: 6px;
+}
+
+/* profile button */
+.profile-sect {
+    height: 1em;
+    cursor: pointer;
+}
+
+/*collab button */
+.collab-sect {
+    height: 1em;
+    cursor: pointer;
+}
+
+/* search container for bar and buttons*/
+.search-container {
+    width: 30%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+/* filter button and styles */
+.collab-filter-btn {
+    width: 55px;
+    height: 40px;
+    border-radius: 10px 0px 0px 10px;
+    border: 3px solid white;
+    border-right: 1px solid grey;
+    background-color: white;
+}
+
+/*filter hover styling*/
+.collab-filter-btn:hover {
+    background-color: #BBBBBB;
+    border: 3px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
+    cursor: pointer;
+}
+
+/*search bar*/
+.collab-search-bar {
+    width: 320px;
+    height: 40px;
+    border: 3px solid white;
+}
+
+/*search button styling */
+.collab-search-btn {
+    width: 55px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border: 3px solid #00FF57;
+    background-color: #00FF57;
+}
+  
+/*search hover styling*/
+.collab-search-btn:hover {
+    background-color: #00bf41;
+    border: 3px solid #00bf41;
+    cursor: pointer;
+}
+  
+/*sorting button - temp will work on later*/
+.sortby-btn {
+    width: 100px;
+}
+
+/*update section for button, may not need */
+.update-container {
+    width: 35%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: right;
+    padding-right: 40px;
+}
+
+/*collab cluster container*/
+.collab-cluster-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+}
+
+/*container sizing for listings */
+.collab-listing-container {
+    width: 55%;
+}
+
+/* listing styling for collab */
+.collab-listing {
+    display: flex;  
+    margin-bottom: 30px;
+    border-radius: 25px;
+    height: 85px;
+    background-color: white;
+    border: 8px solid #4c5b72;
+    padding-left: 8px;
+    text-align: left;
+}
+
+/*hover option for listing */
+.collab-listing:hover {
+    background-color: #C8C8C8 !important; /*TEMPORARY COLOR */
+    cursor: pointer;
+}
+
+/*for selected collab colors */
+.collab-selected {
+    background-color: #fff7eb !important;
+    border-color: #6c7a91 !important;
+}
+
+/* date container to separate this and progress bar*/
+.collab-title-date-container {
+    width: 40%;
+}
+
+/*collab title styling */
+.collab-title {
+    font-size: 28px;
+    width: 500px;
+    text-decoration: underline;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*progres bar - temp, will have to include other progress bar*/
+.collab-progress-bar {
+    justify-content: center;
+    width: 30%;
+}
+
+/*pfp styling*/
+.collab-listing-pfp {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 1.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*info container sizing*/
+.collab-info-container {
+    width: 45%;
+}
+
+/*styling for info box */
+.collab-info {
+    height: 95%;
+    margin-left: 20px;
+    background: #fff7eb;
+    border: 8px solid #4c5b72;
+    border-radius: 25px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: left;    
+}
+
+/* title sizing */
+.collab-info-title {
+    height: 10%;
+}
+
+/* container for collaborating artists*/
+.collab-info-artists-container {
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*description for collab commission*/
+.collab-info-description {
+    height: 25%;
+    overflow: scroll;
+}
+
+/*picture preview size*/
+.collab-info-preview {
+    height: 30%;
+}
+
+/*actual image sizing and styling */
+.collab-info-preview img {
+    height: 100%;
+    width: 45%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+/*hover option for image to expand, will work later*/
+.collab-info-preview img:hover {
+    cursor: pointer;
+}
+
+/*client container like in commissions */
+.collab-info-client-container {
+    height: 10%;
+    display: flex;
+    padding-top: 5px;
+  }
+  
+  /*client and rating container*/
+  .collab-info-client-rating {
+    display: grid;
+    padding-left: 10px;
+  }
+  
+  /*hover option for name*/
+  .collab-info-client-name:hover {
+    cursor: pointer;
+  }
+  
+  /*date for collab start date, may add end date*/
+  .collab-info-date {
+    margin-left: auto;
+  }
+  
+  /*collab button update */
+  .collab-button-container {
+    display: flex;
+    margin-left: auto;
+    height: 10%;
+  }
+  
+  /*styling button */
+  .collab-button-container button {
+    width: 100px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    background-color: #FF7777;
+    margin-left: auto;
+    color: white;
+    font-size: 15px;
+    text-shadow: 0px 2px 3px black;
+    box-shadow: 0px 2px 3px black;
+  }
+  
+  /*hover option*/
+  .collab-button-container button:hover {
+    background-color: #ff1a1a;
+    cursor: pointer;
+  }
+  
+  /*footer*/
+  .collab-footer {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+  }
+  
+  .collab-footer-border {
+    border-top: 2px solid #FFFFFF;
+    margin: 0px 20px 0px 20px;
+  }
+  
+  .collab-pagination {
+    display: inline-block;
+  }
+  
+  .collab-pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  .collab-pagination a.commissions-page-active {
+    background-color: #C8C8C8;
+    border-radius: 15px;
+    color: white;
+  }
+  
+  .collab-pagination a:hover:not(.commissions-page-active) {
+    background-color: #ddd;
+    border-radius: 15px;
+  }
