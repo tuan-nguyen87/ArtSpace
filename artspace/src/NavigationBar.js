@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";import { Link } from "react-router-dom"; // Import Link for navigation
-import { auth } from "./Firebase/Firebase.js"; // Import Firebase authentication
-import { signOut } from "firebase/auth"; // Import Firebase signOut
+import React, { useState, useEffect } from "react";import { Link } from "react-router-dom"; 
+import { auth } from "./Firebase/Firebase.js"; 
+import { signOut } from "firebase/auth"; 
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
@@ -22,7 +22,7 @@ const NavigationBar = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsLoggedIn(!!user); // Update isLoggedIn based on user authentication status
     });
-    return unsubscribe; // Clean up subscription
+    return unsubscribe; 
   }, []);
 
   return (
