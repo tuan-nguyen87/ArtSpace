@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./styles/LoginPage.css";
-
-/* Tuan's code work starts here ************************************** */
 import { auth } from "./Firebase/Firebase.js";
 import {
   createUserWithEmailAndPassword,
@@ -9,12 +8,10 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-/* ends here *****************************************************/
-
 const LoginPage = () => {
-  /* Tuan's code work starts here *********************************** */
   const [userCredentials, setUserCredentials] = useState({});
   const [error, setError] = useState("");
+
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
@@ -44,6 +41,8 @@ const LoginPage = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        // Redirect to landing page after successful login
+        window.location.href = "/"; // Navigate to landing page
       })
       .catch((error) => {
         setError(error.message);
@@ -55,8 +54,6 @@ const LoginPage = () => {
     sendPasswordResetEmail(auth, email);
     alert("Email sent! Check inbox for instruction");
   }
-
-  /* ends here *******************************************************/
 
   const [isLoginFormActive, setLoginFormActive] = useState(null);
 
@@ -74,70 +71,50 @@ const LoginPage = () => {
         <div className={`form-box login ${isLoginFormActive ? "active" : ""}`}>
           <h2>Login</h2>
           <form action="#">
-            <div class="input-box">
+            <div className="input-box">
               <input
-                /* Tuan's code */ onChange={(e) => {
-                  handleCredentials(e);
-                }}
+                onChange={(e) => handleCredentials(e)}
                 name="email"
-                /* ends here*/ type="email"
+                type="email"
                 placeholder="Email"
                 required
               />
-              <i class="bx bx-envelope"></i>
+              <i className="bx bx-envelope"></i>
             </div>
-            <div class="input-box">
+            <div className="input-box">
               <input
-                /* Tuan's code */ onChange={(e) => {
-                  handleCredentials(e);
-                }}
+                onChange={(e) => handleCredentials(e)}
                 name="password"
-                /* ends here*/ type="password"
+                type="password"
                 placeholder="Password"
                 required
               />
-              <i class="bx bxs-lock-alt"></i>
+              <i className="bx bxs-lock-alt"></i>
             </div>
-            <div class="remember-forgot">
+            <div className="remember-forgot">
               <label>
                 <input type="checkbox" />
                 Remember Me
               </label>
-              {/* Tuan's code here ************************ */}
               <p onClick={handlePasswordReset}>Forgot Password?</p>
-              {/* ends here ******************************************** */}
             </div>
-            <button /* Tuan's code */
-              onClick={(e) => {
-                handleLogin(e);
-              }}
-              /* ends here*/ type="submit"
-              class="btn"
-            >
+            <button onClick={(e) => handleLogin(e)} type="submit" className="btn">
               Login
             </button>
-            {/* Tuan's code starts here ******************************** */}
             {error && (
-              <div
-                style={{
-                  color: "red",
-                  textAlign: "center",
-                  fontSize: "smaller",
-                }}
-              >
+              <div style={{ color: "red", textAlign: "center", fontSize: "smaller" }}>
                 {error}
               </div>
             )}
-            {/* ends here ***************************************************** */}
-            <div class="divider">
+            <div className="divider">
               <p>
-                <div class="line"></div>or<div class="line"></div>
+                <div className="line"></div>or<div className="line"></div>
               </p>
             </div>
-            <div class="login-register">
+            <div className="login-register">
               <p>
                 Don't have an account?
-                <a href="#" class="register-link" onClick={switchToRegister}>
+                <a href="#" className="register-link" onClick={switchToRegister}>
                   Register
                 </a>
               </p>
@@ -145,76 +122,57 @@ const LoginPage = () => {
           </form>
         </div>
 
-        <div
-          className={`form-box register ${isLoginFormActive ? "" : "active"}`}
-        >
+        <div className={`form-box register ${isLoginFormActive ? "" : "active"}`}>
           <h2>Registration</h2>
           <form action="#">
-            <div class="input-box">
+            <div className="input-box">
               <input
-                /* Tuan's code */ onChange={(e) => {
-                  handleCredentials(e);
-                }}
+                onChange={(e) => handleCredentials(e)}
                 name="email"
-                /* ends here*/ type="email"
+                type="email"
                 placeholder="Email"
                 required
               />
-              <i class="bx bx-envelope"></i>
+              <i className="bx bx-envelope"></i>
             </div>
-            <div class="input-box">
+            <div className="input-box">
               <input
-                /* Tuan's code */ onChange={(e) => {
-                  handleCredentials(e);
-                }}
+                onChange={(e) => handleCredentials(e)}
                 name="password"
-                /* ends here*/ type="password"
+                type="password"
                 placeholder="Password"
                 required
               />
-              <i class="bx bxs-lock-alt"></i>
+              <i className="bx bxs-lock-alt"></i>
             </div>
-            <div class="remember-forgot">
+            <div className="remember-forgot">
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
                 <br />
-                <input type="checkbox" />
-                Are you an artist?
+                <input type="checkbox" />Are you an artist?
               </label>
             </div>
             <button
-              /* Tuan's code */
-              onClick={(e) => {
-                handleSignup(e);
-              }}
-              /* ends here*/
+              onClick={(e) => handleSignup(e)}
               type="submit"
-              class="btn"
+              className="btn"
             >
               Register
             </button>
-            {/* Tuan's code starts here ******************************** */}
             {error && (
-              <div
-                style={{
-                  color: "red",
-                  textAlign: "center",
-                  fontSize: "smaller",
-                }}
-              >
+              <div style={{ color: "red", textAlign: "center", fontSize: "smaller" }}>
                 {error}
               </div>
             )}
-            {/* ends here ***************************************************** */}
-            <div class="divider">
+            <div className="divider">
               <p>
-                <div class="line"></div>or<div class="line"></div>
+                <div className="line"></div>or<div className="line"></div>
               </p>
             </div>
-            <div class="login-register">
+            <div className="login-register">
               <p>
                 Already have an account?
-                <a href="#" class="login-link" onClick={switchToLogin}>
+                <a href="#" className="login-link" onClick={switchToLogin}>
                   Login
                 </a>
               </p>
