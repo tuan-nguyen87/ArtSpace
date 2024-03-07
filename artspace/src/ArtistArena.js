@@ -66,7 +66,36 @@ const ArtistArena = () => {
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <img class="card-image" src="/Arena art/creature.png" alt=""/>
+                        <div class="card-header">
+                            <h3>Mythical Creatures</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Creatures, big and small, cute and creepy!</p>
+                            <p>Date: Mar 10, 2024</p>
+                            <p>Time: 11:59pm</p>
+                            {/* <button type="submit">Compete!</button> */}
+                            <div class ="popbox">
+                                <a class="popbutton" href="#popup7">Compete!</a>
+                            </div>
+                            <div id="popup7" class="overlay">
+                                <div class="popup">
+                                    <h2>Mythical Creatures</h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <p> Bring creatures of myth to life! Be they 
+                                            original creations or legends of old, challenge 
+                                            yourself to create creatures that inspire!
+                                        </p>
+                                        <button type="submit">Image Upload Placeholder</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Upcoming</h3>
@@ -155,6 +184,36 @@ const ArtistArena = () => {
                                             wield your artistic wand, and embark on an 
                                             enchanting adventure that will leave a lasting 
                                             mark on both your artistry and imagination.</p>
+                                        <button type="submit">Image Upload Placeholder</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-image" src="/Arena art/inkyapril.png" alt=""/>
+                        <div class="card-header">
+                            <h3>Inky April</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Pen to paper! Create inky masterpieces!</p>
+                            <p>Date: April 30, 2024</p>
+                            <p>Time: 11:59pm</p>
+                            {/* <button type="submit">Compete!</button> */}
+                            <div class ="popbox">
+                                <a class="popbutton" href="#popup6">Compete!</a>
+                            </div>
+                            <div id="popup6" class="overlay">
+                                <div class="popup">
+                                    <h2>Inky April</h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <p> Immerse yourself in the captivating world of ink 
+                                            and pen! Challenge your artistic skills by 
+                                            embracing the simplicity and boldness of these 
+                                            traditional tools, allowing your imagination to 
+                                            flow freely as you create intricate and mesmerizing 
+                                            artworks that truly come to life on paper.</p>
                                         <button type="submit">Image Upload Placeholder</button>
                                     </div>
                                 </div>
