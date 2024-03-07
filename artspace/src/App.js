@@ -16,6 +16,7 @@ import { io } from "socket.io-client";
 import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
+import ProfilePage from "./ProfilePage";
 
 const socket = io("http://localhost:3000");
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/Portfolio" element={<Portfolio />} />
           <Route path="/MarketPage" element={<MarketPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/ProfilePage" element={<ProfilePage />} />
         </Routes>
       </Router>
     </div>

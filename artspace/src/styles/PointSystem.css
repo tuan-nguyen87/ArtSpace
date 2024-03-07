@@ -1,0 +1,106 @@
+.ps-body {
+  margin: 0;
+  padding: 0;
+  /*background-color: #f7cac9;*/
+  background: url(ps_background3.png) center no-repeat;
+  background-size: cover;
+}
+
+.ps-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 50px; /*20px*/
+  /*border: 3px solid #ee9290;
+  background-color: #fce9e9;*/
+  background: transparent;
+  backdrop-filter: blur(10px);
+  border: 3px solid #606060;
+  border-radius: 5px;
+}
+
+/*for the artist name*/
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* the coin.png for the total points*/
+.header img.ps_coin{
+  width: 30px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+  
+.grid-container {
+  display: grid;
+  /*grid-template-columns: repeat(2, 1fr);*/ /*even boxes*/
+  grid-template-columns: 300px 500px;
+  grid-gap: 20px;
+}
+
+/*each gird block*/
+.grid-item {
+  padding: 20px;
+  border: 2px solid #606060;
+  background-color: #fff;
+  /*border: 1px solid #ee9290;
+  background-color: #fff;*/
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/*for the coin.png on the left columns in each grid block*/
+.grid-item img.ps_coin {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/*for the item images for the market purchases in the right block*/
+.grid-item img.item-img {
+  width: 85px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+  
+.scroll-container {
+  overflow-y: auto;
+  max-height: 100px;
+}
+
+/*.market-item {
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: repeat(4, 1fr);
+
+  
+}*/
+
+/*display: grid;
+  grid-column:auto;*/
+
+/* for market items display*/
+.market-item {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+
+/* Style for item image */
+/*.market-item .item-img {
+  width: 80px;
+  height: auto;
+  margin-right: 10px;
+}*/
+
+/*for item name and points */
+.market-item .item-info {
+  font-size: 15px;
+}
+
+

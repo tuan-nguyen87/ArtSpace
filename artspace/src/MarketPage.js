@@ -84,7 +84,7 @@ const MarketPage = () => {
             <div className="mp-section-header">Market</div>
             <div className="sidebar-title">Filters</div>
             <div className="my-points-display">
-                <h2><img src="/Market art/stall.png" className="stall" alt="Stall" /> My Points: <img src="/Market art/coin.png" className="coin" alt="Coin"/><span id="points"> {points}</span></h2>
+                <img src="/Market art/stall.png" className="stall" alt="Stall" /> My Points: <img src="/Market art/coin.png" className="coin" alt="Coin"/><span id="points"> {points}</span>
             </div>
             <div className="container">
                 <div className="sidebar">

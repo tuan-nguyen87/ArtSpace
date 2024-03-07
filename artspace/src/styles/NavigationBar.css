@@ -24,8 +24,15 @@ nav a {
   padding: 10px 20px;
   text-decoration: none;
   color: black;
-  font-family: "Kristi", sans-serif;
-  font-size: 35px;
+  /*Two guesses on who's playing with fonts :D */
+  /* font-family: "Kristi", sans-serif; */
+  /* font-family:'Times New Roman', Times, serif; */
+  /* font-family: Optima, sans-serif; */
+  /* font-family: Arial Narrow, sans-serif; */
+  /* font-family: Didot, serif; */
+  /* font-family: Georgia, serif; */
+  font-family: American Typewriter, serif;
+  font-size: 30px;
   margin-right: 35px;
 }
 

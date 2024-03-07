@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";import { Link } from "react-router-dom"; 
+import { auth } from "./Firebase/Firebase.js"; 
+import { signOut } from "firebase/auth"; 
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Function to handle logout
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setIsLoggedIn(false);
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
+  // Check authentication status on component mount
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user); // Update isLoggedIn based on user authentication status
+    });
+    return unsubscribe; 
+  }, []);
 
   return (
-    <div class="NavComponents">
+    <div className="NavComponents">
       <nav>
-        <a href="/"><img
-          src="/Homepage art/logo-modified.png"
-          alt="Logo"
-          className="logo"
-        /></a>
+        <a href="/">
+          <img
+            src="/Homepage art/logo-modified.png"
+            alt="Logo"
+            className="logo"
+          />
+        </a>
         <ul className="nav-links">
           <li>
             <a href="#">Explore</a>
@@ -49,45 +73,58 @@ const NavigationBar = () => {
             </ul>
           </li>
           <li className="notification-icon">
-            {/* you could replace this icon '🔔' with another one of ur choice */}
+            {/* Replace this with your notification icon */}
             <a href="#">🔔</a>
             <ul className="dropdown-menu">
-              <li><a href="#">Notification 1</a></li>
-              <li><a href="#">Notification 2</a></li>
-            </ul> 
-          </li>
-          <li>
-            <img
-              src="/Homepage art/login_profile_img.png"
-              alt="Profile"
-              className="profile"
-            />
-            <ul className="profile-menu">
               <li>
-                <a href="#">Profile</a>
+                <a href="#">Notif 1</a>
               </li>
               <li>
-                <a href="/Portfolio">Portfolio</a>
-              </li>
-              <li>
-                <a href="#">Commissions</a>
-              </li>
-              <li>
-                <a href="/Messaging2">Messages</a>
-              </li>
-              <li>
-                <a href="#">Collaborations</a>
-              </li>
-              <li>
-                <a href="/RatingReview">Leave a Review</a>
-              </li>
-              <li>
-                <a href="/LoginPage">Login/Register</a>
+                <a href="#">Notif 2</a>
               </li>
             </ul>
           </li>
+          {!isLoggedIn ? (
+            // Render login button for non-logged-in user
+            <li>
+              <Link to="/LoginPage" className="login-btn">
+                Login/Register
+              </Link>
+            </li>
+          ) : (
+            // Render profile menu for logged-in user
+            <li>
+              <img
+                src="/Homepage art/login_profile_img.png"
+                alt="Profile"
+                className="profile"
+              />
+              <ul className="profile-menu">
+                <li>
+                  <a href="/ProfilePage">Profile</a>
+                </li>
+                <li>
+                  <a href="/Portfolio">Portfolio</a>
+                </li>
+                <li>
+                  <a href="#">Commissions</a>
+                </li>
+                <li>
+                  <a href="/Messaging2">Messages</a>
+                </li>
+                <li>
+                  <a href="#">Collaborations</a>
+                </li>
+                <li>
+                  <a href="/RatingReview">Leave a Review</a>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
-        
       </nav>
     </div>
   );

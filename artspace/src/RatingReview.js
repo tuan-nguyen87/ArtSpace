@@ -8,6 +8,7 @@ const RatingReview = () => {
   const [reviewText, setReviewText] = useState('');
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Function to handle changes in the rating
   const handleRatingChange = (newRating) => {
@@ -86,16 +87,18 @@ const RatingReview = () => {
     <div className="review-page">
       <div className="r_container">
         <div className="left-section">
+          <div className="title-container">
           <h1 className="title">Leave a Review about your Experience</h1>
+          </div>
 
           {/* Form for submitting reviews */}
           <form id="review-form" onSubmit={handleSubmit}>
             {/* Input field for the name of the artist/client */}
             <div className="form-group">
               <label htmlFor="person-name">Name of Artist you worked with:</label>
-              <input
-                type="text"
+              <textarea
                 id="person-name"
+                className="artist-name"
                 value={personName}
                 onChange={(e) => setPersonName(e.target.value)}
               />
@@ -132,6 +135,15 @@ const RatingReview = () => {
         </div>
 
         <div className="right-section">
+        <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search for artists..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
           <h2>All Reviews</h2>
           <div className="reviews-list">
             {/* Display the newly submitted review */}
