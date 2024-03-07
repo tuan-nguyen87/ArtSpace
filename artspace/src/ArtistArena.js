@@ -44,7 +44,7 @@ const ArtistArena = () => {
                             <h3>Character Design</h3>
                         </div>
                         <div class="card-content">
-                            <p>What OC's can you make?</p>
+                            <p>Characters that leap off the page! </p>
                             <p>Date</p>
                             <p>Time</p>
                             {/* <button type="submit">Compete!</button> */}
