@@ -20,7 +20,6 @@
     display:inline-flex;
     padding: 20px;
     margin-top: 100px;
-    /* gap: 20px; */
 }
 
 .section-label {
@@ -67,7 +66,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     width: 300px;
-    height: 300px;
+    height: 400px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -84,9 +83,11 @@
 .card button {
     background-color: #A5607D;
     border-color: #540C2A;
+    color: white;
     margin-left: 10px;
     margin-top: 2px;
     width: 100px;
+    text-decoration: none;
 }
 .card-image {
     width: 100%;
@@ -94,3 +95,75 @@
     object-fit: cover;
     border-radius: 10px; /* inner border radius = outer radius - padding */
 }
+
+/*Test popups*/
+.popbox {
+    padding: 10px;
+    border: 2px solid #fff;
+    margin-right: -180px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+
+  .popbutton {
+    font-size: 1em;
+    padding: 10px;
+    color: white;
+    background-color: #A5607D;
+    border: 2px solid;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 400px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 10px;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #540C2A;
+  }
+  .popup .content {
+    max-height: 300px;
+    overflow: auto;
+  }
