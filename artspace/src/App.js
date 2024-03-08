@@ -17,6 +17,7 @@ import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
+import PointSystem from "./PointSystem";
 
 const socket = io("http://localhost:3000");
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="/MarketPage" element={<MarketPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ProfilePage" element={<ProfilePage />} />
+          <Route path="/PointSystem" element={<PointSystem />} />
         </Routes>
       </Router>
     </div>
