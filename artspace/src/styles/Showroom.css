@@ -91,7 +91,7 @@
   }
   
   /* artwork item overlay displays the overlay effect within the selected image, showing the artist and title */
-  .artwork-item .overlay {
+  .artwork-item .shrm-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -109,12 +109,12 @@
   }
   
   /* shows the opacity of the overlay */
-  .artwork-item:hover .overlay {
+  .artwork-item:hover .shrm-overlay {
     opacity: 1; /* Show overlay on hover */
   }
   
   /* shows the text within the overlay */
-  .artwork-item .overlay p {
+  .artwork-item .shrm-overlay p {
     font-family: Arial, sans-serif;
     color: #fff;
     margin: 5px 0;
