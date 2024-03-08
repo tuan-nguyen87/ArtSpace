@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/Portfolio.css"; // Include your CSS file for styling
+import "./styles/Portfolio.css";
 
 const Portfolio = () => {
   const initialBiography = "User's biography goes here...";

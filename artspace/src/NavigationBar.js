@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";import { Link } from "react-router-dom"; 
-import { auth } from "./Firebase/Firebase.js"; 
-import { signOut } from "firebase/auth"; 
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { auth } from "./Firebase/Firebase.js";
+import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Function to handle logout
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -17,12 +17,11 @@ const NavigationBar = () => {
       });
   };
 
-  // Check authentication status on component mount
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoggedIn(!!user); // Update isLoggedIn based on user authentication status
+      setIsLoggedIn(!!user);
     });
-    return unsubscribe; 
+    return unsubscribe;
   }, []);
 
   return (
