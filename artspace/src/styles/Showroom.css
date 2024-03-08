@@ -18,28 +18,6 @@
     color: #fff;
   }
   
-  /*dont think we need this*/
-  /* upload button, located top right 
-  .showroom-section-upload {
-    font-size: 15px;
-    text-align: right;
-    color: #fff;
-    margin-right: 10px;
-    margin-top: -15px;
-  }*/
-  
-  /* upload has a hover effect. when not hovering, no underline is shown 
-  .showroom-section-upload a {
-    text-decoration: none;
-    color: #fff;
-  }*/
-  
-  /* when hovering, underline is shown 
-  .showroom-section-upload a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }*/
-  
   /* section titles are centered: featured, newest, most views, oldest */
   .showroom-section-titles {
     padding: 5px;
