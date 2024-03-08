@@ -12,13 +12,11 @@ import TutorialPage from "./TutorialPage";
 import ArtistArena from "./ArtistArena";
 import ShowroomPage from "./ShowroomPage";
 import SocialHub from "./SocialHub";
-import { io } from "socket.io-client";
 import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
 
-const socket = io("http://localhost:3000");
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -31,14 +29,6 @@ function App() {
     }, 3000); // Dismiss notification after 3 seconds
   };
 
-  useEffect(() => {
-    socket.on("newMessage", (data) => {
-      triggerNotification(data.message, "success");
-    });
-    return () => {
-      socket.off("newMessage");
-    };
-  }, []);
 
   return (
     <div className="App">
@@ -48,15 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
-          <Route
-            path="/Messaging2"
-            element={
-              <Messaging2
-                socket={socket}
-                triggerNotification={triggerNotification}
-              />
-            }
-          />
+          <Route path="/Messaging2" element={<Messaging2 triggerNotification={triggerNotification} />} />
           <Route path="/DailyChallenge" element={<DailyChallenge />} />
           <Route path="/RatingReview" element={<RatingReview />} />
           <Route path="/TutorialPage" element={<TutorialPage />} />
