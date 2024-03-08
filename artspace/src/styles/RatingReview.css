@@ -191,23 +191,23 @@ background-color: #c2a133;
 /* Add these styles to your existing CSS or modify accordingly */
 
 .star-rating i.active:nth-child(1) {
-  color: #2a9297; /* Color for the first active star */
+  color: #fffba5; /* Color for the first active star */
 }
 
 .star-rating i.active:nth-child(2) {
-  color: #65bc73; /* Color for the second active star */
+  color: #fff97d; /* Color for the second active star */
 }
 
 .star-rating i.active:nth-child(3) {
-  color: #ccb43a; /* Color for the third active star */
+  color: #fef549; /* Color for the third active star */
 }
 
 .star-rating i.active:nth-child(4) {
-  color: #965d88; /* Color for the fourth active star */
+  color: #fff420; /* Color for the fourth active star */
 }
 
 .star-rating i.active:nth-child(5) {
-  color: #8a97d7; /* Color for the fifth active star */
+  color: #fff200; /* Color for the fifth active star */
 }
 
 
