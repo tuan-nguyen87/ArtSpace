@@ -1,7 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { auth } from "./Firebase/Firebase.js";
+import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setIsLoggedIn(false);
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <div className="NavComponents">
       <nav>
@@ -50,7 +72,7 @@ const NavigationBar = () => {
             </ul>
           </li>
           <li className="notification-icon">
-            {/* you could replace this icon '🔔' with another one of ur choice */}
+            {/* Replace this with your notification icon */}
             <a href="#">🔔</a>
             <ul className="dropdown-menu">
               <li>
@@ -61,36 +83,49 @@ const NavigationBar = () => {
               </li>
             </ul>
           </li>
-          <li>
-            <img
-              src="/Homepage art/login_profile_img.png"
-              alt="Profile"
-              className="profile"
-            />
-            <ul className="profile-menu">
-              <li>
-                <a href="/ProfilePage">Profile</a>
-              </li>
-              <li>
-                <a href="/Portfolio">Portfolio</a>
-              </li>
-              <li>
-                <a href="#">Commissions</a>
-              </li>
-              <li>
-                <a href="/Messaging2">Messages</a>
-              </li>
-              <li>
-                <a href="#">Collaborations</a>
-              </li>
-              <li>
-                <a href="/RatingReview">Leave a Review</a>
-              </li>
-              <li>
-                <a href="/LoginPage">Login/Register</a>
-              </li>
-            </ul>
-          </li>
+          {!isLoggedIn ? (
+            // Render login button for non-logged-in user
+            <li>
+              <Link to="/LoginPage" className="login-btn">
+                Login/Register
+              </Link>
+            </li>
+          ) : (
+            // Render profile menu for logged-in user
+            <li>
+              <img
+                src="/Homepage art/login_profile_img.png"
+                alt="Profile"
+                className="profile"
+              />
+              <ul className="profile-menu">
+                <li>
+                  <a href="/ProfilePage">Profile</a>
+                </li>
+                <li>
+                  <a href="/Portfolio">Portfolio</a>
+                </li>
+                <li>
+                  <a href="#">Commissions</a>
+                </li>
+                <li>
+                  <a href="/Messaging2">Messages</a>
+                </li>
+                <li>
+                  <a href="#">Collaborations</a>
+                </li>
+                <li>
+                  <a href="/PointSystem">My Points</a>
+                </li>
+                <li>
+                  <a href="/RatingReview">Leave a Review</a>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

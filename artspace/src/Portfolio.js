@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import "./styles/Portfolio.css"; // Include your CSS file for styling
+import React, { useState, useEffect } from "react";
+import "./styles/Portfolio.css";
+import { db, auth } from "./Firebase/Firebase.js";
+import { doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
 
 const Portfolio = () => {
   const initialBiography = "User's biography goes here...";
@@ -15,6 +17,31 @@ const Portfolio = () => {
   const [images, setImages] = useState(initialImages);
   const [userName, setUserName] = useState(initialUserName);
   const [editedUserName, setEditedUserName] = useState(initialUserName);
+  const [userID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserID(user.uid);
+        const userDocRef = doc(db, "Portfolio", user.uid);
+        const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setBiography(userData.bio || initialBiography);
+            setSkills(userData.skills || initialSkills);
+            setUserName(userData.name || initialUserName);
+          } else {
+            console.log("No such document!");
+          }
+        });
+        return () => unsubscribeSnapshot();
+      } else {
+        setUserID(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
@@ -28,6 +55,21 @@ const Portfolio = () => {
     setSkills(editedSkills);
     setUserName(editedUserName);
     setIsEditPopupOpen(false);
+
+    if (userID) {
+      const userDocRef = doc(db, "Portfolio", userID);
+      setDoc(userDocRef, {
+        name: editedUserName,
+        bio: editedBiography,
+        skills: editedSkills,
+      })
+        .then(() => {
+          console.log("User data saved successfully!");
+        })
+        .catch((error) => {
+          console.error("Error saving user data: ", error);
+        });
+    }
   };
 
   const handleClosePopup = () => {
@@ -63,7 +105,7 @@ const Portfolio = () => {
 
     reader.onload = (e) => {
       const image = e.target.result;
-      setImages([...images, image]); // Add the uploaded image to the list of images
+      setImages([...images, image]);
     };
 
     reader.readAsDataURL(file);

@@ -1,18 +1,21 @@
 .ps-body {
-  margin: 0;
-  padding: 0;
-  /*background-color: #f7cac9;*/
-  background: url(ps_background3.png) center no-repeat;
+  background: url("/public/PointSystem art/ps_background3.png") center no-repeat;
   background-size: cover;
+  position: absolute; 
+  top: 100px;
+  left: 0;
+  right: 0;
+  display:flex;  
+  justify-content: center; 
+  align-items: center;
+  min-height: 100vh;  
 }
 
 .ps-container {
   font-family: Arial, sans-serif;
-  max-width: 800px;
+  max-width: 950px;
   margin: 20px auto;
   padding: 50px; /*20px*/
-  /*border: 3px solid #ee9290;
-  background-color: #fce9e9;*/
   background: transparent;
   backdrop-filter: blur(10px);
   border: 3px solid #606060;
@@ -20,39 +23,54 @@
 }
 
 /*for the artist name*/
-.header {
+.ps-header {
   text-align: center;
   margin-bottom: 20px;
 }
 
+.ps-header h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.ps-header h3 {
+  font-size: 30px;
+}
+
 /* the coin.png for the total points*/
-.header img.ps_coin{
+.ps-header img.ps_coin{
   width: 30px;
   height: auto;
   margin-right: 5px;
   margin-left: 10px;
 }
   
-.grid-container {
+.ps-grid-container {
   display: grid;
   /*grid-template-columns: repeat(2, 1fr);*/ /*even boxes*/
-  grid-template-columns: 300px 500px;
+  grid-template-columns: 280px 550px; /*was 300px*/
   grid-gap: 20px;
 }
 
 /*each gird block*/
-.grid-item {
+.ps-grid-item {
   padding: 20px;
   border: 2px solid #606060;
   background-color: #fff;
-  /*border: 1px solid #ee9290;
-  background-color: #fff;*/
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.ps-grid-item h3 {
+  text-decoration: underline;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 /*for the coin.png on the left columns in each grid block*/
-.grid-item img.ps_coin {
+.ps-grid-item img.ps_coin {
   width: 20px;
   height: auto;
   margin-right: 5px;
@@ -60,47 +78,30 @@
 }
 
 /*for the item images for the market purchases in the right block*/
-.grid-item img.item-img {
-  width: 85px;
+.ps-grid-item img.item-img {
+  width: 90px;
   height: auto;
   margin-right: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
 }
   
-.scroll-container {
+.ps-scroll-container {
   overflow-y: auto;
-  max-height: 100px;
+  height: 150px; /*was max-height: 100*/
 }
-
-/*.market-item {
-  display: grid;
-  grid-column: auto;
-  grid-template-columns: repeat(4, 1fr);
-
-  
-}*/
-
-/*display: grid;
-  grid-column:auto;*/
 
 /* for market items display*/
 .market-item {
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
+  margin-bottom: 30px;
 }
-
-/* Style for item image */
-/*.market-item .item-img {
-  width: 80px;
-  height: auto;
-  margin-right: 10px;
-}*/
 
 /*for item name and points */
 .market-item .item-info {
-  font-size: 15px;
+  font-size: 10px;
 }
 
 
