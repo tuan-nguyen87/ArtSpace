@@ -116,6 +116,9 @@ const NavigationBar = () => {
                   <a href="#">Collaborations</a>
                 </li>
                 <li>
+                  <a href="/PointSystem">My Points</a>
+                </li>
+                <li>
                   <a href="/RatingReview">Leave a Review</a>
                 </li>
                 <li>
