@@ -17,6 +17,10 @@ import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
 import PointSystem from "./PointSystem";
+import NavSite from "./NavSite";
+import ArtTutorials from "./ArtTutorials";
+import EduCont from "./EduCont";
+import ResLinks from "./ResLinks";
 
 
 function App() {
@@ -51,6 +55,10 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/PointSystem" element={<PointSystem />} />
+          <Route path="/NavSite" element={<NavSite />} />
+          <Route path="/ArtTutorials" element={<ArtTutorials />} />
+          <Route path="/EduCont" element={<EduCont />} />
+          <Route path="/ResLinks" element={<ResLinks />} />
         </Routes>
       </Router>
     </div>

@@ -1,0 +1,70 @@
+.at-body{
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #98c6cc;
+}
+
+.at-hr{
+border-bottom: 3px solid #4e7b81;
+padding-top: 99px; /*was 35px?*/
+}
+
+.at-section-header {
+font-size: 15px;
+margin-left: 10px;
+margin-top: 5px;
+color: #fff;
+}
+
+.at-container {
+max-width: 900px;
+margin: 20px auto;
+padding: 20px;
+background-color: #fff;
+border: 2px solid #4e7b81;
+}
+
+.at-container h3 {
+    font-size: 50px;
+    text-align: center;
+}
+
+.at-container .p1 {
+    font-size: 15px;
+    text-align: center;
+}
+
+.at-section {
+    margin-bottom: 20px;
+}
+
+.at-section h2 {
+    color: #4e7b81;
+    text-decoration: underline;
+}
+
+.at-section h1 {
+    color: #72959a;
+    text-decoration: underline;
+    font-size: 22px;
+}
+
+.at-section ul {
+    list-style-type: circle;
+    padding: 10px;
+}
+
+.at-section ul li {
+    margin-bottom: 10px;
+}
+
+.at-section ul li a {
+    text-decoration: underline;
+    color: #333;
+}
+
+.at-section ul li a:hover {
+    color: #4e7b81;
+}
+
