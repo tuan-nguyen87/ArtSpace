@@ -39,9 +39,16 @@ border: 2px solid #4e7b81;
     margin-bottom: 20px;
 }
 
-.at-section h2 {
+section .p2 {
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.at-section .h2 {
     color: #4e7b81;
     text-decoration: underline;
+    font-size: 25px;
 }
 
 .at-section h1 {

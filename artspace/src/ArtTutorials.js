@@ -14,12 +14,12 @@ function ArtTutorials() {
         <div className="p1">Explore Your Creativity with Step-by-Step Guidance</div>
       
         <div className="at-section">
-          <h2>Introduction</h2>
-          <p>Whether you're a beginner looking to learn the basics or an experienced artist seeking to refine your skills, you'll find something here to inspire and guide you on your artistic journey.</p>
+          <div className="h2">Introduction</div>
+          <div className="p2">Whether you're a beginner looking to learn the basics or an experienced artist seeking to refine your skills, you'll find something here to inspire and guide you on your artistic journey.</div>
         </div>
 
         <div className="at-section">
-          <h2>Getting Started</h2>
+          <div className="h2">Getting Started</div>
           <ol>
             <li><strong>Gather Your Supplies:</strong> Make sure you have all the necessary materials before starting each tutorial. This may include pencils, paper, brushes, paints, etc.</li>
             <li><strong>Set Up Your Workspace:</strong> Find a quiet and comfortable place to work where you can focus without distractions.</li>
@@ -29,7 +29,7 @@ function ArtTutorials() {
         </div>
 
         <div className="at-section">
-          <h2>Tutorial Categories</h2>
+          <div className="h2">Tutorial Categories</div>
           <ol>
             <li>
               <h1>Drawing Tutorials</h1>
@@ -74,8 +74,8 @@ function ArtTutorials() {
         </div>
 
         <div className="at-section">
-          <h2>Start Creating!</h2>
-          <p>Ready to unleash your creativity? Click on any tutorial to get started, and don't forget to share your artwork here on ArtSpace!</p>
+          <div className="h2">Start Creating!</div>
+          <div className="p2">Ready to unleash your creativity? Click on any tutorial to get started, and don't forget to share your artwork here on ArtSpace!</div>
         </div>
       </div>
     </div>
