@@ -1,33 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import "./styles/LandingPage.css";
 
 const LandingPage = () => {
   
-    var input = document.getElementById('search');
-    var output = document.getElementById('output');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [output, setOutput] = useState("");
 
-    function performSearch() {
-      var searchTerm = input.value;
-
+  const performSearch = (event) => {
+    if (event.key === "Enter") {
       // Perform some processing or logic based on the search term
       // For example, you can check if it matches a specific value or use regular expressions
 
       // Simulate a simple example by checking for a specific search term
-      if (searchTerm === 'hello') {
-        output.innerHTML = 'You typed: ' + searchTerm;
+      if (searchTerm === "hello") {
+        setOutput("You typed: " + searchTerm);
       } else {
-        output.innerHTML = 'No matching result for the search term: ' + searchTerm;
+        setOutput("No matching result for the search term: " + searchTerm);
       }
     }
+  };
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="landing-container">
       <div class="main">
         <section class="welcome">
           <h1>Connecting Artists to Clients Everywhere</h1>
-          <input type="text" id="search" placeholder="Search ArtSpace" onkeyup="search()"/>
-          <i class="bx bx-search"></i>
-          <p id="output"></p>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search ArtSpace"
+            value={searchTerm}
+            onChange={handleChange}
+            onKeyUp={performSearch}
+          />
+          <p>{output}</p>
         </section>
         <section class="services">
           <h2>Popular:</h2>

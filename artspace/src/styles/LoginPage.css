@@ -9,6 +9,7 @@
   
   /* Styling for the landing page container */
   .logreg-container {
+    /*Portion to fix background formatting issue --Yasmine */
     position: absolute; /* Should be done to all pages*/
     top: 0;
     left: 0;

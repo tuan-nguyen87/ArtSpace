@@ -10,6 +10,7 @@
 
 /* Styling for the landing page container */
 .landing-container {
+  /*Portion to fix background formatting issue --Yasmine */
   position: absolute; /* Should be done to all pages*/
   top: 0;
   left: 0;
@@ -43,13 +44,10 @@
   text-align: center;
 }
 
-/* Styling for search box icon */
-.welcome i {
-  position: absolute;
-  right: 40px;
-  color: grey;
-  top: 58%;
-  transform: translateY(-58%);
+/* This is temporary while we figure out a more functional search system*/
+.welcome p {
+  color: white;
+  margin-left: 50px;
 }
 
 /* Styling for search box */
