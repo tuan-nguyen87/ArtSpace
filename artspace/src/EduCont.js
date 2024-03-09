@@ -17,12 +17,12 @@ function EduCont() {
         </div>
 
         <div className="ec-section">
-          <h2>Introduction to Art History</h2>
-          <p>
+          <div className="h2">Introduction to Art History</div>
+          <div className="p2">
             Art history is the study of visual art and its development
             throughout history. Here are some different periods and movements
             that have shaped the art world.
-          </p>
+          </div>
           <ul>
             <li>
               Ancient Art: Discover the art of ancient civilizations like
@@ -51,12 +51,12 @@ function EduCont() {
         </div>
 
         <div className="ec-section">
-          <h2>Understanding Color Theory</h2>
-          <p>
+          <div className="h2">Understanding Color Theory</div>
+          <div className="p2">
             Color is one of the fundamental elements of art. Understanding color
             theory can enhance your artistic skills and help you create visually
             appealing compositions.
-          </p>
+          </div>
           <ul>
             <li>Primary, Secondary, and Tertiary Colors: Learn about the basics of color mixing.</li>
             <li>Color Harmony: Explore different color schemes like complementary, analogous, and triadic.</li>
@@ -66,12 +66,12 @@ function EduCont() {
         </div>
 
         <div className="ec-section">
-          <h2>Exploring Different Art Styles</h2>
-          <p>
+          <div className="h2">Exploring Different Art Styles</div>
+          <div className="p2">
             Artists express themselves in various styles, each with its own
             unique characteristics and techniques. Here are some of the most
             prominent art styles:
-          </p>
+          </div>
           <ul>
             <li>Cubism: Explore the fractured perspectives of Picasso and Braque.</li>
             <li>Surrealism: Enter the dreamlike worlds of Dali and Magritte.</li>
@@ -81,11 +81,11 @@ function EduCont() {
         </div>
 
         <div className="ec-section">
-          <h2>Discovering Various Art Mediums</h2>
-          <p>
+          <div className="h2">Discovering Various Art Mediums</div>
+          <div className="p2">
             Artists use a wide range of mediums to bring their visions to life.
             From traditional to contemporary, here are some popular art mediums:
-          </p>
+          </div>
           <ul>
             <li>Drawing: Learn the basics of sketching and shading with pencil and charcoal.</li>
             <li>Painting: Explore the world of acrylics, oils, and watercolors.</li>
@@ -95,12 +95,12 @@ function EduCont() {
         </div>
 
         <div className="ec-section">
-          <h2>Spotlight on Famous Classical Artists</h2>
-          <p>
+          <div className="h2">Spotlight on Famous Classical Artists</div>
+          <div className="p2">
             Throughout history, certain artists have left an indelible mark on
             the art world with their masterpieces. Here are some of these
             classical artists:
-          </p>
+          </div>
           <ul>
             <li>Leonardo da Vinci: Discover the genius of the Renaissance polymath.</li>
             <li>Vincent van Gogh: Explore the vibrant and tumultuous life of the post-impressionist painter.</li>

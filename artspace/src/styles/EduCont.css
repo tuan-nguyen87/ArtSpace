@@ -39,15 +39,21 @@ border: 2px solid #4e7b81;
     margin-bottom: 20px;
 }
 
-.ec-section h2 {
+.ec-section .h2 {
     color: #4e7b81;
     text-decoration: underline;
 }
 
-.ec-section h1 {
+/*.ec-section h1 {
     color: #72959a;
     text-decoration: underline;
     font-size: 22px;
+}*/
+
+section .p2 {
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .ec-section ul {
