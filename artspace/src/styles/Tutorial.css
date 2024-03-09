@@ -49,6 +49,7 @@
     text-decoration: none;
     transition: text-decoration 0.3s ease;
     font-weight: bold;
+    color: #000;
   }
   
   .quadrant a:hover {
