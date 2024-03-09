@@ -19,9 +19,11 @@ const ArtistArena = () => {
                         <h3>4 Panel Comic</h3>
                         <div class="card-content">
                             <p>Tell a story in 4 pictures!</p>
+                            {/* Will find a better way to implement due date in future */}
                             <p>Date: Mar 9, 2024</p>
                             <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
+                            {/* I've changed the button to a popup */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup1">Compete!</a>
                             </div>
@@ -32,7 +34,10 @@ const ArtistArena = () => {
                                     <div class="content">
                                         <p>A picture is worth a thousand words. What can you say in four?
                                         Tell us your four pannel story! </p>
+                                        {/* This submission is a placeholder */}
+                                        {/* Will change to store image in database */}
                                         <button type="submit">Image Upload Placeholder</button>
+                                        {/* Will need to add a link to page where user can vote on art in contest */}
                                     </div>
                                 </div>
                             </div>
@@ -73,9 +78,11 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Creatures, big and small, cute and creepy!</p>
-                            <p>Date: Mar 10, 2024</p>
+                            {/* Will find a better way to implement due date in future */}
+                            <p>Date: Mar 10, 2024</p> 
                             <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
+                            {/* I've changed the button to a popup */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup7">Compete!</a>
                             </div>
@@ -88,7 +95,10 @@ const ArtistArena = () => {
                                             original creations or legends of old, challenge 
                                             yourself to create creatures that inspire!
                                         </p>
+                                        {/* This submission is a placeholder */}
+                                        {/* Will change to store image in database */}
                                         <button type="submit">Image Upload Placeholder</button>
+                                        {/* Will need to add a link to page where user can vote on art in contest */}
                                     </div>
                                 </div>
                             </div>
@@ -224,6 +234,8 @@ const ArtistArena = () => {
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Winners</h3>
+                    {/* Tentative: Contain either links to pages with finished competition
+                        winners, or links to pages where users can vote and see winners */}
                     <div className="timeframe-line-bottom"></div>
                     <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>

@@ -57,6 +57,7 @@
     margin-bottom: 5px;
     margin-left: 80px;
   }
+/* End of Jennifer's line decal*/
 
 .card {
     background: white;
@@ -96,7 +97,7 @@
     border-radius: 10px; /* inner border radius = outer radius - padding */
 }
 
-/*Test popups*/
+/*CSS design for competition popups*/
 .popbox {
     padding: 10px;
     border: 2px solid #fff;
