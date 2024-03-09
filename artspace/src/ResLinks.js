@@ -18,7 +18,7 @@ function ResLinks() {
         <div className="rl-section">
           <ol>
             <li>
-              <h2>Traditional Art Supplies:</h2>
+              <div className="h2">Traditional Art Supplies:</div>
               <ul>
                 <li><strong><a href="https://castlearts.com/collections/painting">Paints: </a></strong>Online stores where you can purchase various types of paints.</li>
                 <li><strong><a href="https://sunbeltmfg.com/collections/art-canvas">Canvases: </a></strong>Buy canvases in different sizes and quality.</li>
@@ -27,7 +27,7 @@ function ResLinks() {
             </li>
 
             <li>
-              <h2>Digital Art Tools:</h2>
+              <div className="h2">Digital Art Tools:</div>
               <ul>
                 <li><strong><a href="https://store.huion.com/">Graphic Tablets: </a></strong>Suggestions for tablets for digital drawing and painting.</li>
                 <li><strong><a href="https://www.clipstudio.net/how-to-draw/archives/155465">Software: </a></strong>Link to popular digital art software. </li>
@@ -36,7 +36,7 @@ function ResLinks() {
             </li>
 
             <li>
-              <h2>Miscellaneous Art Supplies</h2>
+              <div className="h2">Miscellaneous Art Supplies</div>
               <ul>
                 <li><strong><a href="https://www.cottonwoodarts.com/">Sketchbooks: </a></strong>Suggestions for sketchbooks suitable for different mediums.</li>
                 <li><strong><a href="https://meedenart.com/collections/easels">Easels: </a></strong>Find easels for painting and drawing.</li>
@@ -45,7 +45,7 @@ function ResLinks() {
             </li>
 
             <li>
-              <h2>Where to Shop</h2>
+              <div className="h2">Where to Shop</div>
               <ul>
                 <li>Online Retailers: Search for online stores that specialize in art supplies that offer a wide range of products.</li>
                 <li>Local Art Stores: Find local art supply stores in your area, including suggestions for chain stores and independent retailers.</li>
