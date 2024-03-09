@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles/LoginPage.css";
 /* Tuan's code start here *************************************/
+// imports from firebase to be use
 import { auth } from "./Firebase/Firebase.js";
 import {
   createUserWithEmailAndPassword,
@@ -8,14 +9,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
+// useState for login page
 const LoginPage = () => {
   const [userCredentials, setUserCredentials] = useState({});
   const [error, setError] = useState("");
-
+  // function to handle credentials
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
-
+  // functions to handle sign up with error catching and redirection to landing page upon success.
   function handleSignup(e) {
     e.preventDefault();
     createUserWithEmailAndPassword(
@@ -25,12 +27,13 @@ const LoginPage = () => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        window.location.href = "/"; // Navigate to landing page
       })
       .catch((error) => {
         setError(error.message);
       });
   }
-
+  // function to handle login with error catching and redirection upon success.
   function handleLogin(e) {
     e.preventDefault();
     signInWithEmailAndPassword(
@@ -48,7 +51,7 @@ const LoginPage = () => {
         setError(error.message);
       });
   }
-
+  // reset password, email will be sent to user with links to reset password
   function handlePasswordReset() {
     const email = prompt("Please enter your email address");
     sendPasswordResetEmail(auth, email);
