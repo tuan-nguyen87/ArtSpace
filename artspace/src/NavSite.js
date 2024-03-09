@@ -22,25 +22,25 @@ function NavSite() {
             our navigation bar to discover more in detail, from artwork in our Showroom to having a chat about art in our Social Hub. 
             And whenever you want to return home, simply click on our logo! 
           </p>
-          <img src="/NavSite art/ns_Home.png" alt="Home Page image" />
+          <img src="/NavSite art/ns_Home.png" alt="Home Page" />
         </section>
 
-        <div className="ns-section">
+        <section>
           <h4>Explore Section</h4>
           <p>If you're an artist seeking inspiration or a client looking for the perfect piece, our Explore section has you covered.</p>
           <p>This section includes:</p>
           <ul>
             <li>Tutorial Page</li>
             <p>Discover our Tutorial Page for helpful tips and guidance</p>
-            <img src="/NavSite art/ns_Tutorial.png" alt="Tutorial Page image" />
+            <img src="/NavSite art/ns_Tutorial.png" alt="Tutorial Page" />
             <li>Commission Listing Page</li>
             <p>Explore our Commission Listing Page to find artists ready to bring your vision to life</p>
-            <img src="/NavSite art/ns_Listing.png" alt="CL Page image" />
+            <img src="/NavSite art/ns_Listing.png" alt="Commission Listing Page" />
             <li>Showroom Page</li>
             <p>Visit our Showroom Page to see stunning works on display.</p>
-            <img src="/NavSite art/ns_shrm.png" alt="Showroom Page image" />
+            <img src="/NavSite art/ns_shrm.png" alt="Showroom Page" />
           </ul>
-        </div>
+        </section>
 
         <section>
           <h4>Interact Section</h4>
@@ -51,13 +51,13 @@ function NavSite() {
           <ul>
             <li>Daily Challenges Page</li>
             <p>Visit our Daily Challenges Page to test your skills and creativity with new prompts every day to earn points.</p>
-            <img src="/NavSite art/ns_DC.png" alt="Daily Challenges page image" />
+            <img src="/NavSite art/ns_DC.png" alt="Daily Challenges page" />
             <li>Arena Page</li>
             <p>Dive into the Arena Page to participate in friendly competitions, showcase your talents, and win points.</p>
-            <img src="/NavSite art/ns_Arena.png" alt="Arena Page image" />
+            <img src="/NavSite art/ns_Arena.png" alt="Arena Page" />
             <li>Social Hub Page</li>
             <p>Explore the Social Hub Page to connect with fellow artists and discover inspiration from a vibrant community.</p>
-            <img src="/NavSite art/ns_SH.png" alt="Social Hub Page image" />
+            <img src="/NavSite art/ns_SH.png" alt="Social Hub Page" />
           </ul>
         </section>
 
@@ -66,7 +66,7 @@ function NavSite() {
           <p>If you're looking to add flair to your profile or celebrate your accomplishments, our Market section offers a 
             variety of options to enhance your artistic journey. Artists can exchange their earned points for badges, icons, emotes etc...
           </p>
-          <img src="/NavSite art/ns_Market.png" alt="Market Page image" />
+          <img src="/NavSite art/ns_Market.png" alt="Market Page" />
         </section>
 
         <section>
@@ -76,25 +76,25 @@ function NavSite() {
           <ul>
             <li>Profile</li>
             <p>Here you'll find quick links to your Messages, Portfolio, Commissions, and Collaborations</p>
-            <img src="/NavSite art/ns_Profile.png" alt="Profile Page image" />
+            <img src="/NavSite art/ns_Profile.png" alt="Profile Page" />
             <li>Portfolio</li>
             <p>Access your Portfolio Page to showcase your work and personal details</p>
-            <img src="/NavSite art/ns_Portfolio.png" alt="Portfolio Page image" />
+            <img src="/NavSite art/ns_Portfolio.png" alt="Portfolio Page" />
             <li>Commissions</li>
             <p>Manage your commission requests and track your ongoing projects.</p>
-            <img src="/NavSite art/ns_Commission.png" alt="Commission Page image" />
+            <img src="/NavSite art/ns_Commission.png" alt="Commission Page" />
             <li>Messages</li>
             <p>Stay connected with other artists through the Messages Page, where you can communicate and collaborate seamlessly</p>
-            <img src="/NavSite art/ns_Messages.png" alt="Messages Page image" />
+            <img src="/NavSite art/ns_Messages.png" alt="Messages Page" />
             <li>Collaborations</li>
             <p>Explore the Collaboration Page to find opportunities for joint projects and creative partnerships.</p>
-            <img src="/NavSite art/ns_Collab.png" alt="Collaborations Page image" />
+            <img src="/NavSite art/ns_Collab.png" alt="Collaborations Page" />
             <li>My Points</li>
             <p>Here is where you can track your earnings, progress, and achievements.</p>
-            <img src="/NavSite art/ns_Points.png" alt="Points Page image" />
+            <img src="/NavSite art/ns_Points.png" alt="Points Page" />
             <li>Leave a Review</li>
             <p>Leave a rating and review to share feedback and testimonials, building your reputation within the ArtSpace community.</p>
-            <img src="vns_RR.png" alt="RR Page image" />
+            <img src="/NavSite art/ns_RR.png" alt="Rate and Review Page" />
           </ul>
         </section>
       </div>

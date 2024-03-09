@@ -15,7 +15,7 @@ function ArtTutorials() {
       
         <div className="at-section">
           <h2>Introduction</h2>
-          <p>Welcome to our comprehensive collection of art tutorials! Whether you're a beginner looking to learn the basics or an experienced artist seeking to refine your skills, you'll find something here to inspire and guide you on your artistic journey.</p>
+          <p>Whether you're a beginner looking to learn the basics or an experienced artist seeking to refine your skills, you'll find something here to inspire and guide you on your artistic journey.</p>
         </div>
 
         <div className="at-section">
