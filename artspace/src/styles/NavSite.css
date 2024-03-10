@@ -28,6 +28,7 @@
 .ns-container h3 {
     font-size: 50px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .ns-container .p1 {
@@ -44,6 +45,7 @@ section h4 {
     font-size: 30px;
     color: #4e7b81;
     text-decoration: underline;
+    margin-bottom: 20px;
 }
 
 section .p2 {
@@ -68,6 +70,7 @@ section ul li {
     font-size: 16px;
     margin-left: 20px;
     text-decoration: underline;
+    margin-bottom: 20px;
 }
 
 

@@ -28,20 +28,25 @@ border: 2px solid #4e7b81;
 .ec-container h3 {
     font-size: 50px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .ec-container .p1 {
     font-size: 15px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .ec-section {
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 .ec-section .h2 {
     color: #4e7b81;
     text-decoration: underline;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
 /*.ec-section h1 {
@@ -50,7 +55,7 @@ border: 2px solid #4e7b81;
     font-size: 22px;
 }*/
 
-section .p2 {
+.ec-section .p2 {
     font-size: 15px;
     margin-bottom: 20px;
     text-align: left;

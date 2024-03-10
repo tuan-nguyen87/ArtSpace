@@ -28,38 +28,43 @@ border: 2px solid #4e7b81;
 .at-container h3 {
     font-size: 50px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .at-container .p1 {
     font-size: 15px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .at-section {
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
-section .p2 {
+.at-section .p2 {
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     text-align: left;
+    padding:10px
 }
 
 .at-section .h2 {
     color: #4e7b81;
     text-decoration: underline;
     font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .at-section h1 {
     color: #72959a;
     text-decoration: underline;
     font-size: 22px;
+    padding: 10px
 }
 
 .at-section ul {
     list-style-type: circle;
-    padding: 10px;
+    padding: 20px;
 }
 
 .at-section ul li {

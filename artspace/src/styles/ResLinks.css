@@ -28,20 +28,24 @@ border: 2px solid #4e7b81;
 .rl-container h3 {
     font-size: 50px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .rl-container .p1 {
     font-size: 15px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .rl-section {
     margin-bottom: 20px;
+    padding: 20px
 }
 
 .rl-section .h2 {
     color: #4e7b81;
     text-decoration: underline;
+    font-size: 25px;
 }
 
 .rl-section ul {
