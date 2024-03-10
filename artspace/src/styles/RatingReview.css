@@ -154,7 +154,7 @@ background-color: #c2a133;
   overflow-y: auto;
 }
 
-/* Add these styles to your existing CSS or modify accordingly */
+
 
 .review-item {
   background-color: #fff;
@@ -178,7 +178,7 @@ background-color: #c2a133;
 
 .review-item p:nth-child(2) {
   font-size: 16px;
-  color: #dd8d16; /* Adjust the color as needed */
+  color: #dd8d16; 
 }
 
 .review-item p:nth-child(3) {
@@ -188,7 +188,7 @@ background-color: #c2a133;
 }
 
 
-/* Add these styles to your existing CSS or modify accordingly */
+
 
 .star-rating i.active:nth-child(1) {
   color: #fffba5; /* Color for the first active star */
