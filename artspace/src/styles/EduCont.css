@@ -1,0 +1,81 @@
+.ec-body{
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #98c6cc;
+}
+
+.ec-hr{
+border-bottom: 3px solid #4e7b81;
+padding-top: 99px; /*was 35px?*/
+}
+
+.ec-section-header {
+font-size: 15px;
+margin-left: 10px;
+margin-top: 5px;
+color: #fff;
+}
+
+.ec-container {
+max-width: 900px;
+margin: 20px auto;
+padding: 20px;
+background-color: #fff;
+border: 2px solid #4e7b81;
+}
+
+.ec-container h3 {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ec-container .p1 {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ec-section {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.ec-section .h2 {
+    color: #4e7b81;
+    text-decoration: underline;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/*.ec-section h1 {
+    color: #72959a;
+    text-decoration: underline;
+    font-size: 22px;
+}*/
+
+.ec-section .p2 {
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.ec-section ul {
+    list-style-type: circle;
+    padding: 10px;
+}
+
+.ec-section ul li {
+    margin-bottom: 10px;
+}
+
+.ec-section ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.ec-section ul li a:hover {
+    color: #4e7b81;
+}
+

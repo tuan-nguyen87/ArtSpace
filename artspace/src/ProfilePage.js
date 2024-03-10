@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/ProfilePage.css";
-
+/* main component of this page, it will be split into 4 quadrant. each with pictures and links to different part of website */
+// Collaboration still have waiting on links, page is not created.
 const ProfilePage = () => {
   return (
     <div className="profile-page">

@@ -24,7 +24,7 @@ nav a {
   padding: 10px 20px;
   text-decoration: none;
   color: black;
-  /*Two guesses on who's playing with fonts :D */
+  /*Finding nice fonts for the landing page links -- Yasmine */
   /* font-family: "Kristi", sans-serif; */
   /* font-family:'Times New Roman', Times, serif; */
   /* font-family: Optima, sans-serif; */
@@ -32,7 +32,7 @@ nav a {
   /* font-family: Didot, serif; */
   /* font-family: Georgia, serif; */
   font-family: American Typewriter, serif;
-  font-size: 30px;
+  font-size: 30px; /*Reduce size of top links -- Yasmine*/
   margin-right: 35px;
 }
 

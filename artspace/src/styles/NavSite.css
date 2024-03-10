@@ -1,0 +1,77 @@
+.ns-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #98c6cc;
+}
+
+.ns-hr {
+    border-bottom: 3px solid #4e7b81;
+    padding-top: 99px; /*was 35px?*/
+}
+
+.ns-section-header {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.ns-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #4e7b81;
+}
+
+.ns-container h3 {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ns-container .p1 {
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Sections for each section for artspace*/
+section {
+    margin-top: 40px;
+}
+
+section h4 {
+    font-size: 30px;
+    color: #4e7b81;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+section .p2 {
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+section img {
+    max-width: 50%;
+    display: block; 
+    margin: 0 auto 20px; 
+    border: 1px solid #606060;
+}
+
+section ul {
+    list-style-type: circle;
+    padding-left: 0;
+}
+
+section ul li {
+    font-size: 16px;
+    margin-left: 20px;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+
+

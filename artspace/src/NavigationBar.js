@@ -27,6 +27,7 @@ const NavigationBar = () => {
   return (
     <div className="NavComponents">
       <nav>
+        {/* Turned the logo into a quick path to the landing page --Yasmine */}
         <a href="/">
           <img
             src="/Homepage art/logo-modified.png"

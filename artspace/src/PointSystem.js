@@ -86,7 +86,7 @@ function PointSystem() {
             </div>
             <div className="ps-grid-item">
               <h3>Market Purchases</h3>
-              <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="market-purchases-poins">{artistData.marketPurchasesPoints}</span></div>
+              <div>Total Points Used: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="market-purchases-poins">{artistData.marketPurchasesPoints}</span></div>
             </div>
             <div className="ps-grid-item ps-scroll-container market-item">
               {renderList(artistData.marketPurchases)}
