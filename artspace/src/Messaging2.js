@@ -1,11 +1,10 @@
-// Import necessary dependencies and styles
 import React, { useState, useEffect } from "react";
 import "./styles/messaging2.css";
 import CreateChatPopup from "./CreateChatPopup"; //
-import { messaging, requestPermission } from "./Firebase/Firebase";
+import { messaging, requestPermission, updateUI } from "./Firebase/Firebase";
 import { db } from "./Firebase/Firebase";
 import { auth } from "./Firebase/Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 
 
@@ -16,9 +15,8 @@ const Messaging2 = () => {
   // State for storing messages and new messages
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreateChatPopupOpen, setCreateChatPopupOpen] = useState(false);//
-  //const [user, setUser] = useState('');
+ 
 
   
   // Function to send a new message 
@@ -26,21 +24,21 @@ const Messaging2 = () => {
     if (content.trim() !== "") {
       const user = auth.currentUser;
       const message = {
-        user: user.displayName || user.email, // Use display name or email as the user identifier
+        user: user.displayName || user.email,
         content,
         timestamp: new Date().toISOString(),
       };
   
       try {
-        await db.collection("messages").add(message);
-        setMessages((prevMessages) => [...prevMessages, message]);
+        const docRef = await addDoc(collection(db, "messages"), message);
+        console.log("Document written with ID: ", docRef.id);
       } catch (error) {
-        console.error("Error sending message:", error);
+        console.error("Error adding document:", error);
       }
     }
   };
   
-  
+
 
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
@@ -56,10 +54,10 @@ const Messaging2 = () => {
       e.preventDefault(); // Prevents a new line in the textarea
       handleSendMessage();
     }
-};
+  };
   
 
-const handleOpenCreateChatPopup = () => {
+  const handleOpenCreateChatPopup = () => {
     setCreateChatPopupOpen(true);
   };
 
@@ -75,20 +73,49 @@ const handleOpenCreateChatPopup = () => {
     handleCloseCreateChatPopup();//
   };
 
-// Fetch messages from Firestore
-useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const snapshot = await getDocs(collection(db, "messages"));
-        const messagesData = snapshot.docs.map((doc) => doc.data());
-        setMessages(messagesData);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
+
+  // Function to update the UI with a new or modified message
+  const updateUI = (message) => {
+    // Update the state with the new or modified message
+    setMessages((prevMessages) => [...prevMessages, message]);
+    console.log('Update UI with message:', message);
+  };
+
+
+
+  // Fetch messages from Firestore
+  useEffect(() => {
+    // Fetch messages from Firestore
+const fetchMessages = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, "messages"));
+      const messagesData = snapshot.docs.map((doc) => doc.data());
   
-    fetchMessages(); 
-  }, []); 
+      // Combine default messages with fetched messages
+      const allMessages = [...defaultMessages, ...messagesData];
+  
+      // Use Map to ensure uniqueness based on message content
+      const uniqueMessagesMap = new Map();
+      allMessages.forEach((message) => {
+        uniqueMessagesMap.set(message.content, message);
+      });
+  
+      // Update the state with the unique messages
+      setMessages(Array.from(uniqueMessagesMap.values()));
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
+  
+  // Fetch default messages separately (if needed)
+  const defaultMessages = [
+    // default messages here
+  ];
+  
+  // Invoke the function to fetch messages
+  fetchMessages();
+   
+    }, []); 
   
   
 

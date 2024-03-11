@@ -36,9 +36,11 @@ const unsubscribe = onSnapshot(messagesRef, (snapshot) => {
       // Handle the new or modified message
       console.log("New or modified message:", message);
       // Trigger a function to update the UI with the new message
+
     }
   });
 });
+
 
 
 onAuthStateChanged(auth, (user) => {
@@ -52,6 +54,7 @@ onAuthStateChanged(auth, (user) => {
     // can update the UI or take actions when the user is signed out
   }
 }, (error) => {
+  
   console.error("Auth state change error:", error);
 });
 
