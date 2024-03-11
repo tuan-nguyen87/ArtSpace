@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import "./styles/messaging2.css";
 import CreateChatPopup from "./CreateChatPopup"; //
 import { messaging, requestPermission } from "./Firebase/Firebase";
-import { db } from "./Firebase/Firebase"
+import { db } from "./Firebase/Firebase";
+import { auth } from "./Firebase/Firebase";
+import { collection, getDocs } from "firebase/firestore";
+
+
 
 
 
@@ -18,13 +22,25 @@ const Messaging2 = () => {
 
   
   // Function to send a new message 
-  const sendMessage = (content) => {
+  const sendMessage = async (content) => {
     if (content.trim() !== "") {
-      const message = { user: "User", content, timestamp: new Date().toISOString() };
-      setMessages((prevMessages) => [...prevMessages, message]);
-      db.collection("messages").add(message);
+      const user = auth.currentUser;
+      const message = {
+        user: user.displayName || user.email, // Use display name or email as the user identifier
+        content,
+        timestamp: new Date().toISOString(),
+      };
+  
+      try {
+        await db.collection("messages").add(message);
+        setMessages((prevMessages) => [...prevMessages, message]);
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
     }
   };
+  
+  
 
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
@@ -59,6 +75,22 @@ const handleOpenCreateChatPopup = () => {
     handleCloseCreateChatPopup();//
   };
 
+// Fetch messages from Firestore
+useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "messages"));
+        const messagesData = snapshot.docs.map((doc) => doc.data());
+        setMessages(messagesData);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+  
+    fetchMessages(); 
+  }, []); 
+  
+  
 
 
   // JSX structure for the messaging page 
@@ -321,7 +353,16 @@ const handleOpenCreateChatPopup = () => {
           </div>
           <div className="rightSide">
               <div className="chatBox">
-                  <div className="message my_message">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`message ${message.user === auth.currentUser.displayName || message.user === auth.currentUser.email ? "my_message" : "frnd_message"}`}
+                >
+                  <p>{message.content}<br /><span>{new Date(message.timestamp.seconds * 1000).toLocaleString()}</span></p>
+                </div>
+              ))}
+
+             {/*     <div className="message my_message">
                       <p>Hi<br /><span>12:15</span></p>
                   </div>
                   <div className="message frnd_message">
@@ -362,7 +403,7 @@ const handleOpenCreateChatPopup = () => {
                   </div>
                   <div className="message frnd_message">
                       <p>ArtSpace<br /><span>12:15</span></p>
-                  </div>
+              </div> */}
               </div>
 
 

@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 //Also added 'onSnapshot'-used to listen for real-time updates in "messages" collection
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging"; //Val
+import { onAuthStateChanged } from "firebase/auth";
+
 
 
 // Your web app's Firebase configuration
@@ -39,6 +41,21 @@ const unsubscribe = onSnapshot(messagesRef, (snapshot) => {
 });
 
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in
+    console.log("User is signed in:", user);
+    // can update the UI or take actions when the user is signed in
+  } else {
+    // User is signed out
+    console.log("User is signed out");
+    // can update the UI or take actions when the user is signed out
+  }
+}, (error) => {
+  console.error("Auth state change error:", error);
+});
+
+
 
 const requestPermission = async () => {
   try {
@@ -63,9 +80,9 @@ const requestPermission = async () => {
 };
 
 const sendTokenToServer = (token) => {
-  // Replace this with your server endpoint to send the FCM token
+  // Replace this with my server endpoint to send the FCM token
   // Example: You need to implement a server API to handle the FCM token
-  fetch('https://your-server-endpoint.com/save-fcm-token', {
+  fetch('http://localhost:3000', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

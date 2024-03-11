@@ -22,7 +22,7 @@ const CreateChatPopup = ({ onClose, onCreateChat }) => {
           value={searchUser}
           onChange={handleSearchChange}
         />
-        {/* Add your logic for searching and displaying users */}
+        {/* Add logic for searching and displaying users */}
         
         <button onClick={onCreateChat}>Create Chat</button>
       </div>

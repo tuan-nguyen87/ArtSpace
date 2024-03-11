@@ -124,7 +124,7 @@ const SocialHub = () => {
           <option value="Daily Challenge">Daily Challenge</option>
           <option value="Arena">Arena</option>
           <option value="Other">Other</option>
-          {/* Add other category options here */}
+          
         </select>
         <button id="filterButton" onClick={handleFilterQuestions}>Filter</button>
       </div>
