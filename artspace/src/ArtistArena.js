@@ -20,8 +20,6 @@ const ArtistArena = () => {
                         <div class="card-content">
                             <p>Tell a story in 4 pictures!</p>
                             {/* Will find a better way to implement due date in future */}
-                            <p>Date: Mar 9, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             {/* I've changed the button to a popup */}
                             <div class ="popbox">
@@ -29,11 +27,15 @@ const ArtistArena = () => {
                             </div>
                             <div id="popup1" class="overlay">
                                 <div class="popup">
-                                    <h2>4 Pannel Comics</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/4-Panel-Life.png" />
+                                        <p>Date: Mar 9, 2024</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
+                                        <h2>4 Pannel Comics</h2>
                                         <p>A picture is worth a thousand words. What can you say in four?
-                                        Tell us your four pannel story! </p>
+                                        Tell us your story using only four pannels! </p>
                                         {/* This submission is a placeholder */}
                                         {/* Will change to store image in database */}
                                         <button type="submit">Image Upload Placeholder</button>
