@@ -140,3 +140,40 @@ select {
     margin-bottom: 5px;
 }
 
+/*float shadow effect for each item in the item contianer*/
+.mp-hvr-float-shadow {
+    display: inline-block;
+    vertical-align: middle; /*shadow in the middle*/
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.mp-hvr-float-shadow:before {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: ''; /*is rendered*/
+    top: 160px; /*changed to px form % was 100%*/
+    left: 33%;
+    height: 10px;
+    width: 40%;
+    opacity: 0; /*not showing by defalut*/
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    transition-property: transform, opacity;
+}
+
+.mp-hvr-float-shadow:hover,
+.mp-hvr-float-shadow:focus,
+.mp-hvr-float-shadow:active {
+    transform: translateY(-20px); /*upward motion was -5*/
+}
+
+.mp-hvr-float-shadow:hover:before,
+.mp-hvr-float-shadow:focus:before,
+.mp-hvr-float-shadow:active:before {
+    opacity: 1; /*makes the shadow visible*/
+    transform: translateY(20px); /*downward motion was 5*/
+}

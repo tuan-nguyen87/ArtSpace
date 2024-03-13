@@ -121,7 +121,7 @@ const MarketPage = () => {
                         </div>
                     ) : (
                         filteredItems.map((item, index) => (
-                            <div className="item" key={index}>
+                            <div className="item mp-hvr-float-shadow" key={index}>
                                 <img src={item.image} alt="Item" />
                                 <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
                             </div>
