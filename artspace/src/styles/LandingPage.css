@@ -27,10 +27,10 @@
 /* Pertains the welcome/search box */
 .main {
   position: absolute; /* Position element relative to its normal position */
-  top: 300px;
+  top: 200px;
   left: 20px;
   width: 580px;
-  height: 330px;
+  height: 360px;
   border: none;
   border-radius: 20px;
   backdrop-filter: blur(5px); /* Apply blur effect */

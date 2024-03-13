@@ -97,7 +97,7 @@
 }
 .card-image {
     width: 100%;
-    height: 60%;
+    height: 240px;
     object-fit: cover;
     border-radius: 10px; /* inner border radius = outer radius - padding */
 }
@@ -146,7 +146,7 @@
   
   .popup {
     margin: 200px 25% auto;
-    padding: 20px;
+    padding: 30px;
     background: #fff;
     border-radius: 10px;
     width: 600px;
@@ -161,8 +161,14 @@
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
   }
-  .popup p {
-    margin: 5px;
+  .popup .desc {
+    text-transform: none;
+    margin-top: 10px;
+    margin-bottom: 17px;
+    color: black;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align:left;
   }
   .popup .close {
     position: absolute;
@@ -180,7 +186,7 @@
   .popup .content {
     max-height: 400px;
     overflow: auto;
-    margin: 10px;
+    /* margin: 10px; */
   }
 
   .popup button {
@@ -197,8 +203,8 @@
   }
 
   .popup .popimages {
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 200px;
     object-fit: cover;
     border-radius: 5px;
   }
