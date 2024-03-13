@@ -161,8 +161,8 @@ select {
     left: 33%;
     height: 10px;
     width: 40%;
-    opacity: 0; /*not showing by defalut*/
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    opacity: 0; /*not showing shadow by defalut*/
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%); /*rounded shadow*/
     transition-property: transform, opacity;
 }
 
