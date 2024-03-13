@@ -156,21 +156,21 @@ select {
     /*pointer-events: none;*/
     position: absolute;
     z-index: -1;
-    content: ''; /*rendered*/
-    top: 160px; /*changed to px form % was 100%*/
+    content: ''; /*rendering content, default value*/
+    top: 160px; /*changed to px form %, was 100%*/
     left: 33%;
     height: 10px;
     width: 40%;
     opacity: 0; /*not showing shadow by defalut*/
     background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%); /*rounded shadow*/
-    transition-property: transform, opacity;
+    transition-property: transform, opacity; /*applied to the motion and opacity of shadow*/
 }
 
 /*when hovering over items*/
 .mp-hvr-float-shadow:hover,
 .mp-hvr-float-shadow:focus,
 .mp-hvr-float-shadow:active {
-    transform: translateY(-20px); /*upward motion was -5*/
+    transform: translateY(-20px); /*upward motion, was -5*/
 }
 
 /*when not hovering over items*/
@@ -178,5 +178,5 @@ select {
 .mp-hvr-float-shadow:focus:before,
 .mp-hvr-float-shadow:active:before {
     opacity: 1; /*makes the shadow visible*/
-    transform: translateY(20px); /*downward motion was 5*/
+    transform: translateY(20px); /*downward motion, was 5*/
 }
