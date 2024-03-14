@@ -10,7 +10,7 @@
 
 .search-title {
   color: gold;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-size: larger;
 }
 
@@ -18,11 +18,10 @@
   width: 500px; /* Adjust width as needed */
   height: 50px;
   padding: 10px;
-  margin-top: 10px; /* Add margin between h1 and input */
   border: solid gold 4px;
   border-radius: 25px;
   font-size: 25px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .search-results {
