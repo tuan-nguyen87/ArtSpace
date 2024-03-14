@@ -1,0 +1,17 @@
+.searchpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  padding-top: 150px;
+}
+
+.searchpage-input {
+  width: 500px; /* Adjust width as needed */
+  height: 50px;
+  padding: 10px;
+  margin-top: 10px; /* Add margin between h1 and input */
+  border: solid gold 4px;
+  border-radius: 25px;
+  font-size: 16px;
+}

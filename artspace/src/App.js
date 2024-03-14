@@ -21,7 +21,7 @@ import NavSite from "./NavSite";
 import ArtTutorials from "./ArtTutorials";
 import EduCont from "./EduCont";
 import ResLinks from "./ResLinks";
-
+import Search from "./Search";
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -34,7 +34,6 @@ function App() {
     }, 3000); // Dismiss notification after 3 seconds
   };
 
-
   return (
     <div className="App">
       <Notification message={notification.message} type={notification.type} />
@@ -43,7 +42,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
-          <Route path="/Messaging2" element={<Messaging2 triggerNotification={triggerNotification} />} />
+          <Route
+            path="/Messaging2"
+            element={<Messaging2 triggerNotification={triggerNotification} />}
+          />
           <Route path="/DailyChallenge" element={<DailyChallenge />} />
           <Route path="/RatingReview" element={<RatingReview />} />
           <Route path="/TutorialPage" element={<TutorialPage />} />
@@ -59,6 +61,7 @@ function App() {
           <Route path="/ArtTutorials" element={<ArtTutorials />} />
           <Route path="/EduCont" element={<EduCont />} />
           <Route path="/ResLinks" element={<ResLinks />} />
+          <Route path="/Search" element={<Search />} />
         </Routes>
       </Router>
     </div>
