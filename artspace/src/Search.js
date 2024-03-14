@@ -62,7 +62,7 @@ const Search = () => {
       <div className="search-results-container">
         {searchResults.length > 0 ? (
           <div className="search-results">
-            <h2>Search Results:</h2>
+            <h2 className="text-results">Search Results:</h2>
             <div className="user-list">
               {searchResults.map((user, index) => (
                 <div key={index} className="user-card">

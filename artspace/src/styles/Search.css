@@ -10,6 +10,8 @@
 
 .search-title {
   color: gold;
+  margin-bottom: 50px;
+  font-size: larger;
 }
 
 .searchpage-input {
@@ -20,21 +22,26 @@
   border: solid gold 4px;
   border-radius: 25px;
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .search-results {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.text-results {
+  padding-bottom: 25px;
 }
 
 .user-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 30px;
 }
 
 .user-card {
-  border: 3px solid #5d70ff; /* Add border around each user card */
+  border: 3px solid #ff5d5d; /* Add border around each user card */
   border-radius: 25px;
   padding: 20px;
   background-color: rgb(218, 255, 255);
