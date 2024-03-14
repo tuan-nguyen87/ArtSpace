@@ -154,7 +154,7 @@ const MarketPage = () => {
                         <div className="mp-popup-header">Great Choice! Are you ready to purchase?</div>
                         <img src={clickedItem.image} alt="Item" />
                         <p>Category: {clickedItem.category}</p>
-                        <p>Points: {clickedItem.points}</p>
+                        <p>Points: <img src="/Market art/coin.png" className="coin" alt="Coin" /> {clickedItem.points}</p>
                         <div className="mp-popup-buttons">
                             <button onClick={purchase}>Purchase</button>
                             <button onClick={closePopup}>Close</button>

@@ -157,7 +157,7 @@ select {
     position: absolute;
     z-index: -1;
     content: ''; /*rendering content, default value*/
-    top: 160px; /*changed to px form %, was 100%*/
+    top: 140px; /*changed to px form %, was 100%*/
     left: 33%;
     height: 10px;
     width: 40%;
@@ -221,6 +221,13 @@ select {
     width: 200px;
     height: auto;
     margin-bottom: 30px;
+}
+
+.mp-popup img.coin {
+    width: 20px;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /*buttons in the popup*/
