@@ -19,23 +19,18 @@ const Search = () => {
       const querySnapshot = await getDocs(usersRef);
 
       const matchingUsers = [];
-      const normalizedQuery = query.toLowerCase(); // Normalize query to lowercase
-
       querySnapshot.forEach((doc) => {
         const user = doc.data();
-        const normalizedUserName = user.name.toLowerCase(); // Normalize user name to lowercase
 
-        // Check if the normalized user name includes the normalized query
-        if (normalizedUserName.includes(normalizedQuery)) {
+        // Convert skills to lowercase for case-insensitive matching
+        const lowercaseSkills = user.skills.map((skill) => skill.toLowerCase());
+
+        // Check if query matches name or any skill (case-insensitive and partial matching)
+        if (
+          user.name.toLowerCase().includes(query.toLowerCase()) ||
+          lowercaseSkills.some((skill) => skill.includes(query.toLowerCase()))
+        ) {
           matchingUsers.push(user);
-        } else {
-          // Check if any of the user's skills include the normalized query
-          const matchingSkills = user.skills.filter((skill) =>
-            skill.toLowerCase().includes(normalizedQuery)
-          );
-          if (matchingSkills.length > 0) {
-            matchingUsers.push(user);
-          }
         }
       });
 
@@ -67,11 +62,21 @@ const Search = () => {
       {searchResults.length > 0 && (
         <div className="search-results">
           <h2>Search Results:</h2>
-          <ul>
+          <div className="user-list">
             {searchResults.map((user, index) => (
-              <li key={index}>{user.name}</li>
+              <div key={index} className="user-card">
+                <img
+                  src={user.profilePic}
+                  alt="Profile"
+                  className="profile-pic"
+                />
+                <div className="user-details">
+                  <h3>{user.name}</h3>
+                  <p>Skills: {user.skills.join(", ")}</p>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
       {error && <div className="error">{error}</div>}
