@@ -180,3 +180,53 @@ select {
     opacity: 1; /*makes the shadow visible*/
     transform: translateY(20px); /*downward motion, was 5*/
 }
+
+/*overlay popup box when items are clicked on*/
+.mp-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/*overlay for when item is clicked on*/
+.mp-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*header inside the popup*/
+.mp-popup-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/*image inside the popup*/
+.mp-popup img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+/*buttons in the popup*/
+.mp-popup-buttons {
+    margin-top: 20px;
+}
+
+.mp-popup-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
