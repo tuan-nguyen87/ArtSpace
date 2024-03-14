@@ -1,8 +1,12 @@
-// Import necessary dependencies and styles
 import React, { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
 import "./styles/messaging2.css";
 import CreateChatPopup from "./CreateChatPopup"; //
+import { messaging, requestPermission, updateUI } from "./Firebase/Firebase";
+import { db } from "./Firebase/Firebase";
+import { auth } from "./Firebase/Firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+
+
 
 
 
@@ -11,53 +15,30 @@ const Messaging2 = () => {
   // State for storing messages and new messages
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreateChatPopupOpen, setCreateChatPopupOpen] = useState(false);//
-  //const [user, setUser] = useState('');
-
-
-
-  // Effect hook for initializing and cleaning up the socket connection
-  useEffect(() => {
-
-    // Check if the user is already logged in
-    const storedToken = localStorage.getItem("authToken");
-    if (storedToken) {
-      setIsLoggedIn(true);
-    }
-
-     // Establish socket connection to the server
-	const socket = socketIOClient("http://localhost:3000");
-
-    
-	// Event listener for incoming chat messages
-	socket.on("chat message", (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-     // Event listener for loading existing messages
-	socket.on("load messages", (loadedMessages) => {
-      setMessages(loadedMessages);
-    });
-
-    // Cleanup function to disconnect socket on component unmount
-	return () => {
-      socket.disconnect();
-    };
-  }, []); // Empty dependency array ensures the effect runs only once during component mount
+ 
 
   
   // Function to send a new message 
-  const sendMessage = (content) => {
+  const sendMessage = async (content) => {
     if (content.trim() !== "") {
-      const socket = socketIOClient("http://localhost:3000");
-      const message = { user: "User", content };
-
-      socket.emit("chat message", message);
-
-      setMessages((prevMessages) => [...prevMessages, message]);
+      const user = auth.currentUser;
+      const message = {
+        user: user.displayName || user.email,
+        content,
+        timestamp: new Date().toISOString(),
+      };
+  
+      try {
+        const docRef = await addDoc(collection(db, "messages"), message);
+        console.log("Document written with ID: ", docRef.id);
+      } catch (error) {
+        console.error("Error adding document:", error);
+      }
     }
   };
+  
+
 
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
@@ -73,10 +54,10 @@ const Messaging2 = () => {
       e.preventDefault(); // Prevents a new line in the textarea
       handleSendMessage();
     }
-};
+  };
   
 
-const handleOpenCreateChatPopup = () => {
+  const handleOpenCreateChatPopup = () => {
     setCreateChatPopupOpen(true);
   };
 
@@ -92,33 +73,67 @@ const handleOpenCreateChatPopup = () => {
     handleCloseCreateChatPopup();//
   };
 
+
+  // Function to update the UI with a new or modified message
+  const updateUI = (message) => {
+    // Update the state with the new or modified message
+    setMessages((prevMessages) => [...prevMessages, message]);
+    console.log('Update UI with message:', message);
+  };
+
+
+
+  // Fetch messages from Firestore
+  useEffect(() => {
+    // Fetch messages from Firestore
+const fetchMessages = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, "messages"));
+      const messagesData = snapshot.docs.map((doc) => doc.data());
+  
+      // Combine default messages with fetched messages
+      const allMessages = [...defaultMessages, ...messagesData];
+  
+      // Use Map to ensure uniqueness based on message content
+      const uniqueMessagesMap = new Map();
+      allMessages.forEach((message) => {
+        uniqueMessagesMap.set(message.content, message);
+      });
+  
+      // Update the state with the unique messages
+      setMessages(Array.from(uniqueMessagesMap.values()));
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
+  
+  // Fetch default messages separately (if needed)
+  const defaultMessages = [
+    // default messages here
+  ];
+  
+  // Invoke the function to fetch messages
+  fetchMessages();
+   
+    }, []); 
+  
+  
+
+
   // JSX structure for the messaging page 
   return (
     <><div className="message-page">
         <div className="m_container">
           <div className="leftSide">
-             {/* <div className="header">
-                  <div className="userimg">
-                      <img src="user.jpg" className="cover"/>
-                  </div>
-                  <ul className="nav_icons">
-                      <li><ion-icon name="scan-circle-outline"></ion-icon></li>
-                      <li><ion-icon name="chatbox"></ion-icon></li>
-                      <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
-                  </ul>
-                </div>*/}
-              
-              
               {/* Render the CreateChatPopup component if isCreateChatPopupOpen is true */}
               {isCreateChatPopupOpen && (
                 <CreateChatPopup
                 onClose={handleCloseCreateChatPopup}
-                //onCreateChat={handleCreateChat}
+                onCreateChat={handleNewChat}
                 />
               )}
               {/* Button to open the Create Chat popup */}
               <button className="button-style" onClick={handleOpenCreateChatPopup}>New Chat +</button>
-
 
               <div className="chatlist">
                   <div className="block active">
@@ -364,22 +379,17 @@ const handleOpenCreateChatPopup = () => {
               </div>
           </div>
           <div className="rightSide">
-              <div className="header">
-                  {/*<div className="imgText">
-                      <div className="userimg">
-                          <img src="img1.jpg" className="cover"/>
-                      </div>
-                      <h4>Mimi<br /><span>online</span></h4>
-                  </div>
-                  {/*<ul className="nav_icons">
-                      <li><ion-icon name="search-outline"></ion-icon></li>
-                      <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
-                     </ul>*/}
-              </div>
-
-
               <div className="chatBox">
-                  <div className="message my_message">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`message ${message.user === auth.currentUser.displayName || message.user === auth.currentUser.email ? "my_message" : "frnd_message"}`}
+                >
+                  <p>{message.content}<br /><span>{new Date(message.timestamp.seconds * 1000).toLocaleString()}</span></p>
+                </div>
+              ))}
+
+             {/*     <div className="message my_message">
                       <p>Hi<br /><span>12:15</span></p>
                   </div>
                   <div className="message frnd_message">
@@ -420,13 +430,11 @@ const handleOpenCreateChatPopup = () => {
                   </div>
                   <div className="message frnd_message">
                       <p>ArtSpace<br /><span>12:15</span></p>
-                  </div>
+              </div> */}
               </div>
 
 
               <div className="chatBox_input">
-                  {/*<ion-icon name="happy-outline"></ion-icon>
-                  <ion-icon name="attach-outline"></ion-icon>*/}
                   <input
                     type="text"
                     placeholder="Type a message"
@@ -442,8 +450,7 @@ const handleOpenCreateChatPopup = () => {
           </div>
       </div>
     </div>
-      {/*<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>*/}</>
+      </>
   );
 };
 

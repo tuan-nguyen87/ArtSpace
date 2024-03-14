@@ -1,3 +1,4 @@
+/* main style of the page */
 .profile-page {
   display: flex;
   justify-content: center;
@@ -5,7 +6,7 @@
   min-height: 100vh;
   background: linear-gradient(360deg, #153677, #4e085f);
 }
-
+/* container to display 4 quadrant */
 .profile-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -15,7 +16,7 @@
   gap: 60px;
   width: 60%;
 }
-
+/* top 2 quadrant */
 .profile-section {
   display: flex;
   align-items: center;
@@ -33,7 +34,7 @@
   border: solid 5px rgb(255, 213, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+/* bottom 2 quadrant */
 .profile-section2 {
   display: flex;
   align-items: center;
@@ -51,7 +52,7 @@
   border: solid 5px rgb(255, 213, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+/* animation for the buttons */
 .message-text {
   position: absolute;
   bottom: 18%;

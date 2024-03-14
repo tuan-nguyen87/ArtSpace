@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./styles/LoginPage.css";
+/* Tuan's code start here *************************************/
+// imports from firebase to be use
 import { auth } from "./Firebase/Firebase.js";
 import {
   createUserWithEmailAndPassword,
@@ -8,14 +9,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
+// useState for login page
 const LoginPage = () => {
   const [userCredentials, setUserCredentials] = useState({});
   const [error, setError] = useState("");
-
+  // function to handle credentials
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
-
+  // functions to handle sign up with error catching and redirection to landing page upon success.
   function handleSignup(e) {
     e.preventDefault();
     createUserWithEmailAndPassword(
@@ -25,12 +27,13 @@ const LoginPage = () => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        window.location.href = "/"; // Navigate to landing page
       })
       .catch((error) => {
         setError(error.message);
       });
   }
-
+  // function to handle login with error catching and redirection upon success.
   function handleLogin(e) {
     e.preventDefault();
     signInWithEmailAndPassword(
@@ -48,7 +51,7 @@ const LoginPage = () => {
         setError(error.message);
       });
   }
-
+  // reset password, email will be sent to user with links to reset password
   function handlePasswordReset() {
     const email = prompt("Please enter your email address");
     sendPasswordResetEmail(auth, email);
@@ -56,6 +59,8 @@ const LoginPage = () => {
   }
 
   const [isLoginFormActive, setLoginFormActive] = useState(null);
+
+  /* ends here *************************************************/
 
   const switchToLogin = () => {
     setLoginFormActive(false);
@@ -73,8 +78,10 @@ const LoginPage = () => {
           <form action="#">
             <div className="input-box">
               <input
+                /* Tuan's code ***************************** */
                 onChange={(e) => handleCredentials(e)}
                 name="email"
+                /* ends here ******************************** */
                 type="email"
                 placeholder="Email"
                 required
@@ -83,8 +90,10 @@ const LoginPage = () => {
             </div>
             <div className="input-box">
               <input
+                /* Tuan's code *********************************** */
                 onChange={(e) => handleCredentials(e)}
                 name="password"
+                /* ********************************************** */
                 type="password"
                 placeholder="Password"
                 required
@@ -96,15 +105,33 @@ const LoginPage = () => {
                 <input type="checkbox" />
                 Remember Me
               </label>
-              <p onClick={handlePasswordReset}>Forgot Password?</p>
+              <p
+                /* Tuan's code ************** */ onClick={
+                  handlePasswordReset
+                } /* ends here ************ */
+              >
+                Forgot Password?
+              </p>
             </div>
-            <button onClick={(e) => handleLogin(e)} type="submit" className="btn">
+            <button
+              onClick={(e) => handleLogin(e)}
+              type="submit"
+              className="btn"
+            >
               Login
             </button>
+            {/* Tuan's code ******************************** */}
             {error && (
-              <div style={{ color: "red", textAlign: "center", fontSize: "smaller" }}>
+              <div
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  fontSize: "smaller",
+                }}
+              >
                 {error}
               </div>
+              // ends here **************************************
             )}
             <div className="divider">
               <p>
@@ -114,7 +141,11 @@ const LoginPage = () => {
             <div className="login-register">
               <p>
                 Don't have an account?
-                <a href="#" className="register-link" onClick={switchToRegister}>
+                <a
+                  href="#"
+                  className="register-link"
+                  onClick={switchToRegister}
+                >
                   Register
                 </a>
               </p>
@@ -122,13 +153,17 @@ const LoginPage = () => {
           </form>
         </div>
 
-        <div className={`form-box register ${isLoginFormActive ? "" : "active"}`}>
+        <div
+          className={`form-box register ${isLoginFormActive ? "" : "active"}`}
+        >
           <h2>Registration</h2>
           <form action="#">
             <div className="input-box">
               <input
+                /* Tuan's code ********************************** */
                 onChange={(e) => handleCredentials(e)}
                 name="email"
+                /* ends here ************************************ */
                 type="email"
                 placeholder="Email"
                 required
@@ -137,8 +172,10 @@ const LoginPage = () => {
             </div>
             <div className="input-box">
               <input
+                /* Tuan's code ********************************** */
                 onChange={(e) => handleCredentials(e)}
                 name="password"
+                /*  ends here *********************************** */
                 type="password"
                 placeholder="Password"
                 required
@@ -149,19 +186,30 @@ const LoginPage = () => {
               <label>
                 <input type="checkbox" />I agree to the terms & conditions
                 <br />
-                <input type="checkbox" />Are you an artist?
+                <input type="checkbox" />
+                Are you an artist?
               </label>
             </div>
             <button
+              /* Tuan's code ************************************* */
               onClick={(e) => handleSignup(e)}
               type="submit"
+              /* ends here ****************************************** */
               className="btn"
             >
               Register
             </button>
+            {/* Tuan's code ********************************************** */}
             {error && (
-              <div style={{ color: "red", textAlign: "center", fontSize: "smaller" }}>
+              <div
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  fontSize: "smaller",
+                }}
+              >
                 {error}
+                {/* ends here *************************************************** */}
               </div>
             )}
             <div className="divider">

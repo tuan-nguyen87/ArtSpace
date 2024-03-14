@@ -7,6 +7,7 @@ const MarketPage = () => {
     const [points] = useState(500);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [pointsRange, setPointsRange] = useState('all');
+    const [clickedItem, setClickedItem] = useState(null);
     
     // Dummy data for items
     const [originalItems] = useState ([
@@ -76,6 +77,21 @@ const MarketPage = () => {
     const handlePointsRangeChange = (range) => {
         setPointsRange(range);
     };
+
+    // Fucntion to handle item clicked
+    const handleItemClick = (item) => {
+        setClickedItem(item);
+    };
+
+    // Function to handle purchase button
+    const purchase = () => {
+        console.log("Item purchased!");
+    }
+
+    // Function to close popup
+    const closePopup = () => {
+        setClickedItem(null);
+    };
     
 
     return (
@@ -121,14 +137,31 @@ const MarketPage = () => {
                         </div>
                     ) : (
                         filteredItems.map((item, index) => (
-                            <div className="item" key={index}>
-                                <img src={item.image} alt="Item" />
-                                <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
+                            <div className="clickable-item" onClick={() => handleItemClick(item)} key={index}>
+                                <div className="item mp-hvr-float-shadow" key={index}>
+                                    <img src={item.image} alt="Item" />
+                                    <p><img src="/Market art/coin.png" className="coin" alt="Coin" /> {item.points}</p>
+                                </div>
                             </div>
                         ))
                     )}
                 </div>
             </div>
+            {clickedItem && (
+                <div>
+                    <div className="mp-popup-overlay"></div>
+                    <div className="mp-popup">
+                        <div className="mp-popup-header">Great Choice! Are you ready to purchase?</div>
+                        <img src={clickedItem.image} alt="Item" />
+                        <p>Category: {clickedItem.category}</p>
+                        <p>Points: {clickedItem.points}</p>
+                        <div className="mp-popup-buttons">
+                            <button onClick={purchase}>Purchase</button>
+                            <button onClick={closePopup}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

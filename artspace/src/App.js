@@ -12,7 +12,6 @@ import TutorialPage from "./TutorialPage";
 import ArtistArena from "./ArtistArena";
 import ShowroomPage from "./ShowroomPage";
 import SocialHub from "./SocialHub";
-import { io } from "socket.io-client";
 import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
@@ -21,6 +20,13 @@ import Collaborations from "./Collaborations";
 import Queue from "./Queue"
 
 const socket = io("http://localhost:3000");
+
+import PointSystem from "./PointSystem";
+import NavSite from "./NavSite";
+import ArtTutorials from "./ArtTutorials";
+import EduCont from "./EduCont";
+import ResLinks from "./ResLinks";
+import Search from "./Search";
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -33,15 +39,6 @@ function App() {
     }, 3000); // Dismiss notification after 3 seconds
   };
 
-  useEffect(() => {
-    socket.on("newMessage", (data) => {
-      triggerNotification(data.message, "success");
-    });
-    return () => {
-      socket.off("newMessage");
-    };
-  }, []);
-
   return (
     <div className="App">
       <Notification message={notification.message} type={notification.type} />
@@ -52,12 +49,7 @@ function App() {
           <Route path="/Commissions" element={<Commissions />} />
           <Route
             path="/Messaging2"
-            element={
-              <Messaging2
-                socket={socket}
-                triggerNotification={triggerNotification}
-              />
-            }
+            element={<Messaging2 triggerNotification={triggerNotification} />}
           />
           <Route path="/DailyChallenge" element={<DailyChallenge />} />
           <Route path="/RatingReview" element={<RatingReview />} />
@@ -71,6 +63,12 @@ function App() {
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
           <Route path="/Queue" element={<Queue />} />
+          <Route path="/PointSystem" element={<PointSystem />} />
+          <Route path="/NavSite" element={<NavSite />} />
+          <Route path="/ArtTutorials" element={<ArtTutorials />} />
+          <Route path="/EduCont" element={<EduCont />} />
+          <Route path="/ResLinks" element={<ResLinks />} />
+          <Route path="/Search" element={<Search />} />
         </Routes>
       </Router>
     </div>

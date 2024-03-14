@@ -1,35 +1,35 @@
 //react
 import React, { useState } from 'react';
-import './PointSystem.css'; 
+import './styles/PointSystem.css'; 
 
 function PointSystem() {
   //some dummy data  
-  const [artistData, setArtistData] = useState({
+  const [artistData] = useState({
     name: "Artist Name",
     totalPoints: 0,
     dailyLoginPoints: 50,
     loginCount: 10,
     dailyChallengesPoints: 300,
     dailyChallengesCompleted: [
-      { name: "Challenge: Environment - A Secret Alley way", points: 100 },
-      { name: "Challenge: Character - An Elderly Couple on the Beach", points: 50 },
-      { name: "Challenge: Creature - A Mischievous Unicorn", points: 50 },
-      { name: "Challenge: Object - Ghost catching thermos :)", points: 25 },
-      { name: "Challenge: Creature - Robots doing grocery shopping", points: 25 },
-      { name: "Challenge: Environment - A thriving swampland with black willow trees", points: 50 }
+      { name: "Challenge", details: "Environment - A Secret Alley way", points: 100 },
+      { name: "Challenge", details: "Character - An Elderly Couple on the Beach", points: 50 },
+      { name: "Challenge", details: "Creature - A Mischievous Unicorn", points: 50 },
+      { name: "Challenge", details: "Object - Ghost catching thermos :)", points: 25 },
+      { name: "Challenge", details: "Creature - Robots doing grocery shopping", points: 25 },
+      { name: "Challenge", details: "Environment - A thriving swampland with black willow trees", points: 50 }
     ],
     arenaEventsPoints: 250,
     arenaEventsWon: [
-      { name: "Event: Best Comics", points: 200 },
-      { name: "Event: Best Design", points: 50 }
+      { name: "Event", details: "Best Comics", points: 200 },
+      { name: "Event", details: "Best Design", points: 50 }
     ],
     marketPurchasesPoints: -100,
     marketPurchases: [
-      { image: "ps_item2.png", name: "Icon", points: -20 },
-      { image: "ps_item5.png", name: "Emote", points: -20 },
-      { image: "ps_item3.png", name: "Badge", points: -20 },
-      { image: "ps_item1.png", name: "Emote", points: -20 },
-      { image: "ps_item4.png", name: "Badge", points: -20 }
+      { image: '/PointSystem art/ps_item2.png', name: "Market", details: "Icon", points: -20 },
+      { image: '/PointSystem art/ps_item5.png', name: "Market", details: "Emote", points: -20 },
+      { image: '/PointSystem art/ps_item3.png', name: "Market", details: "Badge", points: -20 },
+      { image: '/PointSystem art/ps_item1.png', name: "Market", details: "Emote", points: -20 },
+      { image: '/PointSystem art/ps_item4.png', name: "Market", details: "Badge", points: -20 }
     ]
   });
 
@@ -38,7 +38,7 @@ function PointSystem() {
     return data.map((item, index) => (
       <p key={index} className="market-item">
         {item.image && <img src={item.image} alt={item.name} className="item-img" />}
-        <span>{`${item.name}: ${item.points}`}</span>
+        <span>{`${item.name}: ${item.details} ${item.points}`}</span>
       </p>
     ));
   };
@@ -56,23 +56,50 @@ function PointSystem() {
   //display data
   const renderArtistData = () => {
     return (
-      <div className="ps-container">
-        <div className="header">
-          <h1>{artistData.name}</h1>
-          <h2>My Total Points: <img src="ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="total-points">{calculateTotalPoints()}</span></h2>
-        </div>
-        <div className="grid-container">
-          {/* Render other parts of your UI here */}
+      <div className="ps-body">
+        <div className="ps-container">
+          <div className="ps-header">
+            <h1>{artistData.name}</h1>
+            <h3>My Total Points: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="total-points">{calculateTotalPoints()}</span></h3>
+          </div>
+          <div className="ps-grid-container">
+            <div className="ps-grid-item">
+              <h3>Daily Logins</h3>
+              <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="daily-login-points">{artistData.dailyLoginPoints}</span></div>
+            </div>
+            <div className="ps-grid-item ps-scroll-container">
+              <h3>Number of Logins: </h3> <span id="login-count">{artistData.loginCount}</span>
+            </div>
+            <div className="ps-grid-item">
+              <h3>Daily Challenges</h3>
+              <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="daily-challenges-points">{artistData.dailyChallengesPoints}</span></div>
+            </div>
+            <div className="ps-grid-item ps-scroll-container">
+              {renderList(artistData.dailyChallengesCompleted, "Challenge: ")}
+            </div>
+            <div className="ps-grid-item">
+              <h3>Arena Events</h3>
+              <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="arena-events-points">{artistData.arenaEventsPoints}</span></div>
+            </div>
+            <div className="ps-grid-item ps-scroll-container">
+              {renderList(artistData.arenaEventsWon)}
+            </div>
+            <div className="ps-grid-item">
+              <h3>Market Purchases</h3>
+              <div>Total Points Used: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="market-purchases-poins">{artistData.marketPurchasesPoints}</span></div>
+            </div>
+            <div className="ps-grid-item ps-scroll-container market-item">
+              {renderList(artistData.marketPurchases)}
+            </div>
+          </div>
         </div>
       </div>
     );
   };
 
-  return (
-    <body className="ps-body">
-      {renderArtistData()}
-    </body>
-  );
+return renderArtistData();
+
 }
 
 export default PointSystem;
+

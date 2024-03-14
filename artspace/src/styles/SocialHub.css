@@ -1,12 +1,12 @@
 
 .social-page
 {
+  /*Portion to fix background formatting issue --Yasmine */
   position: absolute; 
   top: 0;
   left: 0;
   right: 0;
   margin-top: 80px;
-  /*It's Yaz! Tell me if the above helps with the page format!*/
 
   background: url(artImg.png);
   background-size: cover;
@@ -17,15 +17,15 @@
 .s_container {
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 20px auto;
     padding: 80px;
-    background: #43ccc763; 
+    background: #290c7a63; 
   }
   
   .s_left-section {
     flex: 1;
-    background-color: #ffffff;
+    background-color: #b2cadbc8;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -35,11 +35,44 @@
     flex: 2;
     margin-left: 20px;
     border-radius: 8px;
+    overflow-y: auto;
+    background-color: #ffffffd8;
   }
   
+
+.filter-section {
+  margin-left: 400px;
+}
+
+#categoryFilter {
+  width: 150px; 
+}
+  
+  .filter-section button
+  {
+    background-color: #9b51ae;
+    color: #ffffff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: cursive;
+  }
+
+  .filter-section button:hover
+  {
+    background-color: #c059da;
+  }
+
+  .filter-section label
+  {
+    font-family: cursive;
+  }
+
   h2 {
     color: #0c0303;
-    font-family: cursive
+    font-family: cursive;
+    font-weight: 100;
   }
   
   .question-form textarea {
@@ -50,7 +83,7 @@
     padding: 10px;
     font-size: 16px;
     border-radius: 25px;
-    border: 2px solid #20a88f;
+    border: 2px solid #a82096;
     resize: none;
   }
   
@@ -74,18 +107,20 @@
   }
   
   .question-card {
-    background-color: #ffffff;
+    background-color: #f7eaf0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 16px;
     padding: 16px;
   }
   
-  .question-details {
-    /* Customize the question card details */
+  .question-header
+  {
+    font-family: 'Caveat', sans-serif;
+    color: #9b088766;
   }
-  
-  /* Add or modify styles as needed */
+
+
 .response-list {
     margin-top: 10px;
     display: flex;
@@ -122,3 +157,30 @@
     background-color: #005fa3;
   }
   
+  /* Add or modify styles as needed */
+.reply-section {
+  display: flex;
+  align-items: center;
+}
+
+.reply-section button {
+  background-color: #9b51ae;
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 40px; /* spacing between buttons if needed */
+  font-family: cursive;
+}
+
+.reply-section button:hover {
+  background-color: #c059da;
+}
+
+.r-box 
+{
+  resize: none;
+  
+}
+

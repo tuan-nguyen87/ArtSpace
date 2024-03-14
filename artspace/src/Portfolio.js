@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import "./styles/Portfolio.css"; // Include your CSS file for styling
+import React, { useState, useEffect } from "react";
+import "./styles/Portfolio.css";
+import { db, auth } from "./Firebase/Firebase.js";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 
 const Portfolio = () => {
+  // Initial blank Biography, skills and name, Joker will be change to a null name later
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
   const initialImages = [];
   const initialUserName = "Joker";
-
+  //const needed to edit fields
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
   const [skills, setSkills] = useState(initialSkills);
@@ -15,21 +18,61 @@ const Portfolio = () => {
   const [images, setImages] = useState(initialImages);
   const [userName, setUserName] = useState(initialUserName);
   const [editedUserName, setEditedUserName] = useState(initialUserName);
+  const [userID, setUserID] = useState(null);
+  // use effect to add to database documents and get fields
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserID(user.uid);
+        const userDocRef = doc(db, "Portfolio", user.uid);
+        const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setBiography(userData.bio || initialBiography);
+            setSkills(userData.skills || initialSkills);
+            setUserName(userData.name || initialUserName);
+          } else {
+            console.log("No such document!");
+          }
+        });
+        return () => unsubscribeSnapshot();
+      } else {
+        setUserID(null);
+      }
+    });
 
+    return () => unsubscribe();
+  }, []);
+  // behavior for edit button when clicked
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
     setEditedBiography(biography);
     setEditedSkills(skills);
     setEditedUserName(userName);
   };
-
+  // behavior for save button when clicked
   const handleSaveButtonClick = () => {
     setBiography(editedBiography);
     setSkills(editedSkills);
     setUserName(editedUserName);
     setIsEditPopupOpen(false);
-  };
 
+    if (userID) {
+      const userDocRef = doc(db, "Portfolio", userID);
+      setDoc(userDocRef, {
+        name: editedUserName,
+        bio: editedBiography,
+        skills: editedSkills,
+      })
+        .then(() => {
+          console.log("User data saved successfully!");
+        })
+        .catch((error) => {
+          console.error("Error saving user data: ", error);
+        });
+    }
+  };
+  // after saving, cancel, popup should close
   const handleClosePopup = () => {
     setIsEditPopupOpen(false);
     setEditedBiography(biography);
@@ -40,7 +83,7 @@ const Portfolio = () => {
   const handleBiographyChange = (event) => {
     setEditedBiography(event.target.value);
   };
-
+  // adding skills to profile
   const handleAddSkill = () => {
     setEditedSkills([...editedSkills, ""]);
   };
@@ -50,20 +93,20 @@ const Portfolio = () => {
     updatedSkills[index] = event.target.value;
     setEditedSkills(updatedSkills);
   };
-
+  // behavior for deleting skills
   const handleDeleteSkill = (index) => {
     const updatedSkills = [...editedSkills];
     updatedSkills.splice(index, 1);
     setEditedSkills(updatedSkills);
   };
-
+  // uploading images. still need to find a way to persist images to database.
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = (e) => {
       const image = e.target.result;
-      setImages([...images, image]); // Add the uploaded image to the list of images
+      setImages([...images, image]);
     };
 
     reader.readAsDataURL(file);
@@ -72,9 +115,10 @@ const Portfolio = () => {
   const handleUserNameChange = (event) => {
     setEditedUserName(event.target.value);
   };
-
+  // main component of portfolio page. page is divided up into 2 sections, left and right. profile and pictures respectively
   return (
     <div className="portfolio">
+      {/* The left section of the page, where profile and bio goes */}
       <div className="left-side">
         <button className="profile-button" onClick={handleEditButtonClick}>
           <img
@@ -98,6 +142,7 @@ const Portfolio = () => {
           </ul>
         </div>
       </div>
+      {/* Edit profile should pop up and clicking on image */}
       {isEditPopupOpen && (
         <div className="edit-popup">
           <h2 className="edit-profile">Edit Profile</h2>
@@ -131,7 +176,7 @@ const Portfolio = () => {
                 </li>
               ))}
             </ul>
-
+            {/* Buttons and their behavior define above */}
             <button className="add-skill-button" onClick={handleAddSkill}>
               Add Skill
             </button>
@@ -154,6 +199,7 @@ const Portfolio = () => {
         onChange={handleImageUpload}
         style={{ display: "none" }}
       />
+      {/* the right side of the page, where images goes */}
       <div className="right-side">
         <div className="work-item">
           <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />

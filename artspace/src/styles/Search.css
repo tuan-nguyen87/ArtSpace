@@ -1,0 +1,71 @@
+.searchpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  background-image: url("/public/Homepage art/moroccan-flower.png");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.search-title {
+  color: gold;
+  margin-bottom: 40px;
+  font-size: larger;
+}
+
+.searchpage-input {
+  width: 500px; /* Adjust width as needed */
+  height: 50px;
+  padding: 10px;
+  border: solid gold 4px;
+  border-radius: 25px;
+  font-size: 25px;
+  margin-bottom: 50px;
+}
+
+.search-results {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.text-results {
+  padding-bottom: 25px;
+}
+
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.user-card {
+  border: 3px solid #ff5d5d; /* Add border around each user card */
+  border-radius: 25px;
+  padding: 20px;
+  background-color: rgb(218, 255, 255);
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.search-results-container {
+  border: 5px solid gold; /* Adjust border properties as needed */
+  border-radius: 15px; /* Add rounded corners */
+  background-color: #fff; /* White background color */
+  padding: 20px; /* Add padding for spacing */
+  margin-bottom: 20px; /* Add margin between search results and other content */
+}

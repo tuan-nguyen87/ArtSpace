@@ -19,20 +19,27 @@ const ArtistArena = () => {
                         <h3>4 Panel Comic</h3>
                         <div class="card-content">
                             <p>Tell a story in 4 pictures!</p>
-                            <p>Date: Mar 9, 2024</p>
-                            <p>Time: 11:59pm</p>
+                            {/* Will find a better way to implement due date in future */}
                             {/* <button type="submit">Compete!</button> */}
+                            {/* I've changed the button to a popup */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup1">Compete!</a>
                             </div>
                             <div id="popup1" class="overlay">
                                 <div class="popup">
-                                    <h2>4 Pannel Comics</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/4-Panel-Life.png" />
+                                        <p>Date: Mar 9, 2024</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p>A picture is worth a thousand words. What can you say in four?
-                                        Tell us your four pannel story! </p>
+                                        <h2>4 Pannel Comics</h2>
+                                        <p class="desc">A picture is worth a thousand words. What can you say in four?
+                                        Tell us your story using only four pannels! </p>
+                                        {/* This submission is a placeholder */}
+                                        {/* Will change to store image in database */}
                                         <button type="submit">Image Upload Placeholder</button>
+                                        {/* Will need to add a link to page where user can vote on art in contest */}
                                     </div>
                                 </div>
                             </div>
@@ -45,18 +52,20 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Characters that leap off the page! </p>
-                            <p>Date: Mar 9, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup2">Compete!</a>
                             </div>
                             <div id="popup2" class="overlay">
                                 <div class="popup">
-                                    <h2>Character Design</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/Char-Design.png" />
+                                        <p>Date: Mar 9, 2024</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p>Dive into the depths of your creativity and bring 
+                                        <h2>Character Design</h2>
+                                        <p class="desc">Dive into the depths of your creativity and bring 
                                             forth a character that resonates with you. 
                                             Consider their appearance, quirks, and backstory, 
                                             allowing their personality to shine through. </p>
@@ -73,20 +82,23 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Creatures, big and small, cute and creepy!</p>
-                            <p>Date: Mar 10, 2024</p>
-                            <p>Time: 11:59pm</p>
-                            {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup7">Compete!</a>
                             </div>
                             <div id="popup7" class="overlay">
                                 <div class="popup">
-                                    <h2>Mythical Creatures</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/creature.png" />
+                                        <p>Date: Mar 10, 2024</p> 
+                                        <p>Time: 11:59pm</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p> Bring creatures of myth to life! Be they 
-                                            original creations or legends of old, challenge 
-                                            yourself to create creatures that inspire!
+                                        <h2>Mythical Creatures</h2>
+                                        <p class="desc">
+                                            Bring creatures of myth to life! 
+                                            Be they original creations or legends of old, 
+                                            challenge yourself to create creatures that inspire! 
                                         </p>
                                         <button type="submit">Image Upload Placeholder</button>
                                     </div>
@@ -107,24 +119,29 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>It's all about dynamics! Figures in motion</p>
-                            <p>Date: Feb 29, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup3">Compete!</a>
                             </div>
                             <div id="popup3" class="overlay">
                                 <div class="popup">
-                                    <h2>Figuary Month</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/dynamic-figures.png" />
+                                        <p>Date: Feb 29, 2024</p>
+                                        <p>Time: 11:59pm</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p> Embrace the challenge of capturing dynamic poses, 
+                                        <h2>Figuary Month</h2>
+                                        <p class="desc">
+                                            Embrace the challenge of capturing dynamic poses, 
                                             expressing emotion, and refining your artistic skills 
                                             alongside a supportive community of fellow creators. 
                                             Let Figuary inspire you to push your boundaries, 
                                             hone your craft, and unleash your creativity as you 
                                             embark on this captivating journey of artistic growth and 
-                                            discovery.</p>
+                                            discovery.
+                                        </p>
                                         <button type="submit">Image Upload Placeholder</button>
                                     </div>
                                 </div>
@@ -138,18 +155,22 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>The robot uprising is underway!</p>
-                            <p>Date: March 31, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup4">Compete!</a>
                             </div>
                             <div id="popup4" class="overlay">
                                 <div class="popup">
-                                    <h2>March of Robots!</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/robomarch.jpg" />
+                                        <p>Date: March 31, 2024</p>
+                                        <p>Time: 11:59pm</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p> A robot a day keeps the people away! Grow your 
+                                        <h2>March of Robots!</h2>
+                                        <p class="desc">
+                                            A robot a day keeps the people away! Grow your 
                                             army of unique robots and forward march!
                                         </p>
                                         <button type="submit">Image Upload Placeholder</button>
@@ -165,25 +186,30 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Showcase the magic of your creativity!</p>
-                            <p>Date: April 30, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup5">Compete!</a>
                             </div>
                             <div id="popup5" class="overlay">
                                 <div class="popup">
-                                    <h2>Wizard April</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/WIZARD.png" />
+                                        <p>Date: April 30, 2024</p>
+                                        <p>Time: 11:59pm</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p> Let Wizard April ignite your creativity, 
+                                        <h2>Wizard April</h2>
+                                        <p class="desc">
+                                            Let Wizard April ignite your creativity, 
                                             as you delve into the realms of fantasy, 
                                             weaving spells with your brush or pen to bring 
                                             captivating tales of sorcery and wonder to life 
                                             on canvas or paper. Don your wizard's hat, 
                                             wield your artistic wand, and embark on an 
                                             enchanting adventure that will leave a lasting 
-                                            mark on both your artistry and imagination.</p>
+                                            mark on both your artistry and imagination.
+                                        </p>
                                         <button type="submit">Image Upload Placeholder</button>
                                     </div>
                                 </div>
@@ -197,23 +223,28 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Pen to paper! Create inky masterpieces!</p>
-                            <p>Date: April 30, 2024</p>
-                            <p>Time: 11:59pm</p>
                             {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup6">Compete!</a>
                             </div>
                             <div id="popup6" class="overlay">
                                 <div class="popup">
-                                    <h2>Inky April</h2>
+                                    <div class="left-content">
+                                        <img class="popimages" src="/Arena art/inkyapril.png" />
+                                        <p>Date: April 30, 2024</p>
+                                        <p>Time: 11:59pm</p>
+                                    </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
-                                        <p> Immerse yourself in the captivating world of ink 
+                                        <h2>Inky April</h2>
+                                        <p class="desc">
+                                            Immerse yourself in the captivating world of ink 
                                             and pen! Challenge your artistic skills by 
                                             embracing the simplicity and boldness of these 
                                             traditional tools, allowing your imagination to 
                                             flow freely as you create intricate and mesmerizing 
-                                            artworks that truly come to life on paper.</p>
+                                            artworks that truly come to life on paper.
+                                        </p>
                                         <button type="submit">Image Upload Placeholder</button>
                                     </div>
                                 </div>
@@ -224,6 +255,8 @@ const ArtistArena = () => {
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Winners</h3>
+                    {/* Tentative: Contain either links to pages with finished competition
+                        winners, or links to pages where users can vote and see winners */}
                     <div className="timeframe-line-bottom"></div>
                     <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>

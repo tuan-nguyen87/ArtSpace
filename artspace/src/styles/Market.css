@@ -77,6 +77,7 @@ select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .item {
@@ -133,10 +134,104 @@ select {
 .filter-option {
     flex: 1;
     margin-right: -10px; /* Add some spacing between filter options */
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 .filter-option h3 {
     margin-bottom: 5px;
 }
 
+/*float shadow effect for each item in the item contianer*/
+.mp-hvr-float-shadow {
+    display: inline-block;
+    vertical-align: middle; /*shadow in the middle*/
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.mp-hvr-float-shadow:before {
+    /*pointer-events: none;*/
+    position: absolute;
+    z-index: -1;
+    content: ''; /*rendering content, default value*/
+    top: 160px; /*changed to px form %, was 100%*/
+    left: 33%;
+    height: 10px;
+    width: 40%;
+    opacity: 0; /*not showing shadow by defalut*/
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%); /*rounded shadow*/
+    transition-property: transform, opacity; /*applied to the motion and opacity of shadow*/
+}
+
+/*when hovering over items*/
+.mp-hvr-float-shadow:hover,
+.mp-hvr-float-shadow:focus,
+.mp-hvr-float-shadow:active {
+    transform: translateY(-20px); /*upward motion, was -5*/
+}
+
+/*when not hovering over items*/
+.mp-hvr-float-shadow:hover:before,
+.mp-hvr-float-shadow:focus:before,
+.mp-hvr-float-shadow:active:before {
+    opacity: 1; /*makes the shadow visible*/
+    transform: translateY(20px); /*downward motion, was 5*/
+}
+
+/*overlay popup box when items are clicked on*/
+.mp-popup {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /*make content centered*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*overlay for when item is clicked on*/
+.mp-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*header inside the popup*/
+.mp-popup-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/*image inside the popup*/
+.mp-popup img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+/*buttons in the popup*/
+.mp-popup-buttons {
+    margin-top: 20px;
+}
+
+.mp-popup-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
