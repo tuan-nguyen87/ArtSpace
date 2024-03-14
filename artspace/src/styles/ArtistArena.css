@@ -205,6 +205,7 @@
   .popup .popimages {
     width: 250px;
     height: 200px;
+    margin-top: 10px;
     object-fit: cover;
     border-radius: 5px;
   }
