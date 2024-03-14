@@ -16,9 +16,10 @@ const LandingPage = () => {
       navigate("/Search");
       // if (searchTerm === "hello") {
       //   setOutput("You typed: " + searchTerm);
-    } else {
-      setOutput("No matching result for the search term: " + searchTerm);
-    }
+    } 
+    // else {
+    //   setOutput("No matching result for the search term: " + searchTerm);
+    // }
   };
 
   const handleChange = (e) => {
@@ -38,7 +39,6 @@ const LandingPage = () => {
             onChange={handleChange}
             onKeyUp={performSearch}
           />
-          <p>{output}</p>
         </section>
         <section className="services">
           <h2>Popular:</h2>

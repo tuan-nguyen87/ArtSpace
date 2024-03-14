@@ -1,16 +1,34 @@
 import React from "react";
 import ProgressBarArtist from "./ProgressBarArtist"
 import ProgressBarClient from "./ProgressBarClient"
+import {ProgressBar} from "./ProgressBarArtist"
 import "./styles/Collaborations.css";
 
+
+
+
+
 const Collaborations = () => {
+
+    const progBarArtist = () => {
+        return (
+            <div class="collab-progress-bar">
+                <ProgressBar />
+            </div>
+        )
+    }
+
     return (
         <div class="collab-container">
             <div class="collab-header-container">
                 <div class="collab-top-nav">
-                    <span class="profile-sect">Profile</span>
+                    <a href="/ProfilePage">
+                        <span class="profile-sect">Profile</span>
+                    </a>
                     <span>|</span>
-                    <span class="collab-sect">Collaborations</span>
+                    <a href="/Collaborations">
+                        <span class="collab-sect">Collaborations</span>
+                    </a>
                 </div>
                 <div class="search-container">
                     <button type="filter" class="collab-filter-btn">Filter</button>
@@ -28,8 +46,8 @@ const Collaborations = () => {
                                 <h1 class="collab-title">Art and Friends</h1>
                                 <h2 class="date-created">May 7th, 2024</h2>
                             </div>
-                            <div class="collab-progress-bar">
-                                ==Progress Bar==
+                            <div>
+                                {progBarArtist()}
                             </div>
                             <div class="pfp collab-listing-pfp"></div>
                             <div class="pfp collab-listing-pfp"></div>
@@ -40,8 +58,8 @@ const Collaborations = () => {
                                 <h1 class="collab-title">Draw Together</h1>
                                 <h2 class="date-created">May 7th, 2024</h2>
                             </div>
-                            <div class="collab-progress-bar">
-                                ==Progress Bar==
+                            <div>
+                                {progBarArtist()}
                             </div>
                             <div class="pfp collab-listing-pfp"></div>
                         </li>
@@ -50,8 +68,8 @@ const Collaborations = () => {
                                 <h1 class="collab-title">Wedding for Emily</h1>
                                 <h2 class="date-created">May 7th, 2024</h2>
                             </div>
-                            <div class="collab-progress-bar">
-                                ==Progress Bar==
+                            <div>
+                                {progBarArtist()}
                             </div>
                             <div class="pfp collab-listing-pfp"></div>
                             <div class="pfp collab-listing-pfp"></div>
@@ -63,8 +81,8 @@ const Collaborations = () => {
                                 <h1 class="collab-title">Birthday Gift</h1>
                                 <h2 class="date-created">May 7th, 2024</h2>
                             </div>
-                            <div class="collab-progress-bar">
-                                ==Progress Bar==
+                            <div>
+                                {progBarArtist()}
                             </div>
                             <div class="pfp collab-listing-pfp"></div>
                             <div class="pfp collab-listing-pfp"></div>
@@ -76,8 +94,8 @@ const Collaborations = () => {
                                 <h1 class="collab-title">Doodling for fun</h1>
                                 <h2 class="date-created">May 7th, 2024</h2>
                             </div>
-                            <div class="collab-progress-bar">
-                                ==Progress Bar==
+                            <div>
+                                {progBarArtist()}
                             </div>
                             <div class="pfp collab-listing-pfp"></div>
                             <div class="pfp collab-listing-pfp"></div>

@@ -27,8 +27,13 @@ Worked on by Kevin
     padding: 6px;
 }
 
+.collab-top-nav a {
+    text-decoration: none !important;
+    color: white;
+}
+
 /* profile button */
-.profile-sect {
+.profile-sect{
     height: 1em;
     cursor: pointer;
 }
@@ -154,9 +159,8 @@ Worked on by Kevin
 }
 
 /*progres bar - temp, will have to include other progress bar*/
-.collab-progress-bar {
-    justify-content: center;
-    width: 30%;
+.collab-progress-bar div{
+    width: 200px !important;
 }
 
 /*pfp styling*/

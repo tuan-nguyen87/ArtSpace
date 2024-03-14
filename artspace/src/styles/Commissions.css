@@ -27,6 +27,11 @@ Worked on by Kevin
   padding: 6px;
 }
 
+.commissions-top-navigator a {
+  color: white;
+  text-decoration: none !important;
+}
+
 /*explore button*/
 .explore-sect {
   height: 1em;
