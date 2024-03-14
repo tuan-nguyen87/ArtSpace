@@ -187,10 +187,12 @@ select {
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 10px solid #ff8080;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);*/
     /*make content centered*/
     text-align: center;
     display: flex;
@@ -206,7 +208,8 @@ select {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease-in-out;
 }
 
 /*header inside the popup*/
@@ -218,11 +221,12 @@ select {
 
 /*image inside the popup*/
 .mp-popup img {
-    width: 200px;
+    width: 150px; /*was 200px*/
     height: auto;
     margin-bottom: 30px;
 }
 
+/*coin image in the popup*/
 .mp-popup img.coin {
     width: 20px;
     height: auto;
@@ -232,7 +236,7 @@ select {
 
 /*buttons in the popup*/
 .mp-popup-buttons {
-    margin-top: 20px;
+    margin-top: 5px; /*was 20px*/
 }
 
 .mp-popup-buttons button {

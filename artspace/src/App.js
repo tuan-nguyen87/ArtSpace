@@ -19,7 +19,6 @@ import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue"
 
-const socket = io("http://localhost:3000");
 
 import PointSystem from "./PointSystem";
 import NavSite from "./NavSite";
