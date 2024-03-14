@@ -17,6 +17,8 @@ import Portfolio from "./Portfolio";
 import MarketPage from "./MarketPage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
+import Collaborations from "./Collaborations";
+import Queue from "./Queue"
 
 const socket = io("http://localhost:3000");
 
@@ -67,6 +69,8 @@ function App() {
           <Route path="/MarketPage" element={<MarketPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ProfilePage" element={<ProfilePage />} />
+          <Route path="/Collaborations" element={<Collaborations />} />
+          <Route path="/Queue" element={<Queue />} />
         </Routes>
       </Router>
     </div>

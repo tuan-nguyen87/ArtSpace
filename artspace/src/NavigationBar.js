@@ -113,10 +113,13 @@ const NavigationBar = () => {
                   <a href="/Messaging2">Messages</a>
                 </li>
                 <li>
-                  <a href="#">Collaborations</a>
+                  <a href="/Collaborations">Collaborations</a>
                 </li>
                 <li>
                   <a href="/RatingReview">Leave a Review</a>
+                </li>
+                <li>
+                  <a href="/Queue">Queue</a>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>
