@@ -7,51 +7,51 @@ const Commissions = () =>
     const pholderDescription = "What do you want made?\nIs there a special occassion?\nWhat is the art going to be about?\nWhatever you want the artist to know!"
     const pholderArtType = "What artstyle do you want?\nAny color themes?\n(e.g. waterpaint, anime-style, monotone, lots of blue)"
 
-    const commTitle = "";
-    const commDescription = "";
-    const commArtType = "";
-    const commPostDate = "";
-    const commCompleteDate = "";
+    const title = "";
+    const description = "";
+    const artType = "";
+    const postDate = "";
+    const completeDate = "";
     // user.uid to get the user's ID
-    const commUserID = "";
-    
+    const userID = "";
 
     const [isCommCreatePopupOpen, setIsCommCreatePopupOpen] = useState(false);
-    const [title, setCommCreateTitle] = useState(commTitle);
-    const [description, setCommCreateDescription] = useState(commDescription);
-    const [artType, setCommCreateArtType] = useState(commArtType);
-    const [postDate, setCommCreatePostDate] = useState(commPostDate);
-    const [completeDate, setCommCreateCompleteDate] = useState(commCompleteDate);
+    const [commTitle, setCommCreateTitle] = useState(title); //
+    const [commDescription, setCommCreateDescription] = useState(description);
+    const [commArtType, setCommCreateArtType] = useState(artType);
+    const [commPostDate, setCommCreatePostDate] = useState(postDate);
+    const [commCompleteDate, setCommCreateCompleteDate] = useState(completeDate);
     // const [userID, setCommCreateUserID] = userState(commUserID);
 
 
     const handleCommCreateButtonOpen = () => {
         setIsCommCreatePopupOpen(true);
-        setCommCreateTitle(title);
-        setCommCreateDescription(description);
-        setCommCreateArtType(artType);
-        setCommCreatePostDate(postDate);
-        setCommCreateCompleteDate(completeDate);
-        // setCommCreateUserID(userID)
-    }
-
-    const handleCommCreateButtonCreate = () => {
-        setCommCreateTitle(title);
-        setCommCreateDescription(description);
-        setCommCreateArtType(artType);
-        setCommCreatePostDate(postDate);
-        setCommCreateCompleteDate(completeDate);
-        // setCommCreateUserID(userID)
-        setIsCommCreatePopupOpen(false);
-    }
-
-    const handleCommCreateButtonCancel = () => {
-        setIsCommCreatePopupOpen(false);
         setCommCreateTitle(commTitle);
         setCommCreateDescription(commDescription);
         setCommCreateArtType(commArtType);
         setCommCreatePostDate(commPostDate);
         setCommCreateCompleteDate(commCompleteDate);
+        // setCommCreateUserID(userID)
+    }
+
+    const handleCommCreateButtonCreate = () => {
+        // these will be sent to the database
+        // console.log(userID);
+        console.log(commTitle);
+        console.log(commDescription);
+        console.log(commArtType);
+        console.log(commPostDate);
+        console.log(commCompleteDate);
+        handleCommCreateButtonCancel();
+    }
+
+    const handleCommCreateButtonCancel = () => {
+        setIsCommCreatePopupOpen(false);
+        setCommCreateTitle(title);
+        setCommCreateDescription(description);
+        setCommCreateArtType(artType);
+        setCommCreatePostDate(postDate);
+        setCommCreateCompleteDate(completeDate);
     }
 
     const handleCommCreateTitle = (event) => {
@@ -68,12 +68,7 @@ const Commissions = () =>
 
     const handleCommCreateCompleteDate = (event) => {
         setCommCreateCompleteDate(event.target.value);
-    }
-
-    function createCommission() 
-    {
-        var commPopup = document.getElementById("createCommissionPopup")
-        commPopup.classList.toggle("show");
+        setCommCreatePostDate(dateToday);
     }
 
     //https://stackoverflow.com/questions/73476564/how-do-i-disable-future-dates-in-react-js-while-selecting-dates
@@ -84,9 +79,13 @@ const Commissions = () =>
         <div class="commissions-container">
             <div class="commissions-header">
                 <div class="commissions-top-navigator">
-                <span class="explore-sect">Explore</span>
-                <span>|</span>
-                <span class="commissions-sect">Commission Listings</span>
+                    <a href="/Explore">
+                        <span class="explore-sect">Explore</span>
+                    </a>
+                    <span>|</span>
+                    <a href="/Commissions">
+                        <span class="commissions-sect">Commission Listings</span>
+                    </a>
                 </div>
                 <div class="search-container">
                 <button type="filter" class="commissions-filter-btn">Filter</button>
@@ -104,13 +103,13 @@ const Commissions = () =>
                     <h2 class="create-commission">Create Commission</h2>
                     <div class="create-commission-form">
                         <label>Title</label>
-                        <textarea class="comm-input-title" type="text" value={title} onChange={handleCommCreateTitle} placeholder={pholderTitle}/>
+                        <textarea class="comm-input-title" type="text" value={commTitle} onChange={handleCommCreateTitle} placeholder={pholderTitle}/>
                         <label>Description</label>
-                        <textarea class="comm-input-description" type="text" value={description} onChange={handleCommCreateDescription} placeholder={pholderDescription}/>
+                        <textarea class="comm-input-description" type="text" value={commDescription} onChange={handleCommCreateDescription} placeholder={pholderDescription}/>
                         <label>Art Type</label>
-                        <textarea class="comm-input-arttype" type="text" value={artType} onChange={handleCommCreateArtType} placeholder={pholderArtType}/>
+                        <textarea class="comm-input-arttype" type="text" value={commArtType} onChange={handleCommCreateArtType} placeholder={pholderArtType}/>
                         <label>Complete by Date</label>
-                        <input class="comm-input-completedate" type="date" value={completeDate} onChange={handleCommCreateCompleteDate} min={dateToday}/>
+                        <input class="comm-input-completedate" type="date" value={commCompleteDate} onChange={handleCommCreateCompleteDate} min={dateToday}/>
                         <button class="commissions-create-btn" onClick={handleCommCreateButtonCancel}>
                             Cancel
                         </button>
@@ -118,8 +117,6 @@ const Commissions = () =>
                             Create
                         </button>
                     </div>
-
-
                 </div>
             )}
             <div class="commissions-cluster">

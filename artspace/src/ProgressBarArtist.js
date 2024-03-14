@@ -47,3 +47,5 @@ function ProgressBarArtist() {
 }
 
 export default ProgressBarArtist;
+// testing the export - KT
+export {ProgressBar};

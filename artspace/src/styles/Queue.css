@@ -1,0 +1,38 @@
+.queue-container {
+    padding-top: 100px;
+    height: 100%;
+    min-height: calc(100vh - 70px);
+    width: 200px;
+}
+
+.queue-listing {
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+    margin-bottom: 5px;
+    height: 40px;
+    width: 200px;
+    background-color: lightblue;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.queue-title {
+    font-size: 10px;
+}
+
+.queue-complete-date {
+    font-size: 10px;
+}
+
+
+.queue-progress-bar div {
+    width: 75px !important;
+    height: 15px;
+}
+
+.queue-progress-bar {
+    margin-left: auto;
+    margin-right: 15px;
+    margin-top: 10px;
+}
