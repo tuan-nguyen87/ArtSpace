@@ -59,27 +59,30 @@ const Search = () => {
           />
         </form>
       </div>
-      {searchResults.length > 0 && (
-        <div className="search-results">
-          <h2>Search Results:</h2>
-          <div className="user-list">
-            {searchResults.map((user, index) => (
-              <div key={index} className="user-card">
-                <img
-                  src={user.profilePic}
-                  alt="Profile"
-                  className="profile-pic"
-                />
-                <div className="user-details">
-                  <h3>{user.name}</h3>
-                  <p>Skills: {user.skills.join(", ")}</p>
+      <div className="search-results-container">
+        {searchResults.length > 0 ? (
+          <div className="search-results">
+            <h2>Search Results:</h2>
+            <div className="user-list">
+              {searchResults.map((user, index) => (
+                <div key={index} className="user-card">
+                  <img
+                    src={user.profilePic}
+                    alt="Profile"
+                    className="profile-pic"
+                  />
+                  <div className="user-details">
+                    <h3>{user.name}</h3>
+                    <p>Skills: {user.skills.join(", ")}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-      {error && <div className="error">{error}</div>}
+        ) : (
+          <div className="error">No matching users found.</div>
+        )}
+      </div>
     </div>
   );
 };
