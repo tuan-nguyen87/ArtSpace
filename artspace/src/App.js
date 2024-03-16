@@ -19,7 +19,6 @@ import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue"
 
-
 import PointSystem from "./PointSystem";
 import NavSite from "./NavSite";
 import ArtTutorials from "./ArtTutorials";

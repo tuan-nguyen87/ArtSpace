@@ -265,7 +265,28 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>This cycles voted best comic artists!</p>
-                            <button type="submit">View!</button>
+                            <div class ="popbox">
+                                <a class="popbutton" href="#popup8">View!</a>
+                            </div>
+                            <div id="popup8" class="overlay">
+                                <div class="popup">
+                                    <div class="left-content">
+                                        <p>1st Place</p>
+                                        <img class="popimages" src="/Arena art/inkyapril.png" />
+                                    </div>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <h2>Winner Name</h2>
+                                        <p class="desc">
+                                            Image name/description
+                                        </p>
+                                    </div>
+                                    <div class="winner-image">
+                                        
+                                    </div>
+                                    <button type="submit">Honorable Mentions</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
