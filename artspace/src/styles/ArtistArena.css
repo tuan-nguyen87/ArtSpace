@@ -14,7 +14,7 @@
 
 .arena-section-header {
     position: absolute;
-    top: 85px;
+    top: 105px;
     left: 10px;
     font-size: 15px;
     color: #fff;
@@ -72,7 +72,7 @@
     margin-bottom: 10px;
     width: 300px;
     /* height: 300px; */
-    max-height: 500px;
+    max-height:500px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -164,7 +164,7 @@
   .popup .desc {
     text-transform: none;
     margin-top: 10px;
-    margin-bottom: 17px;
+    margin-bottom: 40px;
     color: black;
     margin-right: 10px;
     margin-left: 10px;
@@ -184,22 +184,42 @@
     color: #540C2A;
   }
   .popup .content {
-    max-height: 400px;
+    max-height: 600px;
     overflow: auto;
     /* margin: 10px; */
   }
-
-  .popup button {
-    font-size: 0.8em;
-    padding: 5px;
-    color: white;
-    background-color: #540C2A;
-    border: 2px solid;
-    border-radius: 10px;
-    text-decoration: none;
+  .popup .buttons{
+    margin-top: 10px;
     position: absolute;
     bottom: 10px;
     right: 10px;
+  }
+  .popup button {
+    display:inline-block;
+    font-size: 0.8em;
+    padding: 10px;
+    color: white;
+    background-color: #540C2A;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px;
+  } 
+
+  .upload {
+    right: 120px;
+  }
+  .vote {
+    right: 10px;
+  }
+  .mentions {
+    right: 10px;
+  }
+
+  .popup .coin {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
   }
 
   .popup .popimages {
@@ -209,3 +229,14 @@
     object-fit: cover;
     border-radius: 5px;
   }
+
+  .popup .winner-image {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+  }
+

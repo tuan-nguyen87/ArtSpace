@@ -1,4 +1,4 @@
-// import React, {useState, useEffect} from "react";
+//import React, { useState } from 'react';
 import "./styles/ArtistArena.css";
 
 const ArtistArena = () => {
@@ -30,6 +30,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/4-Panel-Life.png" />
                                         <p>Date: Mar 9, 2024</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -38,8 +39,10 @@ const ArtistArena = () => {
                                         Tell us your story using only four pannels! </p>
                                         {/* This submission is a placeholder */}
                                         {/* Will change to store image in database */}
-                                        <button type="submit">Image Upload Placeholder</button>
-                                        {/* Will need to add a link to page where user can vote on art in contest */}
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +55,6 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>Characters that leap off the page! </p>
-                            {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup2">Compete!</a>
                             </div>
@@ -61,6 +63,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/Char-Design.png" />
                                         <p>Date: Mar 9, 2024</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -69,7 +72,10 @@ const ArtistArena = () => {
                                             forth a character that resonates with you. 
                                             Consider their appearance, quirks, and backstory, 
                                             allowing their personality to shine through. </p>
-                                        <button type="submit">Image Upload Placeholder</button>
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +96,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/creature.png" />
                                         <p>Date: Mar 10, 2024</p> 
-                                        <p>Time: 11:59pm</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -100,7 +106,10 @@ const ArtistArena = () => {
                                             Be they original creations or legends of old, 
                                             challenge yourself to create creatures that inspire! 
                                         </p>
-                                        <button type="submit">Image Upload Placeholder</button>
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -113,49 +122,12 @@ const ArtistArena = () => {
                     <h3>Upcoming</h3>
                     <div className="timeframe-line-bottom"></div>
                     <div class="card">
-                        <img class="card-image" src="/Arena art/dynamic-figures.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Figuary Month</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>It's all about dynamics! Figures in motion</p>
-                            {/* <button type="submit">Compete!</button> */}
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup3">Compete!</a>
-                            </div>
-                            <div id="popup3" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/dynamic-figures.png" />
-                                        <p>Date: Feb 29, 2024</p>
-                                        <p>Time: 11:59pm</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Figuary Month</h2>
-                                        <p class="desc">
-                                            Embrace the challenge of capturing dynamic poses, 
-                                            expressing emotion, and refining your artistic skills 
-                                            alongside a supportive community of fellow creators. 
-                                            Let Figuary inspire you to push your boundaries, 
-                                            hone your craft, and unleash your creativity as you 
-                                            embark on this captivating journey of artistic growth and 
-                                            discovery.
-                                        </p>
-                                        <button type="submit">Image Upload Placeholder</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
                         <img class="card-image" src="/Arena art/robomarch.jpg" alt=""/>
                         <div class="card-header">
                             <h3>March of Robots!</h3>
                         </div>
                         <div class="card-content">
                             <p>The robot uprising is underway!</p>
-                            {/* <button type="submit">Compete!</button> */}
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup4">Compete!</a>
                             </div>
@@ -164,7 +136,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/robomarch.jpg" />
                                         <p>Date: March 31, 2024</p>
-                                        <p>Time: 11:59pm</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -173,7 +145,10 @@ const ArtistArena = () => {
                                             A robot a day keeps the people away! Grow your 
                                             army of unique robots and forward march!
                                         </p>
-                                        <button type="submit">Image Upload Placeholder</button>
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +170,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/WIZARD.png" />
                                         <p>Date: April 30, 2024</p>
-                                        <p>Time: 11:59pm</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -210,7 +185,10 @@ const ArtistArena = () => {
                                             enchanting adventure that will leave a lasting 
                                             mark on both your artistry and imagination.
                                         </p>
-                                        <button type="submit">Image Upload Placeholder</button>
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +210,7 @@ const ArtistArena = () => {
                                     <div class="left-content">
                                         <img class="popimages" src="/Arena art/inkyapril.png" />
                                         <p>Date: April 30, 2024</p>
-                                        <p>Time: 11:59pm</p>
+                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -245,7 +223,10 @@ const ArtistArena = () => {
                                             flow freely as you create intricate and mesmerizing 
                                             artworks that truly come to life on paper.
                                         </p>
-                                        <button type="submit">Image Upload Placeholder</button>
+                                        <div class="buttons">
+                                            <button class="upload">Image Upload</button>
+                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -261,10 +242,10 @@ const ArtistArena = () => {
                     <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
                         <div class="card-header">
-                            <h3>Best Comics</h3>
+                            <h3>Best Comic Covers</h3>
                         </div>
                         <div class="card-content">
-                            <p>This cycles voted best comic artists!</p>
+                            <p>This cycles voted best comic cover artists!</p>
                             <div class ="popbox">
                                 <a class="popbutton" href="#popup8">View!</a>
                             </div>
@@ -272,7 +253,8 @@ const ArtistArena = () => {
                                 <div class="popup">
                                     <div class="left-content">
                                         <p>1st Place</p>
-                                        <img class="popimages" src="/Arena art/inkyapril.png" />
+                                        <img class="popimages" src="/Arena art/cover1.jpg"/>
+                                        <img class="winner-image" src="/Arena art/User_Icon.png" />
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -281,10 +263,9 @@ const ArtistArena = () => {
                                             Image name/description
                                         </p>
                                     </div>
-                                    <div class="winner-image">
-                                        
+                                    <div class="buttons">
+                                        <button class="mentions">Honorable Mentions</button>
                                     </div>
-                                    <button type="submit">Honorable Mentions</button>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +277,32 @@ const ArtistArena = () => {
                         </div>
                         <div class="card-content">
                             <p>This cycles voted best design artists!</p>
-                            <button type="submit">View!</button>
+                            <div class ="popbox">
+                                <a class="popbutton" href="#popup9">View!</a>
+                            </div>
+                            <div id="popup9" class="overlay">
+                                <div class="popup">
+                                    <div class="left-content">
+                                        <p>1st Place</p>
+                                        <img class="popimages" src="/Arena art/design1.jpg"/>
+                                        <img class="winner-image" src="/Arena art/User_Icon.png"/>
+
+                                        <p>2nd Place</p>
+                                        <img class="popimages" src="/Arena art/design2.jpg"/>
+                                        <img class="winner-image" src="/Arena art/User_Icon.png"/>
+                                    </div>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <h2>Winner Name</h2>
+                                        <p class="desc">
+                                            Image name/description
+                                        </p>
+                                    </div>
+                                    <div class="buttons">
+                                        <button class="mentions">Honorable Mentions</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
