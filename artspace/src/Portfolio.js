@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/Portfolio.css";
 import { db, auth, storage, upload } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Portfolio = () => {
   // Initial blank Biography, skills and name, Joker will be change to a null name later
@@ -34,6 +35,7 @@ const Portfolio = () => {
             setBiography(userData.bio || initialBiography);
             setSkills(userData.skills || initialSkills);
             setUserName(userData.name || initialUserName);
+            setPhotoURL(userData.photoURL || null); // Set the profile picture URL
           } else {
             console.log("No such document!");
           }
@@ -47,7 +49,43 @@ const Portfolio = () => {
     return () => unsubscribe();
   }, []);
 
-  function handleProfilePictureUpload(event) {}
+  function handleProfilePictureUpload(event) {
+    const file = event.target.files[0];
+    const storageRef = ref(storage, `${userID}/profile-picture.jpg`); // Get a reference to the storage location where you want to store the profile picture
+
+    // Upload file to Firebase Storage
+    uploadBytes(storageRef, file)
+      .then((snapshot) => {
+        console.log("Profile picture uploaded successfully");
+        // Get the download URL of the uploaded image
+        getDownloadURL(storageRef).then((downloadURL) => {
+          // Update user document with the profile picture URL
+          if (userID) {
+            const userDocRef = doc(db, "Portfolio", userID);
+            setDoc(
+              userDocRef,
+              {
+                name: editedUserName,
+                bio: editedBiography,
+                skills: editedSkills,
+                photoURL: downloadURL, // Update user document with the profile picture URL
+              },
+              { merge: true }
+            ) // Merge the new data with existing data
+              .then(() => {
+                console.log("User data saved successfully!");
+                setPhotoURL(downloadURL); // Update the photoURL state to display the new profile picture
+              })
+              .catch((error) => {
+                console.error("Error saving user data: ", error);
+              });
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Error uploading profile picture: ", error);
+      });
+  }
 
   // behavior for edit button when clicked
   const handleEditButtonClick = () => {
