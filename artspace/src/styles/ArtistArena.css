@@ -153,8 +153,10 @@
     display:inline-flex;
     position: relative;
     transition: all 5s ease-in-out;
+    overflow: auto;
+    max-height: 500px;
   }
-  
+
   .popup h2 {
     margin-top: 10px;
     text-align: center;
@@ -183,17 +185,18 @@
   .popup .close:hover {
     color: #540C2A;
   }
-  .popup .content {
-    max-height: 600px;
-    overflow: auto;
-    /* margin: 10px; */
+
+  .popup .place-sec{
+    display: grid;
   }
+
   .popup .buttons{
     margin-top: 10px;
     position: absolute;
     bottom: 10px;
     right: 10px;
   }
+
   .popup button {
     display:inline-block;
     font-size: 0.8em;

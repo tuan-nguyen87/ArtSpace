@@ -22,7 +22,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                             <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
                         </div>
                         <a className="close" href="#">&times;</a>
-                        <div className="content">
+                        <div className="right-content">
                             <h2>{title}</h2>
                             <p className="desc">{description}</p>
                             <div className="buttons">
@@ -38,7 +38,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
 };
 
 //Winners Card component populated with winner data
-const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceImage, thirdPlaceImage }) => {
+const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceImage, thirdPlaceImage, winner1, description1 }) => {
     return (
         <div className="card">
             <img className="card-image" src={coverImageSrc} alt=""/>
@@ -69,9 +69,11 @@ const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceI
                                 {/* Add winner information here */}
                             </div>
                         </div>
+
                         <a className="close" href="#">&times;</a>
-                        <div className="content">
-                            {/* Additional content for the popup */}
+                        <div className="right-content">
+                            <h2>{winner1}</h2>
+                            <p className="desc">{description1}</p>
                         </div>
                     </div>
                 </div>
@@ -177,6 +179,8 @@ const ArtistArena = () => {
                         firstPlaceImage="/Arena art/cover1.jpg"
                         secondPlaceImage="/Arena art/design2.png"
                         thirdPlaceImage="/Arena art/design3.png"
+                        winner1="Jessica Bail"
+                        description1="Superman saving the military from dinosaurs!"
                         // Pass any additional props or data required by WinnerCard
                     />
 
