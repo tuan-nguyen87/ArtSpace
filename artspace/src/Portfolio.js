@@ -165,7 +165,7 @@ const Portfolio = () => {
       {/* The left section of the page, where profile and bio goes */}
       <div className="left-side">
         <button className="profile-button" onClick={handleEditButtonClick}>
-          <img className="profile-pic" src={photoURL} alt="Profile Picture" />
+          <img className="portfolio-pic" src={photoURL} alt="Profile Picture" />
         </button>
         <h3 className="user-name">{userName}</h3>
 
@@ -260,7 +260,6 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
-      <div className="my-portfolio">My Portfolio</div>
     </div>
   );
 };
