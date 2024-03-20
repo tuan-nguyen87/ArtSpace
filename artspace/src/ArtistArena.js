@@ -1,8 +1,86 @@
 //import React, { useState } from 'react';
 import "./styles/ArtistArena.css";
 
-const ArtistArena = () => {
+//attempt at reducing repetitions
+const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
+    return (
+        <div className="card">
+            <img className="card-image" src={imageSrc} alt=""/>
+            <div className="card-header">
+                <h3>{title}</h3>
+            </div>
+            <div className="card-content">
+                <p>{intro}</p>
+                <div className="popbox">
+                    <a className="popbutton" href={`#popup-${title}`}>Compete!</a>
+                </div>
+                <div id={`popup-${title}`} className="overlay">
+                    <div className="popup">
+                        <div className="left-content">
+                            <img className="popimages" src={imageSrc} alt=""/>
+                            <p>Date: {date}</p>
+                            <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
+                        </div>
+                        <a className="close" href="#">&times;</a>
+                        <div className="content">
+                            <h2>{title}</h2>
+                            <p className="desc">{description}</p>
+                            <div className="buttons">
+                                <button className="upload">Image Upload</button>
+                                <button className="vote">Vote!</button> {/*Link to vote page*/}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
+//Winners Card component populated with winner data
+const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceImage, thirdPlaceImage }) => {
+    return (
+        <div className="card">
+            <img className="card-image" src={coverImageSrc} alt=""/>
+            <div className="card-header">
+                <h3>{title}</h3>
+            </div>
+            <div className="card-content">
+                <p>{intro}</p>
+                <div className="popbox">
+                    <a className="popbutton" href={`#popup-${title}`}>View!</a>
+                </div>
+                <div id={`popup-${title}`} className="overlay">
+                    <div className="popup">
+                        <div className="left-content">
+                            <div className="place-sec">
+                                <p>1st Place</p>
+                                <img className="popimages" src={firstPlaceImage} alt=""/>
+                                {/* Add winner information here */}
+                            </div>
+                            <div className="place-sec">
+                                <p>2nd Place</p>
+                                <img className="popimages" src={secondPlaceImage} alt=""/>
+                                {/* Add winner information here */}
+                            </div>
+                            <div className="place-sec">
+                                <p>3rd Place</p>
+                                <img className="popimages" src={thirdPlaceImage} alt=""/>
+                                {/* Add winner information here */}
+                            </div>
+                        </div>
+                        <a className="close" href="#">&times;</a>
+                        <div className="content">
+                            {/* Additional content for the popup */}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const ArtistArena = () => {
     return(
         <div className="arena-bg">
             <div class="arena-container">
@@ -14,232 +92,105 @@ const ArtistArena = () => {
                     <div className="timeframe-line-top"></div>
                     <h3>This Week</h3>
                     <div className="timeframe-line-bottom"></div>
-                    <div class="card"> 
-                        <img class="card-image" src="/Arena art/4-Panel-Life.png" alt=""/>
-                        <h3>4 Panel Comic</h3>
-                        <div class="card-content">
-                            <p>Tell a story in 4 pictures!</p>
-                            {/* Will find a better way to implement due date in future */}
-                            {/* <button type="submit">Compete!</button> */}
-                            {/* I've changed the button to a popup */}
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup1">Compete!</a>
-                            </div>
-                            <div id="popup1" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/4-Panel-Life.png" />
-                                        <p>Date: Mar 9, 2024</p>
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>4 Pannel Comics</h2>
-                                        <p class="desc">A picture is worth a thousand words. What can you say in four?
-                                        Tell us your story using only four pannels! </p>
-                                        {/* This submission is a placeholder */}
-                                        {/* Will change to store image in database */}
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/Char-Design.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Character Design</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Characters that leap off the page! </p>
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup2">Compete!</a>
-                            </div>
-                            <div id="popup2" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/Char-Design.png" />
-                                        <p>Date: Mar 9, 2024</p>
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Character Design</h2>
-                                        <p class="desc">Dive into the depths of your creativity and bring 
-                                            forth a character that resonates with you. 
-                                            Consider their appearance, quirks, and backstory, 
-                                            allowing their personality to shine through. </p>
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/creature.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Mythical Creatures</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Creatures, big and small, cute and creepy!</p>
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup7">Compete!</a>
-                            </div>
-                            <div id="popup7" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/creature.png" />
-                                        <p>Date: Mar 10, 2024</p> 
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Mythical Creatures</h2>
-                                        <p class="desc">
-                                            Bring creatures of myth to life! 
-                                            Be they original creations or legends of old, 
-                                            challenge yourself to create creatures that inspire! 
-                                        </p>
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <CompetitionCard
+                        title="4 Panel Comic"
+                        imageSrc="/Arena art/4-Panel-Life.png"
+                        date="Mar 9, 2024"
+                        intro="Tell a story in 4 pictures!"
+                        description="A picture is worth a thousand words. What can you say in four?
+                        Tell us your story using only four pannels!"
+                    />
+                    
+                    <CompetitionCard
+                        title="Character Design"
+                        imageSrc="/Arena art/Char-Design.png"
+                        date="Mar 9, 2024"
+                        intro="Characters that leap off the page!"
+                        description="Dive into the depths of your creativity and bring 
+                        forth a character that resonates with you. 
+                        Consider their appearance, quirks, and backstory, 
+                        allowing their personality to shine through."
+                    />
+
+                    <CompetitionCard
+                        title="Mythical Creatures"
+                        imageSrc="/Arena art/creature.png"
+                        date="Mar 10, 2024"
+                        intro="Creatures, big and small, cute and creepy!"
+                        description="Bring creatures of myth to life! 
+                        Be they original creations or legends of old, 
+                        challenge yourself to create creatures that inspire!"
+                    />
                 </div>
                 
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Upcoming</h3>
                     <div className="timeframe-line-bottom"></div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/robomarch.jpg" alt=""/>
-                        <div class="card-header">
-                            <h3>March of Robots!</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>The robot uprising is underway!</p>
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup4">Compete!</a>
-                            </div>
-                            <div id="popup4" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/robomarch.jpg" />
-                                        <p>Date: March 31, 2024</p>
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>March of Robots!</h2>
-                                        <p class="desc">
-                                            A robot a day keeps the people away! Grow your 
-                                            army of unique robots and forward march!
-                                        </p>
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/WIZARD.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Wizard April</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Showcase the magic of your creativity!</p>
-                            {/* <button type="submit">Compete!</button> */}
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup5">Compete!</a>
-                            </div>
-                            <div id="popup5" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/WIZARD.png" />
-                                        <p>Date: April 30, 2024</p>
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Wizard April</h2>
-                                        <p class="desc">
-                                            Let Wizard April ignite your creativity, 
-                                            as you delve into the realms of fantasy, 
-                                            weaving spells with your brush or pen to bring 
-                                            captivating tales of sorcery and wonder to life 
-                                            on canvas or paper. Don your wizard's hat, 
-                                            wield your artistic wand, and embark on an 
-                                            enchanting adventure that will leave a lasting 
-                                            mark on both your artistry and imagination.
-                                        </p>
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/inkyapril.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Inky April</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Pen to paper! Create inky masterpieces!</p>
-                            {/* <button type="submit">Compete!</button> */}
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup6">Compete!</a>
-                            </div>
-                            <div id="popup6" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <img class="popimages" src="/Arena art/inkyapril.png" />
-                                        <p>Date: April 30, 2024</p>
-                                        <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Inky April</h2>
-                                        <p class="desc">
-                                            Immerse yourself in the captivating world of ink 
-                                            and pen! Challenge your artistic skills by 
-                                            embracing the simplicity and boldness of these 
-                                            traditional tools, allowing your imagination to 
-                                            flow freely as you create intricate and mesmerizing 
-                                            artworks that truly come to life on paper.
-                                        </p>
-                                        <div class="buttons">
-                                            <button class="upload">Image Upload</button>
-                                            <button class="vote">Vote!</button> {/*Link to vote page*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <CompetitionCard
+                        title="March of Robots"
+                        imageSrc="Arena art/robomarch.jpg"
+                        date="Mar 31, 2024"
+                        intro="The robot uprising is underway! How many unique robots can you build?"
+                        description="A robot a day keeps the people away! Grow your 
+                        army of unique robots and forward march!"
+                    />
+
+                    <CompetitionCard
+                        title="Wizard April"
+                        imageSrc="/Arena art/WIZARD.png"
+                        date="April 30, 2024"
+                        intro="Wands, potions, and pointy hats! Showcase the magic of your creativity!"
+                        description="Let Wizard April ignite your creativity, 
+                        as you delve into the realms of fantasy, 
+                        weaving spells with your brush or pen to bring 
+                        captivating tales of sorcery and wonder to life 
+                        on canvas or paper. Don your wizard's hat, 
+                        wield your artistic wand, and embark on an 
+                        enchanting adventure that will leave a lasting 
+                        mark on both your artistry and imagination."
+                    />
+
+                    <CompetitionCard
+                        title="Inky April"
+                        imageSrc="/Arena art/inkyapril.png"
+                        date="April 30, 2024"
+                        intro="Pen to paper! Create inky masterpieces!"
+                        description="Immerse yourself in the captivating world of ink 
+                        and pen! Challenge your artistic skills by 
+                        embracing the simplicity and boldness of these 
+                        traditional tools, allowing your imagination to 
+                        flow freely as you create intricate and mesmerizing 
+                        artworks that truly come to life on paper."
+                    />
                 </div>
                 <div class="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Winners</h3>
-                    {/* Tentative: Contain either links to pages with finished competition
-                        winners, or links to pages where users can vote and see winners */}
                     <div className="timeframe-line-bottom"></div>
-                    <div class="card">
+
+                    <WinnerCard
+                        title="Best Comic Covers"
+                        coverImageSrc="/Arena art/best-comic.png"
+                        intro="This cycles voted best comic cover artists!"
+                        firstPlaceImage="/Arena art/cover1.jpg"
+                        secondPlaceImage="/Arena art/design2.png"
+                        thirdPlaceImage="/Arena art/design3.png"
+                        // Pass any additional props or data required by WinnerCard
+                    />
+
+                    <WinnerCard
+                        title="Best Design"
+                        coverImageSrc="/Arena art/design.jpg"
+                        intro="This cycles voted best design artists!"
+                        firstPlaceImage="/Arena art/cover1.jpg"
+                        secondPlaceImage="/Arena art/design2.png"
+                        thirdPlaceImage="/Arena art/design3.png"
+                        // Pass any additional props or data required by WinnerCard
+                    />
+
+                    {/* <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
                         <div class="card-header">
                             <h3>Best Comic Covers</h3>
@@ -252,44 +203,21 @@ const ArtistArena = () => {
                             <div id="popup8" class="overlay">
                                 <div class="popup">
                                     <div class="left-content">
+                                        <div class="place-sec">
                                         <p>1st Place</p>
-                                        <img class="popimages" src="/Arena art/cover1.jpg"/>
-                                        <img class="winner-image" src="/Arena art/User_Icon.png" />
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Winner Name</h2>
-                                        <p class="desc">
-                                            Image name/description
-                                        </p>
-                                    </div>
-                                    <div class="buttons">
-                                        <button class="mentions">Honorable Mentions</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-image" src="/Arena art/design.jpg" alt=""/>
-                        <div class="card-header">
-                            <h3>Best Design</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>This cycles voted best design artists!</p>
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup9">View!</a>
-                            </div>
-                            <div id="popup9" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <p>1st Place</p>
-                                        <img class="popimages" src="/Arena art/design1.jpg"/>
-                                        <img class="winner-image" src="/Arena art/User_Icon.png"/>
-
+                                            <img class="popimages" src="/Arena art/cover1.jpg"/>
+                                            <img class="winner-image" src="/Arena art/User_Icon.png" />
+                                        </div>
+                                        <div class="place-sec">
                                         <p>2nd Place</p>
-                                        <img class="popimages" src="/Arena art/design2.jpg"/>
-                                        <img class="winner-image" src="/Arena art/User_Icon.png"/>
+                                            <img class="popimages" src="/Arena art/design2.png"/>
+                                            <img class="winner-image" src="/Arena art/User_Icon.png"/>
+                                        </div>
+                                        <div class="place-sec">
+                                        <p>3rd Place</p>
+                                            <img class="popimages" src="/Arena art/design3.png"/>
+                                            <img class="winner-image" src="/Arena art/User_Icon.png"/>
+                                        </div>
                                     </div>
                                     <a class="close" href="#">&times;</a>
                                     <div class="content">
@@ -304,7 +232,7 @@ const ArtistArena = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div> 
         </div>
