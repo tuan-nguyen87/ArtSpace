@@ -5,8 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging"; //Val
 import { onAuthStateChanged } from "firebase/auth";
-
-
+import { getStorage, ref } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,7 +21,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const messaging = getMessaging(app);//Val
+const storage = getStorage(app);
+const messaging = getMessaging(app); //Val
 
 //Vals code for messaging starting here:
 // Listen for changes in the "messages" collection
@@ -36,70 +36,70 @@ const unsubscribe = onSnapshot(messagesRef, (snapshot) => {
       // Handle the new or modified message
       console.log("New or modified message:", message);
       // Trigger a function to update the UI with the new message
-
     }
   });
 });
 
-
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in
-    console.log("User is signed in:", user);
-    // can update the UI or take actions when the user is signed in
-  } else {
-    // User is signed out
-    console.log("User is signed out");
-    // can update the UI or take actions when the user is signed out
+onAuthStateChanged(
+  auth,
+  (user) => {
+    if (user) {
+      // User is signed in
+      console.log("User is signed in:", user);
+      // can update the UI or take actions when the user is signed in
+    } else {
+      // User is signed out
+      console.log("User is signed out");
+      // can update the UI or take actions when the user is signed out
+    }
+  },
+  (error) => {
+    console.error("Auth state change error:", error);
   }
-}, (error) => {
-  
-  console.error("Auth state change error:", error);
-});
-
-
+);
 
 const requestPermission = async () => {
   try {
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
-      console.log('Notification permission granted.');
+      console.log("Notification permission granted.");
 
       // Retrieve FCM token
       const currentToken = await getToken(messaging);
       if (currentToken) {
-        console.log('FCM Token:', currentToken);
+        console.log("FCM Token:", currentToken);
         sendTokenToServer(currentToken); // Send the token to your server
       } else {
-        console.log('No registration token available. Request permission to generate one.');
+        console.log(
+          "No registration token available. Request permission to generate one."
+        );
       }
     } else {
-      console.log('Notification permission denied.');
+      console.log("Notification permission denied.");
     }
   } catch (err) {
-    console.error('An error occurred while retrieving token:', err);
+    console.error("An error occurred while retrieving token:", err);
   }
 };
 
 const sendTokenToServer = (token) => {
   // Replace this with my server endpoint to send the FCM token
   // Example: You need to implement a server API to handle the FCM token
-  fetch('http://localhost:3000', {
-    method: 'POST',
+  fetch("http://localhost:3000", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ token }),
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
-        throw new Error('Failed to send FCM token to server.');
+        throw new Error("Failed to send FCM token to server.");
       }
-      console.log('FCM token sent to server successfully.');
+      console.log("FCM token sent to server successfully.");
     })
-    .catch(error => {
-      console.error('Error sending FCM token to server:', error);
+    .catch((error) => {
+      console.error("Error sending FCM token to server:", error);
     });
 };
 
@@ -107,4 +107,4 @@ const sendTokenToServer = (token) => {
 requestPermission();
 //Vals code  for messaging ends here
 
-export { app, auth, db, messaging, requestPermission };
+export { app, auth, db, messaging, requestPermission, storage };

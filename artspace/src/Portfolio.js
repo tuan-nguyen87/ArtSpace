@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Portfolio.css";
-import { db, auth } from "./Firebase/Firebase.js";
+import { db, auth, storage, upload } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 
 const Portfolio = () => {
@@ -8,7 +8,7 @@ const Portfolio = () => {
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
   const initialImages = [];
-  const initialUserName = "Joker";
+  const initialUserName = "Please set your username";
   //const needed to edit fields
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
@@ -19,6 +19,9 @@ const Portfolio = () => {
   const [userName, setUserName] = useState(initialUserName);
   const [editedUserName, setEditedUserName] = useState(initialUserName);
   const [userID, setUserID] = useState(null);
+  const [photoURL, setPhotoURL] = useState(
+    "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+  );
   // use effect to add to database documents and get fields
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -43,6 +46,9 @@ const Portfolio = () => {
 
     return () => unsubscribe();
   }, []);
+
+  function handleProfilePictureUpload(event) {}
+
   // behavior for edit button when clicked
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
@@ -121,11 +127,7 @@ const Portfolio = () => {
       {/* The left section of the page, where profile and bio goes */}
       <div className="left-side">
         <button className="profile-button" onClick={handleEditButtonClick}>
-          <img
-            className="profile-pic"
-            src="/Portfolio/joker.png"
-            alt="Profile Picture"
-          />
+          <img className="profile-pic" src={photoURL} alt="Profile Picture" />
         </button>
         <h3 className="user-name">{userName}</h3>
 
@@ -177,6 +179,14 @@ const Portfolio = () => {
               ))}
             </ul>
             {/* Buttons and their behavior define above */}
+            <div>
+              <label>Edit Profile Picture:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleProfilePictureUpload}
+              />
+            </div>
             <button className="add-skill-button" onClick={handleAddSkill}>
               Add Skill
             </button>
