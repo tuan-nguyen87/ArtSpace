@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Portfolio.css";
-import { db, auth, storage, upload } from "./Firebase/Firebase.js";
+import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Portfolio = () => {
   // Initial blank Biography, skills and name, Joker will be change to a null name later
@@ -170,11 +170,11 @@ const Portfolio = () => {
         <h3 className="user-name">{userName}</h3>
 
         <div className="bio">
-          <h2>Biography</h2>
-          <p>{biography}</p>
+          <h2 className="bio-title">Biography</h2>
+          <p className="bio-paragraph">{biography}</p>
         </div>
         <div className="skills">
-          <h2>Skills</h2>
+          <h2 className="skills-title">Skills</h2>
           <ul>
             {skills.map((skill, index) => (
               <li key={index}>{skill}</li>
