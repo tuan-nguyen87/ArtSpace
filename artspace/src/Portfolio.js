@@ -140,17 +140,24 @@ const Portfolio = () => {
     setEditedUserName(event.target.value);
   };
 
-  const handleImageUpload = (event) => {
+  function handleImageUpload(event) {
     const file = event.target.files[0];
-    const reader = new FileReader();
+    const storageRef = ref(storage, `${userID}/work-images/${file.name}`); // Set the storage path for work images
 
-    reader.onload = (e) => {
-      const image = e.target.result;
-      setImages([...images, image]);
-    };
-
-    reader.readAsDataURL(file);
-  };
+    // Upload file to Firebase Storage
+    uploadBytes(storageRef, file)
+      .then((snapshot) => {
+        // Get the download URL of the uploaded image
+        getDownloadURL(storageRef).then((downloadURL) => {
+          // Update state with the new image URL
+          console.log("Download URL:", downloadURL);
+          setImages([...images, downloadURL]);
+        });
+      })
+      .catch((error) => {
+        console.error("Error uploading work image: ", error);
+      });
+  }
 
   return (
     <div className="portfolio">
