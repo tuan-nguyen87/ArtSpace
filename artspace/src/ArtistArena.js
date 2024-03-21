@@ -1,4 +1,4 @@
-//import React, { useState } from 'react';
+import React from 'react';
 import "./styles/ArtistArena.css";
 
 //attempt at reducing repetitions
@@ -57,7 +57,7 @@ const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceI
                                 <p>1st Place</p>
                                 <img className="popimages" src={firstPlaceImage} alt=""/>
                                 {/* Add winner information here */}
-                            </div>
+                                </div>
                             <div className="place-sec">
                                 <p>2nd Place</p>
                                 <img className="popimages" src={secondPlaceImage} alt=""/>
@@ -85,12 +85,12 @@ const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceI
 const ArtistArena = () => {
     return(
         <div className="arena-bg">
-            <div class="arena-container">
+            <div className="arena-container">
                 <div className="arena-section-header">
                     Interact | Artist Arena
                 </div>
 
-                <div class="section-label">
+                <div className="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>This Week</h3>
                     <div className="timeframe-line-bottom"></div>
@@ -125,7 +125,7 @@ const ArtistArena = () => {
                     />
                 </div>
                 
-                <div class="section-label">
+                <div className="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Upcoming</h3>
                     <div className="timeframe-line-bottom"></div>
@@ -167,7 +167,7 @@ const ArtistArena = () => {
                         artworks that truly come to life on paper."
                     />
                 </div>
-                <div class="section-label">
+                <div className="section-label">
                     <div className="timeframe-line-top"></div>
                     <h3>Winners</h3>
                     <div className="timeframe-line-bottom"></div>
@@ -188,9 +188,11 @@ const ArtistArena = () => {
                         title="Best Design"
                         coverImageSrc="/Arena art/design.jpg"
                         intro="This cycles voted best design artists!"
-                        firstPlaceImage="/Arena art/cover1.jpg"
+                        firstPlaceImage="/Arena art/design1.jpg"
                         secondPlaceImage="/Arena art/design2.png"
                         thirdPlaceImage="/Arena art/design3.png"
+                        winner1="Tammy Thompson"
+                        description1="The Wolf"
                         // Pass any additional props or data required by WinnerCard
                     />
 
