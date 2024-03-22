@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { collection, getDoc, getDocs, where, query, addDoc } from "firebase/firestore";
 import { db } from "./Firebase/Firebase";
+import { auth } from "./Firebase/Firebase.js";
+
 
 
 const CreateChatPopup = ({ onClose }) => {

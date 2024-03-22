@@ -125,4 +125,4 @@ export const createChat = async (participants, chatName) => {
 };*/
 
 
-export { app, auth, db, messaging, requestPermission };
+export { app, auth, db, messaging, requestPermission, storage };
