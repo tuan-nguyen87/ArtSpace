@@ -2,35 +2,37 @@
 
 .portfolio {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align items to the top */
   padding: 20px;
-  padding-top: 220px;
-  background-color: #ffa962;
+  padding-top: 150px;
+  background: linear-gradient(360deg, #153677, #4e085f);
   min-height: 100vh;
+  overflow: hidden; /* Hide overflow from the body */
 }
 
 .left-side {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  flex: 0 0 400px; /* Fixed width for the left side */
+  height: 870px;
   padding-right: 20px;
-  padding-top: 100px;
-  border: 8px solid gold; /* Add border */
+  padding-top: 50px;
+  border: 8px solid gold;
   border-radius: 15px;
-  background-color: rgba(121, 0, 0, 0.575);
+  background-color: rgba(0, 30, 57, 0.76);
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .right-side {
-  flex: 2;
+  width: 1500px;
+  height: 870px;
   margin-left: 80px;
   display: flex;
   border: 8px solid gold;
-  background-color: rgba(147, 0, 0, 0.671);
+  background-color: rgba(0, 30, 57, 0.76);
   position: relative;
   border-radius: 15px;
   padding: 15px;
   justify-content: center;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .work-item {
@@ -46,17 +48,17 @@
   border: 5px solid gold;
 }
 
-.profile-pic {
+.portfolio-pic {
   width: 300px;
   height: 300px;
   border-radius: 50%;
   margin-bottom: 30px;
+  margin-left: 40px;
 }
 
 .profile-button {
   background-color: transparent;
   border: none;
-  padding: 0;
   transition: filter 0.3s ease; /* Add transition for smooth effect */
   cursor: pointer;
 }
@@ -72,14 +74,29 @@
 }
 
 .user-name {
-  margin-left: 50px;
+  margin-left: 120px;
   margin-bottom: 20px;
+  font-size: 50px;
+  color: gold;
+}
+
+.bio-title {
+  color: red;
+}
+
+.bio-paragraph {
+  color: white;
 }
 
 .skills {
   margin-top: 20px;
   margin-left: 50px;
   margin-bottom: 30px;
+  color: white;
+}
+
+.skills-title {
+  color: red;
 }
 
 ul.skills {
@@ -203,13 +220,4 @@ button.edit-popup {
 
 .edit-button:hover {
   background-color: #0056b3;
-}
-
-.my-portfolio {
-  font-family: "Baloo 2", cursive;
-  position: absolute;
-  font-size: 3rem;
-  font-weight: bold;
-  right: 40%;
-  top: 130px;
 }
