@@ -357,3 +357,19 @@
 ::-webkit-scrollbar-thumb {
   background: #bbb; 
 }
+
+
+
+/*CreateChatPopup Stuff*/
+.create-chat-popup .popup-header
+{
+	background-color: #cae3cb;
+
+}
+
+.create-chat-popup .search-results
+{
+	z-index: 9999;
+	border: 1px solid red;
+	background: rgba(255, 0, 0, 0.1);
+}
