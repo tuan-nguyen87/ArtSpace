@@ -2,7 +2,7 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 //Val added 'collection'-used to create a reference to a firestore collection
 //Also added 'onSnapshot'-used to listen for real-time updates in "messages" collection
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot, addDoc } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging"; //Val
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -41,8 +41,6 @@ const unsubscribe = onSnapshot(messagesRef, (snapshot) => {
   });
 });
 
-
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in
@@ -57,7 +55,6 @@ onAuthStateChanged(auth, (user) => {
   
   console.error("Auth state change error:", error);
 });
-
 
 
 const requestPermission = async () => {
@@ -106,5 +103,23 @@ const sendTokenToServer = (token) => {
 // Invoke the function to request permission and retrieve FCM token
 requestPermission();
 //Vals code  for messaging ends here
+
+// Vals code for Create Chat feature starts here:
+/*
+export const createChat = async (participants, chatName) => {
+  try {
+    const chatRef = await addDoc(collection(db, "chats"), {
+      participants,
+      chatName,
+      createdAt: new Date(),
+    });
+    console.log("Chat created with ID: ", chatRef.id);
+    return chatRef.id; // Return the ID of the newly created chat
+  } catch (error) {
+    console.error("Error creating chat:", error);
+    throw error;
+  }
+};*/
+
 
 export { app, auth, db, messaging, requestPermission };
