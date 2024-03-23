@@ -40,13 +40,12 @@ const unsubscribe = onSnapshot(messagesRef, (snapshot) => {
   });
 });
 
-onAuthStateChanged(
-  auth,
-  (user) => {
+onAuthStateChanged( auth, (user) => {
     if (user) {
       // User is signed in
       console.log("User is signed in:", user);
       // can update the UI or take actions when the user is signed in
+      console.log("User's display name:", user.displayName);
     } else {
       // User is signed out
       console.log("User is signed out");
