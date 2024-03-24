@@ -187,9 +187,19 @@
   }
 
   .popup .place-sec{
-    display: grid;
+    display: flex;
   }
 
+  .place-sec h2 {
+    text-align: center;
+  }
+
+  .place-sec .right-content {
+    width: 300px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
   .popup .buttons{
     margin-top: 10px;
     position: absolute;

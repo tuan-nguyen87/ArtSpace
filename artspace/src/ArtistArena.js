@@ -37,8 +37,8 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
     );
 };
 
-//Winners Card component populated with winner data
-const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceImage, thirdPlaceImage, winner1, description1 }) => {
+//Winners Card component populated with winner data -- firstPlaceImage, secondPlaceImage, thirdPlaceImage, winner1, description1 
+const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
     return (
         <div className="card">
             <img className="card-image" src={coverImageSrc} alt=""/>
@@ -52,29 +52,23 @@ const WinnerCard = ({ title, coverImageSrc, intro, firstPlaceImage, secondPlaceI
                 </div>
                 <div id={`popup-${title}`} className="overlay">
                     <div className="popup">
-                        <div className="left-content">
-                            <div className="place-sec">
-                                <p>1st Place</p>
-                                <img className="popimages" src={firstPlaceImage} alt=""/>
-                                {/* Add winner information here */}
+                        <div className="content">
+                            {winners.map((winner, index) => (
+                                <div key={index} className="place-sec">
+                                    <div className="left-content">
+                                        <h2>{index + 1}st Place</h2>
+                                        <img className="popimages" src={winner.image} alt=""/>
+                                    </div>
+                                    <div className="right-content">
+                                        <h2>{winner.name}</h2>
+                                        <p>{winner.description}</p>
+                                        {/* Additional winner information */}
+                                    </div>
                                 </div>
-                            <div className="place-sec">
-                                <p>2nd Place</p>
-                                <img className="popimages" src={secondPlaceImage} alt=""/>
-                                {/* Add winner information here */}
-                            </div>
-                            <div className="place-sec">
-                                <p>3rd Place</p>
-                                <img className="popimages" src={thirdPlaceImage} alt=""/>
-                                {/* Add winner information here */}
-                            </div>
+                            ))}
                         </div>
 
                         <a className="close" href="#">&times;</a>
-                        <div className="right-content">
-                            <h2>{winner1}</h2>
-                            <p className="desc">{description1}</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -176,15 +170,21 @@ const ArtistArena = () => {
                         title="Best Comic Covers"
                         coverImageSrc="/Arena art/best-comic.png"
                         intro="This cycles voted best comic cover artists!"
-                        firstPlaceImage="/Arena art/cover1.jpg"
-                        secondPlaceImage="/Arena art/design2.png"
-                        thirdPlaceImage="/Arena art/design3.png"
-                        winner1="Jessica Bail"
-                        description1="Superman saving the military from dinosaurs!"
+                        winners={[
+                            { name: "Jessica Bail", image: "/Arena art/cover1.jpg", description:"Superman" },
+                            { name: "John Doe", image: "/Arena art/cover2.png", description:"Spider-Punk" },
+                            { name: "Jane Doe", image: "/Arena art/cover3.jpg", description:"Godzilla" },
+                            // Add more winners as needed
+                        ]}
+                        // firstPlaceImage="/Arena art/cover1.jpg"
+                        // secondPlaceImage="/Arena art/design2.png"
+                        // thirdPlaceImage="/Arena art/design3.png"
+                        // winner1="Jessica Bail"
+                        // description1="Superman saving the military from dinosaurs!"
                         // Pass any additional props or data required by WinnerCard
                     />
 
-                    <WinnerCard
+                    {/* <WinnerCard
                         title="Best Design"
                         coverImageSrc="/Arena art/design.jpg"
                         intro="This cycles voted best design artists!"
@@ -193,8 +193,7 @@ const ArtistArena = () => {
                         thirdPlaceImage="/Arena art/design3.png"
                         winner1="Tammy Thompson"
                         description1="The Wolf"
-                        // Pass any additional props or data required by WinnerCard
-                    />
+                    /> */}
 
                     {/* <div class="card">
                         <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
