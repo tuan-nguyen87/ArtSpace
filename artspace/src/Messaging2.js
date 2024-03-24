@@ -4,13 +4,7 @@ import { db } from "./Firebase/Firebase";
 import { auth } from "./Firebase/Firebase";
 import { collection, getDocs, addDoc, query, where, doc, setDoc, getDoc } from "firebase/firestore";
 
-
-
-
-
-// Define the MessagingPage component
 const Messaging2 = () => {
-  // State for storing messages and new messages
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isCreateChatPopupOpen, setCreateChatPopupOpen] = useState(false);
@@ -19,8 +13,12 @@ const Messaging2 = () => {
   const [searchResults, setSearchResults] = useState([]); 
   const [selectedUser, setSelectedUser] = useState(null);
   
-  
   // Function to send a new message 
+  /**These functions handle message input, 
+   * sending, and keyboard events.  ensure that 
+   * messages are sent when the user inputs text,
+   *  presses the "Enter" key, and handles any errors 
+   * during message sending. */
   const sendMessage = async (content) => {
     if (content.trim() !== "") {
       const user = auth.currentUser;
@@ -31,8 +29,6 @@ const Messaging2 = () => {
       };
   
       try {
-        //const docRef = await addDoc(collection(db, "messages"), message);
-        //console.log("Document written with ID: ", docRef.id);
         await addDoc(collection(db, "messages"), message);
       } catch (error) {
         console.error("Error adding document:", error);
@@ -40,8 +36,6 @@ const Messaging2 = () => {
     }
   };
   
-
-
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
   };
@@ -58,6 +52,8 @@ const Messaging2 = () => {
     }
   };
 
+/**These functions are responsible for setting the state to 
+ * control the visibility of the create chat popup */
   const handleOpenCreateChatPopup = () => {
     setCreateChatPopupOpen(true);
   };
@@ -66,7 +62,10 @@ const Messaging2 = () => {
     setCreateChatPopupOpen(false);
   };
 
-  // Fetch messages from Firestore
+  
+  /**UseEffect hooks are for fetching messages and chats from 
+   * Firestore when the component mounts. They ensure that the 
+   * component has the latest data from the Firestore database */
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -81,7 +80,7 @@ const Messaging2 = () => {
     fetchMessages();
   }, []);
   
-  // Fetch chats from Firestore
+  
   useEffect(() => {
     const fetchChats = async () => {
       try {
@@ -97,31 +96,35 @@ const Messaging2 = () => {
   }, []);
 //end of messaging
 
-  
+  /**This function is for creating a new chat document in the 
+   * Firestore database. It's called when the user selects participants 
+   * and initiates a new chat. The newly created chat is then added to 
+   * the component state to reflect the changes immediately. */
     const createChat = async (selectedUsers) => {
       try {
-        // Create a new chat document in the "Chats" collection
         const chatData = {
           participants: selectedUsers,
           createdAt: new Date(),
           messages: [],
           updatedAt: new Date(),
-          // Do I need to add anything else?
         };
         const chatRef = await addDoc(collection(db, "chats"), chatData);
-        
-        // Fetch the newly created chat document to get its ID
         const chatDoc = await getDoc(chatRef);
         const newChat = { id: chatDoc.id, ...chatDoc.data() };
-    
-        // Update the component state to include the new chat
+
         setChats((prevChats) => [...prevChats, newChat]);
       } catch (error) {
         console.error("Error creating chat:", error);
       }
     };
     
-    
+    /**This function handles the change event in the search input field. 
+     * It updates the search query state (searchUser) and performs a search 
+     * query based on the input text. If the query text is not empty, 
+     * it queries the Firestore collection "Portfolio" and retrieves 
+     * documents where the "name" field matches the query text. 
+     * Then, it updates the search results state (searchResults) with the
+     *  names of the users found in the search. */
     const handleSearchChange = async (event) => {
       setSearchUser(event.target.value); // Update search query state
       const queryText = event.target.value.trim();
@@ -142,22 +145,34 @@ const Messaging2 = () => {
       }
     };
   
+    /** This function is triggered when a user is selected from the search results. 
+     * It updates the selectedUser state with the selected user and clears 
+     * the search results. Essential for handling user selections during
+     *  the chat creation process */
     const handleUserSelect = (user) => {
-      setSelectedUser(user); // Set the selected user
-      setSearchResults([]); // Clear the search results
+      setSelectedUser(user); 
+      setSearchResults([]); 
     };
   
-    // Function to update the chat list after creating a new chat
+    /**This function is responsible for updating the chat list with a 
+     * new chat after it has been created. It adds the new chat to the 
+     * existing list of chats in the state. This function ensures that
+     *  newly created chats are immediately reflected in the user interface.
+     *  */
+    
     const updateChatList = (newChat) => {
       setChats((prevChats) => [...prevChats, newChat]);
     };
   
+    /**updates the chat document in the Firestore database with the 
+     * provided updated chat data. It takes the updated chat object as 
+     * a parameter, gets the reference to the chat document using its ID,
+     *  and then updates the document with the new data using the 
+     * setDoc function */
     const updateChat = async (updatedChat) => {
       try {
-          // Get the chat document reference from the database
           const chatDocRef = doc(db, "chats", updatedChat.id);
   
-          // Update the chat document with the updated chat data
           await setDoc(chatDocRef, updatedChat);
   
           console.log("Chat updated successfully!");
@@ -167,25 +182,26 @@ const Messaging2 = () => {
       }
   };
   
+  /**function is responsible for creating a new chat. 
+   * It takes the selected users as input, 
+   * creates a new chat using the createChat function, 
+   * updates the chat list with the newly 
+   * created chat using updateChatList, and then sends a welcome 
+   * message to the new chat to test its functionality. */
     const handleNewChat = async (selectedUsers) => {
       if (selectedUsers) {
           try {
-              // Create the chat
               const newChat = await createChat(selectedUsers);
-  
-              // Optionally, update the chat list immediately after creating a new chat
               updateChatList(newChat);
   
-              // Example of sending a message after creating the chat
+         
               const message = {
                 content: "Welcome to the chat!", // Example msg content
                 sender: auth.currentUser.displayName, // Assuming you're using Firebase authentication
                 receiver: selectedUsers, 
                 timestamp: new Date(),
             };
-  
-            // Pushes message into the messages array of the newly created chat
-            newChat.messages.push(message);
+              newChat.messages.push(message);
   
             // Update the chat in the database with the new message
             await updateChat(newChat); 
@@ -197,7 +213,8 @@ const Messaging2 = () => {
   
   
   
-       //function to truncate long messages
+       //limits the length of messages displayed in the UI 
+       //to prevent them from overflowing
     const truncateMessage = (message, maxLength = 50) => {
       if (message.length > maxLength) {
         return message.substring(0, maxLength) + '...';
@@ -254,7 +271,7 @@ const Messaging2 = () => {
                       key={index}
                       onClick={() => handleUserSelect(user)}
                     >
-                      {user.username}
+                      {user}
                     </div>
                   ))}
                 </div>
