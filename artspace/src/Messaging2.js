@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/messaging2.css";
 import { db } from "./Firebase/Firebase";
 import { auth } from "./Firebase/Firebase";
-import { collection, getDocs, addDoc, query, where, doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, query, where, doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
 
 const Messaging2 = () => {
   const [messages, setMessages] = useState([]);
@@ -67,25 +67,27 @@ const Messaging2 = () => {
    * Firestore when the component mounts. They ensure that the 
    * component has the latest data from the Firestore database */
   useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const snapshot = await getDocs(collection(db, "messages"));
-        const messagesData = snapshot.docs.map((doc) => doc.data());
-        setMessages(messagesData);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
+    const unsubscribe = onSnapshot(collection(db, "messages"), (snapshot) => {
+      const messagesData = snapshot.docs.map((doc) => doc.data());
+      setMessages(messagesData);
+    });
   
-    fetchMessages();
+    return () => unsubscribe(); // Cleanup function to unsubscribe from real-time updates
   }, []);
+  
   
   
   useEffect(() => {
     const fetchChats = async () => {
       try {
         const snapshot = await getDocs(collection(db, "chats"));
-        const chatsData = snapshot.docs.map((doc) => doc.data());
+        const chatsData = snapshot.docs.map((doc) => {
+          const data = doc.data()
+          if(!data.participants) {
+            data.participants = [];
+          }
+          return data;
+        });
         setChats(chatsData);
       } catch (error) {
         console.error("Error fetching chats:", error);
@@ -151,7 +153,6 @@ const Messaging2 = () => {
      *  the chat creation process */
     const handleUserSelect = (user) => {
       setSelectedUser(user); 
-      setSearchResults([]); 
     };
   
     /**This function is responsible for updating the chat list with a 
@@ -188,28 +189,30 @@ const Messaging2 = () => {
    * updates the chat list with the newly 
    * created chat using updateChatList, and then sends a welcome 
    * message to the new chat to test its functionality. */
-    const handleNewChat = async (selectedUsers) => {
-      if (selectedUsers) {
-          try {
-              const newChat = await createChat(selectedUsers);
-              updateChatList(newChat);
+  const handleNewChat = async (selectedUsers) => {
+    if (selectedUsers) { // Check if any user is selected
+      try {
+        const newChat = await createChat(selectedUsers);
+        updateChatList(newChat);
   
-         
-              const message = {
-                content: "Welcome to the chat!", // Example msg content
-                sender: auth.currentUser.displayName, // Assuming you're using Firebase authentication
-                receiver: selectedUsers, 
-                timestamp: new Date(),
-            };
-              newChat.messages.push(message);
+        const message = {
+          content: "Welcome to the chat!", // Example msg content
+          sender: auth.currentUser.displayName, // Assuming you're using Firebase authentication
+          receiver: selectedUsers, 
+          timestamp: new Date(),
+        };
+        newChat.messages.push(message);
   
-            // Update the chat in the database with the new message
-            await updateChat(newChat); 
-          } catch (error) {
-              console.error('Error creating chat:', error);
-          }
+        // Update the chat in the database with the new message
+        await updateChat(newChat); 
+      } catch (error) {
+        console.error('Error creating chat:', error);
       }
+    } else {
+      console.error('No user selected for chat');
+    }
   };
+  
   
   
   
@@ -244,7 +247,7 @@ const Messaging2 = () => {
           {chats.map((chat, index) => (
             <div key={index} className="chatItem">
               {/* Display chat participants */}
-              {chat.participants.join(", ")}
+              {chat.participants && chat.participants.join(", ")}
             </div>
           ))}
         </div>
