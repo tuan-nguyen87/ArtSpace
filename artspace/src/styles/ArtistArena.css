@@ -247,6 +247,7 @@
   .popup .winner-image {
     display: flex;
     margin-left: 100px;
+    margin-top: 10px;
     width: 100px;
     height: 100px;
     background-color: white;
