@@ -332,7 +332,7 @@ const Messaging2 = () => {
       </div>
       <div className="rightSide">
         <div className="chatBox">
-          {messages.map((message, index) => (
+        {messages.slice().sort((a, b) => (a.timestamp.seconds * 1000) - (b.timestamp.seconds * 1000)).map((message, index) => (
             <div
               key={index}
               className={`message ${
