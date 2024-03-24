@@ -62,6 +62,7 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
                                     <div className="right-content">
                                         <h2>{winner.name}</h2>
                                         <p>{winner.description}</p>
+                                        <img className="winner-image" src={winner.pimage}></img>
                                         {/* Additional winner information */}
                                     </div>
                                 </div>
@@ -171,17 +172,12 @@ const ArtistArena = () => {
                         coverImageSrc="/Arena art/best-comic.png"
                         intro="This cycles voted best comic cover artists!"
                         winners={[
-                            { name: "Jessica Bail", image: "/Arena art/cover1.jpg", description:"Superman" },
-                            { name: "John Doe", image: "/Arena art/cover2.png", description:"Spider-Punk" },
-                            { name: "Jane Doe", image: "/Arena art/cover3.jpg", description:"Godzilla" },
+                            { name: "Jessica Bail", image: "/Arena art/cover1.jpg", description:"Superman", pimage:"/Arena art/User_Icon.png" },
+                            { name: "John Doe", image: "/Arena art/cover2.png", description:"Spider-Punk", pimage:"/Arena art/User_Icon.png" },
+                            { name: "Jane Doe", image: "/Arena art/cover3.jpg", description:"Godzilla", pimage:"/Arena art/User_Icon.png" },
                             // Add more winners as needed
                         ]}
-                        // firstPlaceImage="/Arena art/cover1.jpg"
-                        // secondPlaceImage="/Arena art/design2.png"
-                        // thirdPlaceImage="/Arena art/design3.png"
-                        // winner1="Jessica Bail"
-                        // description1="Superman saving the military from dinosaurs!"
-                        // Pass any additional props or data required by WinnerCard
+                    
                     />
 
                     {/* <WinnerCard
