@@ -123,9 +123,6 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease-out;
-    /* position: relative;
-    bottom: 5px;
-    right: 5px; */
   }
 
   .overlay {
@@ -202,9 +199,9 @@
   
   .popup .buttons{
     margin-top: 10px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+    position: relative;
+    /* bottom: 10px;
+    right: 10px; */
   }
 
   .popup button {
@@ -216,19 +213,24 @@
     border: none;
     border-radius: 10px;
     text-decoration: none;
-    margin: 5px;
   } 
 
-  .upload {
-    right: 120px;
-  }
-  .vote {
-    right: 10px;
-  }
+ .upload {
+  position: absolute;
+  bottom: 0px;
+  right: 110px;
+ }
+ .vote {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+ }
   .mentions {
-    right: 10px;
-  }
-
+    /* Additional styles for the Honorable Mentions button */
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
   .popup .coin {
     margin: 5px;
     width: 20px;

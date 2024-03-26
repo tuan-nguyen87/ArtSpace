@@ -1,8 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { storage } from './/Firebase/Firebase.js'; //path to firebase.js file
+
 import "./styles/ArtistArena.css";
 
 //attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
+    const [image, setImage] = useState(null);
+
+    const handleFileChange = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
+        }
+    };
+    const handleUpload = () => {
+        if (image) {
+            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    // Progress function
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    // Complete function
+                    storage
+                        .ref("images")
+                        .child(image.name)
+                        .getDownloadURL()
+                        .then((url) => {
+                            console.log(url); // URL of the uploaded image
+                        });
+                }
+            );
+        }
+    };
+
     return (
         <div className="card">
             <img className="card-image" src={imageSrc} alt=""/>
@@ -25,10 +59,18 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                         <div className="right-content">
                             <h2>{title}</h2>
                             <p className="desc">{description}</p>
-                            <div className="buttons">
-                                <button className="upload">Image Upload</button>
-                                <button className="vote">Vote!</button> {/*Link to vote page*/}
-                            </div>
+                        </div>
+                        <div className="buttons">
+                            {/* The styled "upload" button */}
+                            <button className="upload" onClick={() => document.getElementById(`upload-input-${title}`).click()}>Upload</button>
+                            {/* The hidden file input */}
+                            <input
+                                id={`upload-input-${title}`}
+                                type="file"
+                                onChange={handleFileChange}
+                                style={{ display: "none" }} // Hide the input
+                            />
+                            <button className="vote">Vote!</button> {/*Link to vote page*/}
                         </div>
                     </div>
                 </div>
@@ -63,12 +105,13 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
                                         <h2>{winner.name}</h2>
                                         <p>{winner.description}</p>
                                         <img className="winner-image" src={winner.pimage}></img>
-                                        {/* Additional winner information */}
                                     </div>
                                 </div>
                             ))}
+                            <div className="buttons">
+                                    <button className="mentions">Honorable Mentions</button>
+                            </div>
                         </div>
-
                         <a className="close" href="#">&times;</a>
                     </div>
                 </div>
@@ -177,63 +220,19 @@ const ArtistArena = () => {
                             { name: "Jane Doe", image: "/Arena art/cover3.jpg", description:"Godzilla", pimage:"/Arena art/User_Icon.png" },
                             // Add more winners as needed
                         ]}
-                    
                     />
 
-                    {/* <WinnerCard
+                    <WinnerCard
                         title="Best Design"
                         coverImageSrc="/Arena art/design.jpg"
                         intro="This cycles voted best design artists!"
-                        firstPlaceImage="/Arena art/design1.jpg"
-                        secondPlaceImage="/Arena art/design2.png"
-                        thirdPlaceImage="/Arena art/design3.png"
-                        winner1="Tammy Thompson"
-                        description1="The Wolf"
-                    /> */}
-
-                    {/* <div class="card">
-                        <img class="card-image" src="/Arena art/best-comic.png" alt=""/>
-                        <div class="card-header">
-                            <h3>Best Comic Covers</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>This cycles voted best comic cover artists!</p>
-                            <div class ="popbox">
-                                <a class="popbutton" href="#popup8">View!</a>
-                            </div>
-                            <div id="popup8" class="overlay">
-                                <div class="popup">
-                                    <div class="left-content">
-                                        <div class="place-sec">
-                                        <p>1st Place</p>
-                                            <img class="popimages" src="/Arena art/cover1.jpg"/>
-                                            <img class="winner-image" src="/Arena art/User_Icon.png" />
-                                        </div>
-                                        <div class="place-sec">
-                                        <p>2nd Place</p>
-                                            <img class="popimages" src="/Arena art/design2.png"/>
-                                            <img class="winner-image" src="/Arena art/User_Icon.png"/>
-                                        </div>
-                                        <div class="place-sec">
-                                        <p>3rd Place</p>
-                                            <img class="popimages" src="/Arena art/design3.png"/>
-                                            <img class="winner-image" src="/Arena art/User_Icon.png"/>
-                                        </div>
-                                    </div>
-                                    <a class="close" href="#">&times;</a>
-                                    <div class="content">
-                                        <h2>Winner Name</h2>
-                                        <p class="desc">
-                                            Image name/description
-                                        </p>
-                                    </div>
-                                    <div class="buttons">
-                                        <button class="mentions">Honorable Mentions</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
+                        winners={[
+                            { name: "Tammy Thompson", image: "/Arena art/design1.jpg", description:"The Wolf", pimage:"/Arena art/User_Icon.png" },
+                            { name: "John Doe", image: "/Arena art/design2.png", description:"General Desc", pimage:"/Arena art/User_Icon.png" },
+                            { name: "Jane Doe", image: "/Arena art/design3.png", description:"General Desc", pimage:"/Arena art/User_Icon.png" },
+                            // Add more winners as needed
+                        ]}
+                    />
                 </div>
             </div> 
         </div>
