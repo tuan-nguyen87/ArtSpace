@@ -10,6 +10,7 @@ const RatingReview = () => {
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   // Function to handle changes in the rating
   const handleRatingChange = (newRating) => {
