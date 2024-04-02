@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "./NavigationBar";
@@ -19,6 +19,7 @@ import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue"
 
+import VotePage from './VotePage';
 import PointSystem from "./PointSystem";
 import NavSite from "./NavSite";
 import ArtTutorials from "./ArtTutorials";
@@ -53,6 +54,7 @@ function App() {
           <Route path="/RatingReview" element={<RatingReview />} />
           <Route path="/TutorialPage" element={<TutorialPage />} />
           <Route path="/ArtistArena" element={<ArtistArena />} />
+          <Route path="/vote" component={<VotePage />} />
           <Route path="/ShowroomPage" element={<ShowroomPage />} />
           <Route path="/SocialHub" element={<SocialHub />} />
           <Route path="/Portfolio" element={<Portfolio />} />

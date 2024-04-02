@@ -7,6 +7,7 @@ import { getMessaging, getToken } from "firebase/messaging"; //Val
 import { onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref } from "firebase/storage";
 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCcdvsv5A7UYztefSH1i3azm_YTPYmLnCU",

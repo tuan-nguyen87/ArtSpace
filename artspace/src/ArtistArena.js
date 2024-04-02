@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-//path to firebase.js file
-// import { storage } from './/Firebase/Firebase.js'; 
-import {storage } from "./Firebase/Firebase.js";
+// Path to firebase.js file
+import { storage } from "./Firebase/Firebase.js";
+import { Navigate } from "react-router-dom"; // Import useNavigate hook
 
 import "./styles/ArtistArena.css";
 
-//attempt at reducing repetitions
+// Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
+    const [redirectToVote, setRedirectToVote] = useState(false);
+
+    // State for upload image
     const [image, setImage] = useState(null);
 
     const handleFileChange = (e) => {
@@ -14,13 +17,31 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
             setImage(e.target.files[0]);
         }
     };
+
+    const handleVoteClick = () => {
+        // Set redirectToVote to true to trigger navigation
+        setRedirectToVote(true);
+    };
+
+    if (redirectToVote) {
+        // Render the Navigate component to redirect to the voting page
+        return <Navigate to="/vote" state={{ competitionTitle: title, competitionDescription: description, artwork: [] }} />;
+    }
+
     const handleUpload = () => {
+        document.getElementById(`upload-input-${title}`).click();
+
+        // After the file is selected, call uploadFile to upload it
+        uploadFile();
+    };
+    
+    const uploadFile = () => {
         if (image) {
-            const collection = 'Arena/Character Design';
-            const uploadTask = storage.ref(`{collection}/${image.name}`).put(image);
+            const collection = 'ArenaImages';
+            const uploadTask = storage.ref(`${collection}`).put(image);
             uploadTask.on(
                 "state_changed",
-                (snapshot) => {
+                snapshot => {
                     // Progress function
                 },
                 (error) => {
@@ -32,14 +53,17 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                         .ref(collection)
                         .child(image.name)
                         .getDownloadURL()
-                        .then((url) => {
-                            console.log(url); // URL of the uploaded image
+                        .then(url => {
+                            console.log("Image uploaded:", url);
                         });
                 }
             );
+        } else {
+            console.log("No image selected for upload.");
+            // Optionally, you can notify the user about the error
         }
     };
-
+    
     return (
         <div className="card">
             <img className="card-image" src={imageSrc} alt=""/>
@@ -65,15 +89,17 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                         </div>
                         <div className="buttons">
                             {/* The styled "upload" button */}
-                            <button className="upload" onClick={() => document.getElementById(`upload-input-${title}`).click()}>Upload</button>
+                            {/* <button className="upload" onClick={() => document.getElementById(`upload-input-${title}`).click()}>Upload</button> */}
+                            <button className="upload" onClick={handleUpload}>Upload</button>
                             {/* The hidden file input */}
                             <input
+                                className="upload"
                                 id={`upload-input-${title}`}
                                 type="file"
                                 onChange={handleFileChange}
-                                style={{ display: "none" }} // Hide the input
+                                style={{ display: "none" }}
                             />
-                            <button className="vote">Vote!</button> {/*Link to vote page*/}
+                            <button className="vote" onClick={handleVoteClick}>Vote!</button>
                         </div>
                     </div>
                 </div>
@@ -107,7 +133,7 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
                                     <div className="right-content">
                                         <h2>{winner.name}</h2>
                                         <p>{winner.description}</p>
-                                        <img className="winner-image" src={winner.pimage}></img>
+                                        <img className="winner-image" src={winner.pimage} alt=""></img>
                                     </div>
                                 </div>
                             ))}
