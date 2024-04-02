@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { storage } from './/Firebase/Firebase.js'; //path to firebase.js file
+//path to firebase.js file
+// import { storage } from './/Firebase/Firebase.js'; 
+import {storage } from "./Firebase/Firebase.js";
 
 import "./styles/ArtistArena.css";
 
@@ -14,7 +16,8 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
     };
     const handleUpload = () => {
         if (image) {
-            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+            const collection = 'Arena/Character Design';
+            const uploadTask = storage.ref(`{collection}/${image.name}`).put(image);
             uploadTask.on(
                 "state_changed",
                 (snapshot) => {
@@ -26,7 +29,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                 () => {
                     // Complete function
                     storage
-                        .ref("images")
+                        .ref(collection)
                         .child(image.name)
                         .getDownloadURL()
                         .then((url) => {
