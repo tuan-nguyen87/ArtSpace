@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './styles/SocialHub.css';
+import { db } from "./Firebase/Firebase";
+import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 const SocialHub = () => {
   const [questions, setQuestions] = useState([]);
@@ -10,7 +12,6 @@ const SocialHub = () => {
   const [newQuestionCategory, setNewQuestionCategory] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-
   const [categories, setCategories] = useState([
     'General',
     'Portfolio',
@@ -30,27 +31,43 @@ const SocialHub = () => {
     setFilteredQuestions(questions);
   }, [questions]);
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "questions"), (snapshot) => {
+      const fetchedQuestions = [];
+      snapshot.forEach((doc) => {
+        fetchedQuestions.push({ id: doc.id, ...doc.data() });
+      });
+      setQuestions(fetchedQuestions);
+    });
+    return () => unsubscribe();
+  }, []);
 
-
-  const handleAskQuestions = () => {
+  const handleAskQuestions = async () => {
     if (newQuestion.trim() !== '' && newQuestionCategory.trim() !== '') {
       const newQuestionObject = {
         question: newQuestion,
         category: newQuestionCategory,
         responses: [],
       };
-
-      setQuestions([...questions, newQuestionObject]);
-
+  
+      try {
+        const docRef = await addDoc(collection(db, "questions"), newQuestionObject);
+        console.log("Question added with ID: ", docRef.id);
+        setQuestions([...questions, newQuestionObject]); 
+      } catch (error) {
+        console.error("Error adding question: ", error);
+      }
+  
       // Add the new question to filteredQuestions as well
       if (selectedCategory === '' || selectedCategory === newQuestionCategory) {
         setFilteredQuestions([...filteredQuestions, newQuestionObject]);
       }
-
+  
       setNewQuestion('');
       setNewQuestionCategory('');
     }
   };
+  
   
 
   const handleFilterQuestions = () => {
@@ -72,12 +89,22 @@ const SocialHub = () => {
     setReplyIndex(replyIndex === questionIndex ? null : questionIndex);
   };
 
-  const handleRespond = (questionIndex, response) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[questionIndex].responses.push(response);
-    setQuestions(updatedQuestions);
-    setResponses({ ...responses, [questionIndex]: '' });
-    setReplyIndex(null);
+  const handleRespond = async (questionIndex, response) => {
+    try {
+      const questionId = questions[questionIndex].id;
+      const questionRef = doc(db, "questions", questionId);
+      await updateDoc(questionRef, {
+        responses: [...questions[questionIndex].responses, response]
+      });
+      // Update local state to reflect the change
+      const updatedQuestions = [...questions];
+      updatedQuestions[questionIndex].responses.push(response);
+      setQuestions(updatedQuestions);
+      setResponses({ ...responses, [questionIndex]: '' });
+      setReplyIndex(null);
+    } catch (error) {
+      console.error("Error adding response: ", error);
+    }
   };
 
   return (
