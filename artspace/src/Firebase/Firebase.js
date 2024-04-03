@@ -2,10 +2,10 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 //Val added 'collection'-used to create a reference to a firestore collection
 //Also added 'onSnapshot'-used to listen for real-time updates in "messages" collection
-import { getFirestore, collection, onSnapshot, addDoc } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot} from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging"; //Val
 import { onAuthStateChanged } from "firebase/auth";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 
 
 // Your web app's Firebase configuration
@@ -68,7 +68,7 @@ const requestPermission = async () => {
       const currentToken = await getToken(messaging);
       if (currentToken) {
         console.log("FCM Token:", currentToken);
-        sendTokenToServer(currentToken); // Send the token to your server
+        sendTokenToServer(currentToken); // Send the token to server
       } else {
         console.log(
           "No registration token available. Request permission to generate one."
@@ -83,7 +83,6 @@ const requestPermission = async () => {
 };
 
 const sendTokenToServer = (token) => {
-  // Replace this with my server endpoint to send the FCM token
   // Example: You need to implement a server API to handle the FCM token
   fetch("http://localhost:3000", {
     method: "POST",
