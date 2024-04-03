@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom"; // Import useNavigate hook
 import "./styles/ArtistArena.css";
 
 // Attempt at reducing repetitions
-const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
+const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints }) => {
     const [redirectToVote, setRedirectToVote] = useState(false);
 
     // State for upload image
@@ -35,29 +35,61 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
         uploadFile();
     };
     
+    // const uploadFile = () => {
+    //     if (image) {
+    //         const collection = 'ArenaImages';
+    //         const uploadTask = storage.ref(`${collection}`).put(image);
+    //         uploadTask.on(
+    //             "state_changed",
+    //             snapshot => {
+    //                 // Progress function
+    //             },
+    //             (error) => {
+    //                 console.log(error);
+    //             },
+    //             () => {
+    //                 // Complete function
+    //                 storage
+    //                     .ref(collection)
+    //                     .child(image.name)
+    //                     .getDownloadURL()
+    //                     .then(url => {
+    //                         console.log("Image uploaded:", url);
+    //                     });
+    //             }
+    //         );
+    //     } else {
+    //         console.log("No image selected for upload.");
+    //         // Optionally, you can notify the user about the error
+    //     }
+    // };
     const uploadFile = () => {
         if (image) {
             const collection = 'ArenaImages';
-            const uploadTask = storage.ref(`${collection}`).put(image);
-            uploadTask.on(
-                "state_changed",
-                snapshot => {
-                    // Progress function
-                },
-                (error) => {
-                    console.log(error);
-                },
-                () => {
-                    // Complete function
-                    storage
-                        .ref(collection)
-                        .child(image.name)
-                        .getDownloadURL()
-                        .then(url => {
-                            console.log("Image uploaded:", url);
-                        });
-                }
-            );
+            const reader = new FileReader();
+            
+            reader.onload = (event) => {
+                const imageData = event.target.result;
+                
+                // Upload the image data as a base64-encoded string
+                storage
+                    .ref(collection)
+                    .child(image.name)
+                    .putString(imageData, 'data_url')
+                    .then(snapshot => {
+                        console.log("Image uploaded successfully.");
+                        // Fetch the download URL of the uploaded image
+                        return snapshot.ref.getDownloadURL();
+                    })
+                    .then(url => {
+                        console.log("Download URL:", url);
+                    })
+                    .catch(error => {
+                        console.error("Error uploading image:", error);
+                    });
+            };
+            
+            reader.readAsDataURL(image);
         } else {
             console.log("No image selected for upload.");
             // Optionally, you can notify the user about the error
@@ -80,7 +112,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description }) => {
                         <div className="left-content">
                             <img className="popimages" src={imageSrc} alt=""/>
                             <p>Date: {date}</p>
-                            <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> Some #</p>
+                            <p>1st Prize: <img src="/Market art/coin.png" className="coin" alt="Coin" /> {maxPoints}</p>
                         </div>
                         <a className="close" href="#">&times;</a>
                         <div className="right-content">
@@ -168,6 +200,7 @@ const ArtistArena = () => {
                         intro="Tell a story in 4 pictures!"
                         description="A picture is worth a thousand words. What can you say in four?
                         Tell us your story using only four pannels!"
+                        maxPoints="200"
                     />
                     
                     <CompetitionCard
@@ -179,6 +212,7 @@ const ArtistArena = () => {
                         forth a character that resonates with you. 
                         Consider their appearance, quirks, and backstory, 
                         allowing their personality to shine through."
+                        maxPoints="400"
                     />
 
                     <CompetitionCard
@@ -189,6 +223,7 @@ const ArtistArena = () => {
                         description="Bring creatures of myth to life! 
                         Be they original creations or legends of old, 
                         challenge yourself to create creatures that inspire!"
+                        maxPoints="300"
                     />
                 </div>
                 
@@ -204,6 +239,7 @@ const ArtistArena = () => {
                         intro="The robot uprising is underway! How many unique robots can you build?"
                         description="A robot a day keeps the people away! Grow your 
                         army of unique robots and forward march!"
+                        maxPoints="200"
                     />
 
                     <CompetitionCard
@@ -219,6 +255,7 @@ const ArtistArena = () => {
                         wield your artistic wand, and embark on an 
                         enchanting adventure that will leave a lasting 
                         mark on both your artistry and imagination."
+                        maxPoints="400"
                     />
 
                     <CompetitionCard
@@ -232,6 +269,7 @@ const ArtistArena = () => {
                         traditional tools, allowing your imagination to 
                         flow freely as you create intricate and mesmerizing 
                         artworks that truly come to life on paper."
+                        maxPoints="550"
                     />
                 </div>
                 <div className="section-label">
