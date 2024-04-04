@@ -1,11 +1,43 @@
 //react
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/PointSystem.css'; 
+import { auth, db } from "./Firebase/Firebase.js";
+import { doc, getDoc } from "firebase/firestore";
+
 
 function PointSystem() {
+  const [userName, setUserName] = useState(""); // State to hold the username
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        // User is signed in
+        try {
+          const userDocRef = doc(db, "Portfolio", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            setUserName(userData.name);
+          } else {
+            // User document does not exist
+            setUserName("Guest");
+          }
+        } catch (error) {
+          console.error("Error fetching username:", error);
+        }
+      } else {
+        // No user is signed in
+        setUserName("Guest");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+
   //some dummy data  
   const [artistData] = useState({
-    name: "Artist Name",
+    name: userName, //update the name with the username
     totalPoints: 0,
     dailyLoginPoints: 50,
     loginCount: 10,
@@ -59,7 +91,8 @@ function PointSystem() {
       <div className="ps-body">
         <div className="ps-container">
           <div className="ps-header">
-            <h1>{artistData.name}</h1>
+            <h1>{userName}</h1> {/* Display username */}
+
             <h3>My Total Points: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="total-points">{calculateTotalPoints()}</span></h3>
           </div>
           <div className="ps-grid-container">
