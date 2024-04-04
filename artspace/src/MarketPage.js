@@ -56,12 +56,6 @@ const MarketPage = () => {
                 itemsToShow = itemsToShow.filter(item => item.category === selectedCategory);
             }
 
-            /*if (itemsToShow.length === 0) {
-                setFilteredItems(['Sorry, no items in this points range.']);
-            } else {
-                setFilteredItems(itemsToShow);
-            }*/
-
             setFilteredItems(itemsToShow);
         };
         
