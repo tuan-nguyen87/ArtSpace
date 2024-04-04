@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 // Path to firebase.js file
 import { storage } from "./Firebase/Firebase.js";
-import { Navigate } from "react-router-dom"; // Import useNavigate hook
 
 import "./styles/ArtistArena.css";
 
 // Attempt at reducing repetitions
-const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints }) => {
-    const [redirectToVote, setRedirectToVote] = useState(false);
+const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
 
     // State for upload image
     const [image, setImage] = useState(null);
@@ -18,51 +16,12 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
         }
     };
 
-    const handleVoteClick = () => {
-        // Set redirectToVote to true to trigger navigation
-        setRedirectToVote(true);
-    };
-
-    if (redirectToVote) {
-        // Render the Navigate component to redirect to the voting page
-        return <Navigate to="/vote" state={{ competitionTitle: title, competitionDescription: description, artwork: [] }} />;
-    }
-
     const handleUpload = () => {
         document.getElementById(`upload-input-${title}`).click();
 
         // After the file is selected, call uploadFile to upload it
         uploadFile();
     };
-    
-    // const uploadFile = () => {
-    //     if (image) {
-    //         const collection = 'ArenaImages';
-    //         const uploadTask = storage.ref(`${collection}`).put(image);
-    //         uploadTask.on(
-    //             "state_changed",
-    //             snapshot => {
-    //                 // Progress function
-    //             },
-    //             (error) => {
-    //                 console.log(error);
-    //             },
-    //             () => {
-    //                 // Complete function
-    //                 storage
-    //                     .ref(collection)
-    //                     .child(image.name)
-    //                     .getDownloadURL()
-    //                     .then(url => {
-    //                         console.log("Image uploaded:", url);
-    //                     });
-    //             }
-    //         );
-    //     } else {
-    //         console.log("No image selected for upload.");
-    //         // Optionally, you can notify the user about the error
-    //     }
-    // };
     const uploadFile = () => {
         if (image) {
             const collection = 'ArenaImages';
@@ -131,7 +90,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                                 onChange={handleFileChange}
                                 style={{ display: "none" }}
                             />
-                            <button className="vote" onClick={handleVoteClick}>Vote!</button>
+                            <button className="vote">Vote!</button>
                         </div>
                     </div>
                 </div>
@@ -182,6 +141,7 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
 };
 
 const ArtistArena = () => {
+
     return(
         <div className="arena-bg">
             <div className="arena-container">
