@@ -5,8 +5,8 @@
   background-size: cover;
   min-height: 100vh;
   padding-top: 150px;
-  padding-left: 40px; /* Add padding to the left side */
-  padding-right: 40px;
+  padding-left: 50px; /* Add padding to the left side */
+  padding-right: 50px;
 }
 
 /* Other styles remain the same */
@@ -15,11 +15,11 @@
   color: gold;
   margin-bottom: 100px;
   font-size: larger;
-  padding-right: 50px;
+  padding-right: 80px;
 }
 
 .searchpage-input {
-  width: 45%; /* Adjust width as needed */
+  width: 80%; /* Adjust width as needed */
   height: 50px;
   padding: 10px;
   border: solid gold 4px;
@@ -30,21 +30,25 @@
 
 .search-results-container {
   flex: 1;
-  width: 45%; /* Adjust width as needed */
-  border: 5px solid gold; /* Adjust border properties as needed */
-  border-radius: 15px; /* Add rounded corners */
-  background-color: #fff; /* White background color */
-  padding: 20px; /* Add padding for spacing */
-  margin-bottom: 20px; /* Add margin between search results and other content */
+  width: 45%;
+  border: 5px solid gold;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #153677, #4e085f);
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  max-height: 900px;
 }
 
 .search-results {
   margin-top: 10px;
   margin-bottom: 20px;
+  color: red;
 }
 
 .text-results {
   padding-bottom: 25px;
+  color: gold;
 }
 
 .user-list {
