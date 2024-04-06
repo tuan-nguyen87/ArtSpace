@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 // Path to firebase.js file
 import { storage } from "./Firebase/Firebase.js";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./styles/ArtistArena.css";
 
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
     // State for upload image
     const [image, setImage] = useState(null);
@@ -55,6 +58,14 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
         }
     };
     
+    const handleVoteClick = () => {
+        const competitionTitle = title;
+        const competitionDescription = description;
+        const artwork = [{ url: imageSrc }];
+    
+        navigate("/vote", { state: { competitionTitle, competitionDescription, artwork } });
+    };
+
     return (
         <div className="card">
             <img className="card-image" src={imageSrc} alt=""/>
@@ -90,7 +101,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                                 onChange={handleFileChange}
                                 style={{ display: "none" }}
                             />
-                            <button className="vote">Vote!</button>
+                            <button className="vote" onClick={handleVoteClick}>Vote!</button>
                         </div>
                     </div>
                 </div>
@@ -141,7 +152,6 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
 };
 
 const ArtistArena = () => {
-
     return(
         <div className="arena-bg">
             <div className="arena-container">
