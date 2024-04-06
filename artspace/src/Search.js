@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/Search.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./Firebase/Firebase.js";
@@ -47,8 +47,6 @@ const Search = () => {
     <div className="searchpage-container">
       <div className="search-title">
         <h1>Search for artists or services</h1>
-      </div>
-      <div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -67,7 +65,7 @@ const Search = () => {
               {searchResults.map((user, index) => (
                 <div key={index} className="user-card">
                   <img
-                    src={user.profilePic}
+                    src={user.photoURL} // Assuming profilePic is a valid URL
                     alt="Profile"
                     className="profile-pic"
                   />
