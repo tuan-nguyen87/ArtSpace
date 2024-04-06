@@ -42,7 +42,7 @@ const Portfolio = () => {
         });
         return () => unsubscribeSnapshot();
       } else {
-        setUserID(null);
+                setUserID(null);
       }
     });
 
@@ -61,14 +61,14 @@ const Portfolio = () => {
     return () => unsubscribe();
   }, []);
 
-  // function handleProfilePictureUpload(event) {
+  //function handleProfilePictureUpload(event) {
   // Turning handleProfilePictureUpload into a memoized function 
   // to reduce rerender and improve memory usage -- Yasmine
   // Without useCallback, this function would be recreated on every render 
-  // 
+
   const handleProfilePictureUpload = useCallback((event) =>  {
     const file = event.target.files[0];
-    const storageRef = ref(storage, `${userID}/profile-picture.jpg`);
+    const storageRef = ref(storage, `${userID}/profile-picture.jpg`); // Construct storage reference using userID
 
     // Upload file to Firebase Storage
     uploadBytes(storageRef, file)
@@ -76,7 +76,7 @@ const Portfolio = () => {
         // Get the download URL of the uploaded image
         getDownloadURL(storageRef).then((downloadURL) => {
           if (userID) {
-            const userDocRef = doc(db, "Portfolio", userID);
+                        const userDocRef = doc(db, "Portfolio", userID);
             setDoc(
               userDocRef,
               {
@@ -226,7 +226,7 @@ const Portfolio = () => {
             className="portfolio-pic"
             src={
               photoURL ||
-              "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+                            "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
             }
             alt="Profile Generic"
           />
