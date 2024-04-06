@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles/Search.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./Firebase/Firebase.js";
@@ -6,7 +6,8 @@ import { db } from "./Firebase/Firebase.js";
 const Search = () => {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null); // State to store the selected user
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the visibility of the popup
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -35,12 +36,19 @@ const Search = () => {
       });
 
       setSearchResults(matchingUsers);
-      setError(null);
     } catch (error) {
       console.error("Error searching Firestore:", error);
       setSearchResults([]);
-      setError("Error searching Firestore. Please try again later.");
     }
+  };
+
+  const handleResultClick = (user) => {
+    setSelectedUser(user); // Set the selected user
+    setIsPopupOpen(true); // Open the popup
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false); // Close the popup
   };
 
   return (
@@ -63,9 +71,13 @@ const Search = () => {
             <h2 className="text-results">Search Results:</h2>
             <div className="user-list">
               {searchResults.map((user, index) => (
-                <div key={index} className="user-card">
+                <div
+                  key={index}
+                  className="user-card"
+                  onClick={() => handleResultClick(user)}
+                >
                   <img
-                    src={user.photoURL} // Assuming profilePic is a valid URL
+                    src={user.photoURL}
                     alt="Profile"
                     className="profile-pic"
                   />
@@ -81,6 +93,24 @@ const Search = () => {
           <div className="error">No matching users found.</div>
         )}
       </div>
+
+      {/* Popup menu */}
+      {isPopupOpen && selectedUser && (
+        <div className="popup-menu">
+          <img src={selectedUser.photoURL} alt="Profile" />
+          <div>
+            <h2 className="UID_Name">{selectedUser.name}</h2>
+            <p className="popup_skills">
+              Skills: {selectedUser.skills.join(", ")}
+            </p>
+          </div>
+          <textarea
+            placeholder="Type your message here..."
+            className="popup-textarea"
+          />
+          <button onClick={closePopup}>Send</button>
+        </div>
+      )}
     </div>
   );
 };

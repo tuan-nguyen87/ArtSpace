@@ -28,7 +28,7 @@
 .right-side {
   /* width: 680px; */
   width: 100%;
-  height: 850px; 
+  height: 850px;
   margin-left: 40px;
   display: flex-box; /* change from flex to flex-box to remove vertical gap -- Yasmine */
   border: 5px solid gold;
@@ -179,31 +179,10 @@ ul.skills {
   background-color: transparent;
   margin: 5px;
 }
- /* Removing this changes nothing? I don't know what this was doing*/
-/* button.edit-popup {
-  border-radius: 8px;
-  color: #ffffff;
-  cursor: pointer;
-} */
 
 .edit-popup button:hover {
   background-color: #0056b3;
 }
-/* Negate need for following with .buttons*/
-/* .save-button {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.close-button {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.add-skill-button {
-  margin-left: 250px;
-  margin-right: 10px; /* Adjust margin as needed 
-} */
 
 .delete-button {
   background-color: red;
