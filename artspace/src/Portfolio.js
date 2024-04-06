@@ -48,9 +48,6 @@ const Portfolio = () => {
 
     // Retrieve image URLs from local storage when component mounts -- Yasmine
     const storedImages = localStorage.getItem("uploadedImages");
-    // if (storedImages) {
-    //   setImages(JSON.parse(storedImages));
-    // }
     if (storedImages) {
       const parsedImages = JSON.parse(storedImages);
       // Filter out images that do not exist in storage
