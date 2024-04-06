@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback} from "react";
 import "./styles/Portfolio.css";
 import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Portfolio = () => {
+  // Generic filler information
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
   const initialImages = [];
   const initialUserName = "Please set your username";
 
+  // State variables
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
   const [skills, setSkills] = useState(initialSkills);
@@ -22,6 +24,7 @@ const Portfolio = () => {
   const [photoURL, setPhotoURL] = useState(null); // Default profile picture set to null
 
   useEffect(() => {
+    // Authentication listener
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUserID(user.uid);
@@ -46,12 +49,18 @@ const Portfolio = () => {
     return () => unsubscribe();
   }, []);
 
-  function handleProfilePictureUpload(event) {
+  // function handleProfilePictureUpload(event) {
+  // Turning handleProfilePictureUpload into a memoized function 
+  // to reduce rerender and improve memory usage -- Yasmine
+  // Without useCallback, this function would be recreated on every render 
+  const handleProfilePictureUpload = useCallback((event) => {
     const file = event.target.files[0];
     const storageRef = ref(storage, `${userID}/profile-picture.jpg`);
 
+    // Upload file to Firebase Storage
     uploadBytes(storageRef, file)
       .then((snapshot) => {
+        // Get the download URL of the uploaded image
         getDownloadURL(storageRef).then((downloadURL) => {
           if (userID) {
             const userDocRef = doc(db, "Portfolio", userID);
@@ -78,7 +87,8 @@ const Portfolio = () => {
       .catch((error) => {
         console.error("Error uploading profile picture: ", error);
       });
-  }
+  }, [editedBiography, editedSkills, editedUserName, userID]);
+  // Recreate the function only when one of the above changes -- Yasmine
 
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
@@ -87,7 +97,11 @@ const Portfolio = () => {
     setEditedUserName(userName);
   };
 
-  const handleSaveButtonClick = () => {
+  // const handleSaveButtonClick = () => {
+  // Turning handleSaveButtonClick into a memoized function 
+  // to reduce rerender and improve memory usage -- Yasmine
+  // Without useCallback, this function would be recreated on every render
+  const handleSaveButtonClick = useCallback(() => {
     setBiography(editedBiography);
     setSkills(editedSkills);
     setUserName(editedUserName);
@@ -107,7 +121,8 @@ const Portfolio = () => {
           console.error("Error saving user data: ", error);
         });
     }
-  };
+  }, [editedBiography, editedSkills, editedUserName, userID]);
+  // Only rerender the function when one of the above changes -- Yasmine
 
   const handleClosePopup = () => {
     setIsEditPopupOpen(false);
@@ -144,6 +159,12 @@ const Portfolio = () => {
     const file = event.target.files[0];
     const storageRef = ref(storage, `${userID}/work-images/${file.name}`); // Set the storage path for work images
 
+    // Ensure a file is selected -- Yasmine
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+    
     // Upload file to Firebase Storage
     uploadBytes(storageRef, file)
       .then((snapshot) => {
@@ -151,9 +172,15 @@ const Portfolio = () => {
         getDownloadURL(storageRef).then((downloadURL) => {
           // Update state with the new image URL
           console.log("Download URL:", downloadURL);
-          setImages([...images, downloadURL]);
+          // I'm looking at documentation, and it said to do this? idk
+          // setImages([...images, downloadURL]);
+          setImages((images) => [...images, downloadURL]);
+        })
+        .catch((error) => {
+          console.error("Error getting download URL: ", error);
         });
       })
+      // Included more error handling -- Yasmine
       .catch((error) => {
         console.error("Error uploading work image: ", error);
       });
@@ -169,7 +196,7 @@ const Portfolio = () => {
               photoURL ||
               "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
             }
-            alt="Profile Picture"
+            alt="Profile Generic"
           />
         </button>
         <h3 className="user-name">{userName}</h3>
@@ -228,29 +255,23 @@ const Portfolio = () => {
                 onChange={handleProfilePictureUpload}
               />
             </div>
-            <button className="add-skill-button" onClick={handleAddSkill}>
-              Add Skill
-            </button>
-            <button className="save-button" onClick={handleSaveButtonClick}>
-              Save
-            </button>
-            <button className="close-button" onClick={handleClosePopup}>
-              Cancel
-            </button>
+            <div className="buttons"> {/* Made buttons a div for grouping -- Yasmine */}
+              <button className="add-skill-button" onClick={handleAddSkill}>
+                Add Skill
+              </button>
+              <button className="save-button" onClick={handleSaveButtonClick}>
+                Save
+              </button>
+              <button className="close-button" onClick={handleClosePopup}>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
-      <label htmlFor="file-upload" className="edit-button">
-        Edit
-      </label>
-      <input
-        id="file-upload"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        style={{ display: "none" }}
-      />
+
       <div className="right-side">
+        {/* Display uploaded images */}
         <div className="work-item">
           <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />
           <img src="/Homepage art/sample pic 1.png" alt="Work 1 Thumbnail" />
@@ -262,6 +283,18 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
+
+      {/* Image upload input */}
+      <label htmlFor="file-upload" className="edit-button">
+        Upload
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        style={{ display: "none" }}
+      />
     </div>
   );
 };

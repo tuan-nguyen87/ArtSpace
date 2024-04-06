@@ -9,29 +9,34 @@
   min-height: 100vh;
   overflow: hidden; /* Hide overflow from the body */
 }
-
+/* Profile name, bio, and skills*/
 .left-side {
-  flex: 0 0 400px; /* Fixed width for the left side */
-  height: 870px;
-  padding-right: 20px;
-  padding-top: 50px;
-  border: 8px solid gold;
+  /*flex: 0 0 400px; /* Fixed width for the left side */
+  height: 850px;
+  width: 380px;
+  display: flex-box;
+  padding: 40px 25px 0px 30px; /* top, right, bottom, left*/
+  /* padding-right: 20px;
+  padding-top: 50px; */
+  border: 5px solid gold;
   border-radius: 15px;
   background-color: rgba(0, 30, 57, 0.76);
-  overflow-y: auto; /* Enable vertical scrolling */
+  /*overflow-y: auto; /* Enable vertical scrolling */
+  margin-bottom: 30px; /* Gives space for the upload button! -- Yasmine*/
 }
 
 .right-side {
-  width: 1500px;
-  height: 870px;
-  margin-left: 80px;
-  display: flex;
-  border: 8px solid gold;
+  /* width: 680px; */
+  width: 100%;
+  height: 850px; 
+  margin-left: 40px;
+  display: flex-box; /* change from flex to flex-box to remove vertical gap -- Yasmine */
+  border: 5px solid gold;
   background-color: rgba(0, 30, 57, 0.76);
   position: relative;
   border-radius: 15px;
   padding: 15px;
-  justify-content: center;
+  justify-content: center; /* I don't think this is doing anything right now -- Yasmine */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
@@ -53,7 +58,6 @@
   height: 300px;
   border-radius: 50%;
   margin-bottom: 30px;
-  margin-left: 40px;
 }
 
 .profile-button {
@@ -68,15 +72,14 @@
 }
 
 .bio {
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px; /* Match spacing with skills -- Yasmine */
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 .user-name {
-  margin-left: 120px;
-  margin-bottom: 20px;
-  font-size: 50px;
+  text-align: center; /* Fairly obvious, but I want to align the name -- Yasmine */
+  font-size: 40px;
   color: gold;
 }
 
@@ -90,7 +93,7 @@
 
 .skills {
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
   margin-bottom: 30px;
   color: white;
 }
@@ -120,8 +123,11 @@ ul.skills {
 
 .edit-profile {
   color: white;
-  margin-bottom: 25px;
-  margin-left: 220px;
+  font-size: 30px;
+  /* margin-bottom: 25px;
+  margin-left: 220px; */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .edit-popup {
@@ -131,7 +137,9 @@ ul.skills {
   transform: translate(-50%, -50%);
   border-radius: 15px;
   padding: 20px;
-  border: 5px solid rgb(0, 52, 6);
+  /* border: 5px solid rgb(0, 52, 6); */
+  border: 5px solid #153677;
+  color: white;
   backdrop-filter: blur(15px);
   z-index: 5;
 }
@@ -150,54 +158,52 @@ ul.skills {
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  border: 5px solid #0d4300;
+  /* border: 5px solid #0d4300; */
+  border: 5px solid #153677;
   margin-bottom: 10px;
 }
 
-button.edit-popup {
+/* Made buttons into a group for easy changes --Yasmine*/
+.buttons {
+  display: flex;
+  margin-left: 200px;
+}
+/* Specify that this applies to buttons in the popup --Yasmine*/
+.buttons button {
+  transition-duration: 0.4s;
   padding: 8px 16px;
-  border: none;
+  border-radius: 8px;
+  border: 3px solid #0056b3;
+  color: white;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 5px;
+}
+ /* Removing this changes nothing? I don't know what this was doing*/
+/* button.edit-popup {
   border-radius: 8px;
   color: #ffffff;
   cursor: pointer;
-}
+} */
 
 .edit-popup button:hover {
   background-color: #0056b3;
 }
-
-.save-button {
+/* Negate need for following with .buttons*/
+/* .save-button {
   margin-right: 10px;
   margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
-  background-color: aqua;
 }
 
 .close-button {
   margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
   margin-right: 10px;
-  background-color: aqua;
 }
 
 .add-skill-button {
   margin-left: 250px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: aqua;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
-  margin-right: 10px; /* Adjust margin as needed */
-}
+  margin-right: 10px; /* Adjust margin as needed 
+} */
 
 .delete-button {
   background-color: red;
@@ -209,15 +215,16 @@ button.edit-popup {
 }
 
 .edit-button {
+  transition-duration: 0.4s; /* Smooth color change -- Yasmine*/
   position: absolute;
-  bottom: 0px;
-  right: 20px;
+  bottom: 10px; /* So it's not touching the floor -- Yasmine*/
+  right: 10px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: gold;
   padding: 5px 12px;
   cursor: pointer;
 }
 
 .edit-button:hover {
-  background-color: #0056b3;
+  background-color: goldenrod; /* I like this color change -- Yasmine*/
 }
