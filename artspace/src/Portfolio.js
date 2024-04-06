@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback} from "react";
 import "./styles/Portfolio.css";
 import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 const Portfolio = () => {
   // Generic filler information
@@ -49,9 +49,15 @@ const Portfolio = () => {
     // Retrieve image URLs from local storage when component mounts -- Yasmine
     const storedImages = localStorage.getItem("uploadedImages");
     if (storedImages) {
-      setImages(JSON.parse(storedImages));
+      const parsedImages = JSON.parse(storedImages);
+      // Filter out images that do not exist in storage
+      const existingImages = parsedImages.filter(image => {
+        const imageRef = ref(storage, image);
+        return getDownloadURL(imageRef).then(() => true).catch(() => false);
+      });
+      setImages(existingImages);
+      localStorage.setItem("uploadedImages", JSON.stringify(existingImages));
     }
-
     return () => unsubscribe();
   }, []);
 
@@ -162,6 +168,22 @@ const Portfolio = () => {
   const handleUserNameChange = (event) => {
     setEditedUserName(event.target.value);
   };
+
+  // Function to delete an image from storage and update state -- Yasmine
+  const deleteImage = useCallback((imageUrl) => {
+    // Delete the image from Firebase Storage
+    const imageRef = ref(storage, imageUrl);
+    deleteObject(imageRef)
+      .then(() => {
+        // Remove the deleted image URL from state and local storage
+        const updatedImages = images.filter((image) => image !== imageUrl);
+        setImages(updatedImages);
+        localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
+      })
+      .catch((error) => {
+        console.error("Error deleting image: ", error);
+      });
+  }, [images]);
 
   function handleImageUpload(event) {
     const file = event.target.files[0];
@@ -289,7 +311,12 @@ const Portfolio = () => {
           <img src="/Homepage art/sample pic 4.png" alt="Work 1 Thumbnail" />
           <img src="/Homepage art/sample pic 5.png" alt="Work 1 Thumbnail" />
           {images.map((image, index) => (
-            <img key={index} src={image} alt={`Work Thumbnail ${index + 1}`} />
+            <img
+            key={index}
+            src={image}
+            alt={`Work Thumbnail ${index + 1}`}
+            onClick={() => deleteImage(image)} // Add onClick to delete image
+          />
           ))}
         </div>
       </div>
