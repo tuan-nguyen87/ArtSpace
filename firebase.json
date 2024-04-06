@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "src",
+    "public": "artspace",
     "ignore": [
       "firebase.json",
       "**/.*",
