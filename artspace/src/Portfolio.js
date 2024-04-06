@@ -287,7 +287,7 @@ const Portfolio = () => {
                 onChange={handleProfilePictureUpload}
               />
             </div>
-            <div className="buttons"> {/* Made buttons a div for grouping -- Yasmine */}
+            <div className="portfolioButtons"> {/* Made buttons a div for grouping -- Yasmine */}
               <button className="add-skill-button" onClick={handleAddSkill}>
                 Add Skill
               </button>

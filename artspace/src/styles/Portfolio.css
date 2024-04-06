@@ -164,12 +164,12 @@ ul.skills {
 }
 
 /* Made buttons into a group for easy changes --Yasmine*/
-.buttons {
+.portfolioButtons {
   display: flex;
   margin-left: 200px;
 }
 /* Specify that this applies to buttons in the popup --Yasmine*/
-.buttons button {
+.portfolioButtons button {
   transition-duration: 0.4s;
   padding: 8px 16px;
   border-radius: 8px;
