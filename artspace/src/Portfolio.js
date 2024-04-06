@@ -46,6 +46,12 @@ const Portfolio = () => {
       }
     });
 
+    // Retrieve image URLs from local storage when component mounts -- Yasmine
+    const storedImages = localStorage.getItem("uploadedImages");
+    if (storedImages) {
+      setImages(JSON.parse(storedImages));
+    }
+
     return () => unsubscribe();
   }, []);
 
@@ -53,7 +59,8 @@ const Portfolio = () => {
   // Turning handleProfilePictureUpload into a memoized function 
   // to reduce rerender and improve memory usage -- Yasmine
   // Without useCallback, this function would be recreated on every render 
-  const handleProfilePictureUpload = useCallback((event) => {
+  // 
+  const handleProfilePictureUpload = useCallback((event) =>  {
     const file = event.target.files[0];
     const storageRef = ref(storage, `${userID}/profile-picture.jpg`);
 
@@ -87,6 +94,7 @@ const Portfolio = () => {
       .catch((error) => {
         console.error("Error uploading profile picture: ", error);
       });
+    
   }, [editedBiography, editedSkills, editedUserName, userID]);
   // Recreate the function only when one of the above changes -- Yasmine
 
@@ -169,12 +177,14 @@ const Portfolio = () => {
     uploadBytes(storageRef, file)
       .then((snapshot) => {
         // Get the download URL of the uploaded image
+        // Save image URL to local storage after successful upload
         getDownloadURL(storageRef).then((downloadURL) => {
           // Update state with the new image URL
+          const updatedImages = [...images, downloadURL];
           console.log("Download URL:", downloadURL);
-          // I'm looking at documentation, and it said to do this? idk
-          // setImages([...images, downloadURL]);
-          setImages((images) => [...images, downloadURL]);
+          // I got the images to persist after reload!! -- Yasmine
+          setImages(updatedImages);
+          localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
         })
         .catch((error) => {
           console.error("Error getting download URL: ", error);
