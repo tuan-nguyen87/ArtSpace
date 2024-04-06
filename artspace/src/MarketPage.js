@@ -1,66 +1,76 @@
 //react
 import React, { useState, useEffect } from 'react';
 import './styles/Market.css'; // Import CSS file
+import { auth } from './Firebase/Firebase.js';
+import { db } from "./Firebase/Firebase.js";
+import { doc, getDoc, collection, getDocs, updateDoc } from "firebase/firestore";
+
 
 const MarketPage = () => {
     // State variables
-    const [points] = useState(500);
+    const [points, setPoints] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [pointsRange, setPointsRange] = useState('all');
     const [clickedItem, setClickedItem] = useState(null);
-    
-    // Dummy data for items
-    const [originalItems] = useState ([
-        { image: '/Market art/mp1.png', points: 100, category: 'icons' },
-        { image: '/Market art/mp5.png', points: 250, category: 'badges' },
-        { image: '/Market art/mp10.png', points: 350, category: 'emotes' },
-        { image: '/Market art/mp8.png', points: 450, category: 'borders' },
-        { image: '/Market art/mp2.png', points: 550, category: 'new-items' },
-        { image: '/Market art/mp12.png', points: 650, category: 'icons' },
-        { image: '/Market art/mp3.png', points: 750, category: 'badges' },
-        { image: '/Market art/mp9.png', points: 850, category: 'emotes' },
-        { image: '/Market art/mp4.png', points: 90, category: 'borders' },
-        { image: '/Market art/mp11.png', points: 290, category: 'new-items' },
-        { image: '/Market art/mp6.png', points: 400, category: 'icons' },
-        { image: '/Market art/mp7.png', points: 10, category: 'badges' },
-        { image: '/Market art/mp13.png', points: 185, category: 'emotes' },
-        { image: '/Market art/mp14.png', points: 1000, category: 'new-items' }
-        // Add more items here
-    ]);
-
-    // Function to update points
-    /*const updatePoints = (newPoints) => {
-        setPoints(newPoints);
-    }*/
-
     const [filteredItems, setFilteredItems] = useState([]);
+    const [purchaseMessage, setPurchaseMessage] = useState(null);
 
-    // Function to filter items
-    // Effect to filter items when selectedCategory or pointsRange changes
+    // fetching user points
     useEffect(() => {
-        const filterItems = () => {
-            let itemsToShow = originalItems.slice(); // Clone original items
-
-            if (pointsRange !== 'all') {
-                if (pointsRange === '200') {
-                    itemsToShow = itemsToShow.filter(item => item.points <= 200);
-                } else if (pointsRange === '601') {
-                    itemsToShow = itemsToShow.filter(item => item.points >= 600);
+        const fetchPoints = async () => {
+            try {
+                if (!auth.currentUser) return; // Ensure auth.currentUser is available
+                const pointsDocRef = doc(db, "points", auth.currentUser.uid);
+                console.log("Points Doc Ref:", pointsDocRef); 
+                const pointsDocSnap = await getDoc(pointsDocRef);
+                console.log("Points Doc Snapshot:", pointsDocSnap);
+                if (pointsDocSnap.exists()) {
+                    const userData = pointsDocSnap.data();
+                    const userPoints = userData.totalPoints;
+                    console.log("User Points:", userPoints);
+                    setPoints(userPoints);
                 } else {
-                    const [minPoints, maxPoints] = pointsRange.split('-').map(Number);
-                    itemsToShow = itemsToShow.filter(item => item.points >= minPoints && item.points <= maxPoints);
+                    console.error("User points data not found");
                 }
+            } catch (error) {
+                console.error("Error fetching user points:", error);
             }
+        };
+        
+        fetchPoints();
+    }, [auth.currentUser?.uid]);
 
-            if (selectedCategory !== 'all') {
-                itemsToShow = itemsToShow.filter(item => item.category === selectedCategory);
-            }
-
+    // to display the items from the database/filter options
+    useEffect(() => {
+        const filterItems = async () => {
+            const itemsRef = collection(db, "marketItems");
+            const itemsSnapshot = await getDocs(itemsRef);
+            let itemsToShow = [];
+    
+            itemsSnapshot.forEach((doc) => {
+                const itemData = doc.data();
+                const itemPoints = itemData.points;
+    
+                if (
+                    (pointsRange === 'all') || 
+                    (pointsRange === '200' && itemPoints <= 200) || 
+                    (pointsRange === '601' && itemPoints >= 600) || 
+                    (pointsRange.includes('-') && 
+                        itemPoints >= parseInt(pointsRange.split('-')[0]) && 
+                        itemPoints <= parseInt(pointsRange.split('-')[1]))
+                ) {
+                    if (selectedCategory === 'all' || itemData.category === selectedCategory) {
+                        itemsToShow.push(itemData);
+                    }
+                }
+            });
+    
             setFilteredItems(itemsToShow);
         };
         
         filterItems();
-    }, [selectedCategory, pointsRange, originalItems]);
+    }, [selectedCategory, pointsRange]);
+    
 
     // Function to handle category selection
     const handleCategoryChange = (category) => {
@@ -77,15 +87,39 @@ const MarketPage = () => {
     const handleItemClick = (item) => {
         setClickedItem(item);
     };
-
-    // Function to handle purchase button
-    const purchase = () => {
-        console.log("Item purchased!");
-    }
-
-    // Function to close popup
+    
+    // Function to handle purchases 
+    const purchase = async () => {
+        if (points >= clickedItem.points) {
+            try {
+                const pointsDocRef = doc(db, "points", auth.currentUser.uid);
+                const pointsDocSnap = await getDoc(pointsDocRef);
+                if (pointsDocSnap.exists()) {
+                    const updatedPoints = points - clickedItem.points;
+                    const updatedPurchases = [...pointsDocSnap.data().marketPurchases, clickedItem];
+    
+                    await updateDoc(pointsDocRef, {
+                        totalPoints: updatedPoints,
+                        marketPurchases: updatedPurchases
+                    });
+    
+                    setPoints(updatedPoints);
+                    setClickedItem(null);
+                } else {
+                    console.error("User points data not found");
+                }
+            } catch (error) {
+                console.error("Error purchasing item:", error);
+            }
+        } else {
+            setPurchaseMessage("You Don't Have Enough Points for this Item!");
+        }
+    };
+    
+    // Function to close popups
     const closePopup = () => {
         setClickedItem(null);
+        setPurchaseMessage(null);
     };
     
 
@@ -152,6 +186,17 @@ const MarketPage = () => {
                         <p>Points: <img src="/Market art/coin.png" className="coin" alt="Coin" /> {clickedItem.points}</p>
                         <div className="mp-popup-buttons">
                             <button onClick={purchase}>Purchase</button>
+                            <button onClick={closePopup}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {purchaseMessage && (
+                <div>
+                    <div className="mp-popup-overlay"></div>
+                    <div className="mp-popup">
+                        <div className="mp-popup-header">{purchaseMessage}</div>
+                        <div className="mp-popup-buttons">
                             <button onClick={closePopup}>Close</button>
                         </div>
                     </div>
