@@ -42,7 +42,7 @@ const Portfolio = () => {
         });
         return () => unsubscribeSnapshot();
       } else {
-                setUserID(null);
+        setUserID(null);
       }
     });
 
@@ -61,46 +61,36 @@ const Portfolio = () => {
     return () => unsubscribe();
   }, []);
 
-  //function handleProfilePictureUpload(event) {
   // Turning handleProfilePictureUpload into a memoized function 
   // to reduce rerender and improve memory usage -- Yasmine
   // Without useCallback, this function would be recreated on every render 
-
-  const handleProfilePictureUpload = useCallback((event) =>  {
+  const handleProfilePictureUpload = useCallback(async (event) =>  {
     const file = event.target.files[0];
     const storageRef = ref(storage, `${userID}/profile-picture.jpg`); // Construct storage reference using userID
-
+  
     // Upload file to Firebase Storage
-    uploadBytes(storageRef, file)
-      .then((snapshot) => {
-        // Get the download URL of the uploaded image
-        getDownloadURL(storageRef).then((downloadURL) => {
-          if (userID) {
-                        const userDocRef = doc(db, "Portfolio", userID);
-            setDoc(
-              userDocRef,
-              {
-                name: editedUserName,
-                bio: editedBiography,
-                skills: editedSkills,
-                photoURL: downloadURL,
-              },
-              { merge: true }
-            )
-              .then(() => {
-                setPhotoURL(downloadURL); // Update photoURL state with the new URL
-                setIsEditPopupOpen(false); // Close the edit popup
-              })
-              .catch((error) => {
-                console.error("Error saving user data: ", error);
-              });
-          }
-        });
-      })
-      .catch((error) => {
-        console.error("Error uploading profile picture: ", error);
-      });
-    
+    await uploadBytes(storageRef, file);
+  
+    // Get the download URL of the uploaded image
+    const downloadURL = await getDownloadURL(storageRef);
+  
+    if (userID) {
+      const userDocRef = doc(db, "Portfolio", userID);
+      await setDoc(
+        userDocRef,
+        {
+          name: editedUserName,
+          bio: editedBiography,
+          skills: editedSkills,
+          photoURL: downloadURL,
+        },
+        { merge: true }
+      );
+  
+      // Update photoURL state with the new URL
+      setPhotoURL(downloadURL);
+      setIsEditPopupOpen(false); // Close the edit popup
+    }
   }, [editedBiography, editedSkills, editedUserName, userID]);
   // Recreate the function only when one of the above changes -- Yasmine
 
@@ -110,8 +100,7 @@ const Portfolio = () => {
     setEditedSkills(skills);
     setEditedUserName(userName);
   };
-
-  // const handleSaveButtonClick = () => {
+  
   // Turning handleSaveButtonClick into a memoized function 
   // to reduce rerender and improve memory usage -- Yasmine
   // Without useCallback, this function would be recreated on every render
@@ -127,6 +116,7 @@ const Portfolio = () => {
         name: editedUserName,
         bio: editedBiography,
         skills: editedSkills,
+        photoURL: photoURL, // Include the photoURL field
       })
         .then(() => {
           console.log("User data saved successfully!");
@@ -135,7 +125,7 @@ const Portfolio = () => {
           console.error("Error saving user data: ", error);
         });
     }
-  }, [editedBiography, editedSkills, editedUserName, userID]);
+  }, [editedBiography, editedSkills, editedUserName, photoURL, userID]);
   // Only rerender the function when one of the above changes -- Yasmine
 
   const handleClosePopup = () => {
@@ -226,7 +216,7 @@ const Portfolio = () => {
             className="portfolio-pic"
             src={
               photoURL ||
-                            "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+                  "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
             }
             alt="Profile Generic"
           />
