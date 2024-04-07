@@ -13,7 +13,7 @@
 .left-side {
   /*flex: 0 0 400px; /* Fixed width for the left side */
   height: 850px;
-  width: 380px;
+  width: 550px;
   display: flex-box;
   padding: 40px 25px 0px 30px; /* top, right, bottom, left*/
   /* padding-right: 20px;
@@ -21,7 +21,7 @@
   border: 5px solid gold;
   border-radius: 15px;
   background-color: rgba(0, 30, 57, 0.76);
-  overflow-y: auto; /* Enable vertical scrolling 
+  overflow-y: auto; /* Enable vertical scrolling */
   margin-bottom: 30px; /* Gives space for the upload button! -- Yasmine*/
 }
 
