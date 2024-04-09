@@ -91,7 +91,6 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                         </div>
                         <div className="buttons">
                             {/* The styled "upload" button */}
-                            {/* <button className="upload" onClick={() => document.getElementById(`upload-input-${title}`).click()}>Upload</button> */}
                             <button className="upload" onClick={handleUpload}>Upload</button>
                             {/* The hidden file input */}
                             <input
