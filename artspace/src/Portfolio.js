@@ -295,11 +295,6 @@ const Portfolio = () => {
       <div className="right-side">
         {/* Display uploaded images */}
         <div className="work-item">
-          <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 1.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 3.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 4.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 5.png" alt="Work 1 Thumbnail" />
           {images.map((image, index) => (
             <img
             key={index}
