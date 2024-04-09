@@ -52,8 +52,9 @@ const SocialHub = () => {
   
       try {
         const docRef = await addDoc(collection(db, "questions"), newQuestionObject);
+        const questionWithId = { id: docRef.id, ...newQuestionObject }; 
         console.log("Question added with ID: ", docRef.id);
-        setQuestions([...questions, newQuestionObject]); 
+        setQuestions([...questions, questionWithId]); 
       } catch (error) {
         console.error("Error adding question: ", error);
       }
@@ -67,6 +68,7 @@ const SocialHub = () => {
       setNewQuestionCategory('');
     }
   };
+  
   
   
 
@@ -91,11 +93,39 @@ const SocialHub = () => {
 
   const handleRespond = async (questionIndex, response) => {
     try {
-      const questionId = questions[questionIndex].id;
-      const questionRef = doc(db, "questions", questionId);
+      // Ensure questionIndex is valid
+      if (questionIndex < 0 || questionIndex >= questions.length) {
+        console.error('Invalid question index:', questionIndex);
+        return;
+      }
+  
+      // Ensure questions array is populated
+      if (!questions || questions.length === 0) {
+        console.error('Questions array is empty or not initialized.');
+        return;
+      }
+  
+      // Get the question at the specified index
+      const question = questions[questionIndex];
+  
+      // Ensure question is not undefined
+      if (!question) {
+        console.error('Question at index', questionIndex, 'is undefined.');
+        return;
+      }
+  
+      // Ensure question has an ID
+      if (!question.id) {
+        console.error('Question ID is undefined or null.');
+        return;
+      }
+  
+      // Update Firestore document with the response
+      const questionRef = doc(db, "questions", question.id);
       await updateDoc(questionRef, {
-        responses: [...questions[questionIndex].responses, response]
+        responses: [...question.responses, response]
       });
+  
       // Update local state to reflect the change
       const updatedQuestions = [...questions];
       updatedQuestions[questionIndex].responses.push(response);
@@ -106,6 +136,9 @@ const SocialHub = () => {
       console.error("Error adding response: ", error);
     }
   };
+  
+  
+  
 
   return (
     <div className="social-page">
