@@ -144,12 +144,14 @@ const sendMessage = async (content, receiver) => {
     </div>
       <div className="rightSide">
         <div className="chatBox">
-        {messages.slice().sort((a, b) => (a.timestamp.seconds * 1000) - (b.timestamp.seconds * 1000)).map((message, index) => (
+        {messages
+          .filter((message) => message.sender === selectedUser || message.receiver === selectedUser)
+          .sort((a, b) => (a.timestamp.seconds * 1000) - (b.timestamp.seconds * 1000))
+          .map((message, index) => (
             <div
               key={index}
               className={`message ${
-                message.user === auth.currentUser.displayName ||
-                message.user === auth.currentUser.email
+                message.sender === auth.currentUser.displayName || message.sender === auth.currentUser.email
                   ? "my_message"
                   : "frnd_message"
               }`}
@@ -163,6 +165,7 @@ const sendMessage = async (content, receiver) => {
               </p>
             </div>
           ))}
+
         </div>
         <div className="chatBox_input">
           <input
