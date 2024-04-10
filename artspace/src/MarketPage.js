@@ -92,19 +92,19 @@ const MarketPage = () => {
     
     // Function to handle purchases 
     const purchase = async () => {
-        if (points >= clickedItem.points) {
-            try {
-                const pointsDocRef = doc(db, "points", auth.currentUser.uid);
-                const pointsDocSnap = await getDoc(pointsDocRef);
-                if (pointsDocSnap.exists()) {
-                    const userMarketPurchases = pointsDocSnap.data().marketPurchases;
-                    
-                    // Check if the clicked item is already purchased
-                    const isItemPurchased = userMarketPurchases.some(purchasedItem => purchasedItem.id === clickedItem.id);
-                    if (isItemPurchased) {
-                        setPurchaseMessage("You've Already Purchased this Item!");
-                    } else {
-                        // Proceed with the purchase
+        try {
+            const pointsDocRef = doc(db, "points", auth.currentUser.uid);
+            const pointsDocSnap = await getDoc(pointsDocRef);
+            if (pointsDocSnap.exists()) {
+                const userMarketPurchases = pointsDocSnap.data().marketPurchases;
+                
+                // Check if the clicked item is already purchased
+                const isItemPurchased = userMarketPurchases.some(purchasedItem => purchasedItem.id === clickedItem.id);
+                if (isItemPurchased) {
+                    setPurchaseMessage("You've Already Purchased this Item!");
+                } else {
+                    // Check if the user has enough points
+                    if (points >= clickedItem.points) {
                         const updatedPoints = points - clickedItem.points;
                         const updatedPurchases = [...userMarketPurchases, clickedItem];
     
@@ -115,15 +115,15 @@ const MarketPage = () => {
     
                         setPoints(updatedPoints);
                         setClickedItem(null);
+                    } else {
+                        setPurchaseMessage("You Don't Have Enough Points for this Item!");
                     }
-                } else {
-                    console.error("User points data not found");
                 }
-            } catch (error) {
-                console.error("Error purchasing item:", error);
+            } else {
+                console.error("User points data not found");
             }
-        } else {
-            setPurchaseMessage("You Don't Have Enough Points for this Item!");
+        } catch (error) {
+            console.error("Error purchasing item:", error);
         }
     };
     
