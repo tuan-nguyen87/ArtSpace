@@ -49,6 +49,8 @@ const MarketPage = () => {
     
             itemsSnapshot.forEach((doc) => {
                 const itemData = doc.data();
+                const itemId = doc.id; // Get the document ID
+                const item = { id: itemId, ...itemData }; // Include the document ID in the item object
                 const itemPoints = itemData.points;
     
                 if (
@@ -60,7 +62,7 @@ const MarketPage = () => {
                         itemPoints <= parseInt(pointsRange.split('-')[1]))
                 ) {
                     if (selectedCategory === 'all' || itemData.category === selectedCategory) {
-                        itemsToShow.push(itemData);
+                        itemsToShow.push(item);
                     }
                 }
             });
@@ -85,7 +87,7 @@ const MarketPage = () => {
 
     // Fucntion to handle item clicked
     const handleItemClick = (item) => {
-        setClickedItem(item);
+        setClickedItem({ id: item.id, ...item }); // Ensure the clickedItem object contains the id field
     };
     
     // Function to handle purchases 
@@ -95,16 +97,25 @@ const MarketPage = () => {
                 const pointsDocRef = doc(db, "points", auth.currentUser.uid);
                 const pointsDocSnap = await getDoc(pointsDocRef);
                 if (pointsDocSnap.exists()) {
-                    const updatedPoints = points - clickedItem.points;
-                    const updatedPurchases = [...pointsDocSnap.data().marketPurchases, clickedItem];
+                    const userMarketPurchases = pointsDocSnap.data().marketPurchases;
+                    
+                    // Check if the clicked item is already purchased
+                    const isItemPurchased = userMarketPurchases.some(purchasedItem => purchasedItem.id === clickedItem.id);
+                    if (isItemPurchased) {
+                        setPurchaseMessage("You've Already Purchased this Item!");
+                    } else {
+                        // Proceed with the purchase
+                        const updatedPoints = points - clickedItem.points;
+                        const updatedPurchases = [...userMarketPurchases, clickedItem];
     
-                    await updateDoc(pointsDocRef, {
-                        totalPoints: updatedPoints,
-                        marketPurchases: updatedPurchases
-                    });
+                        await updateDoc(pointsDocRef, {
+                            totalPoints: updatedPoints,
+                            marketPurchases: updatedPurchases
+                        });
     
-                    setPoints(updatedPoints);
-                    setClickedItem(null);
+                        setPoints(updatedPoints);
+                        setClickedItem(null);
+                    }
                 } else {
                     console.error("User points data not found");
                 }
