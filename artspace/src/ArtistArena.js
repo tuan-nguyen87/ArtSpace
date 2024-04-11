@@ -1,62 +1,134 @@
-import React, {useState} from 'react';
-// Path to firebase.js file
-import { storage } from "./Firebase/Firebase.js";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import { useNavigate } from "react-router-dom";
+import { db, auth, storage } from "./Firebase/Firebase.js";
+import { doc, onSnapshot } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 
 import "./styles/ArtistArena.css";
 
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
     const navigate = useNavigate();
-    const location = useLocation();
+    //const location = useLocation();
+    const initialImages = [];
+    const [userID, setUserID] = useState(null);
+    const [images, setImages] = useState(initialImages);
+
+    useEffect(() => {
+        // Authentication listener
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+          if (user) {
+            setUserID(user.uid);
+            const userDocRef = doc(db, "Arena", user.uid);
+            const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+            if (doc.exists()) {
+              const userData = doc.data();
+              setImages(userData.images || initialImages);
+            } else {
+              console.log("No such document!");
+            }
+          });
+          return () => unsubscribeSnapshot();
+        } else {
+          setUserID(null);
+        }
+      });
+    
+        // Retrieve image URLs from local storage when component mounts -- Yasmine
+        const storedImages = localStorage.getItem("uploadedImages");
+        if (storedImages) {
+          const parsedImages = JSON.parse(storedImages);
+          // Filter out images that do not exist in storage
+          const existingImages = parsedImages.filter(image => {
+            const imageRef = ref(storage, image);
+            return getDownloadURL(imageRef).then(() => true).catch(() => false);
+          });
+          setImages(existingImages);
+          localStorage.setItem("uploadedImages", JSON.stringify(existingImages));
+        }
+        return () => unsubscribe();
+    }, []);
 
     // State for upload image
-    const [image, setImage] = useState(null);
+    //const [image, setImage] = useState(null);
 
-    const handleFileChange = (e) => {
-        if (e.target.files[0]) {
-            setImage(e.target.files[0]);
-        }
-    };
+    // const handleFileChange = (e) => {
+    //     if (e.target.files[0]) {
+    //         setImage(e.target.files[0]);
+    //     }
+    // };
 
-    const handleUpload = () => {
-        document.getElementById(`upload-input-${title}`).click();
+    // const handleUpload = () => {
+    //     document.getElementById(`upload-input-${title}`).click();
 
-        // After the file is selected, call uploadFile to upload it
-        uploadFile();
-    };
-    const uploadFile = () => {
-        if (image) {
-            const collection = 'ArenaImages';
-            const reader = new FileReader();
+    //     // After the file is selected, call uploadFile to upload it
+    //     uploadFile();
+    // };
+    // const uploadFile = () => {
+    //     if (image) {
+    //         const collection = 'ArenaImages';
+    //         const reader = new FileReader();
             
-            reader.onload = (event) => {
-                const imageData = event.target.result;
+    //         reader.onload = (event) => {
+    //             const imageData = event.target.result;
                 
-                // Upload the image data as a base64-encoded string
-                storage
-                    .ref(collection)
-                    .child(image.name)
-                    .putString(imageData, 'data_url')
-                    .then(snapshot => {
-                        console.log("Image uploaded successfully.");
-                        // Fetch the download URL of the uploaded image
-                        return snapshot.ref.getDownloadURL();
-                    })
-                    .then(url => {
-                        console.log("Download URL:", url);
-                    })
-                    .catch(error => {
-                        console.error("Error uploading image:", error);
-                    });
-            };
+    //             // Upload the image data as a base64-encoded string
+    //             storage
+    //                 .ref(collection)
+    //                 .child(image.name)
+    //                 .putString(imageData, 'data_url')
+    //                 .then(snapshot => {
+    //                     console.log("Image uploaded successfully.");
+    //                     // Fetch the download URL of the uploaded image
+    //                     return snapshot.ref.getDownloadURL();
+    //                 })
+    //                 .then(url => {
+    //                     console.log("Download URL:", url);
+    //                 })
+    //                 .catch(error => {
+    //                     console.error("Error uploading image:", error);
+    //                 });
+    //         };
             
-            reader.readAsDataURL(image);
-        } else {
-            console.log("No image selected for upload.");
-            // Optionally, you can notify the user about the error
+    //         reader.readAsDataURL(image);
+    //     } else {
+    //         console.log("No image selected for upload.");
+    //         // Optionally, you can notify the user about the error
+    //     }
+    // };
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        const storageRef = ref(storage, `${userID}/arena-images/${file.name}`); // Set the storage path for work images
+    
+        // Ensure a file is selected -- Yasmine
+        if (!file) {
+          console.error("No file selected.");
+          return;
         }
-    };
+        
+        // Upload file to Firebase Storage
+        uploadBytes(storageRef, file)
+          .then((snapshot) => {
+            // Get the download URL of the uploaded image
+            // Save image URL to local storage after successful upload
+            getDownloadURL(storageRef).then((downloadURL) => {
+              // Update state with the new image URL
+              const updatedImages = [...images, downloadURL];
+              console.log("Download URL:", downloadURL);
+              // I got the images to persist after reload!! -- Yasmine
+              setImages(updatedImages);
+              localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
+            })
+            .catch((error) => {
+              console.error("Error getting download URL: ", error);
+            });
+          })
+          // Included more error handling -- Yasmine
+          .catch((error) => {
+            console.error("Error uploading work image: ", error);
+          });
+      }
     
     const handleVoteClick = () => {
         const competitionTitle = title;
@@ -90,14 +162,14 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                             <p className="desc">{description}</p>
                         </div>
                         <div className="buttons">
-                            {/* The styled "upload" button */}
-                            <button className="upload" onClick={handleUpload}>Upload</button>
+                            <button className="upload" onClick={() => document.getElementById("file-upload").click()}>Upload</button>
+
                             {/* The hidden file input */}
                             <input
-                                className="upload"
-                                id={`upload-input-${title}`}
+                                id="file-upload"
                                 type="file"
-                                onChange={handleFileChange}
+                                accept="image/*"
+                                onChange={handleImageUpload}
                                 style={{ display: "none" }}
                             />
                             <button className="vote" onClick={handleVoteClick}>Vote!</button>
