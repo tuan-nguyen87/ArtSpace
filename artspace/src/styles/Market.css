@@ -141,6 +141,11 @@ select {
     margin-bottom: 5px;
 }
 
+/*pointer cursor for checkboxes*/
+.filter-option input[type = "checkbox"] { 
+    cursor: pointer;
+}
+
 /*float shadow effect for each item in the item contianer*/
 .mp-hvr-float-shadow {
     display: inline-block;
@@ -150,6 +155,7 @@ select {
     position: relative;
     transition-duration: 0.3s;
     transition-property: transform;
+    cursor: pointer;
 }
 
 .mp-hvr-float-shadow:before {
