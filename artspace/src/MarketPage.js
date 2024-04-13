@@ -13,7 +13,8 @@ const MarketPage = () => {
     const [pointsRange, setPointsRange] = useState('all');
     const [clickedItem, setClickedItem] = useState(null);
     const [filteredItems, setFilteredItems] = useState([]);
-    const [purchaseMessage, setPurchaseMessage] = useState(null);
+    const [alreadyPurchaseMessage, setAlreadyPurchaseMessage] = useState(null); // for already purchased message/pop up
+    const [morePointsMessage, setMorePointsMessage] = useState(null); // for not enough points message/pop up
 
     // fetching user points
     useEffect(() => {
@@ -101,7 +102,7 @@ const MarketPage = () => {
                 // Check if the clicked item is already purchased
                 const isItemPurchased = userMarketPurchases.some(purchasedItem => purchasedItem.id === clickedItem.id);
                 if (isItemPurchased) {
-                    setPurchaseMessage("You've Already Purchased this Item!");
+                    setAlreadyPurchaseMessage("Looks like You've Already Purchased this Item!");
                 } else {
                     // Check if the user has enough points
                     if (points >= clickedItem.points) {
@@ -116,7 +117,7 @@ const MarketPage = () => {
                         setPoints(updatedPoints);
                         setClickedItem(null);
                     } else {
-                        setPurchaseMessage("You Don't Have Enough Points for this Item!");
+                        setMorePointsMessage("Sorry, You Don't Have Enough Points for this Item!");
                     }
                 }
             } else {
@@ -130,7 +131,8 @@ const MarketPage = () => {
     // Function to close popups
     const closePopup = () => {
         setClickedItem(null);
-        setPurchaseMessage(null);
+        setAlreadyPurchaseMessage(null);
+        setMorePointsMessage(null);
     };
     
 
@@ -187,6 +189,7 @@ const MarketPage = () => {
                     )}
                 </div>
             </div>
+            {/*pop up for clicked item/ready to purchase*/}
             {clickedItem && (
                 <div>
                     <div className="mp-popup-overlay"></div>
@@ -202,11 +205,26 @@ const MarketPage = () => {
                     </div>
                 </div>
             )}
-            {purchaseMessage && (
+            {/*pop up for already purchased item*/}
+            {alreadyPurchaseMessage && (
                 <div>
                     <div className="mp-popup-overlay"></div>
                     <div className="mp-popup">
-                        <div className="mp-popup-header">{purchaseMessage}</div>
+                        <div className="mp-popup-header">{alreadyPurchaseMessage}</div>
+                        <p>Check out your My Points page to see your purchases!</p>
+                        <div className="mp-popup-buttons">
+                            <button onClick={closePopup}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/*pop up for not enough points*/}
+            {morePointsMessage && (
+                <div>
+                    <div className="mp-popup-overlay"></div>
+                    <div className="mp-popup">
+                        <div className="mp-popup-header">{morePointsMessage}</div>
+                        <p>Earn more points by participating in Arena Events!</p>
                         <div className="mp-popup-buttons">
                             <button onClick={closePopup}>Close</button>
                         </div>
