@@ -102,6 +102,7 @@ const MarketPage = () => {
                 // Check if the clicked item is already purchased
                 const isItemPurchased = userMarketPurchases.some(purchasedItem => purchasedItem.id === clickedItem.id);
                 if (isItemPurchased) {
+                    // already purchased message
                     setAlreadyPurchaseMessage("Looks like You've Already Purchased this Item!");
                 } else {
                     // Check if the user has enough points
@@ -117,6 +118,7 @@ const MarketPage = () => {
                         setPoints(updatedPoints);
                         setClickedItem(null);
                     } else {
+                        //not enough points message
                         setMorePointsMessage("Sorry, You Don't Have Enough Points for this Item!");
                     }
                 }
