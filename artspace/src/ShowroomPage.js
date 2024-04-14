@@ -5,9 +5,11 @@ import './styles/Showroom.css';
 function ShowroomPage() {
     const [selectedCategory, setSelectedCategory] = useState('Featured');
     const [selectedImage, setSelectedImage] = useState(null);
+    const [activeTitle, setActiveTitle] = useState('Featured'); // state for active title
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
+        setActiveTitle(category); // update active title when category changes
     };
 
     const handleImageClick = (imageUrl) => {
@@ -29,10 +31,10 @@ function ShowroomPage() {
             <div className="showroom-section-titles">
                 <div className="showroom-title-line-top"></div>
                 <br></br>
-                <a onClick={() => handleCategoryChange('Featured')}>Featured</a>
-                <a onClick={() => handleCategoryChange('Newest')}>Newest</a>
-                <a onClick={() => handleCategoryChange('Most Views')}>Most Views</a>
-                <a onClick={() => handleCategoryChange('Oldest')}>Oldest</a>
+                <a className={activeTitle === 'Featured' ? 'active' : ''} onClick={() => handleCategoryChange('Featured')}>Featured</a>
+                <a className={activeTitle === 'Newest' ? 'active' : ''} onClick={() => handleCategoryChange('Newest')}>Newest</a>
+                <a className={activeTitle === 'Most Views' ? 'active' : ''} onClick={() => handleCategoryChange('Most Views')}>Most Views</a>
+                <a className={activeTitle === 'Oldest' ? 'active' : ''} onClick={() => handleCategoryChange('Oldest')}>Oldest</a>
                 <br></br>
                 <div className="showroom-title-line-bottom"></div>
             </div>

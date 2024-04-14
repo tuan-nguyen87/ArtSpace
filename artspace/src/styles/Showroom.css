@@ -38,6 +38,14 @@
   .showroom-section-titles a:hover {
     text-decoration: underline;
   }
+
+  /*when section title is active*/
+  .showroom-section-titles a.active {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    padding-bottom: 3px;
+    font-size: 20px;
+}
   
   /* lines above and below the section titles. */
   .showroom-title-line-top {
