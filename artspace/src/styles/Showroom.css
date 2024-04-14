@@ -142,3 +142,55 @@
       column-count: 1;
     }
   }
+
+  /*modal to make the image expand when clicked*/
+  /*modal container*/
+  .shrm-modal {
+    display: none; /*initially hides the modal*/
+    position: fixed;
+    z-index: 10000; /*above navigation bar*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*for content inside the modal*/
+  .shrm-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /*width and height of image inside the modal*/
+  .shrm-modal img {
+    max-width: 95%;
+    max-height: 95%;
+  }
+
+  /*close button for modal*/
+  .shrm-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /*when hovering over close button*/
+  .shrm-close:hover,
+  .shrm-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }

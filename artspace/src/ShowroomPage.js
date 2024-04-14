@@ -4,9 +4,18 @@ import './styles/Showroom.css';
 
 function ShowroomPage() {
     const [selectedCategory, setSelectedCategory] = useState('Featured');
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
+    };
+
+    const handleImageClick = (imageUrl) => {
+        setSelectedImage(imageUrl);
+    };
+
+    const closeModal = () => {
+        setSelectedImage(null);
     };
 
     return (
@@ -31,253 +40,108 @@ function ShowroomPage() {
             <div className="artwork-container">
                 {selectedCategory === 'Featured' && (
                     <>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart1.png" alt="Artwork 1" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Snail</p>
+                        {[
+                            { imageUrl: '/Showroom art/SHRMart1.png', artist: 'Jennifer', title: 'Snail' },
+                            { imageUrl: '/Showroom art/SHRMart2.png', artist: 'Kevin', title: 'River' },
+                            { imageUrl: '/Showroom art/SHRMart3.png', artist: 'Jennifer', title: 'Face' },
+                            { imageUrl: '/Showroom art/SHRMart4.png', artist: 'Tuan', title: 'Orange' },
+                            { imageUrl: '/Showroom art/SHRMart5.png', artist: 'Valerie', title: 'Portrait' },
+                            { imageUrl: '/Showroom art/SHRMart6.png', artist: 'Yasmine', title: 'Mountain' },
+                            { imageUrl: '/Showroom art/SHRMart7.png', artist: 'Yasmine', title: 'House' },
+                            { imageUrl: '/Showroom art/SHRMart8.png', artist: 'Kevin', title: 'Flower' },
+                            { imageUrl: '/Showroom art/SHRMart9.png', artist: 'Valerie', title: 'Cat' },
+                            { imageUrl: '/Showroom art/SHRMart10.png', artist: 'Tuan', title: 'Shapes' },
+                            { imageUrl: '/Showroom art/SHRMart11.png', artist: 'Jennifer', title: 'Shapes' },
+                            { imageUrl: '/Showroom art/SHRMart12.png', artist: 'Valerie', title: 'Abstract' },
+                            { imageUrl: '/Showroom art/SHRMart13.png', artist: 'Yasmine', title: 'octo' },
+                            { imageUrl: '/Showroom art/SHRMart14.png', artist: 'Kevin', title: 'Colors' },
+                            { imageUrl: '/Showroom art/SHRMart15.png', artist: 'Tuan', title: '3D' },
+                            { imageUrl: '/Showroom art/SHRMart16.png', artist: 'Jennifer', title: 'Guitar' }
+                            // Add other images
+                        ].map((item, index) => (
+                            <div className="artwork-item" key={index} onClick={() => handleImageClick(item.imageUrl)}>
+                                <img src={item.imageUrl} alt={`Artwork ${index + 1}`} />
+                                <div className="shrm-overlay">
+                                    <p>Artist: {item.artist}</p>
+                                    <p>Title: {item.title}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart2.png" alt="Artwork 2" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: River</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart3.png" alt="Artwork 3" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Face</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart4.png" alt="Artwork 4" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: Orange</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart5.png" alt="Artwork 5" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Portrait</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart6.png" alt="Artwork 6" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: Mountain</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart7.png" alt="Artwork 7" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: House</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart8.png" alt="Artwork 8" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Flower</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart9.png" alt="Artwork 9" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Cat</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart10.png" alt="Artwork 10" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: Shapes</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart11.png" alt="Artwork 11" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Shapes</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart12.png" alt="Artwork 12" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Abstract</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart13.png" alt="Artwork 13" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: Octo</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart14.png" alt="Artwork 14" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Colors</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart15.png" alt="Artwork 15" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: 3D</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart16.png" alt="Artwork 16" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Guitar</p>
-                            </div>
-                        </div>
+                        ))}
                     </>
                 )}
 
                 {selectedCategory === 'Newest' && (
                     <>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart16.png" alt="Artwork 16" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Guitar</p>
+                        {[
+                            { imageUrl: '/Showroom art/SHRMart16.png', artist: 'Jennifer', title: 'Guitar' },
+                            { imageUrl: '/Showroom art/SHRMart13.png', artist: 'Yasmine', title: 'Octo' },
+                            { imageUrl: '/Showroom art/SHRMart14.png', artist: 'Kevin', title: 'Colors' },
+                            { imageUrl: '/Showroom art/SHRMart15.png', artist: 'Tuan', title: '3D' },
+                            { imageUrl: '/Showroom art/SHRMart12.png', artist: 'Valerie', title: 'abstract' },
+                            { imageUrl: '/Showroom art/SHRMart10.png', artist: 'Tuan', title: 'Shapes' },
+                            { imageUrl: '/Showroom art/SHRMart8.png', artist: 'Kevin', title: 'FLower' },
+                            { imageUrl: '/Showroom art/SHRMart7.png', artist: 'Yasmine', title: 'House' },
+                            // Add other images
+                        ].map((item, index) => (
+                            <div className="artwork-item" key={index} onClick={() => handleImageClick(item.imageUrl)}>
+                                <img src={item.imageUrl} alt={`Artwork ${index + 1}`} />
+                                <div className="shrm-overlay">
+                                    <p>Artist: {item.artist}</p>
+                                    <p>Title: {item.title}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart13.png" alt="Artwork 13" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: Octo</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart14.png" alt="Artwork 14" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Colors</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart15.png" alt="Artwork 15" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: 3D</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart12.png" alt="Artwork 12" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Abstract</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart10.png" alt="Artwork 10" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: Shapes</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart8.png" alt="Artwork 8" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Flower</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart7.png" alt="Artwork 7" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: House</p>
-                            </div>
-                        </div>
+                        ))}
                     </>
                 )}
 
                 {selectedCategory === 'Most Views' && (
                     <>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart6.png" alt="Artwork 6" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: Mountain</p>
+                        {[
+                            { imageUrl: '/Showroom art/SHRMart6.png', artist: 'Yasmine', title: 'Mountain' },
+                            { imageUrl: '/Showroom art/SHRMart7.png', artist: 'Yasmine', title: 'House' },
+                            { imageUrl: '/Showroom art/SHRMart10.png', artist: 'Tuan', title: 'Shapes' },
+                            { imageUrl: '/Showroom art/SHRMart9.png', artist: 'Valerie', title: 'Cat' },
+                            { imageUrl: '/Showroom art/SHRMart14.png', artist: 'Kevin', title: 'Colors' },
+                            // Add other images
+                        ].map((item, index) => (
+                            <div className="artwork-item" key={index} onClick={() => handleImageClick(item.imageUrl)}>
+                                <img src={item.imageUrl} alt={`Artwork ${index + 1}`} />
+                                <div className="shrm-overlay">
+                                    <p>Artist: {item.artist}</p>
+                                    <p>Title: {item.title}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart7.png" alt="Artwork 7" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Yasmine</p>
-                                <p>Title: House</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart10.png" alt="Artwork 10" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: Shapes</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart9.png" alt="Artwork 9" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Cat</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart14.png" alt="Artwork 14" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Colors</p>
-                            </div>
-                        </div>
+                        ))}
                     </>
                 )}
 
                 {selectedCategory ==='Oldest' && (
                     <>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart1.png" alt="Artwork 1" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Jennifer</p>
-                                <p>Title: Snail</p>
+                        {[
+                            { imageUrl: '/Showroom art/SHRMart1.png', artist: 'Jennifer', title: 'Snail' },
+                            { imageUrl: '/Showroom art/SHRMart10.png', artist: 'Tuan', title: 'Shapes' },
+                            { imageUrl: '/Showroom art/SHRMart14.png', artist: 'Kevin', title: 'Colors' },
+                            { imageUrl: '/Showroom art/SHRMart5.png', artist: 'Valerie', title: 'Portrait' },
+                            // Add other images
+                        ].map((item, index) => (
+                            <div className="artwork-item" key={index} onClick={() => handleImageClick(item.imageUrl)}>
+                                <img src={item.imageUrl} alt={`Artwork ${index + 1}`} />
+                                <div className="shrm-overlay">
+                                    <p>Artist: {item.artist}</p>
+                                    <p>Title: {item.title}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart10.png" alt="Artwork 10" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Tuan</p>
-                                <p>Title: Shapes</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart14.png" alt="Artwork 14" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Kevin</p>
-                                <p>Title: Colors</p>
-                            </div>
-                        </div>
-                        <div className="artwork-item">
-                            <img src="/Showroom art/SHRMart5.png" alt="Artwork 5" />
-                            <div className="shrm-overlay">
-                                <p>Artist: Valerie</p>
-                                <p>Title: Portrait</p>
-                            </div>
-                        </div>
+                        ))}
                     </>
+                )}
+                {/* Modal for displaying the selected image */}
+                {selectedImage && (
+                    <div className="shrm-modal" onClick={closeModal}>
+                        <div className="shrm-modal-content">
+                            <span className="shrm-close" onClick={closeModal}>&times;</span>
+                            <img src={selectedImage} alt="Expanded artwork" />
+                        </div>
+                    </div>
                 )}
             </div>
         </div>
