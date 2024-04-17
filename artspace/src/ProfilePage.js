@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "./styles/ProfilePage.css";
-import { db } from "./Firebase/Firebase.js";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import { db, auth } from "./Firebase/Firebase.js";
 
 const ProfilePage = () => {
-  const [userName, setUserName] = useState(""); // State to store the user's name
-  const initialUserName = "Guest"; // Initial value for username if not available
+  const [userName, setUserName] = useState(""); // Default value while fetching
 
   useEffect(() => {
-    const userUid = "user_uid"; // Replace with the UID of the currently signed-in user
-
-    const unsubscribe = onSnapshot(doc(db, "Portfolio", userUid), (doc) => {
-      if (doc.exists()) {
-        const userData = doc.data();
-        setUserName(userData.name || initialUserName);
-      } else {
-        console.log("No such document!");
-        setUserName(initialUserName); // Set default name if document does not exist
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          const userDocRef = doc(db, "Portfolio", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            console.log("User data:", userData); // Log the retrieved user data
+            setUserName(userData.name); // Set the user's name from Firestore
+          } else {
+            setUserName("Guest"); // Use default name if document doesn't exist
+          }
+        } else {
+          setUserName("Guest"); // Use default name if user is not logged in
+        }
+      } catch (error) {
+        setUserName("Guest"); // Use default name if an error occurs
       }
     });
 
     return () => unsubscribe();
-  }, []); // Run this effect only once, when the component mounts
+  }, []);
 
   return (
     <div className="profile-container">
