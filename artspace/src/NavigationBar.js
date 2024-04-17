@@ -125,7 +125,9 @@ const NavigationBar = () => {
                   <a href="/Queue">Queue</a>
                 </li>
                 <li>
-                  <button onClick={handleLogout}>Logout</button>
+                  <a href="/" onClick={handleLogout}>
+                    Log out
+                  </a>
                 </li>
               </ul>
             </li>
