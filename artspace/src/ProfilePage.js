@@ -37,32 +37,40 @@ const ProfilePage = () => {
       </h2>
       <div className="profile-page">
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/messages.png"
-            alt="Profile 1"
-          />
+          <a href="/Messaging2">
+            <img
+              className="pic"
+              src="/Homepage art/messages.png"
+              alt="Profile 1"
+            />
+          </a>
         </div>
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/portfolio.png "
-            alt="Profile 2"
-          />
+          <a href="/Portfolio">
+            <img
+              className="pic"
+              src="/Homepage art/portfolio.png "
+              alt="Profile 2"
+            />
+          </a>
         </div>
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/commissions.png"
-            alt="Profile 3"
-          />
+          <a href="/Commissions">
+            <img
+              className="pic"
+              src="/Homepage art/commissions.png"
+              alt="Profile 3"
+            />
+          </a>
         </div>
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/collaborations.png"
-            alt="Profile 4"
-          />
+          <a href="/Collaborations">
+            <img
+              className="pic"
+              src="/Homepage art/collaborations.png"
+              alt="Profile 4"
+            />
+          </a>
         </div>
         <div className="profile-section">
           <img
