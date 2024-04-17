@@ -1,0 +1,22 @@
+.ProfileForSale_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(360deg, #153677, #4e085f);
+  padding-top: 135px;
+}
+
+.sale_text {
+  font-family: Notable;
+  color: gold;
+  font-size: 2.5rem;
+}
+
+.sale_container {
+  margin-top: 45px;
+  width: 1250px;
+  height: 750px;
+  background-color: white;
+  border-radius: 15px;
+}

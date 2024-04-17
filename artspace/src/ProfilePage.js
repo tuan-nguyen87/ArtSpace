@@ -73,11 +73,13 @@ const ProfilePage = () => {
           </a>
         </div>
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/for_sale.png"
-            alt="Profile 5"
-          />
+          <a href="/ProfileSalePage">
+            <img
+              className="pic"
+              src="/Homepage art/for_sale.png"
+              alt="Profile 5"
+            />
+          </a>
         </div>
       </div>
     </div>

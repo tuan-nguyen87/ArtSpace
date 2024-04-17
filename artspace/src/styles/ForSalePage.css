@@ -1,0 +1,48 @@
+.forsale-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  padding-top: 150px;
+}
+
+.item-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.item-card {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.item-card:hover {
+  background-color: #e0e0e0;
+}
+
+.item-card h2 {
+  margin-bottom: 10px;
+}
+
+.item-card p {
+  margin: 0;
+}
+
+.item-details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.item-details h2 {
+  margin-bottom: 10px;
+}
+
+.item-details p {
+  margin-bottom: 10px;
+}
