@@ -1,10 +1,23 @@
 /* main style of the page */
-.profile-page {
+.profile-container {
+  display: flex;
+  flex-direction: column; /* Display children in a column */
+  align-items: center; /* Center children horizontally */
   min-height: 100vh;
   background: linear-gradient(360deg, #153677, #4e085f);
+}
+
+.username_profile {
+  text-align: center; /* Center the text horizontally */
+  width: 100%;
+  font-size: 3rem;
+}
+
+.profile-page {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 }
 
 /* container to display 4 quadrant */
