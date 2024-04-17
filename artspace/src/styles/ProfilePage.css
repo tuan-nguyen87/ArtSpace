@@ -10,7 +10,10 @@
 .username_profile {
   text-align: center; /* Center the text horizontally */
   width: 100%;
-  font-size: 3rem;
+  font-size: 4rem;
+  margin-bottom: 50px;
+  font-family: "Notable", cursive;
+  color: gold;
 }
 
 .profile-page {
