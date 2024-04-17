@@ -37,7 +37,7 @@ const ProfilePage = () => {
       </h2>
       <div className="profile-page">
         <div className="profile-section">
-          <a href="/Messaging2">
+          <a className="the_pic" href="/Messaging2">
             <img
               className="pic"
               src="/Homepage art/messages.png"
@@ -46,7 +46,7 @@ const ProfilePage = () => {
           </a>
         </div>
         <div className="profile-section">
-          <a href="/Portfolio">
+          <a className="the_pic" href="/Portfolio">
             <img
               className="pic"
               src="/Homepage art/portfolio.png "
@@ -55,7 +55,7 @@ const ProfilePage = () => {
           </a>
         </div>
         <div className="profile-section">
-          <a href="/Commissions">
+          <a className="the_pic" href="/Commissions">
             <img
               className="pic"
               src="/Homepage art/commissions.png"
@@ -64,7 +64,7 @@ const ProfilePage = () => {
           </a>
         </div>
         <div className="profile-section">
-          <a href="/Collaborations">
+          <a className="the_pic" href="/Collaborations">
             <img
               className="pic"
               src="/Homepage art/collaborations.png"
