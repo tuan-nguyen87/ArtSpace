@@ -8,6 +8,7 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null); // State to store the selected user
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the visibility of the popup
+  const [isSecondPopupOpen, setIsSecondPopupOpen] = useState(false);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -47,8 +48,16 @@ const Search = () => {
     setIsPopupOpen(true); // Open the popup
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false); // Close the popup
+  const closePopup = (popupName) => {
+    if (popupName === "first") {
+      setIsPopupOpen(false); // Close the first popup
+    } else if (popupName === "second") {
+      setIsSecondPopupOpen(false); // Close the second popup
+    }
+  };
+
+  const handleForSaleClick = () => {
+    setIsSecondPopupOpen(true); // Open the second popup menu
   };
 
   return (
@@ -108,7 +117,23 @@ const Search = () => {
             placeholder="Type your message here..."
             className="popup-textarea"
           />
-          <button onClick={closePopup}>Send</button>
+          <div className="search_btn">
+            <button onClick={handleForSaleClick}>For Sale</button>
+            <button onClick={() => closePopup("first")}>Cancel</button>
+            <button onClick={() => closePopup("first")}>Send</button>
+          </div>
+        </div>
+      )}
+
+      {isSecondPopupOpen && (
+        <div className="second-popup-menu">
+          <div className="forsale_stuff">
+            <h2 className="gallery_name">
+              {selectedUser ? selectedUser.name + "'s Gallery Sale" : ""}
+            </h2>
+          </div>
+
+          <button onClick={() => closePopup("second")}>Close</button>
         </div>
       )}
     </div>

@@ -125,12 +125,13 @@
 }
 
 .popup-menu button {
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  margin-right: 25px;
 }
 
 .popup-menu button:hover {
@@ -144,4 +145,28 @@
 .UID_Name {
   color: red;
   text-align: center;
+}
+
+.second-popup-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid gold;
+  color: white;
+  backdrop-filter: blur(80px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 750px;
+  width: 1100px;
+  overflow-y: auto;
+}
+
+.gallery_name {
+  color: gold;
+  font-family: notable;
 }

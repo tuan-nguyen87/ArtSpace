@@ -18,7 +18,7 @@ import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue";
-import ForSalePage from "./ForSalePage";
+
 import ProfileForSale from "./ProfileForSale";
 import VotePage from "./VotePage";
 import PointSystem from "./PointSystem";
@@ -70,7 +70,7 @@ function App() {
           <Route path="/EduCont" element={<EduCont />} />
           <Route path="/ResLinks" element={<ResLinks />} />
           <Route path="/Search" element={<Search />} />
-          <Route path="/ForSalePage" element={<ForSalePage />} />
+
           <Route path="/ProfileSalePage" element={<ProfileForSale />} />
         </Routes>
       </Router>
