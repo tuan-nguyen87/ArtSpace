@@ -23,7 +23,7 @@
   margin-top: 45px;
 
   width: 1450px; /* Maximum width of the container */
-  height: 750px; /* Automatically adjust height based on content */
+  height: 780px; /* Automatically adjust height based on content */
   background-color: rgba(0, 30, 57, 0.76);
   border-image-slice: 1;
   border: solid 4px yellow;
@@ -34,7 +34,8 @@
 
 .sale_container img {
   width: 100%; /* Ensure all images fill their grid cell */
-  height: auto; /* Maintain aspect ratio */
+  height: 200px; /* Set a fixed height for all images */
+  object-fit: cover; /* Maintain aspect ratio and crop if necessary */
   border: solid 3px orange;
   border-radius: 15px;
 }
@@ -141,4 +142,14 @@
 
 .popup_content button:hover {
   background-color: #0d2659;
+}
+
+.popup_btn button {
+  margin-right: 25px; /* Add margin space between the buttons */
+}
+
+.empty_display {
+  color: gold;
+  font-size: 1.5rem;
+  font-family: notable;
 }

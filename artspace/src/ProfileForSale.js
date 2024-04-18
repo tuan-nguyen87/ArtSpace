@@ -112,10 +112,17 @@ const ProfileForSale = () => {
     <div className="ProfileForSale_Container">
       <h2 className="sale_text">Upload your work</h2>
       <div className="sale_container">
-        {uploadedImages.map((url, index) => (
-          <img key={index} src={url} alt={`Uploaded Image ${index}`} />
-        ))}
+        {uploadedImages.length > 0 ? (
+          uploadedImages.map((url, index) => (
+            <img key={index} src={url} alt={`Uploaded Image ${index}`} />
+          ))
+        ) : (
+          <p className="empty_display">
+            It looks like you don't have anything up for sale.
+          </p>
+        )}
       </div>
+
       <button className="profile_btn" onClick={handleUploadClick}>
         Upload
       </button>
@@ -145,9 +152,14 @@ const ProfileForSale = () => {
               onChange={(e) => setPrice(e.target.value)}
               required
             />
-            <button className="profile_btn" onClick={handleSaveButtonClick}>
-              Save
-            </button>
+            <div className="popup_btn">
+              <button className="profile_btn" onClick={handleClosePopup}>
+                Cancel
+              </button>
+              <button className="profile_btn" onClick={handleSaveButtonClick}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
       )}
