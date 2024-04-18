@@ -7,12 +7,15 @@ import {
   listAll,
   getDownloadURL,
 } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 import "./styles/ProfileForSale.css";
 
 const ProfileForSale = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedPicture, setSelectedPicture] = useState(null); // State for selected picture
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
     const fetchUploadedImages = async () => {
