@@ -21,6 +21,7 @@
   border-image-slice: 1;
   border: solid 3px pink;
   border-radius: 20px;
+  overflow-y: auto;
 }
 
 /* credit for profile button styling goes to Algolia at getcssscan.com*/
