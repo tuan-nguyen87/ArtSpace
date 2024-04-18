@@ -14,14 +14,29 @@
 }
 
 .sale_container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Adjust column width */
+  gap: 30px; /* Adjust the gap between images */
   margin-top: 45px;
-  width: 1250px;
-  height: 650px;
+  width: 100%; /* Adjust width to fit container */
+  max-width: 1250px; /* Maximum width of the container */
+  height: auto; /* Automatically adjust height based on content */
   background-color: rgba(0, 30, 57, 0.76);
   border-image-slice: 1;
-  border: solid 3px pink;
+  border: solid 4px yellow;
   border-radius: 20px;
   overflow-y: auto;
+  padding: 30px;
+}
+
+.sale_container img {
+  width: 100%; /* Ensure all images fill their grid cell */
+  height: auto; /* Maintain aspect ratio */
+  border: solid 3px orange;
+  border-radius: 15px;
 }
 
 /* credit for profile button styling goes to Algolia at getcssscan.com*/

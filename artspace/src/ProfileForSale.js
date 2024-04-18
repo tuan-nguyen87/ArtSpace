@@ -15,7 +15,6 @@ const ProfileForSale = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
 
   useEffect(() => {
-    // Function to fetch uploaded images from Firebase Storage
     const fetchUploadedImages = async () => {
       try {
         // Get the current user
@@ -46,8 +45,14 @@ const ProfileForSale = () => {
       }
     };
 
-    // Fetch uploaded images when component mounts
-    fetchUploadedImages();
+    // Check if the user is authenticated before fetching images
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchUploadedImages();
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const handleUploadClick = () => {
@@ -76,11 +81,21 @@ const ProfileForSale = () => {
       `${auth.currentUser.uid}/forsale/${selectedPicture.name}`
     );
 
-    await uploadBytes(storageRef, selectedPicture);
-    console.log("Picture uploaded successfully!");
+    try {
+      await uploadBytes(storageRef, selectedPicture);
+      console.log("Picture uploaded successfully!");
 
-    // Close the popup window after saving
-    handleClosePopup();
+      // Get the download URL of the uploaded image
+      const downloadURL = await getDownloadURL(storageRef);
+
+      // Update state with the new image URL
+      setUploadedImages([...uploadedImages, downloadURL]);
+
+      // Close the popup window after saving
+      handleClosePopup();
+    } catch (error) {
+      console.error("Error uploading picture:", error);
+    }
   };
 
   return (
