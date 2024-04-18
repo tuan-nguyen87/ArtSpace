@@ -5,6 +5,7 @@ import "./styles/ProfileForSale.css";
 
 const ProfileForSale = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedPicture, setSelectedPicture] = useState(null); // State for selected picture
 
   const handleUploadClick = () => {
     setIsPopupOpen(true);
@@ -12,6 +13,30 @@ const ProfileForSale = () => {
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
+  };
+
+  const handleSelectPicture = (event) => {
+    // Handle picture selection here
+    setSelectedPicture(event.target.files[0]);
+  };
+
+  const handleSaveButtonClick = async () => {
+    // Handle saving picture, description, and price here
+    if (!selectedPicture) {
+      console.error("No picture selected.");
+      return;
+    }
+
+    // Upload the selected picture to Firebase Storage
+    const storageRef = ref(
+      getStorage(),
+      `${auth.currentUser.uid}/${selectedPicture.name}`
+    );
+    await uploadBytes(storageRef, selectedPicture);
+    console.log("Picture uploaded successfully!");
+
+    // Close the popup window after saving
+    handleClosePopup();
   };
 
   return (
@@ -26,12 +51,18 @@ const ProfileForSale = () => {
         <div className="popup_profile">
           <div className="popup_content">
             <h3>Upload Image</h3>
-            <button className="profile_btn">Select Image</button>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleSelectPicture}
+            />
             <label>Description</label>
             <textarea rows="4" cols="50" />
             <label>Price</label>
-            <input type="number" placeholder="Enter price" requried />
-            <button className="profile_btn">Save</button>
+            <input type="number" placeholder="Enter price" required />
+            <button className="profile_btn" onClick={handleSaveButtonClick}>
+              Save
+            </button>
           </div>
         </div>
       )}

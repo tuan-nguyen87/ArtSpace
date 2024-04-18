@@ -85,7 +85,7 @@
   border-radius: 15px;
   padding: 20px;
   border: 5px solid #153677;
-  color: white;
+  color: rgb(255, 255, 255);
   backdrop-filter: blur(15px);
   z-index: 5;
 }
