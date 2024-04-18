@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "./Firebase/Firebase.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import "./styles/ProfileForSale.css";
 
 const ProfileForSale = () => {
@@ -30,8 +30,9 @@ const ProfileForSale = () => {
     // Upload the selected picture to Firebase Storage
     const storageRef = ref(
       getStorage(),
-      `${auth.currentUser.uid}/${selectedPicture.name}`
+      `${auth.currentUser.uid}/forsale/${selectedPicture.name}`
     );
+
     await uploadBytes(storageRef, selectedPicture);
     console.log("Picture uploaded successfully!");
 
