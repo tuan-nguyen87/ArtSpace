@@ -9,7 +9,12 @@ import "./styles/ArtistArena.css";
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
     const navigate = useNavigate();
-    //const location = useLocation();
+
+    // Function to navigate to the VotePage with competition details
+    const navigateToVotePage = () => {
+        navigate(`/vote/${title}`, { state: { competitionTitle: title, competitionDescription: description, artwork: imageSrc } });
+        };
+
     const initialImages = [];
     const [userID, setUserID] = useState(null);
     const [images, setImages] = useState(initialImages);
@@ -49,54 +54,6 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
         return () => unsubscribe();
     }, []);
 
-    // State for upload image
-    //const [image, setImage] = useState(null);
-
-    // const handleFileChange = (e) => {
-    //     if (e.target.files[0]) {
-    //         setImage(e.target.files[0]);
-    //     }
-    // };
-
-    // const handleUpload = () => {
-    //     document.getElementById(`upload-input-${title}`).click();
-
-    //     // After the file is selected, call uploadFile to upload it
-    //     uploadFile();
-    // };
-    // const uploadFile = () => {
-    //     if (image) {
-    //         const collection = 'ArenaImages';
-    //         const reader = new FileReader();
-            
-    //         reader.onload = (event) => {
-    //             const imageData = event.target.result;
-                
-    //             // Upload the image data as a base64-encoded string
-    //             storage
-    //                 .ref(collection)
-    //                 .child(image.name)
-    //                 .putString(imageData, 'data_url')
-    //                 .then(snapshot => {
-    //                     console.log("Image uploaded successfully.");
-    //                     // Fetch the download URL of the uploaded image
-    //                     return snapshot.ref.getDownloadURL();
-    //                 })
-    //                 .then(url => {
-    //                     console.log("Download URL:", url);
-    //                 })
-    //                 .catch(error => {
-    //                     console.error("Error uploading image:", error);
-    //                 });
-    //         };
-            
-    //         reader.readAsDataURL(image);
-    //     } else {
-    //         console.log("No image selected for upload.");
-    //         // Optionally, you can notify the user about the error
-    //     }
-    // };
-
     function handleImageUpload(event) {
         const file = event.target.files[0];
         const storageRef = ref(storage, `${userID}/arena-images/${file.name}`); // Set the storage path for work images
@@ -130,13 +87,13 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
           });
       }
     
-    const handleVoteClick = () => {
-        const competitionTitle = title;
-        const competitionDescription = description;
-        const artwork = [{ url: imageSrc }];
+    // const handleVoteClick = () => {
+    //     const competitionTitle = title;
+    //     const competitionDescription = description;
+    //     const artwork = [{ url: imageSrc }];
     
-        navigate("/vote", { state: { competitionTitle, competitionDescription, artwork } });
-    };
+    //     navigate("/vote", { state: { competitionTitle, competitionDescription, artwork } });
+    // };
 
     return (
         <div className="card">
@@ -172,7 +129,8 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                                 onChange={handleImageUpload}
                                 style={{ display: "none" }}
                             />
-                            <button className="vote" onClick={handleVoteClick}>Vote!</button>
+                            {/* <button className="vote" onClick={handleVoteClick}>Vote!</button> */}
+                            <button className="vote" onClick={navigateToVotePage}>Vote</button>
                         </div>
                     </div>
                 </div>
