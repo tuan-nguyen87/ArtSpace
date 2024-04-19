@@ -25,9 +25,7 @@ const storage = getStorage(app);
 onAuthStateChanged( auth, (user) => {
     if (user) {
       // User is signed in
-      console.log("User is signed in:", user);
-      // can update the UI or take actions when the user is signed in
-      console.log("User's display name:", user.displayName);
+      console.log("User is signed in:", user.email);
     } else {
       // User is signed out
       console.log("User is signed out");
