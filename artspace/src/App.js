@@ -55,7 +55,7 @@ function App() {
           <Route path="/RatingReview" element={<RatingReview />} />
           <Route path="/TutorialPage" element={<TutorialPage />} />
           <Route path="/ArtistArena" element={<ArtistArena />} />
-          <Route path="/vote" component={<VotePage />} />
+          <Route path="/vote" element={<VotePage />} />
           <Route path="/ShowroomPage" element={<ShowroomPage />} />
           <Route path="/SocialHub" element={<SocialHub />} />
           <Route path="/Portfolio" element={<Portfolio />} />
