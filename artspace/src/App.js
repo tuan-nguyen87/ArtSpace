@@ -18,15 +18,18 @@ import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue"
-
-const socket = io("http://localhost:3000");
-
 import PointSystem from "./PointSystem";
 import NavSite from "./NavSite";
 import ArtTutorials from "./ArtTutorials";
 import EduCont from "./EduCont";
 import ResLinks from "./ResLinks";
 import Search from "./Search";
+import Payment from "./Payment";
+import MyCommissions from "./MyCommissions";
+
+//const socket = io("http://localhost:3000");
+
+
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -62,13 +65,14 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
-          <Route path="/Queue" element={<Queue />} />
+          <Route path="/Payment" element={<Payment />} />
           <Route path="/PointSystem" element={<PointSystem />} />
           <Route path="/NavSite" element={<NavSite />} />
           <Route path="/ArtTutorials" element={<ArtTutorials />} />
           <Route path="/EduCont" element={<EduCont />} />
           <Route path="/ResLinks" element={<ResLinks />} />
           <Route path="/Search" element={<Search />} />
+          <Route path="/MyCommissions" element={<MyCommissions />} />
         </Routes>
       </Router>
     </div>

@@ -107,7 +107,7 @@ const NavigationBar = () => {
                   <a href="/Portfolio">Portfolio</a>
                 </li>
                 <li>
-                  <a href="#">Commissions</a>
+                  <a href="/MyCommissions">My Commissions</a>
                 </li>
                 <li>
                   <a href="/Messaging2">Messages</a>
@@ -122,7 +122,7 @@ const NavigationBar = () => {
                   <a href="/RatingReview">Leave a Review</a>
                 </li>
                 <li>
-                  <a href="/Queue">Queue</a>
+                  <a href="/Payment">Payment</a>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>
