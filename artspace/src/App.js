@@ -27,6 +27,7 @@ import ArtTutorials from "./ArtTutorials";
 import EduCont from "./EduCont";
 import ResLinks from "./ResLinks";
 import Search from "./Search";
+import GalleryMarketPage from "./GalleryMarketPage";
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -70,7 +71,7 @@ function App() {
           <Route path="/EduCont" element={<EduCont />} />
           <Route path="/ResLinks" element={<ResLinks />} />
           <Route path="/Search" element={<Search />} />
-
+          <Route path="/GalleryMarketPage" element={<GalleryMarketPage />} />
           <Route path="/ProfileSalePage" element={<ProfileForSale />} />
         </Routes>
       </Router>

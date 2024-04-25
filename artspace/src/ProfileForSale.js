@@ -7,7 +7,7 @@ import {
   listAll,
   getDownloadURL,
 } from "firebase/storage";
-import { doc, setDoc, collection, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import "./styles/ProfileForSale.css";
 
 const ProfileForSale = () => {
@@ -88,7 +88,8 @@ const ProfileForSale = () => {
 
       // Construct data object including the current user's UID
       const data = {
-        userId: auth.currentUser.uid, // Current user's UID
+        userId: auth.currentUser.uid,
+
         description: description,
         price: price,
         imageUrl: downloadURL,

@@ -70,6 +70,9 @@ const NavigationBar = () => {
               <li>
                 <a href="/MarketPage">Market</a>
               </li>
+              <li>
+                <a href="/GalleryMarketPage">Gallery Market</a>
+              </li>
             </ul>
           </li>
           <li className="notification-icon">
