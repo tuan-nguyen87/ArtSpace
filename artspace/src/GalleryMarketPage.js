@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./Firebase/Firebase.js";
+import { collection, getDocs } from "firebase/firestore";
 import "./styles/GalleryMarketPage.css";
 
 const GalleryMarketPage = () => {
   const [products, setProducts] = useState([]);
-  console.log(Object.keys(db));
-
+  console.log(db);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsCollection = db.collection("products");
-        const snapshot = await productsCollection.get();
-        const productList = snapshot.docs.map((doc) => ({
+        const productsRef = collection(db, "products");
+        const snapshot = await getDocs(productsRef);
+        const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setProducts(productList);
+        console.log("Fetched products:", productsData);
+        setProducts(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -34,8 +35,7 @@ const GalleryMarketPage = () => {
             <div className="product-info">
               <h3>{product.description}</h3>
               <p>Price: ${product.price}</p>
-              <p>Seller: {product.name}</p>
-              {/* Assuming "name" is the field for seller's name */}
+              <p>Seller: {product.userId}</p>
             </div>
           </div>
         ))}
