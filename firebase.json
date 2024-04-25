@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "artspace",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

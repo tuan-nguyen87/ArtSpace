@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./styles/RatingReview.css";
+import { db } from "./Firebase/Firebase";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import '@fortawesome/fontawesome-free/css/all.css';
-//import axios from 'axios'; 
 
 const RatingReview = () => {
   const [rating, setRating] = useState(0);
@@ -9,6 +10,7 @@ const RatingReview = () => {
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   // Function to handle changes in the rating
   const handleRatingChange = (newRating) => {
@@ -16,72 +18,58 @@ const RatingReview = () => {
   };
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create a new review object
-    const newReview = {
-      personName,
-      rating,
-      reviewText,
-    };
-
-    // Update the reviews state with the new review
-    setReviews([newReview, ...reviews]);
-
-    // Clear form fields
-    setRating(0);
-    setReviewText('');
-    setPersonName('');
-  };
-
-/*
- const handleSubmit = async (e) => {
-    e.preventDefault();
+  
     try {
-      const currentUserId = 'testReviewer'; // '...'Get the current user's ID 
-      const revieweeId = 'testReviewee'; //'...' Get the relevant ID of the entity being reviewed
-
-      const reviewData = { 
-        rating, 
-        reviewText, 
-        reviewerId: currentUserId, 
-        revieweeId, 
-        personName,
+      // Create a new review object
+      const newReview = {
+        artistName: personName,
+        starRating: rating, 
+        reviewText: reviewText,
       };
-
-      // Log the review data to the console
-      console.log('Review data:', reviewData);
-
-      // Send a POST request to submit the review
-      const response = await axios.post('/api/reviews', reviewData); 
-      console.log('Review submitted:', response.data);
-
-       // Clear the review text, person name, and rating after submission
-      setReviews([response.data, ...reviews]); 
-      setReviewText(''); 
+  
+      // Add the new review to Firestore
+      const docRef = await addDoc(collection(db, "reviews"), newReview);
+      console.log("Review added with ID: ", docRef.id);
+  
+      // Update the reviews state with the new review
+      setReviews([newReview, ...reviews]);
+  
+      // Clear form fields
+      setRating(0);
+      setReviewText('');
       setPersonName('');
+  
+      // Update the rating state to 0 after a brief delay to ensure the stars remain visible
+      setTimeout(() => {
+        setRating(0);
+      }, 100);
     } catch (error) {
-      console.error('Error submitting review:', error);
+      console.error("Error adding review: ", error);
     }
   };
 
-
-   // useEffect to fetch reviews on component mount
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const revieweeId = '...'; // Get the relevant ID for which to fetch reviews
-        const response = await axios.get(`/api/reviews/${revieweeId}`);
-        setReviews(response.data);
+        let reviewsRef = collection(db, "reviews");
+        if (searchTerm) {
+          // Filter reviews based on artist name
+          reviewsRef = query(reviewsRef, where("artistName", "==", searchTerm));
+        }
+        const querySnapshot = await getDocs(reviewsRef);
+        const fetchedReviews = [];
+        querySnapshot.forEach((doc) => {
+          fetchedReviews.push(doc.data());
+        });
+        setReviews(fetchedReviews);
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        console.error("Error fetching reviews: ", error);
       }
     };
     fetchReviews();
-  }, []);
-
-*/
+  }, [searchTerm]);
 
   return (
     <div className="review-page">
@@ -151,8 +139,8 @@ const RatingReview = () => {
             {reviews.map((review, index) => (
               <div className="review-item" key={index}>
                 {/* Display reviewer name/type, rating, and review text */}
-                <p>{review.personName} gets a:</p>
-                <p>{`Rating: ${review.rating}/5`}</p>
+                <p>{review.artistName} gets a:</p>
+                <p>{`Rating: ${review.starRating}/5`}</p>
                 <p>{review.reviewText}</p>
               </div>
             ))}

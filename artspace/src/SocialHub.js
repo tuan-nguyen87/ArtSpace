@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './styles/SocialHub.css';
+import { db } from "./Firebase/Firebase";
+import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 const SocialHub = () => {
   const [questions, setQuestions] = useState([]);
@@ -10,7 +12,6 @@ const SocialHub = () => {
   const [newQuestionCategory, setNewQuestionCategory] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-
   const [categories, setCategories] = useState([
     'General',
     'Portfolio',
@@ -30,27 +31,45 @@ const SocialHub = () => {
     setFilteredQuestions(questions);
   }, [questions]);
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "questions"), (snapshot) => {
+      const fetchedQuestions = [];
+      snapshot.forEach((doc) => {
+        fetchedQuestions.push({ id: doc.id, ...doc.data() });
+      });
+      setQuestions(fetchedQuestions);
+    });
+    return () => unsubscribe();
+  }, []);
 
-
-  const handleAskQuestions = () => {
+  const handleAskQuestions = async () => {
     if (newQuestion.trim() !== '' && newQuestionCategory.trim() !== '') {
       const newQuestionObject = {
         question: newQuestion,
         category: newQuestionCategory,
         responses: [],
       };
-
-      setQuestions([...questions, newQuestionObject]);
-
+  
+      try {
+        const docRef = await addDoc(collection(db, "questions"), newQuestionObject);
+        const questionWithId = { id: docRef.id, ...newQuestionObject }; 
+        console.log("Question added with ID: ", docRef.id);
+        setQuestions([...questions, questionWithId]); 
+      } catch (error) {
+        console.error("Error adding question: ", error);
+      }
+  
       // Add the new question to filteredQuestions as well
       if (selectedCategory === '' || selectedCategory === newQuestionCategory) {
         setFilteredQuestions([...filteredQuestions, newQuestionObject]);
       }
-
+  
       setNewQuestion('');
       setNewQuestionCategory('');
     }
   };
+  
+  
   
 
   const handleFilterQuestions = () => {
@@ -72,13 +91,54 @@ const SocialHub = () => {
     setReplyIndex(replyIndex === questionIndex ? null : questionIndex);
   };
 
-  const handleRespond = (questionIndex, response) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[questionIndex].responses.push(response);
-    setQuestions(updatedQuestions);
-    setResponses({ ...responses, [questionIndex]: '' });
-    setReplyIndex(null);
+  const handleRespond = async (questionIndex, response) => {
+    try {
+      // Ensure questionIndex is valid
+      if (questionIndex < 0 || questionIndex >= questions.length) {
+        console.error('Invalid question index:', questionIndex);
+        return;
+      }
+  
+      // Ensure questions array is populated
+      if (!questions || questions.length === 0) {
+        console.error('Questions array is empty or not initialized.');
+        return;
+      }
+  
+      // Get the question at the specified index
+      const question = questions[questionIndex];
+  
+      // Ensure question is not undefined
+      if (!question) {
+        console.error('Question at index', questionIndex, 'is undefined.');
+        return;
+      }
+  
+      // Ensure question has an ID
+      if (!question.id) {
+        console.error('Question ID is undefined or null.');
+        return;
+      }
+  
+      // Update Firestore document with the response
+      const questionRef = doc(db, "questions", question.id);
+      await updateDoc(questionRef, {
+        responses: [...question.responses, response]
+      });
+  
+      // Update local state to reflect the change
+      const updatedQuestions = [...questions];
+      updatedQuestions[questionIndex].responses.push(response);
+      setQuestions(updatedQuestions);
+      setResponses({ ...responses, [questionIndex]: '' });
+      setReplyIndex(null);
+    } catch (error) {
+      console.error("Error adding response: ", error);
+    }
   };
+  
+  
+  
 
   return (
     <div className="social-page">

@@ -1,49 +1,84 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/ProfilePage.css";
-/* main component of this page, it will be split into 4 quadrant. each with pictures and links to different part of website */
-// Collaboration still have waiting on links, page is not created.
+import { doc, getDoc } from "firebase/firestore";
+import { db, auth } from "./Firebase/Firebase.js";
+
 const ProfilePage = () => {
+  const [userName, setUserName] = useState(""); // Default value while fetching
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          const userDocRef = doc(db, "Portfolio", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            console.log("User data:", userData); // Log the retrieved user data
+            setUserName(userData.name); // Set the user's name from Firestore
+          } else {
+            setUserName("Guest"); // Use default name if document doesn't exist
+          }
+        } else {
+          setUserName("Guest"); // Use default name if user is not logged in
+        }
+      } catch (error) {
+        setUserName("Guest"); // Use default name if an error occurs
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <div className="profile-page">
-      <div className="profile-container">
+    <div className="profile-container">
+      <h2 className="username_profile">
+        {userName ? `Welcome, ${userName}!` : "Welcome!"}
+      </h2>
+      <div className="profile-page">
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/messages.png"
-            alt="Profile 1"
-          />
-          <a href="/Messaging2" className="message-text">
-            Messages
+          <a className="the_pic" href="/Messaging2">
+            <img
+              className="pic"
+              src="/Homepage art/messages.png"
+              alt="Profile 1"
+            />
           </a>
         </div>
         <div className="profile-section">
-          <img
-            className="pic"
-            src="/Homepage art/portfolio.png "
-            alt="Profile 2"
-          />
-          <a href="/Portfolio" className="message-text">
-            Portfolio
+          <a className="the_pic" href="/Portfolio">
+            <img
+              className="pic"
+              src="/Homepage art/portfolio.png "
+              alt="Profile 2"
+            />
           </a>
         </div>
-        <div className="profile-section2">
-          <img
-            className="pic2"
-            src="/Homepage art/commissions.png"
-            alt="Profile 3"
-          />
-          <a href="/Commissions" className="message-text">
-            Commissions
+        <div className="profile-section">
+          <a className="the_pic" href="/Commissions">
+            <img
+              className="pic"
+              src="/Homepage art/commissions.png"
+              alt="Profile 3"
+            />
           </a>
         </div>
-        <div className="profile-section2">
-          <img
-            className="pic2"
-            src="/Homepage art/collaborations.png"
-            alt="Profile 4"
-          />
-          <a href="#" className="message-text">
-            Collaborations
+        <div className="profile-section">
+          <a className="the_pic" href="/Collaborations">
+            <img
+              className="pic"
+              src="/Homepage art/collaborations.png"
+              alt="Profile 4"
+            />
+          </a>
+        </div>
+        <div className="profile-section">
+          <a className="the_pic" href="/ProfileSalePage">
+            <img
+              className="pic"
+              src="/Homepage art/for_sale.png"
+              alt="Profile 5"
+            />
           </a>
         </div>
       </div>

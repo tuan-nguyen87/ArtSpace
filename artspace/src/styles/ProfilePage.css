@@ -1,87 +1,77 @@
 /* main style of the page */
+.profile-container {
+  display: flex;
+  flex-direction: column; /* Display children in a column */
+  align-items: center; /* Center children horizontally */
+  min-height: 100vh;
+  background: linear-gradient(360deg, #153677, #4e085f);
+}
+
+.username_profile {
+  text-align: center; /* Center the text horizontally */
+  width: 100%;
+  font-size: 4rem;
+  margin-bottom: 50px;
+  font-family: "Notable", cursive;
+  color: gold;
+}
+
 .profile-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(360deg, #153677, #4e085f);
+  margin-top: 100px;
 }
+
 /* container to display 4 quadrant */
 .profile-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
   justify-content: center;
-  gap: 60px;
-  width: 60%;
+  gap: 20px; /* Spacing between boxes */
 }
-/* top 2 quadrant */
+
+/* Each quadrant */
 .profile-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  width: 80%;
-  height: 80%;
-  position: relative;
-  bottom: 100px;
+  border-radius: 15px;
+  width: calc(100% - 20px); /* Adjust width for 3 items in a row */
+  margin: 50px; /* Add spacing between boxes */
+  /* box-shadow: 0 15px 26px rgb(255, 221, 0); */
+  background-color: transparent;
 }
+
 .pic {
-  height: 50%;
-  position: relative;
-  border-radius: 18px;
-  border: solid 5px rgb(255, 213, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-/* bottom 2 quadrant */
-.profile-section2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  width: 80%;
-  height: 80%;
-  position: relative;
-  bottom: 550px;
-}
-.pic2 {
-  height: 50%;
-  position: relative;
-  border-radius: 18px;
-  border: solid 5px rgb(255, 213, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-/* animation for the buttons */
-.message-text {
-  position: absolute;
-  bottom: 18%;
-  width: 50%;
-  background-color: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 15px;
-  z-index: 3;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 1000;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.message-text:hover::before {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.message-text::before {
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
   height: 100%;
-  position: absolute;
-  background-color: #06ff27;
-  z-index: -1;
-  transition: width 0.3s;
+  width: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure the image doesn't exceed container width */
+  border-radius: 15px;
+  border: solid 2px rgba(255, 223, 255, 0.5); /* White border with transparency */
+}
+
+/* Hover effect */
+.profile-section:hover {
+  transform: scale(1.25); /* Scale up on hover */
+  transition: transform 0.3s ease;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 40px rgb(0, 225, 255);
+  } /* Start with a small glow */
+  50% {
+    box-shadow: 0 0 80px rgb(0, 255, 255);
+  } /* Increase glow size */
+  100% {
+    box-shadow: 0 0 60px rgb(0, 255, 255);
+  }
+}
+
+/* Apply the animation to the element */
+.the_pic {
+  animation: glowing 4s infinite alternate; /* Apply the glowing animation */
+  border-radius: 15px;
+  border: none;
 }

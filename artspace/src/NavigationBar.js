@@ -70,6 +70,9 @@ const NavigationBar = () => {
               <li>
                 <a href="/MarketPage">Market</a>
               </li>
+              <li>
+                <a href="/GalleryMarketPage">Gallery Market</a>
+              </li>
             </ul>
           </li>
           <li className="notification-icon">
@@ -125,7 +128,9 @@ const NavigationBar = () => {
                   <a href="/Payment">Payment</a>
                 </li>
                 <li>
-                  <button onClick={handleLogout}>Logout</button>
+                  <a href="/" onClick={handleLogout}>
+                    Log out
+                  </a>
                 </li>
               </ul>
             </li>

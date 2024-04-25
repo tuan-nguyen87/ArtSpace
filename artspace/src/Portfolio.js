@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback} from "react";
 import "./styles/Portfolio.css";
-import { db, auth } from "./Firebase/Firebase.js";
+import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 const Portfolio = () => {
-  // Initial blank Biography, skills and name, Joker will be change to a null name later
+  // Generic filler information
   const initialBiography = "User's biography goes here...";
   const initialSkills = [];
   const initialImages = [];
-  const initialUserName = "Joker";
-  //const needed to edit fields
+  const initialUserName = "Please set your username";
+
+  // State variables
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [biography, setBiography] = useState(initialBiography);
   const [skills, setSkills] = useState(initialSkills);
@@ -19,8 +21,10 @@ const Portfolio = () => {
   const [userName, setUserName] = useState(initialUserName);
   const [editedUserName, setEditedUserName] = useState(initialUserName);
   const [userID, setUserID] = useState(null);
-  // use effect to add to database documents and get fields
+  const [photoURL, setPhotoURL] = useState(null); // Default profile picture set to null
+
   useEffect(() => {
+    // Authentication listener
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUserID(user.uid);
@@ -31,6 +35,7 @@ const Portfolio = () => {
             setBiography(userData.bio || initialBiography);
             setSkills(userData.skills || initialSkills);
             setUserName(userData.name || initialUserName);
+            setPhotoURL(userData.photoURL || null); // Update photoURL state if available
           } else {
             console.log("No such document!");
           }
@@ -41,17 +46,65 @@ const Portfolio = () => {
       }
     });
 
+    // Retrieve image URLs from local storage when component mounts -- Yasmine
+    const storedImages = localStorage.getItem("uploadedImages");
+    if (storedImages) {
+      const parsedImages = JSON.parse(storedImages);
+      // Filter out images that do not exist in storage
+      const existingImages = parsedImages.filter(image => {
+        const imageRef = ref(storage, image);
+        return getDownloadURL(imageRef).then(() => true).catch(() => false);
+      });
+      setImages(existingImages);
+      localStorage.setItem("uploadedImages", JSON.stringify(existingImages));
+    }
     return () => unsubscribe();
   }, []);
-  // behavior for edit button when clicked
+
+  // Turning handleProfilePictureUpload into a memoized function 
+  // to reduce rerender and improve memory usage -- Yasmine
+  // Without useCallback, this function would be recreated on every render 
+  const handleProfilePictureUpload = useCallback(async (event) =>  {
+    const file = event.target.files[0];
+    const storageRef = ref(storage, `${userID}/profile-picture.jpg`); // Construct storage reference using userID
+  
+    // Upload file to Firebase Storage
+    await uploadBytes(storageRef, file);
+  
+    // Get the download URL of the uploaded image
+    const downloadURL = await getDownloadURL(storageRef);
+  
+    if (userID) {
+      const userDocRef = doc(db, "Portfolio", userID);
+      await setDoc(
+        userDocRef,
+        {
+          name: editedUserName,
+          bio: editedBiography,
+          skills: editedSkills,
+          photoURL: downloadURL,
+        },
+        { merge: true }
+      );
+  
+      // Update photoURL state with the new URL
+      setPhotoURL(downloadURL);
+      setIsEditPopupOpen(false); // Close the edit popup
+    }
+  }, [editedBiography, editedSkills, editedUserName, userID]);
+  // Recreate the function only when one of the above changes -- Yasmine
+
   const handleEditButtonClick = () => {
     setIsEditPopupOpen(true);
     setEditedBiography(biography);
     setEditedSkills(skills);
     setEditedUserName(userName);
   };
-  // behavior for save button when clicked
-  const handleSaveButtonClick = () => {
+  
+  // Turning handleSaveButtonClick into a memoized function 
+  // to reduce rerender and improve memory usage -- Yasmine
+  // Without useCallback, this function would be recreated on every render
+  const handleSaveButtonClick = useCallback(() => {
     setBiography(editedBiography);
     setSkills(editedSkills);
     setUserName(editedUserName);
@@ -63,6 +116,7 @@ const Portfolio = () => {
         name: editedUserName,
         bio: editedBiography,
         skills: editedSkills,
+        photoURL: photoURL, // Include the photoURL field
       })
         .then(() => {
           console.log("User data saved successfully!");
@@ -71,8 +125,9 @@ const Portfolio = () => {
           console.error("Error saving user data: ", error);
         });
     }
-  };
-  // after saving, cancel, popup should close
+  }, [editedBiography, editedSkills, editedUserName, photoURL, userID]);
+  // Only rerender the function when one of the above changes -- Yasmine
+
   const handleClosePopup = () => {
     setIsEditPopupOpen(false);
     setEditedBiography(biography);
@@ -83,7 +138,7 @@ const Portfolio = () => {
   const handleBiographyChange = (event) => {
     setEditedBiography(event.target.value);
   };
-  // adding skills to profile
+
   const handleAddSkill = () => {
     setEditedSkills([...editedSkills, ""]);
   };
@@ -93,48 +148,87 @@ const Portfolio = () => {
     updatedSkills[index] = event.target.value;
     setEditedSkills(updatedSkills);
   };
-  // behavior for deleting skills
+
   const handleDeleteSkill = (index) => {
     const updatedSkills = [...editedSkills];
     updatedSkills.splice(index, 1);
     setEditedSkills(updatedSkills);
   };
-  // uploading images. still need to find a way to persist images to database.
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const image = e.target.result;
-      setImages([...images, image]);
-    };
-
-    reader.readAsDataURL(file);
-  };
 
   const handleUserNameChange = (event) => {
     setEditedUserName(event.target.value);
   };
-  // main component of portfolio page. page is divided up into 2 sections, left and right. profile and pictures respectively
+
+  // Function to delete an image from storage and update state -- Yasmine
+  const deleteImage = useCallback((imageUrl) => {
+    // Delete the image from Firebase Storage
+    const imageRef = ref(storage, imageUrl);
+    deleteObject(imageRef)
+      .then(() => {
+        // Remove the deleted image URL from state and local storage
+        const updatedImages = images.filter((image) => image !== imageUrl);
+        setImages(updatedImages);
+        localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
+      })
+      .catch((error) => {
+        console.error("Error deleting image: ", error);
+      });
+  }, [images]);
+
+  function handleImageUpload(event) {
+    const file = event.target.files[0];
+    const storageRef = ref(storage, `${userID}/work-images/${file.name}`); // Set the storage path for work images
+
+    // Ensure a file is selected -- Yasmine
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+    
+    // Upload file to Firebase Storage
+    uploadBytes(storageRef, file)
+      .then((snapshot) => {
+        // Get the download URL of the uploaded image
+        // Save image URL to local storage after successful upload
+        getDownloadURL(storageRef).then((downloadURL) => {
+          // Update state with the new image URL
+          const updatedImages = [...images, downloadURL];
+          console.log("Download URL:", downloadURL);
+          // I got the images to persist after reload!! -- Yasmine
+          setImages(updatedImages);
+          localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
+        })
+        .catch((error) => {
+          console.error("Error getting download URL: ", error);
+        });
+      })
+      // Included more error handling -- Yasmine
+      .catch((error) => {
+        console.error("Error uploading work image: ", error);
+      });
+  }
+
   return (
     <div className="portfolio">
-      {/* The left section of the page, where profile and bio goes */}
       <div className="left-side">
         <button className="profile-button" onClick={handleEditButtonClick}>
           <img
-            className="profile-pic"
-            src="/Portfolio/joker.png"
-            alt="Profile Picture"
+            className="portfolio-pic"
+            src={
+              photoURL ||
+                  "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+            }
+            alt="Profile Generic"
           />
         </button>
         <h3 className="user-name">{userName}</h3>
 
         <div className="bio">
-          <h2>Biography</h2>
-          <p>{biography}</p>
+          <h2 className="bio-title">Biography</h2>
+          <p className="bio-paragraph">{biography}</p>
         </div>
         <div className="skills">
-          <h2>Skills</h2>
+          <h2 className="skills-title">Skills</h2>
           <ul>
             {skills.map((skill, index) => (
               <li key={index}>{skill}</li>
@@ -142,7 +236,6 @@ const Portfolio = () => {
           </ul>
         </div>
       </div>
-      {/* Edit profile should pop up and clicking on image */}
       {isEditPopupOpen && (
         <div className="edit-popup">
           <h2 className="edit-profile">Edit Profile</h2>
@@ -176,21 +269,46 @@ const Portfolio = () => {
                 </li>
               ))}
             </ul>
-            {/* Buttons and their behavior define above */}
-            <button className="add-skill-button" onClick={handleAddSkill}>
-              Add Skill
-            </button>
-            <button className="save-button" onClick={handleSaveButtonClick}>
-              Save
-            </button>
-            <button className="close-button" onClick={handleClosePopup}>
-              Cancel
-            </button>
+            <div>
+              <label>Edit Profile Picture:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleProfilePictureUpload}
+              />
+            </div>
+            <div className="portfolioButtons"> {/* Made buttons a div for grouping -- Yasmine */}
+              <button className="add-skill-button" onClick={handleAddSkill}>
+                Add Skill
+              </button>
+              <button className="save-button" onClick={handleSaveButtonClick}>
+                Save
+              </button>
+              <button className="close-button" onClick={handleClosePopup}>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
+
+      <div className="right-side">
+        {/* Display uploaded images */}
+        <div className="work-item">
+          {images.map((image, index) => (
+            <img
+            key={index}
+            src={image}
+            alt={`Work Thumbnail ${index + 1}`}
+            onClick={() => deleteImage(image)} // Add onClick to delete image
+          />
+          ))}
+        </div>
+      </div>
+
+      {/* Image upload input */}
       <label htmlFor="file-upload" className="edit-button">
-        Edit
+        Upload
       </label>
       <input
         id="file-upload"
@@ -199,20 +317,6 @@ const Portfolio = () => {
         onChange={handleImageUpload}
         style={{ display: "none" }}
       />
-      {/* the right side of the page, where images goes */}
-      <div className="right-side">
-        <div className="work-item">
-          <img src="/Homepage art/sample pic 2.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 1.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 3.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 4.png" alt="Work 1 Thumbnail" />
-          <img src="/Homepage art/sample pic 5.png" alt="Work 1 Thumbnail" />
-          {images.map((image, index) => (
-            <img key={index} src={image} alt={`Work Thumbnail ${index + 1}`} />
-          ))}
-        </div>
-      </div>
-      <div className="my-portfolio">My Portfolio</div>
     </div>
   );
 };

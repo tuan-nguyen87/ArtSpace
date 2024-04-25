@@ -2,35 +2,42 @@
 
 .portfolio {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align items to the top */
   padding: 20px;
-  padding-top: 220px;
-  background-color: #ffa962;
+  padding-top: 150px;
+  background: linear-gradient(360deg, #153677, #4e085f);
   min-height: 100vh;
+  overflow: hidden; /* Hide overflow from the body */
 }
-
+/* Profile name, bio, and skills*/
 .left-side {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-right: 20px;
-  padding-top: 100px;
-  border: 8px solid gold; /* Add border */
+  /*flex: 0 0 400px; /* Fixed width for the left side */
+  height: 850px;
+  width: 550px;
+  display: flex-box;
+  padding: 40px 30px 0px 30px; /* top, right, bottom, left*/
+  /* padding-right: 20px;
+  padding-top: 50px; */
+  border: 5px solid gold;
   border-radius: 15px;
-  background-color: rgba(121, 0, 0, 0.575);
+  background-color: rgba(0, 30, 57, 0.76);
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-bottom: 30px; /* Gives space for the upload button! -- Yasmine*/
 }
 
 .right-side {
-  flex: 2;
-  margin-left: 80px;
-  display: flex;
-  border: 8px solid gold;
-  background-color: rgba(147, 0, 0, 0.671);
+  /* width: 680px; */
+  width: 100%;
+  height: 850px;
+  margin-left: 40px;
+  display: flex-box; /* change from flex to flex-box to remove vertical gap -- Yasmine */
+  border: 5px solid gold;
+  background-color: rgba(0, 30, 57, 0.76);
   position: relative;
   border-radius: 15px;
   padding: 15px;
-  justify-content: center;
+  justify-content: center; /* I don't think this is doing anything right now -- Yasmine */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .work-item {
@@ -46,7 +53,7 @@
   border: 5px solid gold;
 }
 
-.profile-pic {
+.portfolio-pic {
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -56,7 +63,6 @@
 .profile-button {
   background-color: transparent;
   border: none;
-  padding: 0;
   transition: filter 0.3s ease; /* Add transition for smooth effect */
   cursor: pointer;
 }
@@ -66,20 +72,34 @@
 }
 
 .bio {
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px; /* Match spacing with skills -- Yasmine */
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 .user-name {
-  margin-left: 50px;
-  margin-bottom: 20px;
+  text-align: center; /* Fairly obvious, but I want to align the name -- Yasmine */
+  font-size: 40px;
+  color: gold;
+}
+
+.bio-title {
+  color: red;
+}
+
+.bio-paragraph {
+  color: white;
 }
 
 .skills {
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
   margin-bottom: 30px;
+  color: white;
+}
+
+.skills-title {
+  color: red;
 }
 
 ul.skills {
@@ -103,8 +123,11 @@ ul.skills {
 
 .edit-profile {
   color: white;
-  margin-bottom: 25px;
-  margin-left: 220px;
+  font-size: 30px;
+  /* margin-bottom: 25px;
+  margin-left: 220px; */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .edit-popup {
@@ -114,7 +137,9 @@ ul.skills {
   transform: translate(-50%, -50%);
   border-radius: 15px;
   padding: 20px;
-  border: 5px solid rgb(0, 52, 6);
+  /* border: 5px solid rgb(0, 52, 6); */
+  border: 5px solid #153677;
+  color: white;
   backdrop-filter: blur(15px);
   z-index: 5;
 }
@@ -133,53 +158,30 @@ ul.skills {
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  border: 5px solid #0d4300;
+  /* border: 5px solid #0d4300; */
+  border: 5px solid #153677;
   margin-bottom: 10px;
 }
 
-button.edit-popup {
+/* Made buttons into a group for easy changes --Yasmine*/
+.portfolioButtons {
+  display: flex;
+  margin-left: 200px;
+}
+/* Specify that this applies to buttons in the popup --Yasmine*/
+.portfolioButtons button {
+  transition-duration: 0.4s;
   padding: 8px 16px;
-  border: none;
   border-radius: 8px;
-  color: #ffffff;
+  border: 3px solid #0056b3;
+  color: white;
   cursor: pointer;
+  background-color: transparent;
+  margin: 5px;
 }
 
 .edit-popup button:hover {
   background-color: #0056b3;
-}
-
-.save-button {
-  margin-right: 10px;
-  margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
-  background-color: aqua;
-}
-
-.close-button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
-  margin-right: 10px;
-  background-color: aqua;
-}
-
-.add-skill-button {
-  margin-left: 250px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: aqua;
-  color: #ffffff; /* Change button text color */
-  cursor: pointer;
-  margin-right: 10px; /* Adjust margin as needed */
 }
 
 .delete-button {
@@ -192,24 +194,16 @@ button.edit-popup {
 }
 
 .edit-button {
+  transition-duration: 0.4s; /* Smooth color change -- Yasmine*/
   position: absolute;
-  bottom: 0px;
-  right: 20px;
+  bottom: 10px; /* So it's not touching the floor -- Yasmine*/
+  right: 10px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: gold;
   padding: 5px 12px;
   cursor: pointer;
 }
 
 .edit-button:hover {
-  background-color: #0056b3;
-}
-
-.my-portfolio {
-  font-family: "Baloo 2", cursive;
-  position: absolute;
-  font-size: 3rem;
-  font-weight: bold;
-  right: 40%;
-  top: 130px;
+  background-color: goldenrod; /* I like this color change -- Yasmine*/
 }

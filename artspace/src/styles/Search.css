@@ -1,36 +1,55 @@
 .searchpage-container {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  background-image: url("/public/Homepage art/moroccan-flower.png");
+  align-items: flex-start;
+  background: linear-gradient(360deg, #153677, #4e085f);
   background-size: cover;
   min-height: 100vh;
+  padding-top: 150px;
+  padding-left: 50px; /* Add padding to the left side */
+  padding-right: 50px;
 }
+
+/* Other styles remain the same */
 
 .search-title {
   color: gold;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
   font-size: larger;
+  padding-right: 80px;
 }
 
 .searchpage-input {
-  width: 500px; /* Adjust width as needed */
+  width: 80%; /* Adjust width as needed */
   height: 50px;
   padding: 10px;
   border: solid gold 4px;
   border-radius: 25px;
   font-size: 25px;
-  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.search-results-container {
+  flex: 1;
+  width: 45%;
+  border: 5px solid gold;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #153677, #4e085f);
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  max-height: 890px;
+  margin-top: 20px;
 }
 
 .search-results {
   margin-top: 10px;
   margin-bottom: 20px;
+  color: red;
 }
 
 .text-results {
   padding-bottom: 25px;
+  color: gold;
 }
 
 .user-list {
@@ -44,6 +63,10 @@
   border-radius: 25px;
   padding: 20px;
   background-color: rgb(218, 255, 255);
+}
+
+.user-card:hover {
+  background-color: #3094ff;
 }
 
 .profile-pic {
@@ -62,10 +85,88 @@
   margin-top: 10px;
 }
 
-.search-results-container {
-  border: 5px solid gold; /* Adjust border properties as needed */
-  border-radius: 15px; /* Add rounded corners */
-  background-color: #fff; /* White background color */
-  padding: 20px; /* Add padding for spacing */
-  margin-bottom: 20px; /* Add margin between search results and other content */
+.popup-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid gold;
+  color: white;
+  backdrop-filter: blur(80px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-menu img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.popup_skills {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.popup-menu textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 2px solid gold;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+.popup-menu button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-right: 25px;
+}
+
+.popup-menu button:hover {
+  background-color: #0056b3;
+}
+
+.popup_skills {
+  color: white;
+}
+
+.UID_Name {
+  color: red;
+  text-align: center;
+}
+
+.second-popup-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid gold;
+  color: white;
+  backdrop-filter: blur(80px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 750px;
+  width: 1100px;
+  overflow-y: auto;
+}
+
+.gallery_name {
+  color: gold;
+  font-family: notable;
 }

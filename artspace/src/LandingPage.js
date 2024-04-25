@@ -9,17 +9,8 @@ const LandingPage = () => {
 
   const performSearch = (event) => {
     if (event.key === "Enter") {
-      // Perform some processing or logic based on the search term
-      // For example, you can check if it matches a specific value or use regular expressions
-
-      // Simulate a simple example by checking for a specific search term
-      navigate("/Search");
-      // if (searchTerm === "hello") {
-      //   setOutput("You typed: " + searchTerm);
-    } 
-    // else {
-    //   setOutput("No matching result for the search term: " + searchTerm);
-    // }
+      navigate(`/search`);
+    }
   };
 
   const handleChange = (e) => {
@@ -52,11 +43,6 @@ const LandingPage = () => {
             Business Cards
           </button>
         </section>
-      </div>
-      <div className="user-highlight-container">
-        {/* Yasmine
-          Thinking of making the landing page scrollable. 
-          Would include a preview of highly rated artists, and About, and Contact*/}
       </div>
     </div>
   );

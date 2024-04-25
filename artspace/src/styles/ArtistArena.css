@@ -14,7 +14,7 @@
 
 .arena-section-header {
     position: absolute;
-    top: 85px;
+    top: 105px;
     left: 10px;
     font-size: 15px;
     color: #fff;
@@ -72,7 +72,7 @@
     margin-bottom: 10px;
     width: 300px;
     /* height: 300px; */
-    max-height: 500px;
+    max-height:500px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -123,9 +123,6 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease-out;
-    /* position: relative;
-    bottom: 5px;
-    right: 5px; */
   }
 
   .overlay {
@@ -153,8 +150,10 @@
     display:inline-flex;
     position: relative;
     transition: all 5s ease-in-out;
+    overflow: auto;
+    max-height: 500px;
   }
-  
+
   .popup h2 {
     margin-top: 10px;
     text-align: center;
@@ -164,7 +163,7 @@
   .popup .desc {
     text-transform: none;
     margin-top: 10px;
-    margin-bottom: 17px;
+    margin-bottom: 40px;
     color: black;
     margin-right: 10px;
     margin-left: 10px;
@@ -183,29 +182,77 @@
   .popup .close:hover {
     color: #540C2A;
   }
-  .popup .content {
-    max-height: 400px;
-    overflow: auto;
-    /* margin: 10px; */
+
+  .popup .place-sec{
+    display: flex;
+  }
+
+  .place-sec h2 {
+    text-align: center;
+  }
+
+  .place-sec .right-content {
+    width: 300px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .popup .buttons{
+    margin-top: 10px;
+    position: relative;
+    /* bottom: 10px;
+    right: 10px; */
   }
 
   .popup button {
+    display:inline-block;
     font-size: 0.8em;
-    padding: 5px;
+    padding: 10px;
     color: white;
     background-color: #540C2A;
-    border: 2px solid;
+    border: none;
     border-radius: 10px;
     text-decoration: none;
+  } 
+
+ .upload {
+  position: absolute;
+  bottom: 0px;
+  right: 110px;
+ }
+ .vote {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+ }
+  .mentions {
+    /* Additional styles for the Honorable Mentions button */
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
+}
+  .popup .coin {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
   }
 
   .popup .popimages {
     width: 250px;
     height: 200px;
     margin-top: 10px;
+    margin-bottom: 10px;
     object-fit: cover;
     border-radius: 5px;
   }
+
+  .popup .winner-image {
+    display: flex;
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+  }
+
