@@ -58,3 +58,55 @@
   color: lightgray;
   margin-bottom: 5px;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.modal-content h3 {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #45a049;
+}

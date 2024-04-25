@@ -5,7 +5,9 @@ import "./styles/GalleryMarketPage.css";
 
 const GalleryMarketPage = () => {
   const [products, setProducts] = useState([]);
-  console.log(db);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -15,7 +17,6 @@ const GalleryMarketPage = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("Fetched products:", productsData);
         setProducts(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -25,21 +26,47 @@ const GalleryMarketPage = () => {
     fetchProducts();
   }, []);
 
+  // Function to handle opening the modal and setting the selected product
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  // Function to handle closing the modal
+  const closeModal = () => {
+    setSelectedProduct(null);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="gallery-market-page">
       <h1 className="gallery-title">Gallery Market</h1>
       <div className="product-container">
         {products.map((product) => (
-          <div key={product.id} className="product-item">
+          <div
+            key={product.id}
+            className="product-item"
+            onClick={() => openModal(product)}
+          >
             <img src={product.imageUrl} alt={product.description} />
-            <div className="product-info">
-              <h3>{product.description}</h3>
-              <p>Price: ${product.price}</p>
-              <p>Seller: {product.userId}</p>
-            </div>
           </div>
         ))}
       </div>
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <img
+              src={selectedProduct.imageUrl}
+              alt={selectedProduct.description}
+            />
+            <h3>{selectedProduct.description}</h3>
+            <p>Price: ${selectedProduct.price}</p>
+            {/* Additional information or buttons can be added here */}
+            <button onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
