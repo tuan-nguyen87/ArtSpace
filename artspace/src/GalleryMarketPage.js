@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { db } from "./Firebase/Firebase.js"; // Adjust the path as needed
+import { db } from "./Firebase/Firebase.js";
 import "./styles/GalleryMarketPage.css";
 
 const GalleryMarketPage = () => {
   const [products, setProducts] = useState([]);
+  console.log(Object.keys(db));
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,8 +34,8 @@ const GalleryMarketPage = () => {
             <div className="product-info">
               <h3>{product.description}</h3>
               <p>Price: ${product.price}</p>
-              <p>Seller: {product.userName}</p>{" "}
-              {/* Assuming userName is stored in Firestore */}
+              <p>Seller: {product.name}</p>
+              {/* Assuming "name" is the field for seller's name */}
             </div>
           </div>
         ))}
