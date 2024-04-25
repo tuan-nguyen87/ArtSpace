@@ -52,7 +52,7 @@ const GalleryMarketPage = () => {
           </div>
         ))}
       </div>
-      {/* Modal */}
+
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
