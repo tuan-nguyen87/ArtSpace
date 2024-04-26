@@ -63,9 +63,14 @@ const GalleryMarketPage = () => {
             <h3>{selectedProduct.description}</h3>
             <p>Price: ${selectedProduct.price}</p>
             {/* Additional information or buttons can be added here */}
-            <button className="profile_btn" onClick={closeModal}>
-              Close
-            </button>
+            <div className="popup_btn">
+              <button className="profile_btn" onClick={closeModal}>
+                Contact Seller
+              </button>
+              <button className="profile_btn" onClick={closeModal}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
