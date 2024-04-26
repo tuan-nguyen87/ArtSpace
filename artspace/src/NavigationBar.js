@@ -1,70 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { auth, db} from "./Firebase/Firebase.js";
+import { auth } from "./Firebase/Firebase.js";
 import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
-import Notification from "./Notification";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  //******Valerie's code for Notifications starts here***********
-
-  const [hasNewMessage, setHasNewMessage] = useState(false); //will change to true when new msg is received, which triggers rendering of 'Notification' component with msg "You have a new msg"
-  const [notifications, setNotifications] = useState([]);
-
-  useEffect(() => {
-    // Fetch notifications for the current user
-    const unsubscribe = db
-      .collection("notifications")
-      .where("recipientId", "==", auth.currentUser)
-      .orderBy("timestamp", "desc") // Order notifications by timestamp
-      .onSnapshot(snapshot => {
-        const fetchedNotifications = [];
-        snapshot.forEach(doc => {
-          fetchedNotifications.push({ id: doc.id, ...doc.data() });
-        });
-        setNotifications(fetchedNotifications);
-      });
-
-    return () => unsubscribe();
-  }, []);
-  
-  /*Listens for new messages using onSnapshot and updates 'hasNewMessage'
-  state accordingly 
-  also creates notification object for ea msg*/
-  useEffect(() => {
-    const unsubscribe = db.collection("messages")
-      .where("receiver", "==", auth.currentUser.email)
-      .where("read", "==", false)
-      .onSnapshot(snapshot => {
-        const newMessages = snapshot.docs.map(doc => doc.data());
-  
-        // Create notification object for each new message
-        newMessages.forEach(_ => {
-          const notification = {
-            message: "You have a new message",
-            timestamp: new Date(),
-            recipientId: auth.currentUser
-          };
-  
-          // Store the notification in Firestore
-          db.collection("notifications").add(notification)
-            .then(() => {
-              console.log("Notification added to Firestore");
-            })
-            .catch(error => {
-              console.error("Error adding notification to Firestore: ", error);
-            });
-        });
-  
-        setHasNewMessage(newMessages.length > 0);
-      });
-  
-    return () => unsubscribe();
-  }, []);
-  
-  //Valerie's code for Notifications ends here
 
   const handleLogout = () => {
     signOut(auth)
@@ -135,12 +76,17 @@ const NavigationBar = () => {
             </ul>
           </li>
           <li className="notification-icon">
+            {/* Replace this with your notification icon */}
             <a href="#">🔔</a>
-            {notifications.map(notification => (
-              <Notification key={notification.id} message={notification.message} />
-            ))}
+            <ul className="dropdown-menu">
+              <li>
+                <a href="#">Notif 1</a>
+              </li>
+              <li>
+                <a href="#">Notif 2</a>
+              </li>
+            </ul>
           </li>
-
           {!isLoggedIn ? (
             // Render login button for non-logged-in user
             <li>
