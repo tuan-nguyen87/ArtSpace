@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [output, setOutput] = useState("");
+  // const [output, setOutput] = useState("");
   const navigate = useNavigate();
 
   const performSearch = (event) => {
