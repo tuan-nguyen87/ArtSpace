@@ -7,6 +7,8 @@ const GalleryMarketPage = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,6 +40,26 @@ const GalleryMarketPage = () => {
     setIsModalOpen(false);
   };
 
+  // Function to handle opening the contact modal
+  const openContactModal = () => {
+    setIsContactModalOpen(true);
+  };
+
+  // Function to handle closing the contact modal
+  const closeContactModal = () => {
+    setIsContactModalOpen(false);
+  };
+
+  // Function to handle sending the message
+  const sendMessage = () => {
+    // Here, you can implement the logic to send the message to the seller
+    console.log("Message sent:", message);
+    // Clear the message box after sending the message
+    setMessage("");
+    // Close the contact modal
+    setIsContactModalOpen(false);
+  };
+
   return (
     <div className="gallery-market-page">
       <h1 className="gallery-title">Gallery Market</h1>
@@ -64,11 +86,37 @@ const GalleryMarketPage = () => {
             <p>Price: ${selectedProduct.price}</p>
             {/* Additional information or buttons can be added here */}
             <div className="popup_btn">
-              <button className="profile_btn" onClick={closeModal}>
+              <button className="profile_btn" onClick={openContactModal}>
                 Contact Seller
               </button>
               <button className="profile_btn" onClick={closeModal}>
                 Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isContactModalOpen && (
+        <div className="popup_gallery">
+          <div className="popup_gallery_content">
+            <h3>Contact Seller</h3>
+            {/* Message box */}
+            <textarea
+              className="message-box"
+              placeholder="Write your message..."
+              rows="4"
+              cols="50"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+            {/* Add your contact form or other content here */}
+            <div className="popup_btn">
+              <button className="profile_btn" onClick={closeContactModal}>
+                Close
+              </button>
+              <button className="profile_btn" onClick={sendMessage}>
+                Send Message
               </button>
             </div>
           </div>
