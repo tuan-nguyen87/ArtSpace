@@ -35,6 +35,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: box-shadow 0.3s ease-in-out; /* Add transition for box-shadow */
+}
+
+.product-item:hover {
+  box-shadow: 0 0 20px 10px rgb(0, 255, 60); /* Glow effect on hover */
 }
 
 .product-item img {
