@@ -37,21 +37,4 @@ onAuthStateChanged(
   }
 );
 
-// Vals code for Create Chat feature starts here:
-/*
-export const createChat = async (participants, chatName) => {
-  try {
-    const chatRef = await addDoc(collection(db, "chats"), {
-      participants,
-      chatName,
-      createdAt: new Date(),
-    });
-    console.log("Chat created with ID: ", chatRef.id);
-    return chatRef.id; // Return the ID of the newly created chat
-  } catch (error) {
-    console.error("Error creating chat:", error);
-    throw error;
-  }
-};*/
-
 export { app, auth, db, storage };
