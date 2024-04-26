@@ -22,17 +22,19 @@ const VotePage = ({ competitionTitle }) => {
       <h1>{competitionTitle}</h1>
       <p>{competitionDescription}</p>
       {/* Display artwork */}
-      {artwork.map((art, index) => (
-        <div key={index}>
-          <img src={art.url} alt={`Artwork ${index + 1}`} />
-          {/* Display the number of votes for the artwork */}
-          <p>Votes: {votes[index]}</p>
-          {/* Implement voting functionality */}
-          <button onClick={() => handleVote(index)}>Vote</button>
-        </div>
-      ))}
+      
     </div>
   );
 };
 
 export default VotePage;
+
+// {artwork.map((art, index) => (
+//   <div key={index}>
+//     <img src={art.url} alt={`Artwork ${index + 1}`} />
+//     {/* Display the number of votes for the artwork */}
+//     <p>Votes: {votes[index]}</p>
+//     {/* Implement voting functionality */}
+//     <button onClick={() => handleVote(index)}>Vote</button>
+//   </div>
+// ))} 

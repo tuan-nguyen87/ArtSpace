@@ -129,6 +129,9 @@ const NavigationBar = () => {
               <li>
                 <a href="/MarketPage">Market</a>
               </li>
+              <li>
+                <a href="/GalleryMarketPage">Gallery Market</a>
+              </li>
             </ul>
           </li>
           <li className="notification-icon">
@@ -161,7 +164,7 @@ const NavigationBar = () => {
                   <a href="/Portfolio">Portfolio</a>
                 </li>
                 <li>
-                  <a href="#">Commissions</a>
+                  <a href="/MyCommissions">My Commissions</a>
                 </li>
                 <li>
                   <a href="/Messaging2">Messages</a>
@@ -176,7 +179,7 @@ const NavigationBar = () => {
                   <a href="/RatingReview">Leave a Review</a>
                 </li>
                 <li>
-                  <a href="/Queue">Queue</a>
+                  <a href="/Payment">Payment</a>
                 </li>
                 <li>
                   <a href="/" onClick={handleLogout}>
