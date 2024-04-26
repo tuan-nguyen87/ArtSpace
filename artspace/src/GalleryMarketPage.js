@@ -84,7 +84,7 @@ const GalleryMarketPage = () => {
             />
             <h3>{selectedProduct.description}</h3>
             <p>Price: ${selectedProduct.price}</p>
-            {/* Additional information or buttons can be added here */}
+
             <div className="popup_btn">
               <button className="profile_btn" onClick={openContactModal}>
                 Contact Seller
@@ -101,7 +101,7 @@ const GalleryMarketPage = () => {
         <div className="popup_gallery">
           <div className="popup_gallery_content">
             <h3>Contact Seller</h3>
-            {/* Message box */}
+
             <textarea
               className="message-box"
               placeholder="Write your message..."
@@ -110,7 +110,6 @@ const GalleryMarketPage = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
-            {/* Add your contact form or other content here */}
             <div className="popup_btn">
               <button className="profile_btn" onClick={closeContactModal}>
                 Close
