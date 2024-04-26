@@ -54,8 +54,8 @@ const GalleryMarketPage = () => {
       </div>
 
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="popup_gallery">
+          <div className="popup_gallery_content">
             <img
               src={selectedProduct.imageUrl}
               alt={selectedProduct.description}
@@ -63,7 +63,9 @@ const GalleryMarketPage = () => {
             <h3>{selectedProduct.description}</h3>
             <p>Price: ${selectedProduct.price}</p>
             {/* Additional information or buttons can be added here */}
-            <button onClick={closeModal}>Close</button>
+            <button className="profile_btn" onClick={closeModal}>
+              Close
+            </button>
           </div>
         </div>
       )}
