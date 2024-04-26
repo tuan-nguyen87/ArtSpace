@@ -23,6 +23,27 @@
   background-size: cover; /* Cover entire container with background image */
 }
 
+.team-container {
+  position: absolute;
+  top: 785px;
+  background-color: #4b5d4d;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  text-align: center;
+}
+.team h2{
+  font-size: 50px;
+  color: white;
+}
+.team-images {
+  display:flex-grid;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 30px 40px 30px 40px;
+}
+
 /* Main content styling */
 /* Pertains the welcome/search box */
 .main {
