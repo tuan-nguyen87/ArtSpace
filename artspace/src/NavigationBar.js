@@ -7,63 +7,8 @@ import Notification from "./Notification";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  /*****Valerie's code for notifications begins here*********/ 
-  const [hasNewMessage, setHasNewMessage] = useState(false);
-  const [notifications, setNotifications] = useState([]);
-
-
-  useEffect(() => {
-    const unsubscribe = db.collection("messages")
-      .where("receiver", "==", auth.currentUser.email)
-      .where("read", "==", false)
-      .onSnapshot(snapshot => {
-        const newMessages = snapshot.docs.map(doc => doc.data());
-  
-        // Create notification object for each new message
-        newMessages.forEach(_ => {
-          const notification = {
-            message: "You have a new message",
-            timestamp: new Date(),
-            recipientId: auth.currentUser
-          };
-  
-          // Store the notification in Firestore
-          db.collection("notifications").add(notification)
-            .then(() => {
-              console.log("Notification added to Firestore");
-            })
-            .catch(error => {
-              console.error("Error adding notification to Firestore: ", error);
-            });
-        });
-  
-        setHasNewMessage(newMessages.length > 0);
-      });
-  
-    return () => unsubscribe();
-  }, []);
   
   
-  useEffect(() => {
-    // Fetch notifications for the current user
-    const unsubscribe = db
-      .collection("notifications")
-      .where("recipientId", "==", auth.currentUser)
-      .orderBy("timestamp", "desc") // Order notifications by timestamp
-      .onSnapshot(snapshot => {
-        const fetchedNotifications = [];
-        snapshot.forEach(doc => {
-          fetchedNotifications.push({ id: doc.id, ...doc.data() });
-        });
-        setNotifications(fetchedNotifications);
-      });
-
-    return () => unsubscribe();
-  }, []);
-
-  /*****Valerie's code for notifications ends here*********/ 
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -133,10 +78,16 @@ const NavigationBar = () => {
             </ul>
           </li>
           <li className="notification-icon">
+            {/* Replace this with your notification icon */}
             <a href="#">🔔</a>
-            {notifications.map(notification => (
-              <Notification key={notification.id} message={notification.message} />
-            ))}
+            <ul className="dropdown-menu">
+              <li>
+                <a href="#">Notif 1</a>
+              </li>
+              <li>
+                <a href="#">Notif 2</a>
+              </li>
+            </ul>
           </li>
           {!isLoggedIn ? (
             // Render login button for non-logged-in user
