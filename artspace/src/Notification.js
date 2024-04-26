@@ -1,13 +1,15 @@
+//starting the notification logic
 import React from "react";
-import { Link } from "react-router-dom";
 import "./styles/Notification.css";
 
-const Notification = ({ message }) => {
-  return (
-    <div className="notification">
-      <Link to="/messaging">{message}</Link>
-    </div>
-  );
+const Notification = ({ message, type }) => {
+    if (!message) return null;
+
+    return (
+        <div className={`notification ${type}`}>
+            {message}
+        </div>
+    );
 };
 
 export default Notification;
