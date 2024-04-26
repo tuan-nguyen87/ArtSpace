@@ -1,8 +1,9 @@
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,9 +21,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-onAuthStateChanged(
-  auth,
-  (user) => {
+
+onAuthStateChanged( auth, (user) => {
     if (user) {
       // User is signed in
       console.log("User is signed in:", user.email);
@@ -36,6 +36,8 @@ onAuthStateChanged(
     console.error("Auth state change error:", error);
   }
 );
+
+
 
 // Vals code for Create Chat feature starts here:
 /*
@@ -53,5 +55,6 @@ export const createChat = async (participants, chatName) => {
     throw error;
   }
 };*/
+
 
 export { app, auth, db, storage };

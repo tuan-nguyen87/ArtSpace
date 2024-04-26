@@ -18,6 +18,7 @@ import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
 import Collaborations from "./Collaborations";
 import Queue from "./Queue";
+
 import ProfileForSale from "./ProfileForSale";
 import VotePage from "./VotePage";
 import PointSystem from "./PointSystem";
@@ -26,9 +27,6 @@ import ArtTutorials from "./ArtTutorials";
 import EduCont from "./EduCont";
 import ResLinks from "./ResLinks";
 import Search from "./Search";
-import Payment from "./Payment";
-import MyCommissions from "./MyCommissions";
-import GalleryMarketPage from "./GalleryMarketPage";
 
 function App() {
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -65,15 +63,14 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
-          <Route path="/Payment" element={<Payment />} />
+          <Route path="/Queue" element={<Queue />} />
           <Route path="/PointSystem" element={<PointSystem />} />
           <Route path="/NavSite" element={<NavSite />} />
           <Route path="/ArtTutorials" element={<ArtTutorials />} />
           <Route path="/EduCont" element={<EduCont />} />
           <Route path="/ResLinks" element={<ResLinks />} />
           <Route path="/Search" element={<Search />} />
-          <Route path="/MyCommissions" element={<MyCommissions />} />
-          <Route path="/GalleryMarketPage" element={<GalleryMarketPage />} />
+
           <Route path="/ProfileSalePage" element={<ProfileForSale />} />
         </Routes>
       </Router>

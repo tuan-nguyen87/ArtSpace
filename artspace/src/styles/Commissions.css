@@ -192,14 +192,11 @@ Worked on by Kevin
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
-  height: 70vh;
 }
 
 /*defaul size for listings*/
 .commissions-listing-container {
   width: 55%;
-  overflow: scroll;
-  /*max-height: 60vh;*/
 }
 
 /*styling for listing*/
@@ -223,7 +220,6 @@ Worked on by Kevin
 /*the title for the commission listing section*/
 .commission-title {
   font-size: 28px;
-  color: black;
   width: 500px;
   text-decoration: underline;
   white-space: nowrap;
@@ -233,6 +229,7 @@ Worked on by Kevin
 /*general date*/
 .date-created {
   font-size: 14px;
+  position: absolute;
 }
 
 /*default pfp, will need to change later*/
@@ -291,13 +288,11 @@ Worked on by Kevin
 /*description container*/
 .commissions-info-description {
   height: 35%;
-  width: 100%;
 }
 
 /*art type container*/
 .commissions-info-arttype {
   height: 35%;
-  width: 100%;
 }
 
 /*information about clinet container*/
@@ -349,8 +344,7 @@ Worked on by Kevin
   background-color: #ff1a1a;
 }
 
-
-/*footer option for commissions
+/*footer option for commissions*/
 .commissions-footer {
   position: fixed;
   width: 100%;
@@ -358,18 +352,18 @@ Worked on by Kevin
   text-align: center;
 }
 
-/*quick border for footer
+/*quick border for footer*/
 .commissions-footer-border {
   border-top: 2px solid #ffffff;
   margin: 0px 20px 0px 20px;
 }
 
-/*for page searching
+/*for page searching*/
 .commissions-pagination {
   display: inline-block;
 }
 
-/*extension for page searching, styling
+/*extension for page searching, styling*/
 .commissions-pagination a {
   color: white;
   float: left;
@@ -378,16 +372,15 @@ Worked on by Kevin
   font-size: 20px;
 }
 
-styling for current active page
+/*styling for current active page*/
 .commissions-pagination a.commissions-page-active {
   background-color: #C8C8C8;
   border-radius: 15px;
   color: white;
 }
 
-for others that aren't active
+/*for others that aren't active*/
 .commissions-pagination a:hover:not(.commissions-page-active) {
   background-color: #ddd;
   border-radius: 15px;
 }
-*/

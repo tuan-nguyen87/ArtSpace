@@ -22,7 +22,7 @@
   gap: 30px; /* Adjust the gap between images */
   margin-top: 45px;
 
-  width: 80%; /* Maximum width of the container */
+  width: 1450px; /* Maximum width of the container */
   height: 780px; /* Automatically adjust height based on content */
   background-color: rgba(0, 30, 57, 0.76);
   border-image-slice: 1;

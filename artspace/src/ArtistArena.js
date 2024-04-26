@@ -12,7 +12,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
 
     // Function to navigate to the VotePage with competition details
     const navigateToVotePage = () => {
-        navigate(`/vote`, { state: { competitionTitle: title, competitionDescription: description, artwork: imageSrc } });
+        navigate(`/vote/${title}`, { state: { competitionTitle: title, competitionDescription: description, artwork: imageSrc } });
         };
 
     const initialImages = [];
