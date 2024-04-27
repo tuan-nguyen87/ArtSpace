@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/LandingPage.css";
 import { useNavigate } from "react-router-dom";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+
+const storage = getStorage();
+
+const getDeveloperProfileImageUrl = async (developerID) => {
+  const developerRef = ref(storage, `${developerID}/profile-picture.jpg`);
+  const url = await getDownloadURL(developerRef);
+  return url;
+};
 
 const LandingPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [output, setOutput] = useState("");
   const navigate = useNavigate();
 
   const performSearch = (event) => {
@@ -16,6 +24,31 @@ const LandingPage = () => {
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  const [developerID] = useState([
+    'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2',
+    'h6ivhFw60BN3Eo6Ai8o0saDVjQ73',
+    'aHiUmTvYyyYt5femAM7mK2VC2OF2',
+    'uZmTRz7zsdQCVGz7KsFAcM8S9Tc2',
+    'C2ofxCQZ0NMFu4QB98sW37gjnlB2',
+    '99DeVnSL8TZMXfAUOBb4C07KO5p1',
+    '3desXwADbUfKbu25QrFyUKaUMfx1'
+  ]);
+
+  const [developerProfileImages, setDeveloperProfileImages] = useState([]);
+
+  useEffect(() => {
+    const fetchDeveloperProfileImages = async () => {
+      try {
+        const images = await Promise.all(developerID.map(getDeveloperProfileImageUrl));
+        setDeveloperProfileImages(images);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDeveloperProfileImages();
+  }, [developerID]);
 
   return (
     <div className="landing-container">
@@ -47,36 +80,14 @@ const LandingPage = () => {
       <div className="team-container">
         <div className="team">
           <h2> Meet the Team</h2>
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/aHiUmTvYyyYt5femAM7mK2VC2OF2%2Fprofile-picture.jpg?alt=media&token=f08517aa-a356-464c-a7f2-c698b4135028"
-            alt="Profile Generic"
-          />
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/h6ivhFw60BN3Eo6Ai8o0saDVjQ73%2Fprofile-picture.jpg?alt=media&token=9df82f90-9e1a-4e0c-91e0-51899bd0d155"
-            alt="Profile Generic"
-          />
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/uZmTRz7zsdQCVGz7KsFAcM8S9Tc2%2Fprofile-picture.jpg?alt=media&token=956188b7-ca18-4326-baaa-61b181e23c68"
-            alt="Profile Generic"
-          />
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/jFug2d9bhAZCZ4Dt7g6b8c1SkHK2%2Fprofile-picture.jpg?alt=media&token=15b29b89-8c04-455f-a34c-2b4f90cfd92c"
-            alt="Profile Generic"
-          />
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/C2ofxCQZ0NMFu4QB98sW37gjnlB2%2Fprofile-picture.jpg?alt=media&token=899cc651-b015-4d3b-bf07-5bd6140f4346"
-            alt="Profile Generic"
-          />
-          <img
-            className="team-images"
-            src="https://firebasestorage.googleapis.com/v0/b/user-signin-b205b.appspot.com/o/3desXwADbUfKbu25QrFyUKaUMfx1%2Fprofile-picture.jpg?alt=media&token=1d622c4d-ea22-479e-9a5d-5bc1b56e87e0"
-            alt="Profile Generic"
-          />
+          {developerProfileImages.map((url, index) => (
+            <img
+              key={index}
+              className="team-images"
+              src={url}
+              alt={`Profile of developer ${developerID[index]}`}
+            />
+          ))}
         </div>
       </div>
     </div>
