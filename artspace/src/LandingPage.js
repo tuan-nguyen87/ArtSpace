@@ -6,13 +6,24 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 const storage = getStorage();
 
 const getDeveloperProfileImageUrl = async (developerID) => {
-  const developerRef = ref(storage, `${developerID}/profile-picture.jpg`);
-  const url = await getDownloadURL(developerRef);
+  const developerImageRef = ref(storage, `${developerID}/profile-picture.jpg`);
+  const url = await getDownloadURL(developerImageRef);
   return url;
 };
 
+const developerData = [
+  { id: 'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2', name: 'Developer 1' },
+  { id: 'h6ivhFw60BN3Eo6Ai8o0saDVjQ73', name: 'Yasmine Valencia' },
+  { id: 'aHiUmTvYyyYt5femAM7mK2VC2OF2', name: 'Jennifer Carrera' },
+  { id: 'uZmTRz7zsdQCVGz7KsFAcM8S9Tc2', name: 'Developer 4' },
+  { id: 'C2ofxCQZ0NMFu4QB98sW37gjnlB2', name: 'Developer 5' },
+  // { id: '99DeVnSL8TZMXfAUOBb4C07KO5p1', name: 'Developer 6' },
+  // { id: '3desXwADbUfKbu25QrFyUKaUMfx1', name: 'Developer 7' }
+];
+
 const LandingPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [visibleIndex, setVisibleIndex] = useState(-1);
   const navigate = useNavigate();
 
   const performSearch = (event) => {
@@ -25,30 +36,38 @@ const LandingPage = () => {
     setSearchTerm(e.target.value);
   };
 
-  const [developerID] = useState([
-    'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2',
-    'h6ivhFw60BN3Eo6Ai8o0saDVjQ73',
-    'aHiUmTvYyyYt5femAM7mK2VC2OF2',
-    'uZmTRz7zsdQCVGz7KsFAcM8S9Tc2',
-    'C2ofxCQZ0NMFu4QB98sW37gjnlB2',
-    '99DeVnSL8TZMXfAUOBb4C07KO5p1',
-    '3desXwADbUfKbu25QrFyUKaUMfx1'
-  ]);
+//   const [developerID] = useState(developerData.map(developer => developer.id));
 
-  const [developerProfileImages, setDeveloperProfileImages] = useState([]);
+//   const [developerProfileImages, setDeveloperProfileImages] = useState([]);
+
 
   useEffect(() => {
-    const fetchDeveloperProfileImages = async () => {
-      try {
-        const images = await Promise.all(developerID.map(getDeveloperProfileImageUrl));
-        setDeveloperProfileImages(images);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    developerData.forEach(async (developer, index) => {
+      const url = await getDeveloperProfileImageUrl(developer.id);
+      developerData[index].url = url;
+    });
+  }, []);
 
-    fetchDeveloperProfileImages();
-  }, [developerID]);
+  //   useEffect(() => {
+  //     const fetchDeveloperProfileImages = async () => {
+  //       try {
+  //         const images = await Promise.all(developerID.map(getDeveloperProfileImageUrl));
+  //         setDeveloperProfileImages(images);
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     };
+
+  //     fetchDeveloperProfileImages();
+  //   }, [developerID]);
+
+  const showName = (index) => {
+    setVisibleIndex(index);
+  };
+
+  const hideName = () => {
+    setVisibleIndex(-1);
+  };
 
   return (
     <div className="landing-container">
@@ -78,17 +97,22 @@ const LandingPage = () => {
         </section>
       </div>
       <div className="team-container">
-        <div className="team">
           <h2> Meet the Team</h2>
-          {developerProfileImages.map((url, index) => (
-            <img
-              key={index}
-              className="team-images"
-              src={url}
-              alt={`Profile of developer ${developerID[index]}`}
-            />
-          ))}
-        </div>
+          <div className="team">
+            {developerData.map((developer, index) => (
+              <div
+                key={index}
+                className="team-image-container"
+                onMouseEnter={() => showName(index)}
+                onMouseLeave={hideName}
+              >
+                <img className="team-images" src={developer.url} alt={`Profile of developer ${developer.id}`} />
+                <div id={`name-${index}`} className={`team-name ${index === visibleIndex ? "visible" : ""}`}>
+                  {developer.name}
+                </div>
+              </div>
+            ))}
+          </div>
       </div>
     </div>
   );

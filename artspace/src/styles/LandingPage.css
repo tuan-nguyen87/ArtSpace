@@ -27,23 +27,57 @@
   position: absolute;
   top: 785px;
   background-color: #4b5d4d;
-  display: flex;
+  justify-content: center;
   min-height: 100vh;
   width: 100%;
   text-align: center;
+  padding: 50px 50px; /* Adjust the top and bottom padding to 300px */
 }
-.team h2{
+
+.team-container h2{
   font-size: 50px;
   color: white;
 }
-.team-images {
-  display:flex-grid;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin: 30px 40px 30px 40px;
+
+.team {
+  display:flex;
+  height: 500px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
 }
 
+.team-image-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 30px;
+  color: white;
+  width: 20%;
+}
+
+.team-images {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.team-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.team-name.visible {
+  opacity: 1;
+}
 /* Main content styling */
 /* Pertains the welcome/search box */
 .main {
