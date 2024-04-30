@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/LandingPage.css";
 import { useNavigate } from "react-router-dom";
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const storage = getStorage();
 
@@ -12,11 +12,11 @@ const getDeveloperProfileImageUrl = async (developerID) => {
 };
 
 const developerData = [
-  { id: 'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2', name: 'Valeria Ruvalcaba' },
-  { id: 'h6ivhFw60BN3Eo6Ai8o0saDVjQ73', name: 'Yasmine Valencia' },
-  { id: 'aHiUmTvYyyYt5femAM7mK2VC2OF2', name: 'Jennifer Carrera' },
-  { id: 'uZmTRz7zsdQCVGz7KsFAcM8S9Tc2', name: 'Developer 4' },
-  { id: 'C2ofxCQZ0NMFu4QB98sW37gjnlB2', name: 'Developer 5' },
+  { id: "jFug2d9bhAZCZ4Dt7g6b8c1SkHK2", name: "Valeria Ruvalcaba" },
+  { id: "h6ivhFw60BN3Eo6Ai8o0saDVjQ73", name: "Yasmine Valencia" },
+  { id: "aHiUmTvYyyYt5femAM7mK2VC2OF2", name: "Jennifer Carrera" },
+  { id: "uZmTRz7zsdQCVGz7KsFAcM8S9Tc2", name: "Tuan Nguyen" },
+  { id: "C2ofxCQZ0NMFu4QB98sW37gjnlB2", name: "Developer 5" },
   // { id: '99DeVnSL8TZMXfAUOBb4C07KO5p1', name: 'Developer 6' },
   // { id: '3desXwADbUfKbu25QrFyUKaUMfx1', name: 'Developer 7' }
 ];
@@ -36,10 +36,9 @@ const LandingPage = () => {
     setSearchTerm(e.target.value);
   };
 
-//   const [developerID] = useState(developerData.map(developer => developer.id));
+  //   const [developerID] = useState(developerData.map(developer => developer.id));
 
-//   const [developerProfileImages, setDeveloperProfileImages] = useState([]);
-
+  //   const [developerProfileImages, setDeveloperProfileImages] = useState([]);
 
   useEffect(() => {
     developerData.forEach(async (developer, index) => {
@@ -97,22 +96,31 @@ const LandingPage = () => {
         </section>
       </div>
       <div className="team-container">
-          <h2> Meet the Team</h2>
-          <div className="team">
-            {developerData.map((developer, index) => (
+        <h2> Meet the Team</h2>
+        <div className="team">
+          {developerData.map((developer, index) => (
+            <div
+              key={index}
+              className="team-image-container"
+              onMouseEnter={() => showName(index)}
+              onMouseLeave={hideName}
+            >
+              <img
+                className="team-images"
+                src={developer.url}
+                alt={`Profile of developer ${developer.id}`}
+              />
               <div
-                key={index}
-                className="team-image-container"
-                onMouseEnter={() => showName(index)}
-                onMouseLeave={hideName}
+                id={`name-${index}`}
+                className={`team-name ${
+                  index === visibleIndex ? "visible" : ""
+                }`}
               >
-                <img className="team-images" src={developer.url} alt={`Profile of developer ${developer.id}`} />
-                <div id={`name-${index}`} className={`team-name ${index === visibleIndex ? "visible" : ""}`}>
-                  {developer.name}
-                </div>
+                {developer.name}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
