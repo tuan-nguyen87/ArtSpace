@@ -4,12 +4,14 @@ import { collection, getDocs } from "firebase/firestore";
 import "./styles/GalleryMarketPage.css";
 
 const GalleryMarketPage = () => {
+  // const variable to be used
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [message, setMessage] = useState("");
 
+  // use to fetch data from firestore using the Firebase SDK methods
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -52,8 +54,6 @@ const GalleryMarketPage = () => {
 
   // Function to handle sending the message
   const sendMessage = () => {
-    // Here, you can implement the logic to send the message to the seller
-    console.log("Message sent:", message);
     // Clear the message box after sending the message
     setMessage("");
     // Close the contact modal
@@ -74,7 +74,7 @@ const GalleryMarketPage = () => {
           </div>
         ))}
       </div>
-
+      {/* pop up menu */}
       {isModalOpen && (
         <div className="popup_gallery">
           <div className="popup_gallery_content">
@@ -96,7 +96,7 @@ const GalleryMarketPage = () => {
           </div>
         </div>
       )}
-
+      {/* a second popup menu within the first menu */}
       {isContactModalOpen && (
         <div className="popup_gallery">
           <div className="popup_gallery_content">

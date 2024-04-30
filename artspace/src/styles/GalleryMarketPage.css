@@ -1,3 +1,4 @@
+/* the main design and layout for the page.  */
 .gallery-market-page {
   display: flex;
   flex-direction: column;
@@ -65,7 +66,7 @@
   color: lightgray;
   margin-bottom: 5px;
 }
-
+/* CSS for the popup menu */
 .popup_gallery {
   position: fixed;
   top: 50%;
