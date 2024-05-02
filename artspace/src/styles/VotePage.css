@@ -1,0 +1,9 @@
+.vote-container {
+    background: green;
+}
+
+.vote-container h1 {
+    position: relative;
+    top: 100px;
+    font-size: 50px;
+}

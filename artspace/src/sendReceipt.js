@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
+import "Payment.js";
 
 // Extract email template into a separate function
 function generateReceiptEmail(receiptData) {

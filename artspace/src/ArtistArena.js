@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
 import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, onSnapshot } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
-
+import { useNavigate } from 'react-router-dom';
 import "./styles/ArtistArena.css";
 
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
     const navigate = useNavigate();
 
-    // Function to navigate to the VotePage with competition details
-    const navigateToVotePage = () => {
-        navigate(`/vote`, { state: { competitionTitle: title, competitionDescription: description, artwork: imageSrc } });
-        };
+    const handleVoteClick = () => {
+        // Navigate to VotePage and pass competition title and description as state
+        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description } });
+    };
 
     const initialImages = [];
     const [userID, setUserID] = useState(null);
@@ -24,7 +23,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
         const unsubscribe = auth.onAuthStateChanged((user) => {
           if (user) {
             setUserID(user.uid);
-            const userDocRef = doc(db, "Arena", user.uid);
+            const userDocRef = doc(db, "Portfolio", user.uid);
             const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
             if (doc.exists()) {
               const userData = doc.data();
@@ -86,14 +85,6 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
             console.error("Error uploading work image: ", error);
           });
       }
-    
-    // const handleVoteClick = () => {
-    //     const competitionTitle = title;
-    //     const competitionDescription = description;
-    //     const artwork = [{ url: imageSrc }];
-    
-    //     navigate("/vote", { state: { competitionTitle, competitionDescription, artwork } });
-    // };
 
     return (
         <div className="card">
@@ -130,7 +121,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                                 style={{ display: "none" }}
                             />
                             {/* <button className="vote" onClick={handleVoteClick}>Vote!</button> */}
-                            <button className="vote" onClick={navigateToVotePage}>Vote</button>
+                            <button className="vote" onClick={handleVoteClick}>Vote</button>
                         </div>
                     </div>
                 </div>
@@ -168,9 +159,6 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
                                     </div>
                                 </div>
                             ))}
-                            <div className="buttons">
-                                    <button className="mentions">Honorable Mentions</button>
-                            </div>
                         </div>
                         <a className="close" href="#">&times;</a>
                     </div>
