@@ -21,7 +21,7 @@ function ShowroomPage() {
     const [artwork, setArtwork] = useState([]);
     const [user, setUser] = useState(null);
     const userIds = shuffleArray([
-        { id: 'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2', name: 'LouDog95'},
+        //{ id: 'jFug2d9bhAZCZ4Dt7g6b8c1SkHK2', name: 'LouDog95'},
         { id: 'h6ivhFw60BN3Eo6Ai8o0saDVjQ73', name: 'JamminYammin'},
         { id: 'aHiUmTvYyyYt5femAM7mK2VC2OF2', name: 'JC'},
         { id: 'uZmTRz7zsdQCVGz7KsFAcM8S9Tc2', name: 'Joker'},
