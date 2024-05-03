@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import "./styles/VotePage.css";
 
-const VotePage = ({ competitionTitle }) => {
+const VotePage = () => { //jennifer - removed competitionTitle inside the parathesis
   const location = useLocation();
-  const { competitionDescription } = location.state;
+  const { competitionDescription, competitionTitle } = location.state; //jennifer -moved competitionTitle here
 
   // State to track the number of votes for each artwork
   //const [votes, setVotes] = useState(Array(artwork.length).fill(0));
