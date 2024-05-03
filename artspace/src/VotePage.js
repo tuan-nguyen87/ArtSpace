@@ -4,7 +4,7 @@ import "./styles/VotePage.css";
 
 const VotePage = () => { //jennifer - removed competitionTitle inside the parathesis
   const location = useLocation();
-  const { competitionDescription, competitionTitle } = location.state; //jennifer -moved competitionTitle here
+  const { competitionTitle, competitionDescription } = location.state; //jennifer -moved competitionTitle here
 
   // State to track the number of votes for each artwork
   //const [votes, setVotes] = useState(Array(artwork.length).fill(0));
@@ -20,10 +20,13 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
   // Implement logic to display competition details, artwork, and provide a way to vote
   return (
     <div className="vote-container">
-      <h1>{competitionTitle}</h1>
-      <p>{competitionDescription}</p>
-      {/* Display artwork */}
-      
+      <div className="top-desc">
+        <h1>{competitionTitle}</h1>
+        <p>{competitionDescription}</p>
+      </div>
+      <div className="chal-image-cards">
+        {/* Display artwork */}
+      </div>
     </div>
   );
 };
