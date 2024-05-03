@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { auth, db } from "./Firebase/Firebase.js";
 import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
-import Notification from "./Notification";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
