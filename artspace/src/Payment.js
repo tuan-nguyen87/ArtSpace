@@ -14,18 +14,18 @@ const Payment = () => {
         // Add other form fields later
     });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            // Call Cloud Function to send receipt
-            const response = await sendReceipt(formData);
-            console.log(response); // Log the response from the Cloud Function
-            // Reset form data or show success message to the user
-        } catch (error) {
-            console.error('Error sending receipt:', error);
-            // Handle error
-        }
-    };
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         // Call Cloud Function to send receipt
+    //         const response = await sendReceipt(formData);
+    //         console.log(response); // Log the response from the Cloud Function
+    //         // Reset form data or show success message to the user
+    //     } catch (error) {
+    //         console.error('Error sending receipt:', error);
+    //         // Handle error
+    //     }
+    // };
     //End Yasmine's additions outside of return (call handleSubmit inside return)
 
     return (
@@ -96,11 +96,7 @@ const Payment = () => {
                         <input type="number" placeholder="123.11" required class="payment-amount"></input>
                     </div>
                 </div>
-                {/* Yasmine added a submit button here */}
-                <form onSubmit={handleSubmit}>
-                    {/* Form fields */}
-                    <button type="submit">Submit</button>
-                </form>
+                
             </form>
         
         </div>
@@ -108,5 +104,9 @@ const Payment = () => {
 
     );
 }
-
+// {/* Yasmine added a submit button here */}
+// <form onSubmit={handleSubmit}>
+// {/* Form fields */}
+// <button type="submit">Submit</button>
+// </form>
 export default Payment
