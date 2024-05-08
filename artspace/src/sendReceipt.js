@@ -1,7 +1,12 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+import functions from 'firebase-functions';
+import admin from 'firebase-admin';
+import "./Payment.js";
 admin.initializeApp();
-import "Payment.js";
+// const functions = require('firebase-functions');
+// const admin = require('firebase-admin');
+
+// pull artists info from commissions file?
+// pull clients info from Payment.js
 
 // Extract email template into a separate function
 function generateReceiptEmail(receiptData) {
@@ -136,21 +141,84 @@ function generateReceiptEmail(receiptData) {
     `;
 }
 
+//Version 2
 exports.sendReceipt = functions.https.onCall(async (data, context) => {
-  const receiptNumber = admin.firestore().collection('receipts').doc().id;
+    try {
+        // Validate data
+        if (!data.formData) {
+            throw new Error('Form data is required.');
+        }
 
-  const msg = {
-    to: data.to,
-    from: data.from,
-    subject: `${data.subject} - ${receiptNumber}`,
-    html: generateReceiptEmail(data.receiptData),
-  };
+        // Extract relevant information from the data
+        const formData = data.formData;
+        const { buyerName, buyerEmail, items, total, validTill, contactNumber } = formData;
 
-  const receiptDoc = admin.firestore().collection('receipts').doc(receiptNumber);
-  await receiptDoc.set(msg);
+        // Construct receipt data
+        const receiptData = {
+            receiptDate: Date.now(), // Example: Timestamp of receipt generation
+            sellerAddress: {
+                street: "123 Seller St",
+                city: "Seller City",
+                country: "Seller Country"
+            }, // Example: Seller's address
+            clientAddress: {
+                street: "456 Client St",
+                city: "Client City",
+                country: "Client Country"
+            }, // Example: Client's address
+            sellerEmail: "seller@example.com", // Example: Seller's email
+            clientEmail: buyerEmail, // Example: Client's email
+            buyerName: buyerName, // Example: Client's name
+            items: items, // Example: Array of purchased items
+            total: total, // Example: Total amount
+            validTill: validTill, // Example: Expiry date of the receipt
+            contactNumber: contactNumber // Example: Seller's contact number
+        };
 
-  return {
-    status: 'success',
-    receiptNumber,
-  };
+        // Generate receipt email HTML
+        const htmlContent = generateReceiptEmail(receiptData);
+
+        // Send email
+        const msg = {
+            to: buyerEmail, // Send receipt to the buyer's email
+            from: 'your@example.com', // Your sender email address
+            subject: 'Receipt for Your Purchase',
+            html: htmlContent
+        };
+
+        await admin.firestore().collection('receipts').add(receiptData); // Save receipt data to Firestore if needed
+
+        // Send email using SendGrid, Nodemailer, or any other email service
+        // Example: await sendEmail(msg);
+
+        // Return success status
+        return { status: 'success', message: 'Receipt sent successfully.' };
+    } catch (error) {
+        // Handle errors
+        console.error('Error sending receipt:', error);
+        return { status: 'error', message: 'Failed to send receipt.' };
+    }
 });
+
+// sendReceipt.js
+export { sendReceipt };
+
+//Version 1
+// exports.sendReceipt = functions.https.onCall(async (data, context) => {
+//   const receiptNumber = admin.firestore().collection('receipts').doc().id;
+
+//   const msg = {
+//     to: data.to,
+//     from: data.from,
+//     subject: `${data.subject} - ${receiptNumber}`,
+//     html: generateReceiptEmail(data.receiptData),
+//   };
+
+//   const receiptDoc = admin.firestore().collection('receipts').doc(receiptNumber);
+//   await receiptDoc.set(msg);
+
+//   return {
+//     status: 'success',
+//     receiptNumber,
+//   };
+// });

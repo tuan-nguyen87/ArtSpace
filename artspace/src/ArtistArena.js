@@ -11,7 +11,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
 
     const handleVoteClick = () => {
         // Navigate to VotePage and pass competition title and description as state
-        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description } });
+        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description, competitionPoints: maxPoints } });
     };
 
     const initialImages = [];
