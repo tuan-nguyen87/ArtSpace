@@ -1,7 +1,7 @@
 // Queueing system page
 // for ideas
 
-import sendReceipt from './sendReceipt';
+// import sendReceipt from './sendReceipt';
 import React, { useState } from "react"; // Yasmine - Testing some setup for emails
 import "./styles/Payment.css";
 

@@ -201,7 +201,7 @@ exports.sendReceipt = functions.https.onCall(async (data, context) => {
 });
 
 // sendReceipt.js
-export { sendReceipt };
+// export { sendReceipt };
 
 //Version 1
 // exports.sendReceipt = functions.https.onCall(async (data, context) => {
