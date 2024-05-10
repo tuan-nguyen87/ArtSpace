@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "./Firebase/Firebase.js";
+import { auth, db } from "./Firebase/Firebase.js";
 import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
+  
   const handleLogout = () => {
     signOut(auth)
       .then(() => {

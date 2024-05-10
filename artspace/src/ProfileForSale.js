@@ -1,3 +1,4 @@
+// import nesscessary libraries and dependencies
 import React, { useState, useEffect } from "react";
 import { db, auth } from "./Firebase/Firebase.js";
 import {
@@ -11,12 +12,15 @@ import { collection, addDoc } from "firebase/firestore";
 import "./styles/ProfileForSale.css";
 
 const ProfileForSale = () => {
+  // const that will be used
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedPicture, setSelectedPicture] = useState(null);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
+  // fetch data from firebase firestore
+  // upload user's images to firestore to be retrieved by gallery market
   useEffect(() => {
     const fetchUploadedImages = async () => {
       try {
@@ -52,6 +56,7 @@ const ProfileForSale = () => {
     return () => unsubscribe();
   }, []);
 
+  // a few handleclick function
   const handleUploadClick = () => {
     setIsPopupOpen(true);
   };
@@ -89,7 +94,6 @@ const ProfileForSale = () => {
       // Construct data object including the current user's UID
       const data = {
         userId: auth.currentUser.uid,
-
         description: description,
         price: price,
         imageUrl: downloadURL,

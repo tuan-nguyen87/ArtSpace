@@ -1,99 +1,83 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
 import { db, auth, storage } from "./Firebase/Firebase.js";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, setDoc, collection, addDoc  } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
-
+import { useNavigate } from 'react-router-dom';
 import "./styles/ArtistArena.css";
+
+let imageIdCounter = 0; // Initialize the counter
 
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
     const navigate = useNavigate();
 
-    // Function to navigate to the VotePage with competition details
-    const navigateToVotePage = () => {
-        navigate(`/vote/${title}`, { state: { competitionTitle: title, competitionDescription: description, artwork: imageSrc } });
-        };
+    const handleVoteClick = () => {
+        // Navigate to VotePage and pass competition title and description as state
+        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description, competitionPoints: maxPoints, userID } });
+    };
 
-    const initialImages = [];
+    const initialArenaImages = [];
     const [userID, setUserID] = useState(null);
-    const [images, setImages] = useState(initialImages);
+    const [arenaImages, setImages] = useState(initialArenaImages);
 
     useEffect(() => {
-        // Authentication listener
         const unsubscribe = auth.onAuthStateChanged((user) => {
-          if (user) {
-            setUserID(user.uid);
-            const userDocRef = doc(db, "Arena", user.uid);
-            const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
-            if (doc.exists()) {
-              const userData = doc.data();
-              setImages(userData.images || initialImages);
+            if (user) {
+                setUserID(user.uid);
+                const arenaDocRef = doc(db, 'arena', user.uid);
+                const unsubscribeSnapshot = onSnapshot(arenaDocRef, (doc) => {
+                    if (doc.exists()) {
+                        const userData = doc.data();
+                        setImages(userData.arenaImages || []);
+                    } else {
+                        console.log('No such document!');
+                    }
+                });
+                return () => unsubscribeSnapshot();
             } else {
-              console.log("No such document!");
+                setUserID(null);
             }
-          });
-          return () => unsubscribeSnapshot();
-        } else {
-          setUserID(null);
-        }
-      });
-    
-        // Retrieve image URLs from local storage when component mounts -- Yasmine
-        const storedImages = localStorage.getItem("uploadedImages");
-        if (storedImages) {
-          const parsedImages = JSON.parse(storedImages);
-          // Filter out images that do not exist in storage
-          const existingImages = parsedImages.filter(image => {
-            const imageRef = ref(storage, image);
-            return getDownloadURL(imageRef).then(() => true).catch(() => false);
-          });
-          setImages(existingImages);
-          localStorage.setItem("uploadedImages", JSON.stringify(existingImages));
-        }
+        });
         return () => unsubscribe();
     }, []);
 
-    function handleImageUpload(event) {
-        const file = event.target.files[0];
-        const storageRef = ref(storage, `${userID}/arena-images/${file.name}`); // Set the storage path for work images
-    
-        // Ensure a file is selected -- Yasmine
-        if (!file) {
-          console.error("No file selected.");
-          return;
-        }
-        
-        // Upload file to Firebase Storage
-        uploadBytes(storageRef, file)
-          .then((snapshot) => {
-            // Get the download URL of the uploaded image
-            // Save image URL to local storage after successful upload
-            getDownloadURL(storageRef).then((downloadURL) => {
-              // Update state with the new image URL
-              const updatedImages = [...images, downloadURL];
-              console.log("Download URL:", downloadURL);
-              // I got the images to persist after reload!! -- Yasmine
-              setImages(updatedImages);
-              localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
-            })
-            .catch((error) => {
-              console.error("Error getting download URL: ", error);
-            });
-          })
-          // Included more error handling -- Yasmine
-          .catch((error) => {
-            console.error("Error uploading work image: ", error);
-          });
-      }
-    
-    // const handleVoteClick = () => {
-    //     const competitionTitle = title;
-    //     const competitionDescription = description;
-    //     const artwork = [{ url: imageSrc }];
-    
-    //     navigate("/vote", { state: { competitionTitle, competitionDescription, artwork } });
-    // };
+    const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const storageRef = ref(storage, `${userID}/arena-images/${file.name}`);
+
+    if (!file) {
+        console.error('No file selected.');
+        return;
+    }
+
+    uploadBytes(storageRef, file)
+        .then((snapshot) => {
+            getDownloadURL(storageRef)
+                .then((downloadURL) => {
+                    const updatedImages = [
+                        ...arenaImages,
+                        {
+                            challenge: title, // Name of the challenge
+                            imageId: imageIdCounter++,
+                            imageURL: downloadURL, // Image URL
+                            hearts: 0, // Number of hearts initialized to 0
+                            uploaderID: userID // Uploader's ID
+                        }
+                    ];
+                    setImages(updatedImages);
+                    // Save updated images array to 'arena' collection in Firestore
+                    const arenaCollectionRef = collection(db, 'arena');
+                    const userArenaDocRef = doc(arenaCollectionRef, userID);
+                    setDoc(userArenaDocRef, { arenaImages: updatedImages }, { merge: true }); // Merge to update existing data
+                })
+                .catch((error) => {
+                    console.error('Error getting download URL: ', error);
+                });
+        })
+        .catch((error) => {
+            console.error('Error uploading work image: ', error);
+        });
+    };
 
     return (
         <div className="card">
@@ -130,7 +114,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}
                                 style={{ display: "none" }}
                             />
                             {/* <button className="vote" onClick={handleVoteClick}>Vote!</button> */}
-                            <button className="vote" onClick={navigateToVotePage}>Vote</button>
+                            <button className="vote" onClick={handleVoteClick}>Vote</button>
                         </div>
                     </div>
                 </div>
@@ -168,9 +152,6 @@ const WinnerCard = ({ title, coverImageSrc, intro, winners}) => {
                                     </div>
                                 </div>
                             ))}
-                            <div className="buttons">
-                                    <button className="mentions">Honorable Mentions</button>
-                            </div>
                         </div>
                         <a className="close" href="#">&times;</a>
                     </div>

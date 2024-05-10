@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./styles/LoginPage.css";
 /* Tuan's code start here *************************************/
 // imports from firebase to be use
-import { auth } from "./Firebase/Firebase.js";
+import { auth, db } from "./Firebase/Firebase.js"; // jennifer - added db
+import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore"; //jennifer - added more imports from firebase
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -34,7 +35,7 @@ const LoginPage = () => {
       });
   }
   // function to handle login with error catching and redirection upon success.
-  function handleLogin(e) {
+  /*function handleLogin(e) {
     e.preventDefault();
     signInWithEmailAndPassword(
       auth,
@@ -50,7 +51,44 @@ const LoginPage = () => {
       .catch((error) => {
         setError(error.message);
       });
+  }*/
+
+  /*************Jennifer - start for logins points in PointSystem.js using existing handleLogin function.***********/
+  // function to handle login with error catching and redirection upon success.
+  async function handleLogin(e) { // async added
+    e.preventDefault();
+    try { // try block added
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        userCredentials.email,
+        userCredentials.password
+      );
+      const user = userCredential.user;
+      console.log(user);
+  
+      // added- Fetch points document and update total points and logins
+      const pointsDocRef = doc(db, "points", user.uid);
+      const pointsDocSnap = await getDoc(pointsDocRef);
+      if (pointsDocSnap.exists()) {
+        const pointsData = pointsDocSnap.data();
+        const logins = (pointsData.logins || 0) + 1; // Increment logins
+        const totalPoints = (pointsData.totalPoints || 0) + 25; // Adds 25 points each time
+        
+        // added - Update the document with merged data
+        await updateDoc(pointsDocRef, {
+          totalPoints: totalPoints,
+          logins: logins
+        });
+      }
+  
+      // Redirect to landing page after successful login
+      window.location.href = "/"; // Navigate to landing page
+    } catch (error) {
+      setError(error.message);
+    }
   }
+  /************Jennifer - ends for logins points in PointSystem.js using existing handleLogin function.**************/
+
   // reset password, email will be sent to user with links to reset password
   function handlePasswordReset() {
     const email = prompt("Please enter your email address");
