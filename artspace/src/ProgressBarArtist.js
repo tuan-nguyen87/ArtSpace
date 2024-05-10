@@ -20,12 +20,13 @@ function Step({ label, isActive, isCompleted }) {
   return <div className={className}>{label}</div>;
 }
 
-function ProgressBarArtist() {
-  const [currentStep, setCurrentStep] = useState(1);
+function ProgressBarArtist({commStep, getCurrentStep}) {
+  const [currentStep, setCurrentStep] = useState(commStep);
 
   const nextStep = () => {
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
+      getCurrentStep(currentStep + 1);
     }
   };
 
@@ -46,6 +47,7 @@ function ProgressBarArtist() {
   );
 }
 
-export default ProgressBarArtist;
+export {ProgressBar, ProgressBarArtist};
+
+//export default ProgressBarArtist;
 // testing the export - KT
-export {ProgressBar};

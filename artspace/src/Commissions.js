@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./styles/Commissions.css";
-import { db, auth } from "./Firebase/Firebase.js";
+import { db, auth, storage } from "./Firebase/Firebase.js";
 import { doc, onSnapshot, addDoc, collection, query, where, getDocs, getDoc, Firestore, updateDoc } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
+import { reload } from "firebase/auth";
 
 //get doc and setdoc from firebase
 
@@ -9,7 +11,7 @@ const Commissions = () =>
 {
     const [commComponents, setCommComponents] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currentComm, setCurrentComm] = useState(commComponents[0]);
+    const [currentComm, setCurrentComm] = useState(null);
 
     const handleCommComponents = (newComm) => {
         setCommComponents(newComm);
@@ -33,6 +35,7 @@ const Commissions = () =>
     const artistUsername = "";
     const commissionID = "";
 
+    const [isApplyConfirmationPopupOpen, setIsApplyConfirmationPopupOpen] = useState(false);
     const [isCommCreatePopupOpen, setIsCommCreatePopupOpen] = useState(false);
     const [commTitle, setCommCreateTitle] = useState(title);
     const [commDescription, setCommCreateDescription] = useState(description);
@@ -42,14 +45,18 @@ const Commissions = () =>
     const [commCurrentUserID, setCommCreateCurrentUserID] = useState(null);
     const [commCurrentUsername, setCommCreateCurrentUsername] = useState(null);
 
-    //const [commID, setCurrentCommID] = useState(null);
-
     useEffect(() => {
         const fetchCommissions = async () => {
             await getDocs(collection(db, "Commissions")).then((querySnapshot)=>{
                 const newComm = querySnapshot.docs.map((doc) => ({...doc.data(), id:doc.id}));
                 handleCommComponents(newComm);
                 handleDisplayCommission(newComm[0]);
+                for (var i = 0; i < newComm.length; i++) {
+                    if (newComm[i].status === 0) {
+                        handleDisplayCommission(newComm[i]);
+                        break;
+                    }
+                }
                 setLoading(false);
             });
         }
@@ -96,6 +103,8 @@ const Commissions = () =>
     }
 
     const handleCommCreateButtonCreate = async () => {
+        const storageRef = ref(storage, `${commCurrentUserID}/profile-picture.jpg`);
+        const downloadURL = await getDownloadURL(storageRef);
         if (commTitle && commDescription && commArtType && commCompleteDate)
         {
             try {
@@ -108,10 +117,11 @@ const Commissions = () =>
                     postDate: commPostDate,
                     completeDate: commCompleteDate,
                     artistUserID: null, //there is no artist at the time of creation
-                    artistUserID2: null,
                     artistUsername: null, //there is no artist at the time of creation
-                    artistUsername2: null,
-                    status: "open",
+                    status: 0,
+                    type: "commission",
+                    pfp: downloadURL,
+                    collabArtists: [null],
                 })
                 console.log("Document written with ID: ", commDocRef.id);
             } 
@@ -165,25 +175,16 @@ const Commissions = () =>
     }
 
     const handleCommApplyButtonOpen = (comm) => {
-        console.log(commCurrentUserID);
-        console.log(commCurrentUsername);
-        console.log(comm);
         applyCommission(comm);
+        setIsApplyConfirmationPopupOpen(true);
     }
 
     const applyCommission = async (comm) => {
         await updateDoc(doc(db, "Commissions", comm.id), {
             artistUserID: commCurrentUserID,
             artistUsername: commCurrentUsername,
-            status: "applied"
-        })
-        await updateDoc(doc(db, "Commissions", "5OyPkvhJ0qkdXKhoDz6a"), {
-            
-        })
-        console.log(comm);
-        console.log("updated with the current user information:");
-        console.log(commCurrentUserID);
-        console.log(commCurrentUsername);
+            status: 1
+        });
     }
 
 
@@ -193,13 +194,12 @@ const Commissions = () =>
 
     function CommissionListing({title, date, pfp, singleCommComp }) {
         return (
-
             <a href="#" class="commissions-listing" onClick={() => handleDisplayCommission(singleCommComp)}>
                 <div>
                     <h1 class="commission-title">{title}</h1>
                     <h2 class="date-created">{date}</h2>
                 </div>
-                <div class="pfp commissions-listing-pfp"></div>
+                <img class="pfp commissions-listing-pfp" src={pfp} alt="Profile Generic"/>
             </a>
         );
     };
@@ -209,13 +209,13 @@ const Commissions = () =>
         return (
             <div id="commission-cluster-list">
                 {commComponents.map((singleComm) => {
-                    if (singleComm.status === "open") {
+                    if ((singleComm.status === 0) && (singleComm.clientUserID !== null)) {
                         return (
                             <CommissionListing 
                                 key={singleComm.id}
                                 title={singleComm.title}
                                 date={singleComm.postDate}
-                                pfp="TEMP_PFP"
+                                pfp={singleComm.pfp}
                                 singleCommComp={singleComm}
                             />
                         );
@@ -238,33 +238,38 @@ const Commissions = () =>
                     {currentComm.artType}
                 </p>
                 <div class="commissions-info-client-container">
-                    <div class="pfp">
-
-                    </div>
+                    <img class="pfp" src={currentComm.pfp} alt="Profile Generic"/>
+                   
                     <div class="commissions-info-client-rating">
                     <span class="commissions-info-client-name">
                         {currentComm.clientUsername}
                     </span>
-                    <div class="commissions-client-rating">
-                        * * * * *
-                    </div>
                     </div>
                     <span class="commissions-info-date">
-                        {currentComm.postDate}
+                        Post Date: {currentComm.postDate}
+                    </span>
+                    <span class="commissions-info-date">
+                        Complete by: {currentComm.completeDate}
                     </span>
                 </div>
                 <div class="commissions-button-container">
-                    <button type="apply" class="commissions-create-btn" onClick={() => handleCommApplyButtonOpen(currentComm)}>Apply</button>
+                    <button type="apply" class="commissions-create-btn" onClick={() => handleCommApplyButtonOpen(currentComm)} disabled={currentComm.clientUserID === null}>Apply</button>
                 </div>
             </div>
         )
     }
 
+    /*
+    <div class="search-container">
+        <button type="filter" class="commissions-filter-btn">Filter</button>
+        <input type="text" class="commissions-search-bar" placeholder="Search..." />
+        <button type="submit" class="commissions-search-btn">Submit</button>
+    </div>
+    */
 
 
     // for loading so that data can be loaded properly before
     if (loading) {
-        console.log("LOADING...");
         return <h1>LOADING...</h1>;
     }
     else {
@@ -283,9 +288,7 @@ const Commissions = () =>
                     </a>
                 </div>
                 <div class="search-container">
-                <button type="filter" class="commissions-filter-btn">Filter</button>
-                <input type="text" class="commissions-search-bar" placeholder="Search..." />
-                <button type="submit" class="commissions-search-btn">Submit</button>
+
                 </div>
                 <div class="create-container">
                     <button type="create" class="commissions-create-btn" onClick={handleCommCreateButtonOpen}>
@@ -312,6 +315,12 @@ const Commissions = () =>
                             Create
                         </button>
                     </div>
+                </div>
+            )}
+            {isApplyConfirmationPopupOpen && (
+                <div class="comm-create-popup thank-you-popup">
+                    <h2 class="create-commission">Thank you for applying to the commission!</h2> 
+                    <button class="commissions-create-btn" onClick={() => setIsApplyConfirmationPopupOpen(false)}>Close</button>
                 </div>
             )}
             <div class="commissions-cluster">
