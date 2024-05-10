@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import './styles/PointSystem.css'; 
 import { auth, db } from "./Firebase/Firebase.js";
-import { doc, getDoc, setDoc} from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
+//import handleLogin from './LoginPage.js';
+
 
 function PointSystem() {
   // state variables
@@ -17,7 +19,7 @@ function PointSystem() {
     totalPoints: 0,
     marketPurchases: [],
     arenaEventsWon: [],
-    dailyChallengesCompleted: []
+    logins: 0
   });
   
   // get user name
@@ -41,7 +43,7 @@ function PointSystem() {
               totalPoints: 0,
               marketPurchases: [],
               arenaEventsWon: [],
-              dailyChallengesCompleted: []
+              logins: 0
             });
           }
           // Check if points document exists for the user
@@ -53,7 +55,7 @@ function PointSystem() {
               totalPoints: 200, // set to 200 for demo
               marketPurchases: [],
               arenaEventsWon: [],
-              dailyChallengesCompleted: []
+              logins: 0
             }); 
           } else {
             const pointsData = pointsDocSnap.data();
@@ -62,7 +64,7 @@ function PointSystem() {
               totalPoints: pointsData.totalPoints || 0,
               marketPurchases: pointsData.marketPurchases || [],
               arenaEventsWon: pointsData.arenaEventsWon || [],
-              dailyChallengesCompleted: pointsData.dailyChallengesCompleted || []
+              logins: pointsData.logins || 0
             }));
           }
           
@@ -88,7 +90,7 @@ function PointSystem() {
           totalPoints: 0,
           marketPurchases: [],
           arenaEventsWon: [],
-          dailyChallengesCompleted: []
+          logins: 0
         });
       }
     });
@@ -150,15 +152,6 @@ function PointSystem() {
     return totalPoints;
     return marketPurchases.reduce((total, item) => total + Math.abs(item.points), 0);
   };*/
-
-  // calculate total points earned from daily challenges
-  const calculateDailyChallengesPoints = () => {
-    if (userData.dailyChallengesCompleted) { // Check that dailyChallengesCompleted is defined
-      return userData.dailyChallengesCompleted.reduce((total, item) => total + item.points, 0);
-    } else {
-      return 0;
-    }
-  };
   
   // calculated total points earned from arena events
   const calculateArenaEventsPoints = () => {
@@ -188,11 +181,11 @@ function PointSystem() {
         </div>
         <div className="ps-grid-container">
           <div className="ps-grid-item">
-            <h3>Daily Challenges</h3>
-            <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="daily-challenges-points">{calculateDailyChallengesPoints()}</span></div>
+            <h3>Logins</h3>
+            <div>Total Points Earned: <img src="/PointSystem art/ps_coin.png" className="ps_coin" alt="ps_Coin" /><span id="daily-challenges-points">{userData.logins * 25}</span></div>
           </div>
             <div className="ps-grid-item ps-scroll-container">
-              {renderList(userData.dailyChallengesCompleted)}
+            <h3>Number of Logins: </h3> <span id="login-count">{userData.logins}</span>
           </div>
           <div className="ps-grid-item">
               <h3>Arena Events</h3>
