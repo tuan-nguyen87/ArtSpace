@@ -5,6 +5,8 @@ import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
 import "./styles/ArtistArena.css";
 
+let imageIdCounter = 0; // Initialize the counter
+
 // Attempt at reducing repetitions
 const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints }) => {
     const navigate = useNavigate();
@@ -56,6 +58,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                         ...arenaImages,
                         {
                             challenge: title, // Name of the challenge
+                            imageId: imageIdCounter++,
                             imageURL: downloadURL, // Image URL
                             hearts: 0 // Number of hearts initialized to 0
                         }
