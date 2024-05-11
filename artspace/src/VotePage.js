@@ -112,7 +112,6 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
   const location = useLocation();
   const { competitionTitle, competitionDescription, competitionPoints} = location.state; //jennifer -moved competitionTitle here
 
-  // State to track the number of votes for each artwork
   const [uploadedImages, setUploadedImages] = useState([]);
 
   useEffect(() => {
