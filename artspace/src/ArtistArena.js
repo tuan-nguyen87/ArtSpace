@@ -39,7 +39,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
         return () => unsubscribe();
     }, []);
 
-  const handleImageUpload = (event) => {
+    const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const storageRef = ref(storage, `${userID}/arena-images/${file.name}`);
 
@@ -74,35 +74,6 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
             console.error('Error uploading work image: ', error);
         });
     };
-
-    // const handleImageUpload = (event) => {
-    //     const file = event.target.files[0];
-    //     const storageRef = ref(storage, `${userID}/arena-images/${file.name}`);
-
-    //     if (!file) {
-    //         console.error('No file selected.');
-    //         return;
-    //     }
-
-    //     uploadBytes(storageRef, file)
-    //         .then((snapshot) => {
-    //             getDownloadURL(storageRef)
-    //                 .then((downloadURL) => {
-    //                     const updatedImages = [...images, downloadURL];
-    //                     setImages(updatedImages);
-    //                     // Save image URLs to 'arena' collection in Firestore
-    //                     const arenaCollectionRef = collection(db, 'arena');
-    //                     const userDocRef = doc(arenaCollectionRef, userID);
-    //                     setDoc(userDocRef, { images: updatedImages }, { merge: true }); // Merge to update existing data
-    //                 })
-    //                 .catch((error) => {
-    //                     console.error('Error getting download URL: ', error);
-    //                 });
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error uploading work image: ', error);
-    //         });
-    // };
 
     return (
         <div className="card">
