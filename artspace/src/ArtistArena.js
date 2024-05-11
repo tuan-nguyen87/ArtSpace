@@ -14,16 +14,16 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
         navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description, competitionPoints: maxPoints } });
     };
 
-    const initialImages = [];
+    const initialArenaImages = [];
     const [userID, setUserID] = useState(null);
-    const [arenaImages, setImages] = useState(initialImages);
+    const [arenaImages, setImages] = useState(initialArenaImages);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setUserID(user.uid);
-                const userDocRef = doc(db, 'arena', user.uid);
-                const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+                const arenaDocRef = doc(db, 'arena', user.uid);
+                const unsubscribeSnapshot = onSnapshot(arenaDocRef, (doc) => {
                     if (doc.exists()) {
                         const userData = doc.data();
                         setImages(userData.arenaImages || []);
@@ -63,8 +63,8 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                     setImages(updatedImages);
                     // Save updated images array to 'arena' collection in Firestore
                     const arenaCollectionRef = collection(db, 'arena');
-                    const userDocRef = doc(arenaCollectionRef, userID);
-                    setDoc(userDocRef, { arenaImages: updatedImages }, { merge: true }); // Merge to update existing data
+                    const userArenaDocRef = doc(arenaCollectionRef, userID);
+                    setDoc(userArenaDocRef, { arenaImages: updatedImages }, { merge: true }); // Merge to update existing data
                 })
                 .catch((error) => {
                     console.error('Error getting download URL: ', error);
