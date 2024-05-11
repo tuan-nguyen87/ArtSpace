@@ -45,8 +45,8 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
         // Iterate through each document in the collection
         querySnapshot.forEach((doc) => {
           // Extract the 'images' array from the document data
-          const userData = doc.data();
-          const arenaImages = userData.arenaImages || []; // Default to an empty array if 'images' is not present
+          const arenaData = doc.data();
+          const arenaImages = arenaData.arenaImages || []; // Default to an empty array if 'images' is not present
           
           // Add the images from this document to the array
           allImages = allImages.concat(arenaImages);
