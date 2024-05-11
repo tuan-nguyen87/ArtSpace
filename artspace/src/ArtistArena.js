@@ -16,7 +16,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
 
     const initialImages = [];
     const [userID, setUserID] = useState(null);
-    const [images, setImages] = useState(initialImages);
+    const [arenaImages, setImages] = useState(initialImages);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -26,7 +26,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                 const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
                     if (doc.exists()) {
                         const userData = doc.data();
-                        setImages(userData.images || []);
+                        setImages(userData.arenaImages || []);
                     } else {
                         console.log('No such document!');
                     }
@@ -53,10 +53,10 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
             getDownloadURL(storageRef)
                 .then((downloadURL) => {
                     const updatedImages = [
-                        ...images,
+                        ...arenaImages,
                         {
                             challenge: title, // Name of the challenge
-                            image: downloadURL, // Image URL
+                            imageURL: downloadURL, // Image URL
                             hearts: 0 // Number of hearts initialized to 0
                         }
                     ];
@@ -64,7 +64,7 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                     // Save updated images array to 'arena' collection in Firestore
                     const arenaCollectionRef = collection(db, 'arena');
                     const userDocRef = doc(arenaCollectionRef, userID);
-                    setDoc(userDocRef, { images: updatedImages }, { merge: true }); // Merge to update existing data
+                    setDoc(userDocRef, { arenaImages: updatedImages }, { merge: true }); // Merge to update existing data
                 })
                 .catch((error) => {
                     console.error('Error getting download URL: ', error);

@@ -46,10 +46,10 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
         querySnapshot.forEach((doc) => {
           // Extract the 'images' array from the document data
           const userData = doc.data();
-          const images = userData.images || []; // Default to an empty array if 'images' is not present
+          const arenaImages = userData.arenaImages || []; // Default to an empty array if 'images' is not present
           
           // Add the images from this document to the array
-          allImages = allImages.concat(images);
+          allImages = allImages.concat(arenaImages);
         });
     
         // Set the fetched images in state
@@ -74,11 +74,11 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
       </div>
       <div className="chal-image-cards">
         {/* Map through uploaded images and render ArtCard for each */}
-        {uploadedImages.map((image) => (
+        {uploadedImages.map((arenaImage) => (
           <ArtCard
-            key={image.id} // Ensure each ArtCard has a unique key
+            key={arenaImage.id} // Ensure each ArtCard has a unique key
             artist="Jane Doe" // Artist name is hardcoded for now
-            imageSrc={image.image} // image URL is stored in a field named 'image'
+            imageSrc={arenaImage.imageURL} // image URL is stored in a field named 'imageURL'
           />
         ))}
       </div>
