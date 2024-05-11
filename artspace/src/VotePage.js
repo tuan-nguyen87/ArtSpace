@@ -3,9 +3,17 @@ import { useLocation } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './Firebase/Firebase';
 import './styles/VotePage.css';
-// , key  key={key}
 
 const ArtCard= ({ artist, imageSrc}) =>  {
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(0);
+
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+    setLikesCount(isLiked ? likesCount - 1 : likesCount + 1);
+  };
+
   return (
     <div className="artcard" >
       <div className="cardWrapper">
@@ -14,6 +22,15 @@ const ArtCard= ({ artist, imageSrc}) =>  {
           <div className="content">
             <span className="artist">{artist}</span>
             {/* Add the clickable heart somewhere in here */}
+            <span className="heart" onClick={toggleLike}>
+              {/* Conditional rendering of heart icons based on isLiked state */}
+              {isLiked ? (
+                <i class="fa-solid fa-heart" id="heartI"></i>
+              ) : (
+                <i class="fa-regular fa-heart" id="heartI"></i>
+              )}
+            </span>
+            <span className="likes-count">{likesCount}</span>
           </div>
         </div>
       </div>
@@ -77,7 +94,6 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
         {/* Map through uploaded images and render ArtCard for each */}
         {uploadedImages.map((arenaImage) => (
           <ArtCard
-            // Ensure each ArtCard has a unique key key={arenaImage.id} 
             artist="Jane Doe" // Artist name is hardcoded for now
             imageSrc={arenaImage.imageURL} // image URL is stored in a field named 'imageURL'
           />
