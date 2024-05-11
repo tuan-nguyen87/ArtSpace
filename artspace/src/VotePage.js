@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './Firebase/Firebase';
 import './styles/VotePage.css';
+// , key  key={key}
 
-const ArtCard= ({ artist, imageSrc, key}) =>  {
+const ArtCard= ({ artist, imageSrc}) =>  {
   return (
-    <div className="artcard" key={key}>
+    <div className="artcard" >
       <div className="cardWrapper">
         <img className="vote-image" src={imageSrc} alt=""/>
         <div className="cardData">
@@ -76,7 +77,7 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
         {/* Map through uploaded images and render ArtCard for each */}
         {uploadedImages.map((arenaImage) => (
           <ArtCard
-            key={arenaImage.id} // Ensure each ArtCard has a unique key
+            // Ensure each ArtCard has a unique key key={arenaImage.id} 
             artist="Jane Doe" // Artist name is hardcoded for now
             imageSrc={arenaImage.imageURL} // image URL is stored in a field named 'imageURL'
           />
