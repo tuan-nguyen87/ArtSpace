@@ -5,7 +5,7 @@ Worked on by Kevin
 
 /*Default commissions container with background and height settings*/
 .commissions-container {
-  height: 100%;
+  height: 100vh;
   padding-top: 100px;
   background-color: #80B3BA;
   min-height: calc(100vh - 70px);
@@ -130,9 +130,9 @@ Worked on by Kevin
 
 .comm-create-popup {
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
-  height: 75vh;
+  height: 80vh;
   width: 65vw;
   transform: translate(-50%, -50%);
   border-radius: 15px;
@@ -286,18 +286,21 @@ Worked on by Kevin
 /*title container*/
 .commissions-info-title {
   height: 10%;
+  overflow: scroll;
 }
 
 /*description container*/
 .commissions-info-description {
   height: 35%;
   width: 100%;
+  overflow: scroll;
 }
 
 /*art type container*/
 .commissions-info-arttype {
   height: 35%;
   width: 100%;
+  overflow: scroll;
 }
 
 /*information about clinet container*/
@@ -349,6 +352,84 @@ Worked on by Kevin
   background-color: #ff1a1a;
 }
 
+.comm-progress-bar div div {
+  margin-top: 0px;
+  transform: scale(1);
+}
+
+.comm-progress-bar div {
+  margin-top: 5px;
+  transform: scale(0.5, .8);
+}
+
+.comm-progress-bar-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  height: 25vh;
+  width: 30vw;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid rgb(0, 52, 6);
+  backdrop-filter: blur(10px);
+  z-index: 5;
+  text-align: center;
+}
+
+.comm-progress-bar-container button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.commissions-update-close-btn {
+  background-color: #FF7777 !important;
+}
+
+.comm-queue-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 30vw;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid rgb(0, 52, 6);
+  backdrop-filter: blur(10px);
+  z-index: 5;
+  max-height: 75vh;
+}
+
+.comm-queue-container-listings {
+  width: 20vw;
+  padding-top: 10px;
+}
+
+.thank-you-popup {
+  height: 15vh !important;
+  width: 28vw;
+}
+
+
+.thank-you-popup button {
+  margin-top: 20px;
+  transform: translateX(190%);
+}
+
+.update-buttons-container button{
+  margin: 10px;
+}
+
+.collab-input-box {
+  
+}
 
 /*footer option for commissions
 .commissions-footer {
