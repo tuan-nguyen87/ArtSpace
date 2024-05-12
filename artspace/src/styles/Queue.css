@@ -1,38 +1,53 @@
 .queue-container {
-    padding-top: 100px;
-    height: 100%;
-    min-height: calc(100vh - 70px);
-    width: 200px;
+    width: 27vw;
 }
 
 .queue-listing {
     border: 2px solid black;
     border-radius: 15px;
     display: flex;
-    margin-bottom: 5px;
-    height: 40px;
-    width: 200px;
+    margin-bottom: 7px;
+    height: 3vw;
+    width: 27vw;
     background-color: lightblue;
     text-align: left;
     padding-left: 10px;
+    padding-top: 7px;
+}
+
+.queue-title-date-container label {
+    overflow: hidden;
+    display: inline-block;
+    width: 18vw;
+    white-space: nowrap;
 }
 
 .queue-title {
-    font-size: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .queue-complete-date {
-    font-size: 10px;
+    font-size: 15px;
 }
 
-
 .queue-progress-bar div {
-    width: 75px !important;
-    height: 15px;
+    margin-left: -230px;
+    transform: scale(0.25, 0.6);
+}
+
+.queue-progress-bar div div {
+    margin-left: 0px;
+    transform: scale(1);
 }
 
 .queue-progress-bar {
+    margin-top: 3px;
     margin-left: auto;
     margin-right: 15px;
-    margin-top: 10px;
+    width: 75px;
+}
+
+.commission-cluster-list {
+    overflow: scroll;
 }

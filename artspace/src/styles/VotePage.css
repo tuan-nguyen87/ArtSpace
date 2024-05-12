@@ -2,6 +2,7 @@
     background: #252328; /* for now */
     background-size: cover;
     height: 100%;
+    min-height: 100vh;
     justify-content: center;
     display:flexbox;
 }
@@ -10,6 +11,7 @@
     position: relative;
     padding-top: 120px;
 }
+
 .vote-container h1 {
     position: relative;
     text-align: center;
@@ -25,14 +27,14 @@
     margin: 0 30px 0 30px;
 }
 
-.artcard {
+.artcard{
     background: white;
     border: none;
     border-radius: 20px;
     padding: 10px;
     margin: 20px; 
     width: 300px;
-    height: 400px;
+    height: 350px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -42,5 +44,21 @@
     position: relative;
     flex-wrap: wrap;
     justify-content: center;
+}
+.vote-image {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
 
+.content .artist {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+#heartI{
+    position: relative;
+    left: 250px;
+    font-size: 24px;
 }
