@@ -29,6 +29,18 @@ const Payment = () => {
         paymentAmount: ""
     });
 
+    const [sellerData, setSellerData] = useState({
+        firstName: "John",
+        lastName: "Doe",
+        email: "john.doe@example.com",
+        phone: "123-456-7890",
+        billingName: "John Doe",
+        billingAddress1: "123 Main Street",
+        billingCity: "Anytown",
+        billingState: "CA",
+        billingZip: "12345"
+    });
+
     const [submitted, setSubmitted] = useState(false); // New state for submitted status
     const navigate = useNavigate(); // Hook for navigation
 
@@ -36,26 +48,8 @@ const Payment = () => {
         e.preventDefault();
         // Handle form submission
         console.log(formData); // Log form data
-        // setFormData({
-        //     firstName: formData.firstName || "",
-        //     lastName: formData.lastName || "",
-        //     email: formData.email || "",
-        //     phone: formData.phone || "",
-        //     billingName: formData.billingName || "",
-        //     billingAddress1: formData.billingAddress1 || "",
-        //     billingAddress2: formData.billingAddress2 || "",
-        //     billingCity: formData.billingCity || "",
-        //     billingState: formData.billingState || "",
-        //     billingZip: formData.billingZip || "",
-        //     cardName: formData.cardName || "",
-        //     cardNum: formData.cardNum || "",
-        //     cardCvc: formData.cardCvc || "",
-        //     cardMonth: formData.cardMonth || "",
-        //     cardYear: formData.cardYear || "",
-        //     paymentAmount: formData.paymentAmount || ""
-        // });
         setSubmitted(true); // Set submitted to true
-        navigate('/receipt', { state: { formData } });
+        navigate('/receipt', { state: { formData, sellerData } });
     };
     
     // Function to handle input changes
@@ -134,7 +128,7 @@ const Payment = () => {
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            {submitted && <Receipt formData={formData} />}
+            {submitted && <Receipt formData={formData} sellerData={sellerData}/>}
         </div>
 
 

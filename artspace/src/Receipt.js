@@ -4,7 +4,7 @@ import "./styles/Receipt.css";
 
 const Receipt = () => {
     const location = useLocation();
-    const { formData } = location.state;
+    const { formData, sellerData } = location.state;
 
     return (
         <div className="receipt-container">
@@ -12,13 +12,29 @@ const Receipt = () => {
                 <div className="address">
                     <div className="box">
                         <h3>Seller</h3>
-                        <p><strong>Address:</strong> {formData.billingAddress}</p>
-                        <p><strong>Email:</strong> {formData.email}</p>
+                        <p><strong>Address: </strong> {sellerData.billingAddress1}</p>
+                        <br/>
+                        <p><strong>City: </strong> {sellerData.billingCity}</p>
+                        <br/>
+                        <p><strong>State: </strong> {sellerData.billingState}</p>
+                        <p><strong>Zip: </strong> {sellerData.billingZip}</p>
+                        <br/>
+                        <p><strong>Email: </strong> {sellerData.email}</p>
+                        <br/>
+                        <p><strong>Phone #: </strong> {sellerData.phone}</p>
                     </div>
                     <div className="box">
                         <h3>Client</h3>
-                        <p><strong>Address:</strong> {formData.billingAddress}</p>
-                        <p><strong>Email:</strong> {formData.email}</p>
+                        <p><strong>Address: </strong> {formData.billingAddress1}</p>
+                        <br/>
+                        <p><strong>City: </strong> {formData.billingCity}</p>
+                        <br/>
+                        <p><strong>State: </strong> {formData.billingState}</p>
+                        <p><strong>Zip: </strong> {formData.billingZip}</p>
+                        <br/>
+                        <p><strong>Email: </strong> {formData.email}</p>
+                        <br/>
+                        <p><strong>Phone #: </strong> {formData.phone}</p>
                     </div>
                 </div>
                 <h1>Thank you for your purchase!</h1>
