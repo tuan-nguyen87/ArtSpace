@@ -5,7 +5,6 @@ import NavigationBar from "./NavigationBar";
 import LandingPage from "./LandingPage";
 import Commissions from "./Commissions";
 import Messaging2 from "./Messaging2";
-import Notification from "./Notification";
 import DailyChallenge from "./DailyChallenge";
 import RatingReview from "./RatingReview";
 import TutorialPage from "./TutorialPage";
@@ -31,22 +30,33 @@ import MyCommissions from "./MyCommissions";
 import GalleryMarketPage from "./GalleryMarketPage";
 
 function App() {
-  const [notification, setNotification] = useState({ message: "", type: "" });
+  const [notification, setNotification] = useState(null);
 
   const triggerNotification = (message, type = "info") => {
     setNotification({ message, type });
 
     setTimeout(() => {
-      setNotification({ message: "", type: "" });
+      setNotification(null);
     }, 3000); // Dismiss notification after 3 seconds
+  };
+
+  // Function to handle new review posted event
+  const handleNewReview = () => {
+    triggerNotification("A new review is posted!", "review");
+  };
+
+  // Function to handle new question posted event
+  const handleNewQuestion = () => {
+    triggerNotification("A new question is posted!", "question");
   };
 
   return (
     <div className="App">
-      <Notification message={notification.message} type={notification.type} />
       <Router>
-        <NavigationBar />
+        <NavigationBar notification={notification} />
         <Routes>
+          <Route path="/reviews" element={<RatingReview onNewReview={handleNewReview} />} />
+          <Route path="/questions" element={<SocialHub onNewQuestion={handleNewQuestion} />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/Commissions" element={<Commissions />} />
           <Route

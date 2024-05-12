@@ -4,23 +4,16 @@ import { db } from "./Firebase/Firebase";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import '@fortawesome/fontawesome-free/css/all.css';
 
-const RatingReview = () => {
+const RatingReview = ({ onNewReview }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   
-
-  // Function to handle changes in the rating
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
-
-  // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handlePostReview = async (e) => {
     e.preventDefault();
-  
+     
     try {
       // Create a new review object
       const newReview = {
@@ -32,6 +25,9 @@ const RatingReview = () => {
       // Add the new review to Firestore
       const docRef = await addDoc(collection(db, "reviews"), newReview);
       console.log("Review added with ID: ", docRef.id);
+  
+      // Trigger the notification event
+      onNewReview("New review posted!");
   
       // Update the reviews state with the new review
       setReviews([newReview, ...reviews]);
@@ -48,6 +44,18 @@ const RatingReview = () => {
     } catch (error) {
       console.error("Error adding review: ", error);
     }
+  };
+
+
+  // Function to handle changes in the rating
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handlePostReview();
   };
 
   useEffect(() => {
@@ -118,7 +126,8 @@ const RatingReview = () => {
             </div>
 
             {/* Submit button */}
-            <button type="submit" className="submit-button">Submit Review</button>
+            <button type="submit" className="submit-button" onClick={handlePostReview}>Submit Review</button>
+
           </form>
         </div>
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { auth, db } from "./Firebase/Firebase.js";
+import { auth } from "./Firebase/Firebase.js";
 import { signOut } from "firebase/auth";
 import "./styles/NavigationBar.css";
 
-const NavigationBar = () => {
+const NavigationBar = ({ notification }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   
@@ -36,6 +36,18 @@ const NavigationBar = () => {
             className="logo"
           />
         </a>
+        {/* Notification component 
+        {notification && notification.message && (
+          <div className={`notification ${notification.type}`}>
+            
+            {notification.type === "review" && (
+              <Link to="/reviews">{notification.message}</Link>
+            )}
+            {notification.type === "question" && (
+              <Link to="/questions">{notification.message}</Link>
+            )}
+          </div>
+        )}*/}
         <ul className="nav-links">
           <li>
             <a href="#">Explore</a>
@@ -76,18 +88,18 @@ const NavigationBar = () => {
               </li>
             </ul>
           </li>
-          <li className="notification-icon">
-            {/* Replace this with your notification icon */}
+          <li>
             <a href="#">🔔</a>
             <ul className="dropdown-menu">
               <li>
-                <a href="#">Notif 1</a>
+                <a href="/RatingReview">New Review Posted!</a>
               </li>
               <li>
-                <a href="#">Notif 2</a>
+                <a href="/SocialHub">New Question Posted!</a>
               </li>
             </ul>
-          </li>
+        </li>
+
           {!isLoggedIn ? (
             // Render login button for non-logged-in user
             <li>

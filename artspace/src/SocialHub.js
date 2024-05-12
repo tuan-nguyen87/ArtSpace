@@ -3,7 +3,7 @@ import './styles/SocialHub.css';
 import { db } from "./Firebase/Firebase";
 import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
-const SocialHub = () => {
+const SocialHub = ({ onNewQuestion }) => {
   const [questions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState('');
   const [responses, setResponses] = useState({});
@@ -55,6 +55,10 @@ const SocialHub = () => {
         const questionWithId = { id: docRef.id, ...newQuestionObject }; 
         console.log("Question added with ID: ", docRef.id);
         setQuestions([...questions, questionWithId]); 
+
+        // Trigger the notification
+        onNewQuestion("A new question is posted!");
+        
       } catch (error) {
         console.error("Error adding question: ", error);
       }
