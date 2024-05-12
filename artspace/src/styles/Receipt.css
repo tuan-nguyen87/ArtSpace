@@ -17,36 +17,35 @@
     margin-top: 120px;
 }
 
-h1 {
+.receipt-content h1 {
     color: #444;
     text-align: center;
     margin-bottom: 20px;
 }
 
-table {
+.receipt-content table {
     margin-left: 10%;
     width: 80%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-th,
-td {
+.receipt-content th,td {
     border: 1px solid #f5eeee;
     padding: 8px;
     text-align: left;
 }
 
-th {
+.receipt-content th {
     background-color: white;
     font-weight: bold;
 }
 
-tfoot td {
+.receipt-content tfoot td {
     font-weight: bold;
 }
 
-p {
+.receipt-content p {
     margin-bottom: 10px;
     margin-left: 20px;
     margin-right: 20px;
