@@ -49,7 +49,12 @@ const Payment = () => {
         // Handle form submission
         console.log(formData); // Log form data
         setSubmitted(true); // Set submitted to true
-        navigate('/receipt', { state: { formData, sellerData } });
+        navigate('/receipt', { state: { formData, sellerData, itemData: { 
+            items: [
+                { name: "Portrait", quantity: 1, price: 100, subtotal: 100 },
+                { name: "Painted Forest", quantity: 2, price: 50, subtotal: 100 }
+            ]
+        }}});
     };
     
     // Function to handle input changes
