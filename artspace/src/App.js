@@ -26,6 +26,7 @@ import EduCont from "./EduCont";
 import ResLinks from "./ResLinks";
 import Search from "./Search";
 import Payment from "./Payment";
+import Receipt from "./Receipt";
 import MyCommissions from "./MyCommissions";
 import GalleryMarketPage from "./GalleryMarketPage";
 
@@ -76,6 +77,7 @@ function App() {
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
           <Route path="/Payment" element={<Payment />} />
+          <Route path="/receipt" element={<Receipt />} />
           <Route path="/PointSystem" element={<PointSystem />} />
           <Route path="/NavSite" element={<NavSite />} />
           <Route path="/ArtTutorials" element={<ArtTutorials />} />
