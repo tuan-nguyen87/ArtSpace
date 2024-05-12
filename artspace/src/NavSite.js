@@ -104,6 +104,9 @@ function NavSite() {
             <li>Leave a Review</li>
             <div className="p2">Leave a rating and review to share feedback and testimonials, building your reputation within the ArtSpace community.</div>
             <img src="/NavSite art/ns_RR.png" alt="Rate and Review Page" />
+            <li>Payment</li>
+            <div className="p2">Gives clients and artists control over their payment method. Facilitates secure transfer of money between client and artist.</div>
+            <img src="/NavSite art/ns_Pay.png" alt="Payment Page" />
           </ul>
         </section>
       </div>
