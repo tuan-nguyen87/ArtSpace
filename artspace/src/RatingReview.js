@@ -4,16 +4,29 @@ import { db } from "./Firebase/Firebase";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import '@fortawesome/fontawesome-free/css/all.css';
 
-const RatingReview = ({ onNewReview }) => {
+const RatingReview = ({  }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   
-  const handlePostReview = async (e) => {
+  const handlePostReview = () => {
+    // Logic to post the review
+    // After successfully posting the review, call the onNewReview function
+   
+  };
+
+
+  // Function to handle changes in the rating
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-     
+  
     try {
       // Create a new review object
       const newReview = {
@@ -25,9 +38,6 @@ const RatingReview = ({ onNewReview }) => {
       // Add the new review to Firestore
       const docRef = await addDoc(collection(db, "reviews"), newReview);
       console.log("Review added with ID: ", docRef.id);
-  
-      // Trigger the notification event
-      onNewReview("New review posted!");
   
       // Update the reviews state with the new review
       setReviews([newReview, ...reviews]);
@@ -44,18 +54,6 @@ const RatingReview = ({ onNewReview }) => {
     } catch (error) {
       console.error("Error adding review: ", error);
     }
-  };
-
-
-  // Function to handle changes in the rating
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
-
-  // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handlePostReview();
   };
 
   useEffect(() => {
