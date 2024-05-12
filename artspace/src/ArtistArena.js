@@ -8,12 +8,12 @@ import "./styles/ArtistArena.css";
 let imageIdCounter = 0; // Initialize the counter
 
 // Attempt at reducing repetitions
-const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints }) => {
+const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints}) => {
     const navigate = useNavigate();
 
     const handleVoteClick = () => {
         // Navigate to VotePage and pass competition title and description as state
-        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description, competitionPoints: maxPoints } });
+        navigate('/VotePage', { state: { competitionTitle: title, competitionDescription: description, competitionPoints: maxPoints, userID } });
     };
 
     const initialArenaImages = [];
@@ -60,7 +60,8 @@ const CompetitionCard = ({ title, imageSrc, date, intro, description, maxPoints 
                             challenge: title, // Name of the challenge
                             imageId: imageIdCounter++,
                             imageURL: downloadURL, // Image URL
-                            hearts: 0 // Number of hearts initialized to 0
+                            hearts: 0, // Number of hearts initialized to 0
+                            uploaderID: userID // Uploader's ID
                         }
                     ];
                     setImages(updatedImages);

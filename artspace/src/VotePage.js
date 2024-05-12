@@ -4,10 +4,33 @@ import { collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db, auth } from './Firebase/Firebase';
 import './styles/VotePage.css';
 
-const ArtCard= ({ artist, imageSrc, imageId}) =>  {
+const ArtCard= ({ imageSrc, imageId, userID}) =>  {
 
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
+  const [artistName, setArtistName] = useState("");
+
+  useEffect(() => {
+    const fetchArtistName = async () => {
+      try {
+        // Fetch user's name from the 'Portfolio' collection based on userID
+        const docRef = doc(db, "Portfolio", userID);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          // Assuming the user's name is stored in a field called 'name'
+          setArtistName(userData.name);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching artist name:", error);
+      }
+    };
+
+    fetchArtistName(); // Call fetchArtistName when the component mounts
+  }, [userID]);
 
   useEffect(() => {
     // Fetch initial likes count and like status from Firestore
@@ -91,9 +114,10 @@ const ArtCard= ({ artist, imageSrc, imageId}) =>  {
         <img className="vote-image" src={imageSrc} alt=""/>
         <div className="cardData">
           <div className="content">
-            <span className="artist">{artist}</span>
-            {/* Add the clickable heart somewhere in here */}
-            <span className="heart" onClick={toggleLike}>
+            <span className="artist">{artistName}</span>
+          </div>
+          {/* Add the clickable heart somewhere in here */}
+          <span className="heart" onClick={toggleLike}>
               {/* Conditional rendering of heart icons based on isLiked state */}
               {isLiked ? (
                 <i className="fa-solid fa-heart" id="heartI"></i>
@@ -101,7 +125,6 @@ const ArtCard= ({ artist, imageSrc, imageId}) =>  {
                 <i className="fa-regular fa-heart" id="heartI"></i>
               )}
             </span>
-          </div>
         </div>
       </div>
     </div>
@@ -129,10 +152,10 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
           // Iterate over the arenaImages array within each document
           arenaImages.forEach((image) => {
             // Extract challenge, hearts, and imageURL from each image object
-            const { challenge, hearts, imageURL, imageId } = image;
+            const { challenge, hearts, imageURL, imageId, uploaderID } = image;
   
             // Push the extracted image data into the allImages array
-            allImages.push({ challenge, hearts, imageURL, imageId });
+            allImages.push({ challenge, hearts, imageURL, imageId, uploaderID });
           });
         });
   
@@ -161,9 +184,10 @@ const VotePage = () => { //jennifer - removed competitionTitle inside the parath
         {uploadedImages.map((arenaCHImage) => (
           <ArtCard
               key={arenaCHImage.imageId} // Assuming imageId is unique for each image
-              artist="Jane Doe" // Artist name is hardcoded for now
+              artist={arenaCHImage.uploaderID} // Artist name 
               imageSrc={arenaCHImage.imageURL} // image URL is stored in a field named 'imageURL'
               imageId={arenaCHImage.imageId}
+              userID={arenaCHImage.uploaderID}
             />
         ))}
       </div>
