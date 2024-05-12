@@ -63,10 +63,19 @@ function NavSite() {
 
         <section>
           <h4>Market Section</h4>
-          <div className="p2">If you're looking to add flair to your profile or celebrate your accomplishments, our Market section offers a 
-            variety of options to enhance your artistic journey. Artists can exchange their earned points for badges, icons, emotes etc...
+          <div className="p2">In the Market section, users have the opportunity to utilize earned points from various activities 
+            to acquire a range of virtual items. Additionally, the Gallery Market serves as a platform where users can 
+            explore and purchase artwork created by talented artists.
           </div>
-          <img src="/NavSite art/ns_Market.png" alt="Market Page" />
+          <div className="p2">This section includes:</div>
+          <ul>
+            <li>Market</li>
+            <div className="p2">Users can exchange their earned points for badges, icons, emotes etc...</div>
+            <img src="/NavSite art/ns_Market.png" alt="Market Page" />
+            <li>Gallery Market</li>
+            <div className="p2">This section allows users to buy artwork directly from artists that they put up for sale.</div>
+            <img src="/NavSite art/ns_Gallery.png" alt="Gallery Page" />
+          </ul>
         </section>
 
         <section>
@@ -75,7 +84,7 @@ function NavSite() {
           <div className="p2">This section includes:</div>
           <ul>
             <li>Profile</li>
-            <div className="p2">Here you'll find quick links to your Messages, Portfolio, Commissions, and Collaborations</div>
+            <div className="p2">Here you'll find quick links to your Messages, Portfolio, Commissions, Collaborations, and For Sale Page where artist can upload artwork to sell!</div>
             <img src="/NavSite art/ns_Profile.png" alt="Profile Page" />
             <li>Portfolio</li>
             <div className="p2">Access your Portfolio Page to showcase your work and personal details</div>
@@ -90,7 +99,7 @@ function NavSite() {
             <div className="p2">Explore the Collaboration Page to find opportunities for joint projects and creative partnerships.</div>
             <img src="/NavSite art/ns_Collab.png" alt="Collaborations Page" />
             <li>My Points</li>
-            <div className="p2">Here is where you can track your earnings, progress, and achievements.</div>
+            <div className="p2">Here is where you can track your earnings, achievements, and market purchases.</div>
             <img src="/NavSite art/ns_Points.png" alt="Points Page" />
             <li>Leave a Review</li>
             <div className="p2">Leave a rating and review to share feedback and testimonials, building your reputation within the ArtSpace community.</div>
