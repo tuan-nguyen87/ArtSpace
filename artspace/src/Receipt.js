@@ -13,6 +13,7 @@ const Receipt = () => {
     const today = new Date();
     const validUntil = new Date(today);
     validUntil.setDate(validUntil.getDate() + 7);
+    
 
     return (
         <div className="receipt-container">
