@@ -70,6 +70,7 @@ const MyCommissions = () =>
     };
 
     const handleClientCompleteCommission = (comm) => {
+
         console.log("testing client complete");
     }
 
@@ -204,7 +205,9 @@ const MyCommissions = () =>
                     <button type="update" class="commissions-create-btn" onClick={() => handleDisplayProgressBar(true)} disabled={(currentComm.artistUserID === null) || (currentComm.clientUserID === commCurrentUserID)}>Update</button>
                 )}
                 {(currentComm.clientUserID === commCurrentUserID) && (
-                    <button type="complete" class="commissions-create-btn" onClick={() => handleClientCompleteCommission(currentComm)} disabled={(currentComm.status !== 6)}>Complete</button>
+                    <a href={"/Payment/" + currentComm.id}>
+                        <button type="complete" class="commissions-create-btn" onClick={() => handleClientCompleteCommission(currentComm)} disabled={(currentComm.status !== 6)}>Complete</button>
+                    </a>
                 )}
                 </div>
             </div>

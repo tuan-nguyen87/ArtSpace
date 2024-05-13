@@ -66,6 +66,7 @@ function App() {
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
           <Route path="/Payment" element={<Payment />} />
+          <Route path="/Payment/:id" element={<Payment />} />
           <Route path="/PointSystem" element={<PointSystem />} />
           <Route path="/NavSite" element={<NavSite />} />
           <Route path="/ArtTutorials" element={<ArtTutorials />} />

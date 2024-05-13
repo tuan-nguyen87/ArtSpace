@@ -352,6 +352,12 @@ Worked on by Kevin
   background-color: #ff1a1a;
 }
 
+.commissions-button-container a {
+  display: flex;
+  margin-left: auto;
+  text-decoration: none;
+}
+
 .comm-progress-bar div div {
   margin-top: 0px;
   transform: scale(1);
