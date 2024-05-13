@@ -16,7 +16,7 @@ const developerData = [
   { id: "h6ivhFw60BN3Eo6Ai8o0saDVjQ73", name: "Yasmine Valencia" },
   { id: "aHiUmTvYyyYt5femAM7mK2VC2OF2", name: "Jennifer Carrera" },
   { id: "uZmTRz7zsdQCVGz7KsFAcM8S9Tc2", name: "Tuan Nguyen" },
-  { id: "C2ofxCQZ0NMFu4QB98sW37gjnlB2", name: "Developer 5" },
+  { id: "99DeVnSL8TZMXfAUOBb4C07KO5p1", name: "Kevin Tran" },
   // { id: '99DeVnSL8TZMXfAUOBb4C07KO5p1', name: 'Developer 6' },
   // { id: '3desXwADbUfKbu25QrFyUKaUMfx1', name: 'Developer 7' }
 ];

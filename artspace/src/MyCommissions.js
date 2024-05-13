@@ -69,9 +69,11 @@ const MyCommissions = () =>
         setCollabArtistID(event.target.value);
     };
 
-    const handleClientCompleteCommission = (comm) => {
-
-        console.log("testing client complete");
+    const handleClientCompleteCommission = async (comm) => {
+        console.log("goes through");
+        await updateDoc(doc(db, "Commissions", currentComm.id), {
+            status: 7
+        })
     }
 
     useEffect(() => {
