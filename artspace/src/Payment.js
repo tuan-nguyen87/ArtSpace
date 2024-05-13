@@ -1,112 +1,143 @@
 // Queueing system page
 // for ideas
 
-// import sendReceipt from './sendReceipt';
-import React, { useState } from "react"; // Yasmine - Testing some setup for emails
+import React, { useState } from "react"; 
+import { useNavigate } from "react-router-dom";
 import "./styles/Payment.css";
+// Import Receipt component
+import Receipt from './Receipt';
 
 const Payment = () => {
+
     // Yasmine's additions
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
-        // Add other form fields later
+        phone: "",
+        billingName: "",
+        billingAddress1: "",
+        billingAddress2: "",
+        billingCity: "",
+        billingState: "",
+        billingZip: "",
+        cardName: "",
+        cardNum: "",
+        cardCvc: "",
+        cardMonth: "",
+        cardYear: "",
+        paymentAmount: ""
     });
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         // Call Cloud Function to send receipt
-    //         const response = await sendReceipt(formData);
-    //         console.log(response); // Log the response from the Cloud Function
-    //         // Reset form data or show success message to the user
-    //     } catch (error) {
-    //         console.error('Error sending receipt:', error);
-    //         // Handle error
-    //     }
-    // };
-    //End Yasmine's additions outside of return (call handleSubmit inside return)
+    const [sellerData, setSellerData] = useState({
+        firstName: "John",
+        lastName: "Doe",
+        email: "john.doe@example.com",
+        phone: "123-456-7890",
+        billingName: "John Doe",
+        billingAddress1: "123 Main Street",
+        billingCity: "Anytown",
+        billingState: "CA",
+        billingZip: "12345"
+    });
+
+    const [submitted, setSubmitted] = useState(false); // New state for submitted status
+    const navigate = useNavigate(); // Hook for navigation
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // Handle form submission
+        console.log(formData); // Log form data
+        setSubmitted(true); // Set submitted to true
+        navigate('/receipt', { state: { formData, sellerData, itemData: { 
+            items: [
+                { name: "Portrait", quantity: 1, price: 100, subtotal: 100 },
+                { name: "Painted Forest", quantity: 2, price: 50, subtotal: 100 }
+            ]
+        }}});
+    };
+    
+    // Function to handle input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
     return (
-        <div class="payment-container">
-            <form class="payment-form" action="" method="POST">
+        <div className="payment-container">
+            <form className="payment-form" onSubmit={handleSubmit}> {/* action="" method="POST" */}
                 <h1>Payment</h1>
                 <h3>Personal Information</h3>
-                <div class="personal-info">
-                    <div class="input-info">
-                        <input type="text" placeholder="First Name" required class="fname"></input>
+                <div className="personal-info">
+                    <div className="input-info">
+                        <input type="text" placeholder="First Name" required className="fname" name="firstName" value={formData.firstName} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Last Name" required class="lname"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Last Name" required className="lname" name="lastName" value={formData.lastName} onChange={handleInputChange}></input>
                     </div>
                 </div>
-                <div class="personal-info">
-                    <div class="input-info">
-                        <input type="email" placeholder="Email" required class="email"></input>
+                <div className="personal-info">
+                    <div className="input-info">
+                        <input type="email" placeholder="Email" required className="email" name="email" value={formData.email} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="number" placeholder="Phone Number (111-222-3333)" required class="phone"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Phone Number (111-222-3333)" required className="phone" name="phone" value={formData.phone} onChange={handleInputChange}></input>
                     </div>
                 </div>
                 <h3>Billing Information</h3>
-                <div class="billing-info">
-                    <div class="input-info">
-                        <input type="text" placeholder="Full Name" required class="billing-name"></input>
+                <div className="billing-info">
+                    <div className="input-info">
+                        <input type="text" placeholder="Full Name" required className="billing-name" name="billingName" value={formData.billingName} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Address 1" required class="billing-address-1"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Address 1" required className="billing-address-1" name="billingAddress1" value={formData.billingAddress1} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Address 2" required class="billing-address-2"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Address 2" className="billing-address-2" name="billingAddress2" value={formData.billingAddress2} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="City" required class="billing-city"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="City" required className="billing-city" name="billingCity" value={formData.billingCity} onChange={handleInputChange}></input>
                     </div>                    
-                    <div class="input-info">
-                        <input type="text" placeholder="State (CA, OH, ...)" required class="billing-state"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="State (CA, OH, ...)" required className="billing-state" name="billingState" value={formData.billingState} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Zip Code" required class="billing-zip"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Zip Code" required className="billing-zip" name="billingZip" value={formData.billingZip} onChange={handleInputChange}></input>
                     </div>
                 </div>
                 <h3>Payment Details</h3>
-                <div class="card-info">
-                    <div class="input-info">
-                        <input type="text" placeholder="Name on Card" required class="card-name"></input>
+                <div className="card-info">
+                    <div className="input-info">
+                        <input type="text" placeholder="Name on Card" required className="card-name" name="cardName" value={formData.cardName} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="number" placeholder="Card Number 1234-5678-1357-2468" required class="card-num"></input>
+                    <div className="input-info">
+                        <input type="number" placeholder="Card Number 1234-5678-1357-2468" required className="card-num" name="cardNum" value={formData.cardNum} onChange={handleInputChange}></input>
                     </div>
                 </div>
-                <div class="card-info-2">
-                    <div class="input-info">
-                        <input type="text" placeholder="Card CVC" required class="card-cvc"></input>
+                <div className="card-info-2">
+                    <div className="input-info">
+                        <input type="text" placeholder="Card CVC" required className="card-cvc" name="cardCvc" value={formData.cardCvc} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Month" required class="card-month"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Month" required className="card-month" name="cardMonth" value={formData.cardMonth} onChange={handleInputChange}></input>
                     </div>
-                    <div class="input-info">
-                        <input type="text" placeholder="Year" required class="card-year"></input>
+                    <div className="input-info">
+                        <input type="text" placeholder="Year" required className="card-year" name="cardYear" value={formData.cardYear} onChange={handleInputChange}></input>
                     </div>
                 </div>
                 <h3>Amount</h3>
-                <div class="amount-info">
-                    <div class="input-info">
-                        <input type="number" placeholder="123.11" required class="payment-amount"></input>
+                <div className="amount-info">
+                    <div className="input-info">
+                        <input type="number" placeholder="123.11" required className="payment-amount" name="paymentAmount" value={formData.paymentAmount} onChange={handleInputChange}></input>
                     </div>
                 </div>
-                
+                <button type="submit">Submit</button>
             </form>
-        
+            {submitted && <Receipt formData={formData} sellerData={sellerData}/>}
         </div>
 
 
     );
 }
-// {/* Yasmine added a submit button here */}
-// <form onSubmit={handleSubmit}>
-// {/* Form fields */}
-// <button type="submit">Submit</button>
-// </form>
+
 export default Payment

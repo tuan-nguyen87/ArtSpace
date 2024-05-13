@@ -1,0 +1,78 @@
+.receipt-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    position: absolute; /* Should be done to all pages*/
+    top: 0;
+    left: 0;
+    right: 0;
+    display:flex;  /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 100vh; /* Set minimum height to full viewport height */
+    background: url("/public/images/background-calm.jpeg") center no-repeat; /* Background image */
+    background-size: cover; /* Cover entire container with background image */
+}
+
+.receipt-content {
+    margin-top: 120px;
+    text-align:justify;
+    font-weight: 550;
+}
+
+.receipt-content h1 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.receipt-content table {
+    margin-left: 10%;
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.receipt-content th,td {
+    border: 1px solid #f5eeee;
+    padding: 8px;
+    text-align: left;
+}
+
+.receipt-content th {
+    background-color: white;
+    font-weight: bold;
+}
+
+.receipt-content tfoot td {
+    font-weight: bold;
+}
+
+.receipt-content p {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.address {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.address .box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.address .box h3 {
+    margin-top: 0;
+}
+
+.address .box p {
+    margin: 0;
+}
+

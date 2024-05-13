@@ -84,3 +84,10 @@
     margin-top: -10px !important;
 }
 
+.payment-form button {
+    width: 100px;
+    padding: 10px;
+    color: white;
+    background-color: #80B3BA;
+    border-color: #80B3BA;
+}

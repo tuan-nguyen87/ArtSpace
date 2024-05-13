@@ -4,13 +4,19 @@ import { db } from "./Firebase/Firebase";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import '@fortawesome/fontawesome-free/css/all.css';
 
-const RatingReview = () => {
+const RatingReview = ({  }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [reviews, setReviews] = useState([]);
   const [personName, setPersonName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   
+  const handlePostReview = () => {
+    // Logic to post the review
+    // After successfully posting the review, call the onNewReview function
+   
+  };
+
 
   // Function to handle changes in the rating
   const handleRatingChange = (newRating) => {
@@ -118,7 +124,8 @@ const RatingReview = () => {
             </div>
 
             {/* Submit button */}
-            <button type="submit" className="submit-button">Submit Review</button>
+            <button type="submit" className="submit-button" onClick={handlePostReview}>Submit Review</button>
+
           </form>
         </div>
 
