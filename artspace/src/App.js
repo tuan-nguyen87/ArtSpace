@@ -77,11 +77,8 @@ function App() {
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/Collaborations" element={<Collaborations />} />
           <Route path="/Payment" element={<Payment />} />
-<<<<<<< HEAD
           <Route path="/Payment/:id" element={<Payment />} />
-=======
           <Route path="/receipt" element={<Receipt />} />
->>>>>>> 1455c4278f39fe9eabdd54226206562a6db03904
           <Route path="/PointSystem" element={<PointSystem />} />
           <Route path="/NavSite" element={<NavSite />} />
           <Route path="/ArtTutorials" element={<ArtTutorials />} />
